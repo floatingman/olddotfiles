@@ -1,0 +1,42 @@
+[user]
+  name = Daniel Newman
+  email = dwnewman78@gmail.com
+[color]
+  ui = auto
+[push]
+  default = current
+[alias]
+  aa = add --all
+  ap = add --patch
+  ca = commit --amend
+  ci = commit -v
+  co = checkout
+  dc = diff --cached
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%Creset' --abbrev-commit --date=relative
+  pr = pull-request
+  st = status --short --branch
+  up = !git fetch origin && git rebase origin/master
+  in = !git up -i && git push -f && git checkout master && git pull && git merge -
+[merge]
+  ff = only
+  tool = vimdiff
+[diff]
+  mnemonicprefix = true
+[help]
+  autocorrect = 1
+[core]
+  editor = vim
+  excludesfile = /home/dnewman/.gitignore
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
