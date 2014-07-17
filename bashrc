@@ -433,7 +433,7 @@ alias nowdate='date +"%d-%m-%Y"'
 alias ping='ping -c 5'
 alias fastping='ping -c 100 -s.2'
 
-alias ducks="du -cksh * |sort -rn |head -10" # print top 10 largest files in pwd
+alias ducks="du -cks * |sort -rn |head -10" # print top 10 largest files in pwd
 alias free="free -m"                        # show sizes in MB
 alias sps="ps aux | grep -v grep | grep"    # search and display processes by keyword
 
@@ -517,12 +517,12 @@ if $_isarch; then
     alias scat='sudo cat'
     alias root='sudo su'
     alias windows='sudo grub-set-default 3 && sudo reboot'
-    alias pacin='powerpill -S'
+    alias pacin='pacman -S'
     alias pacout='pacman -R'
     alias pacsearch='pacman -Ss'
     alias pacup='pacup.rb && sudo pacman -Suy'
     alias bb="sudo bleachbit --clean system.cache system.localizations system.trash system.tmp"
-    alias upp='sudo reflector -c "United States" -a 1 -f 3 --sort rate --save /etc/pacman.d/mirrorlist && cat /etc/pacman.d/mirrorlist && sudo powerpill -Syyu'
+    alias upp='sudo reflector -c "United States" -a 1 -f 3 --sort rate --save /etc/pacman.d/mirrorlist && cat /etc/pacman.d/mirrorlist && sudo pacman -Syyu'
 fi
 # ghc aliases
 if _have ghc-pkg; then
