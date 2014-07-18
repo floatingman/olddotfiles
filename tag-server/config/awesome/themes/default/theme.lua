@@ -1,0 +1,1 @@
+/home/dnewman/.dotfiles/config/awesome/themes/default/theme.lua

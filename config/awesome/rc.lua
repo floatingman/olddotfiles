@@ -115,7 +115,8 @@ tags = {
          '⌘:Video',
 		 '☭:Chat',
          '✇:Files',
-         '✣:Misc',
+         '⌥:Books',
+		 '✣:Misc',
            },
  layout = {
       layouts[5],   -- 1:Term
@@ -126,7 +127,8 @@ tags = {
       layouts[10],  -- 6:video
 	  layouts[5],   -- 7:Chat
       layouts[2],   -- 8:files
-      layouts[10],  -- 9:misc
+      layouts[2],   -- 9:books
+	  layouts[2],   -- 10:misc
           }
        }
   for s = 1, screen.count() do
@@ -487,6 +489,10 @@ awful.rules.rules = {
       properties = { tag = tags[1][2] } },
 	{ rule = { class = "Pidgin" },
 	  properties = { tag = tags[1][7] } },
+	{ rule = { class = "Calibre-gui"},
+	  properties = { tag = tags[1][9] } },
+	{ rule = { class = "Terminator" },
+	  properties = { tag = tags[1][5] } },
     -- Set Firefox to always map on tags number 2 of screen 1.
     { rule = { class = "Firefox" },
      properties = { tag = tags[1][2] } },

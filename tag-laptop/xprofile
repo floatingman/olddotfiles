@@ -20,8 +20,6 @@ xset s off
 setxkbmap -option terminate:ctrl_alt_bksp
 
 
-synergyc 192.168.0.2 &
-
 # Start the apps
 #tray &
 udiskie --tray &
@@ -30,6 +28,9 @@ dropboxd &  #commented out for openbox
 nm-applet &   #commented out for openbox
 parcellite &
 pasystray &
-/home/dnewman/.bin/toggle-touchpad.sh &
 redshiftgui &
+synergys &
+calibre &
+pidgin &
+/home/dnewman/.bin/ncmpc &
 
