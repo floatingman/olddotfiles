@@ -1,1 +1,3 @@
-/home/dnewman/.dotfiles/config/awesome/startup.sh
+#!/bin/sh
+#exec xsetroot -cursor_name left_ptr
+xcompmgr&
