@@ -29,8 +29,8 @@ nm-applet &   #commented out for openbox
 parcellite &
 pasystray &
 redshiftgui &
-synergys &
-calibre &
+synergyc 192.168.0.2 &
+/home/dnewman/.bin/toggle-touchpad.sh &
 pidgin &
 /home/dnewman/.bin/ncmpc &
 
