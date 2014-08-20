@@ -375,9 +375,13 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
     awful.key({ modkey,           }, "w",     function () awful.util.spawn("firefox")   end),
-
-    awful.key({ modkey, "Control" }, "n", awful.client.restore),
-
+	awful.key({ modkey,           }, "Up", 	  function () awful.util.spawn_with_shell("amixer --quiet set Master 3%+") end),
+	awful.key({ modkey,           }, "Down",  function () awful.util.spawn_with_shell("amixer --quiet set Master 3%-") end),
+	awful.key({ modkey, "Shift"   }, "p", 	  function () awful.util.spawn_with_shell("sudo systemctl suspend") 	   end),
+	awful.key({ modkey, "Control" }, "p", 	  function () awful.util.spawn_with_shell("sudo systemctl hibernate")      end),
+	awful.key({ modkey, 		  }, "z", 	  function () awful.util.spawn_with_shell("i3lock -i /home/dnewman/Dropbox/Photos/wallpapers/get.fresh.crew.png")      				   end),
+    awful.key({ modkey, "Control" }, "n", 	  awful.client.restore),
+	
     -- Prompt
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
 

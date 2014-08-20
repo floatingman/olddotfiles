@@ -47,7 +47,7 @@ nm-applet &   #commented out for openbox
 parcellite &
 pasystray &
 #volumeicon &
-batterymon &
+#batterymon &
 toggle-touchpad.sh &
 
 #added for openbox
@@ -58,5 +58,5 @@ export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 redshiftgui &
 #xautolock -time 30 -locker "sudo pm-suspend" &
 
-exec dbus-launch --sh-syntax --exit-with-session xmonad
+#exec dbus-launch --sh-syntax --exit-with-session xmonad
 #exec openbox-session
