@@ -3,8 +3,8 @@
 # Configure X
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
-xscreensaver -no-splash &
-xsetroot -cursor_name left_ptr 
+#xscreensaver -no-splash &
+#xsetroot -cursor_name left_ptr 
 #wallpaper.sh &
 
 # Start a D-Bus session
@@ -22,15 +22,15 @@ setxkbmap -option terminate:ctrl_alt_bksp
 
 # Start the apps
 #tray &
-udiskie --tray &
-urxvtd -q -f -o
-dropboxd &  #commented out for openbox
-nm-applet &   #commented out for openbox
-parcellite &
-pasystray &
-redshiftgui &
-synergyc 192.168.0.2 &
-/home/dnewman/.bin/toggle-touchpad.sh &
-pidgin &
-/home/dnewman/.bin/ncmpc &
+#udiskie --tray &
+#urxvtd -q -f -o
+#dropboxd &  #commented out for openbox
+#nm-applet &   #commented out for openbox
+#parcellite &
+#pasystray &
+#redshiftgui &
+#synergyc 192.168.0.2 &
+#/home/dnewman/.bin/toggle-touchpad.sh &
+#pidgin &
+#/home/dnewman/.bin/ncmpc &
 

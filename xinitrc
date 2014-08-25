@@ -15,9 +15,9 @@ fi
 # Configure X
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
-xscreensaver -no-splash &
-xsetroot -cursor_name left_ptr 
-wallpaper.sh &
+#xscreensaver -no-splash &
+#xsetroot -cursor_name left_ptr 
+#wallpaper.sh &
 
 # Start a D-Bus session
 source /etc/X11/xinit/xinitrc.d/30-dbus
@@ -39,13 +39,14 @@ setxkbmap -option terminate:ctrl_alt_bksp
 synergyc 192.168.0.2 &
 
 # Start the apps
-tray &
-udiskie --tray &
-urxvtd -q -f -o
-dropboxd &  #commented out for openbox
-nm-applet &   #commented out for openbox
-parcellite &
-pasystray &
+#tray &
+#udiskie --tray &
+#urxvtd -q -f -o
+#dropboxd &  #commented out for openbox
+#nm-applet &   #commented out for openbox
+#parcellite &
+#pa-applet &
+#pasystray &
 #volumeicon &
 #batterymon &
 toggle-touchpad.sh &
@@ -55,7 +56,7 @@ export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 
 #start tray apps
 #blueman-applet &  #commented out for openbox
-redshiftgui &
+#redshiftgui &
 #xautolock -time 30 -locker "sudo pm-suspend" &
 
 #exec dbus-launch --sh-syntax --exit-with-session xmonad

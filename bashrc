@@ -495,6 +495,34 @@ fi
 alias silent='echo "silent" | sudo tee /sys/devices/platform/sony-laptop/thermal_control'
 alias balanced='echo "balanced" | sudo tee /sys/devices/platform/sony-laptop/thermal_control'
 alias performance='echo "performance" | sudo tee /sys/devices/platform/sony-laptop/thermal_control'
+
+# wipro proxy
+function wiproproxyon() {
+	echo -n "username:"
+	read -e username
+	echo -n "password:"
+	read -es password
+	export http_proxy="http://$username:$password@proxy4.wipro.com:8080"
+	export https_proxy=$http_proxy
+	export ftp_proxy=$http_proxy
+	export rsync_proxy=$http_proxy
+	export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
+	echo -e "\nProxy environment variable set."
+}
+
+function wiproproxyoff() {
+	unset HTTP_PROXY
+	unset http_proxy
+	unset HTTPS_PROXY
+	unset https_proxy
+	unset FTP_PROXY
+	unset ftp_proxy
+	unset RSYNC_PROXY
+	unset rsync_proxy
+	echo -e "\nProxy environment variable removed"
+}
+
+
 # pacman aliases
 if $_isarch; then
   if ! $_isroot; then
