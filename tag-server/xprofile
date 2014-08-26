@@ -3,7 +3,7 @@
 # Configure X
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
-xscreensaver -no-splash &
+#xscreensaver -no-splash &
 xsetroot -cursor_name left_ptr 
 #wallpaper.sh &
 
@@ -22,15 +22,15 @@ setxkbmap -option terminate:ctrl_alt_bksp
 
 # Start the apps
 #tray &
-udiskie --tray &
-urxvtd -q -f -o
-dropboxd &  #commented out for openbox
-nm-applet &   #commented out for openbox
-parcellite &
-pasystray &
-redshiftgui &
-synergys &
-calibre &
-pidgin &
-/home/dnewman/.bin/ncmpc &
-xchat &
+#udiskie --tray &
+#urxvtd -q -f -o
+#dropboxd &  #commented out for openbox
+#nm-applet &   #commented out for openbox
+#parcellite &
+#pasystray &
+#redshiftgui &
+#synergys &
+#calibre &
+#pidgin &
+#/home/dnewman/.bin/ncmpc &
+#xchat &
