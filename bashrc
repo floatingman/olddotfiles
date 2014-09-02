@@ -476,10 +476,12 @@ if _have colortail; then
 fi
 
 
+
 # only if we have a disc drive
 if [[ -b '/dev/sr0' ]]; then
   alias eject='eject -T /dev/sr0'
   alias mountdvd='sudo mount -t iso9660 -o ro /dev/sr0 /media/dvd/'
+	alias backupdvd='dvdbackup -M -i /dev/sr0 -o /mnt/BigMamaMedia/Media/dvdcopy/'
 fi
 
 # only if we have xmonad

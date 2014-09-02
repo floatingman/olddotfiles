@@ -229,7 +229,7 @@ bindsym $mod+Pause mode "$mode_system"
 
 
 #quick apps
-bindsym $mod+Shift+w exec chromium
+bindsym $mod+Shift+w exec google-chrome-stable
 bindsym $mod+c exec gnome-calculator
 
 
@@ -237,7 +237,7 @@ bindsym $mod+c exec gnome-calculator
 bindsym $mod+z exec xscreensaver-command -activate 
 
 # Assign programs to workspaces
-assign [class="Chromium"] 2: Web
+assign [class="Google-chrome-stable"] 2: Web
 
 assign [class="Pidgin"] 6: Chat
 
