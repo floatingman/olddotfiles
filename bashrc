@@ -147,6 +147,7 @@ HISTSIZE=1000000
 HISTFILESIZE=1000000
 shopt -s histappend
 export ${!HIST@}
+complete -cf sudo
 
 if [[ -f /etc/bash_completion ]]; then
   . /etc/bash_completion
@@ -184,7 +185,7 @@ fi
 set -o vi
 
 # list of apps to be tried in order
-xbrowsers='browser:chromium:firefox:google-chrome'
+xbrowsers='google-chrome'
 browsers='elinks:lynx:links:w3m'
 editors='vim:vi'
 
