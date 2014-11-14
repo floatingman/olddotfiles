@@ -76,7 +76,7 @@ bindsym $mod+f fullscreen
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+bindsym $mod+t layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -92,28 +92,28 @@ bindsym $mod+a focus parent
 bindsym $mod+c focus child
 
 # switch to workspace
-bindsym $mod+1 workspace 1: Term
-bindsym $mod+2 workspace 2: Web
-bindsym $mod+3 workspace 3: Code
-bindsym $mod+4 workspace 4: Music
-bindsym $mod+5 workspace 5: Video
-bindsym $mod+6 workspace 6: Chat
-bindsym $mod+7 workspace 7: IRC
-bindsym $mod+8 workspace 8: Files
-bindsym $mod+9 workspace 9: Misc
-bindsym $mod+0 workspace 10: Misc2
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1: Term
-bindsym $mod+Shift+2 move container to workspace 2: Web
-bindsym $mod+Shift+3 move container to workspace 3: Code
-bindsym $mod+Shift+4 move container to workspace 4: Music
-bindsym $mod+Shift+5 move container to workspace 5: Video
-bindsym $mod+Shift+6 move container to workspace 6: Chat
-bindsym $mod+Shift+7 move container to workspace 7: IRC
-bindsym $mod+Shift+8 move container to workspace 8: Files
-bindsym $mod+Shift+9 move container to workspace 9: Misc
-bindsym $mod+Shift+0 move container to workspace 10: Misc2
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
 
 # rename a workspace (mnemonic: 'd' for 'designate')
 bindsym $mod+d exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
@@ -170,37 +170,42 @@ bindsym $mod+m mode "move"
 #bar {
 #        status_command i3status
 #}
-bar {
-				status_command 			python /home/dnewman/.i3/i3pystatusconf.py
-				position 						bottom
-				workspace_buttons 	no
-				tray_output none
-				colors {
-								background 	#000000
-								separator 	#666666
-								statusline 	#ffffff
+#bar {
+#				status_command 			python /home/dnewman/.i3/i3pystatusconf.py
+#				position 						bottom
+#				workspace_buttons 	no
+#				tray_output none
+#				colors {
+#								background 	#000000
+#								separator 	#666666
+#								statusline 	#ffffff
+#
+#								focused_workspace 	#44bbff #3276E8 #ffffff
+#								active_workspace 		#333333 #5f676a #ffffff
+#								inactive_workspace 	#333333 #222222 #888888
+#								urgent_workspace 		#2f343a #900000 #ffffff
+#					}
+#	}
+#bar {
+#				status_command 			python /home/dnewman/.i3/i3pystatusconf2.py
+#				position 						top
+#				workspace_buttons 	yes
+#				tray_output 				primary
+#				colors {
+#								background 	#000000
+#								separator 	#666666
+#								statusline 	#ffffff
+#
+#								focused_workspace 	#44bbff #3276E8 #ffffff
+#								active_workspace 		#333333 #5f676a #ffffff
+#								inactive_workspace  #333333 #222222 #888888
+#								urgent_workspace 		#2f343a #900000 #ffffff
+#				}
+#}
 
-								focused_workspace 	#44bbff #3276E8 #ffffff
-								active_workspace 		#333333 #5f676a #ffffff
-								inactive_workspace 	#333333 #222222 #888888
-								urgent_workspace 		#2f343a #900000 #ffffff
-					}
-	}
 bar {
-				status_command 			python /home/dnewman/.i3/i3pystatusconf2.py
-				position 						top
-				workspace_buttons 	yes
-				tray_output 				primary
-				colors {
-								background 	#000000
-								separator 	#666666
-								statusline 	#ffffff
-
-								focused_workspace 	#44bbff #3276E8 #ffffff
-								active_workspace 		#333333 #5f676a #ffffff
-								inactive_workspace  #333333 #222222 #888888
-								urgent_workspace 		#2f343a #900000 #ffffff
-				}
+	status_command $HOME/.i3/conky-i3bar
+	tray_output primary
 }
 
 # Switch to urgent windows
@@ -213,22 +218,18 @@ bindsym $mod+Shift+apostrophe move scratchpad
 # Show the first scratchpad window
 bindsym $mod+apostrophe scratchpad show
 
-# Show the sup-mail scratchpad window, if any
-bindsysm mod4+s [title="^Sup ::"] scratchpad show
-
 #MEDIAKEYS
 bindsym XF86TouchpadToggle exec $binpath/toggle-touchpad.sh
 bindsym XF86AudioPlay exec mpc toggle
 #bindcode 121 exec "amixer --quiet set Master toggle"
 #bindcode 122 exec "amixer --quiet set Master 3%-"
 #bindcode 123 exec "amixer --quiet set Master 3%+"
-bindsym XF86AudioRaiseVolume exec amixer sset Master 2%+ && killall -USR1 i3blocks
-bindsym XF86AudioLowerVolume exec amixer sset Master 2%- && killall -USR1 i3blocks
-bindsym XF86AudioMute exec amixer sset Master toggle && killall -USR1 i3blocks
+#bindsym XF86AudioRaiseVolume exec amixer sset Master 2%+ && killall -USR1 i3blocks
+#bindsym XF86AudioLowerVolume exec amixer sset Master 2%- && killall -USR1 i3blocks
+#bindsym XF86AudioMute exec amixer sset Master toggle && killall -USR1 i3blocks
 
 
 # intellegent locker
-
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
 	bindsym l exec --no-startup-id $binpath/i3exit lock, mode "default"
@@ -244,41 +245,55 @@ mode "$mode_system" {
 }
 bindsym $mod+Pause mode "$mode_system"
 
+popup_during_fullscreen leave_fullscreen
+focus_follows_mouse on
 
 #quick apps
-bindsym $mod+Shift+w exec google-chrome-stable
-#bindsym $mod+c exec gnome-calculator
-
+#bindsym $mod+Shift+w exec google-chrome-stable
 
 # lock screen
-bindsym $mod+z exec xscreensaver-command -lock 
+bindsym $mod+BackSpace exec --no-startup-id $binpath/lock 
 
-# Assign programs to workspaces
-assign [class="Google-chrome-stable"] 2: Web
-
-assign [class="Pidgin"] 6: Chat
-
-assign [class="^MPlayer$"] 5: Video
-# open certain windows in floating mode
-for_window [class="(?i)gnome-calculator"] floating enable
-for_window [class="^MPlayer$"] border none 
-
+# Auto-float these windows
+for_window [title="Wicd Network Manager"] floating enable
+for_window [title="Redshift GUI"] floating enable
+for_window [title="Buddy List"] floating enable
+for_window [title="galculator"] floating enable
+for_window [class="Gnuplot"] floating enable
+for_window [title="unibrow"] floating enable
 
 # Startup programs
 exec --no-startup-id $binpath/wallpaper.sh
 exec --no-startup-id /usr/bin/udiskie --tray
 exec --no-startup-id /usr/bin/dropboxd 
 exec --no-startup-id /usr/bin/wicd-client
-
 exec --no-startup-id /usr/bin/pa-applet 
 exec --no-startup-id /usr/bin/parcellite
 exec --no-startup-id /usr/bin/redshiftgui
 exec --no-startup-id /usr/bin/pidgin
 exec --no-startup-id $binpath/toggle-touchpad.sh
 exec --no-startup-id /usr/bin/synergyc 192.168.0.2
+exec --no-startup-id dbus-launch dunst
 
 # Quick toggle between two most recent workspaces
 bindsym $mod+Tab workspace back_and_forth
 
+# Window list
+bindsym $mod+w exec --no-startup-id quickswitch.py
+
+# Switch to next unused workspace
+bindsym $mod+plus exec --no-startup-id $binpath/i3-free-workspace.py switch next
+
+# Move current window to next unused workspace
+bindsym $mod+shift+plus exec --no-startup-id $binpath/i3-free-workspace.py move next
+
+# Notification list
+bindsym $mod+n exec --no-startup-id $binpath/notify -d
 
 # Custom app bindings
+bindsym $mod+b exec --no-startup-id i3-msg border toggle
+bindsym $mod+comma exec --no-startup-id compton-trans -c -5
+bindsym $mod+period exec --no-startup-id compton-trans -c +5
+bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/.bin/vol_ctl up
+bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/.bin/vol_ctl down
+bindsym XF86AudioMute exec --no-startup-id $HOME/.bin/vol_ctl mute

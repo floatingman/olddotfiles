@@ -185,10 +185,10 @@ fi
 set -o vi
 
 # list of apps to be tried in order
-xbrowsers='google-chrome'
+xbrowsers='firefox:google-chrome'
 browsers='elinks:lynx:links:w3m'
-editors='vim:vi'
-
+editors='vim'
+export TERMINAL=terminator
 # }}}
 VBOX_USB=usbfs
 ### Overall conditionals/functions {{{
@@ -241,8 +241,16 @@ _source () {
 ### Bash exports {{{
 
 # set path
-_add_to_path "$HOME/.bin" "$HOME/code/bin" "$HOME/.cabal/bin" "/opt/android-sdk/tools"
+_add_to_path "$HOME/.bin" 
 
+#ruby path
+_add_to_path "$HOME/.gem/ruby/2.1.0/bin"
+
+# Node
+_add_to_path "$HOME/node_modules/.bin"
+
+# Haskell
+_add_to_path "$HOME/.cabal/bin"
 # set browser
 $_isxrunning && _set_browser "$xbrowsers" || _set_browser "$browsers"
 
