@@ -263,7 +263,8 @@ for_window [class="Gnuplot"] floating enable
 for_window [title="unibrow"] floating enable
 
 # Startup programs
-exec --no-startup-id $binpath/wallpaper.sh
+#exec --no-startup-id $binpath/wallpaper.sh
+exec --no-startup-id $binpath/apod.sh
 exec --no-startup-id /usr/bin/udiskie --tray
 exec --no-startup-id /usr/bin/dropboxd 
 exec --no-startup-id /usr/bin/wicd-client
