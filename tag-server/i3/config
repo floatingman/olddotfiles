@@ -253,6 +253,7 @@ assign [class="Xchat"] 7: IRC
 for_window [class="(?i)gnome-calculator"] floating enable
 
 # Startup programs
+exec --no-startup-id $binpath/apod.sh
 exec urxvtd -q -f -o
 #exec pulseaudio --start
 # exec $binpath/wallpaper.sh
