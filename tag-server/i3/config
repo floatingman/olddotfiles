@@ -173,7 +173,7 @@ bar {
 				status_command 			python /home/dnewman/.i3/i3pystatusconf2.py
 				position 						top
 				workspace_buttons 	yes
-				tray_output 				primary
+				tray_output 				DVI-0
 				colors {
 								background 	#000000
 								separator 	#666666
@@ -201,7 +201,9 @@ bindsysm mod4+s [title="^Sup ::"] scratchpad show
 
 #MEDIAKEYS
 bindsym XF86TouchpadToggle exec $binpath/toggle-touchpad.sh
-bindsym XF86AudioPlay exec mpc toggle
+bindsym $mod+Shift+p exec mpc toggle
+bindsym $mod+Shift+period exec mpc next
+bindsym $mod+Shift+comma exec mpc prev
 #bindcode 121 exec "amixer --quiet set Master toggle"
 #bindcode 122 exec "amixer --quiet set Master 3%-"
 #bindcode 123 exec "amixer --quiet set Master 3%+"
@@ -234,7 +236,7 @@ bindsym $mod+c exec gnome-calculator
 
 
 # lock screen
-bindsym $mod+z exec xscreensaver-command -activate 
+bindsym $mod+z exec xscreensaver-command -lock
 
 # Assign programs to workspaces
 assign [class="Google-chrome-stable"] 2: Web
@@ -252,8 +254,8 @@ for_window [class="(?i)gnome-calculator"] floating enable
 
 # Startup programs
 exec urxvtd -q -f -o
-exec pulseaudio --start
-exec $binpath/wallpaper.sh
+#exec pulseaudio --start
+# exec $binpath/wallpaper.sh
 exec urxvt
 exec udiskie --tray
 exec dropboxd 

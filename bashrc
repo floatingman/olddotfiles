@@ -375,6 +375,7 @@ export PS1="$GY[$Y\u$GY@$P\h$GY:$B\W$LB\$(get_git_info)$GY]$W\$(get_prompt_symbo
     alias dir='dir --color'
     alias ls='ls -h --group-directories-first --color=auto'
 
+
   else
     alias ls='ls -h'
   fi
@@ -1093,10 +1094,6 @@ extract() {
   return 0
 }
 
-
-
-
-
 ### Starting X {{{
 
 if [[ $(tty) = /dev/tty1 ]] && ! $_isroot && ! $_isxrunning; then
@@ -1108,7 +1105,7 @@ fi
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-
+#systemctl --user import-environment PATH
 
 # }}}
 
@@ -1192,5 +1189,14 @@ if [[ -f "$_ssh_env" ]]; then
 else
   _start_agent
 fi
+
+### Starting X {{{
+
+if [[ $(tty) = /dev/tty1 ]] && ! $_isroot && ! $_isxrunning; then
+  _set_browser "$xbrowsers"
+#  exec startx
+fi
+
+# }}}
 
 # }}}

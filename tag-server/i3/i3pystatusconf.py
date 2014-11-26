@@ -61,9 +61,6 @@ status.register("disk",
         path="/",
         format="/: {used}/{total}G [{avail}G]",)
 status.register("disk",
-        path="/mnt/omegasupreme/public/",
-        format="O: {used}/{total}G [{avail}G]",)
-status.register("disk",
         path="/mnt/Extra/",
         format="E: {used}/{total}G [{avail}G]",)
 status.register("disk",

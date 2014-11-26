@@ -27,7 +27,7 @@ status.register("weather",
 #
 # Note: requires libpulseaudio from PyPI
 status.register("pulseaudio",
-        format="♪: {volume}",)
+       format="♪: {volume}",)
 
 # Show mpd status
 status.register("mpd",
