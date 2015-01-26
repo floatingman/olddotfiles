@@ -2,7 +2,9 @@
   name = Daniel Newman
   email = dwnewman78@gmail.com
 [color]
-  ui = auto
+  branch = auto
+  diff = auto
+  status = auto
 [push]
   default = current
 [alias]
@@ -17,6 +19,10 @@
   st = status --short --branch
   up = !git fetch origin && git rebase origin/master
   in = !git up -i && git push -f && git checkout master && git pull && git merge -
+  br = branch
+  bl = blame -C
+  df = diff --word-diff
+  l1 = log --oneline --decorate
 [merge]
   ff = only
   tool = vimdiff

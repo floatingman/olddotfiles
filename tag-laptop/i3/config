@@ -261,13 +261,16 @@ for_window [title="Buddy List"] floating enable
 for_window [title="galculator"] floating enable
 for_window [class="Gnuplot"] floating enable
 for_window [title="unibrow"] floating enable
+for_window [class="Pidgin"] floating enable
 
 # Startup programs
 #exec --no-startup-id $binpath/wallpaper.sh
+exec --no-startup-id /usr/bin/nitrogen --set-zoom-fill /home/dnewman/images/wallpapers/auto
 exec --no-startup-id $binpath/apod.sh
 exec --no-startup-id /usr/bin/udiskie --tray
 exec --no-startup-id /usr/bin/dropboxd 
-exec --no-startup-id /usr/bin/wicd-client
+#exec --no-startup-id /usr/bin/wicd-client
+exec --no-startup-id /usr/bin/connman-ui-gtk
 exec --no-startup-id /usr/bin/pa-applet 
 exec --no-startup-id /usr/bin/parcellite
 exec --no-startup-id /usr/bin/redshiftgui
