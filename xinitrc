@@ -18,7 +18,7 @@ xset r rate 300
 [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
 
 # composting
-compton --inactive-dim 0.02 -b
+#compton --inactive-dim 0.02 -b
 
 # start pulseaudio if it isn't running already
 if [ ! "`pgrep pulseaudio`" ]; then
@@ -29,3 +29,4 @@ xset s off
 setxkbmap -option terminate:ctrl_alt_bksp
 
 exec i3
+#exec enlightenment_start

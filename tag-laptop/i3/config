@@ -270,13 +270,13 @@ exec --no-startup-id $binpath/apod.sh
 exec --no-startup-id /usr/bin/udiskie --tray
 exec --no-startup-id /usr/bin/dropboxd 
 #exec --no-startup-id /usr/bin/wicd-client
-exec --no-startup-id /usr/bin/cmst 
+#exec --no-startup-id /usr/bin/cmst 
 exec --no-startup-id /usr/bin/pa-applet 
 exec --no-startup-id /usr/bin/parcellite
 exec --no-startup-id /usr/bin/redshiftgui
 exec --no-startup-id /usr/bin/pidgin
 exec --no-startup-id $binpath/toggle-touchpad.sh
-exec --no-startup-id /usr/bin/synergyc 192.168.0.2
+#exec --no-startup-id /usr/bin/synergyc 192.168.0.2
 exec --no-startup-id dbus-launch dunst
 exec --no-startup-id /usr/bin/launchy
 
