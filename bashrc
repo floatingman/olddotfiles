@@ -251,6 +251,10 @@ export PS1="$GY[$Y\u$GY@$P\h$GY:$B\W$LB\$(get_git_info)$GY]$W\$(get_prompt_symbo
 
   # Haskell
   _add_to_path "$HOME/.cabal/bin"
+
+  #pyroscope and other custom programs
+  _add_to_path "$HOME/bin"
+  
   # set browser
   $_isxrunning && _set_browser "$xbrowsers" || _set_browser "$browsers"
 
@@ -308,6 +312,17 @@ export PS1="$GY[$Y\u$GY@$P\h$GY:$B\W$LB\$(get_git_info)$GY]$W\$(get_prompt_symbo
   # }}}
 
   ### Bash aliases {{{
+
+  if _have rtorrent; then
+    alias rthot="watch -n10 'rtcontrol -rs up,down,name xfer=+0 2>&1'"
+    alias rtmsg="rtcontrol -s alias,message,name 'message=?*' message=\!*Tried?all?trackers*"
+    alias rtmsgstats="rtcontrol -q -s alias,message -o alias,message 'message=?*' message=\!*Tried?all?trackers* | uniq -c"
+    alias rt2days="rtcontrol -scompleted -ocompleted,is_open,up.sz,ratio,alias,name completed=-2d"
+    alias rt2months="rtcontrol -scompleted -ocompleted,is_open,up.sz,ratio,alias,name completed=+2m"
+  fi
+
+  alias blankoff='xset -dpms; xset s off'
+  alias blankon='xset dpms; xset s on'
   # git alias
   alias gcl='git clone'
   alias ga='git add'

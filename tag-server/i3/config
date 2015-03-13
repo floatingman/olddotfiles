@@ -249,25 +249,29 @@ assign [class="libprs500"] 9: Books
 
 assign [class="Xchat"] 7: IRC
 
+assign [class="com-simontuffs-onejar-Boot"] 10: Misc
+
 # open certain windows in floating mode
 for_window [class="(?i)gnome-calculator"] floating enable
 
 # Startup programs
+exec --no-startup-id launchy
 exec --no-startup-id $binpath/apod.sh
 exec urxvtd -q -f -o
 #exec pulseaudio --start
-# exec $binpath/wallpaper.sh
+exec --no-startup-id jbidwatcher
+exec $binpath/wallpaper.sh
 exec urxvt
 exec udiskie --tray
-exec dropboxd 
-exec nm-applet 
-exec pa-applet 
+exec dropbox
+exec nm-applet
+exec pa-applet
 exec parcellite
-exec xscreensaver -no-splash
+#exec xscreensaver -no-splash
 exec redshiftgui
 exec pidgin
 exec $binpath/ncmpc
 exec calibre
 exec xchat
-exec synergys
+exec $binpath/synergys
 
