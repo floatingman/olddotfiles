@@ -259,7 +259,7 @@ exec --no-startup-id launchy
 exec --no-startup-id $binpath/apod.sh
 exec urxvtd -q -f -o
 #exec pulseaudio --start
-exec --no-startup-id jbidwatcher
+#exec --no-startup-id jbidwatcher
 exec $binpath/wallpaper.sh
 exec urxvt
 exec udiskie --tray
