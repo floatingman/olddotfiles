@@ -173,6 +173,8 @@ export PS1="$GY[$Y\u$GY@$P\h$GY:$B\W$LB\$(get_git_info)$GY]$W\$(get_prompt_symbo
     fi
   fi
 
+  PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
+
   #}}}
 
   if [[ -f "$HOME/.lscolors" ]] && [[ $(tput colors) == "256" ]]; then
@@ -242,9 +244,6 @@ export PS1="$GY[$Y\u$GY@$P\h$GY:$B\W$LB\$(get_git_info)$GY]$W\$(get_prompt_symbo
 
   # set path
   _add_to_path "$HOME/.bin" 
-
-  #ruby path
-  _add_to_path "$HOME/.gem/ruby/2.1.0/bin"
 
   # Node
   _add_to_path "$HOME/node_modules/.bin"
