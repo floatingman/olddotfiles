@@ -22,8 +22,8 @@ status = Status(standalone=True)
 status.register("load")
 
 # Shows your CPU temperature, if you have a Intel CPU
-#status.register("temp",
-#        format="CPU TEMP {temp:.0f}C",)
+status.register("temp",
+        format="CPU TEMP {temp:.0f}C",)
 
 # Show memory
 status.register("mem",
@@ -43,7 +43,7 @@ status.register("mem",
 #
 # Note: the network module requires PyPI package netifaces
 status.register("network",
-        interface="enp4s0",
+        interface="enp0s25",
         format_up="{v4cidr}",)
 
 # Has all the options of the normal network and adds some wireless

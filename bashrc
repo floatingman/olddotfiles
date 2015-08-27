@@ -166,16 +166,21 @@ export PS1="$GY[$Y\u$GY@$P\h$GY:$B\W$LB\$(get_git_info)$GY]$W\$(get_prompt_symbo
   ## EXPORTS {{{
 
   #Ruby support
-  if which ruby &>/dev/null; then
-    GEM_DIR=$(ruby -rubygems -e 'puts Gem.user_dir')/bin
-    if [[ -d "$GEM_DIR" ]]; then
-      export PATH=$GEM_DIR:$PATH
-    fi
-  fi
+  #if which ruby &>/dev/null; then
+  #  GEM_DIR=$(ruby -rubygems -e 'puts Gem.user_dir')/bin
+  #  if [[ -d "$GEM_DIR" ]]; then
+  #    export PATH=$GEM_DIR:$PATH
+  #  fi
+  #fi
 
-  PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
+  #PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 
   #}}}
+
+  #RVM stuff
+
+  # RVM bash completion
+  [[ -r "$HOME/.rvm/scripts/completion" ]] && source "$HOME/.rvm/scripts/completion"
 
   if [[ -f "$HOME/.lscolors" ]] && [[ $(tput colors) == "256" ]]; then
     # https://github.com/trapd00r/LS_COLORS
@@ -723,13 +728,13 @@ hbrip() {
   _have HandBrakeCLI || return 1
   [[ -n "$1" ]]      || return 1
 
-  local name="$1" out drop="$HOME/Movies"; shift
+  local name="$1" out drop="$HOME/Videos"; shift
   [[ -d "$drop" ]] || mkdir -p "$drop"
 
-  out="$drop/$name.mp4"
+  out="$drop/$name.m4v"
 
   echo "rip /dev/sr0 --> $out"
-  HandBrakeCLI -Z iPad "$@" -i /dev/sr0 -o "$out" 2>/dev/null
+  HandBrakeCLI --main-feature -m -s scan -F -N eng -Z High Profile "$@" -i /dev/sr0 -o "$out" 2>/dev/null
   echo
 }
 
@@ -738,7 +743,7 @@ hbconvert() {
   _have HandBrakeCLI || return 1
   [[ -n "$1" ]]      || return 1
 
-  local in="$1" out drop="$HOME/Movies/converted"; shift
+  local in="$1" out drop="$HOME/Videos/converted"; shift
   [[ -d "$drop" ]] || mkdir -p "$drop"
 
   out="$drop/$(basename "${in%.*}").mp4"
@@ -1212,41 +1217,41 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 # }}}
 
 # ssh-agent stuff
-_ssh_env="$HOME/.ssh/environment"
+#_ssh_env="$HOME/.ssh/environment"
 
-_start_agent() {
-  [[ -d "$HOME/.ssh" ]] || return 1
-  _have ssh-agent       || return 1
+#_start_agent() {
+#  [[ -d "$HOME/.ssh" ]] || return 1
+#  _have ssh-agent       || return 1
 
-  local key keyfile
+#  local key keyfile
 
-  ssh-agent | sed 's/^echo/#echo/g' > "$_ssh_env"
+#  ssh-agent | sed 's/^echo/#echo/g' > "$_ssh_env"
 
-  chmod 600 "$_ssh_env"
-  . "$_ssh_env" >/dev/null
+#  chmod 600 "$_ssh_env"
+#  . "$_ssh_env" >/dev/null
 
-  for key in id_rsa id_rsa.github; do
-    keyfile="$HOME/.ssh/$key"
-    if [[ -r "$keyfile" ]]; then
-      ssh-add "$keyfile"
-    fi
-  done
-}
+#  for key in id_rsa id_rsa.github; do
+#    keyfile="$HOME/.ssh/$key"
+#    if [[ -r "$keyfile" ]]; then
+#      ssh-add "$keyfile"
+#    fi
+#  done
+#}
 
-if [[ -f "$_ssh_env" ]]; then
-  . "$_ssh_env" >/dev/null
-  if ! ps "$SSH_AGENT_PID" | grep -q 'ssh-agent$'; then
-    _start_agent
-  fi
-else
-  _start_agent
-fi
+#if [[ -f "$_ssh_env" ]]; then
+#  . "$_ssh_env" >/dev/null
+#  if ! ps "$SSH_AGENT_PID" | grep -q 'ssh-agent$'; then
+#    _start_agent
+#  fi
+#else
+#  _start_agent
+#fi
 
 ### Starting X {{{
 
 if [[ $(tty) = /dev/tty1 ]] && ! $_isroot && ! $_isxrunning; then
   _set_browser "$xbrowsers"
-#  exec startx
+  exec startx
 fi
 
 # }}}

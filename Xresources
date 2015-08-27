@@ -130,3 +130,7 @@
 !white
 !*color7: #909090
 !*color15: #FFFFFF
+
+URxvt*letterSpace: -1
+URxvt*font:         xft:Bitstream Vera Sans Mono:pixelsize=15
+URxvt*boldFont:     xft:Bitstream Vera Sans Mono:pixelsize=15

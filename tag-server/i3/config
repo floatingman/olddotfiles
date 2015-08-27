@@ -173,7 +173,7 @@ bar {
 				status_command 			python /home/dnewman/.i3/i3pystatusconf2.py
 				position 						top
 				workspace_buttons 	yes
-				tray_output 				DVI-0
+				tray_output 				HDMI2
 				colors {
 								background 	#000000
 								separator 	#666666
@@ -253,7 +253,8 @@ assign [class="com-simontuffs-onejar-Boot"] 10: Misc
 
 # open certain windows in floating mode
 for_window [class="(?i)gnome-calculator"] floating enable
-
+for_window [class="MPlayer"] floating enable, resize 320 x 240
+for_window [class="psensor"] floating enable
 # Startup programs
 exec --no-startup-id launchy
 exec --no-startup-id $binpath/apod.sh
