@@ -33,7 +33,7 @@ setxkbmap -option terminate:ctrl_alt_bksp
 xfce4-panel &
 numlockx &
 parcellite &
-synergys --debug DEBUG2 --name shockwave --log ~/.synergy/synergys.log &
+synergys &
 plank &
 wallpaper.sh &
 xscreensaver &

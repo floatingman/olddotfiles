@@ -165,6 +165,12 @@ export PS1="$GY[$Y\u$GY@$P\h$GY:$B\W$LB\$(get_git_info)$GY]$W\$(get_prompt_symbo
 
   ## EXPORTS {{{
 
+  #Composer
+  if [[ -f /home/dnewman/.bin/composer ]]; then
+    export PATH=/home/dnewman/.composer/vendor/bin/:$PATH
+  fi
+
+
   #Ruby support
   #if which ruby &>/dev/null; then
   #  GEM_DIR=$(ruby -rubygems -e 'puts Gem.user_dir')/bin
