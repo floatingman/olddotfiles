@@ -38,6 +38,7 @@ plank &
 wallpaper.sh &
 xscreensaver &
 pidgin &
+conky &
 #cairo-dock &
 
 exec openbox-session

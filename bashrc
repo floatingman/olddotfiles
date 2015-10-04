@@ -322,13 +322,13 @@ export PS1="$GY[$Y\u$GY@$P\h$GY:$B\W$LB\$(get_git_info)$GY]$W\$(get_prompt_symbo
   # }}}
 
   ### Bash aliases {{{
+  if _have youtube-dl; then
+    alias ytwl='youtube-dl https://www.youtube.com/playlist?list=WL'
+  fi
+
 
   if _have rtorrent; then
-    alias rthot="watch -n10 'rtcontrol -rs up,down,name xfer=+0 2>&1'"
-    alias rtmsg="rtcontrol -s alias,message,name 'message=?*' message=\!*Tried?all?trackers*"
-    alias rtmsgstats="rtcontrol -q -s alias,message -o alias,message 'message=?*' message=\!*Tried?all?trackers* | uniq -c"
-    alias rt2days="rtcontrol -scompleted -ocompleted,is_open,up.sz,ratio,alias,name completed=-2d"
-    alias rt2months="rtcontrol -scompleted -ocompleted,is_open,up.sz,ratio,alias,name completed=+2m"
+    alias rtunlock="rm -f /mnt/Extra2/mediadownload/torrents/session/rtorrent.lock"
   fi
 
   alias blankoff='xset -dpms; xset s off'
@@ -528,6 +528,10 @@ export PS1="$GY[$Y\u$GY@$P\h$GY:$B\W$LB\$(get_git_info)$GY]$W\$(get_prompt_symbo
     alias playdvd='mplayer dvdnav:// /dev/sr0'
     alias playcda='mplayer cdda:// -cdrom-device /dev/sr0 -cache 10000'
   fi
+  
+  # mount an iso
+  function mountiso() { sudo mount -t iso9660 -o loop "$@" /media/iso ;}
+  
 
   alias silent='echo "silent" | sudo tee /sys/devices/platform/sony-laptop/thermal_control'
   alias balanced='echo "balanced" | sudo tee /sys/devices/platform/sony-laptop/thermal_control'
