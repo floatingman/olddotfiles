@@ -271,8 +271,9 @@ export PS1="$GY[$Y\u$GY@$P\h$GY:$B\W$LB\$(get_git_info)$GY]$W\$(get_prompt_symbo
   #bash autojump
   if $_isarch; then
     . /etc/profile.d/autojump.bash
-  fi
+  else
   . /usr/share/autojump/autojump.sh
+  fi
 
   # set editor
   _set_editor
