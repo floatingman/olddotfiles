@@ -264,12 +264,15 @@ export PS1="$GY[$Y\u$GY@$P\h$GY:$B\W$LB\$(get_git_info)$GY]$W\$(get_prompt_symbo
 
   #pyroscope and other custom programs
   _add_to_path "$HOME/bin"
-  
+
   # set browser
   $_isxrunning && _set_browser "$xbrowsers" || _set_browser "$browsers"
 
   #bash autojump
-  . /etc/profile.d/autojump.bash
+  if $_isarch; then
+    . /etc/profile.d/autojump.bash
+  fi
+  . /usr/share/autojump/autojump.sh
 
   # set editor
   _set_editor
