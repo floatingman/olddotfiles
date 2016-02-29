@@ -33,14 +33,15 @@ setxkbmap -option terminate:ctrl_alt_bksp
 xfce4-panel &
 numlockx &
 parcellite &
-synergys &
+#synergys &
 plank &
-wallpaper.sh &
+#wallpaper.sh &
 xscreensaver &
-pidgin &
+#pidgin &
 conky &
+#redshift-gtk &
 #cairo-dock &
-
+dropbox-cli start &
 exec openbox-session
 #exec i3
 #exec enlightenment_start

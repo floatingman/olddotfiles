@@ -198,7 +198,7 @@ export PS1="$GY[$Y\u$GY@$P\h$GY:$B\W$LB\$(get_git_info)$GY]$W\$(get_prompt_symbo
   set -o vi
 
   # list of apps to be tried in order
-  xbrowsers='firefox:google-chrome'
+  xbrowsers='google-chrome-stable'
   browsers='elinks:lynx:links:w3m'
   editors='vim'
   export TERMINAL=terminator
@@ -326,9 +326,11 @@ export PS1="$GY[$Y\u$GY@$P\h$GY:$B\W$LB\$(get_git_info)$GY]$W\$(get_prompt_symbo
 
   ### Bash aliases {{{
   if _have youtube-dl; then
-    alias ytwl='youtube-dl https://www.youtube.com/playlist?list=WL'
+    alias ytwl='youtube-dl -o "/mnt/SuperBigMama/Media/Video/YouTube/%(uploader)s-%(title)s.%(ext)s" https://www.youtube.com/playlist?list=WL'
+    alias podcast='youtube-dl --verbose -x --audio-format mp3 --audio-quality 0 -o "/mnt/SuperBigMama/Media/Audio/podcast/%(uploader)s-%(upload_date)s-%(title)s.%(ext)s" https://www.youtube.com/playlist?list=PL5D8rBmak6B39tevwhz_LMTrEof7MeyQt'
   fi
-
+  
+ alias tigervncserver='x0vncserver --Geometry=1440x900 -display :0 -passwordfile ~/.vnc/passwd'
 
   if _have rtorrent; then
     alias rtunlock="rm -f /mnt/Extra2/mediadownload/torrents/session/rtorrent.lock"
