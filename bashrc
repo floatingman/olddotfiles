@@ -126,10 +126,14 @@ get_git_info () {
   fi
 }
 
-export PS1="$GY[$Y\u$GY@$P\h$GY:$B\W$LB\$(get_git_info)$GY]$W\$(get_prompt_symbol) "
+#export PS1="$GY[$Y\u$GY@$P\h$GY:$B\W$LB\$(get_git_info)$GY]$W\$(get_prompt_symbol) "
+#export PS1="$GY[$Y\u$GY@$P\h$GY:$B\W$LB] "
   else
     export TERM='xterm-color'
   fi
+# Using bash-git-prompt to set prompt
+  source ~/.bash-git-prompt/gitprompt.sh
+  GIT_PROMPT_ONLY_IN_REPO=1
   #}}}
 
   ## BASH OPTIONS {{{
