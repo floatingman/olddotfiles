@@ -2,22 +2,37 @@
   name = Daniel Newman
   email = dwnewman78@gmail.com
 [color]
-  branch = auto
-  diff = auto
-  status = auto
+  ui = auto
 [push]
-  default = current
+  default = tracking
+[rerere]
+  enabled = 1
+[diff]
+  algorithm = patience
+[diff "clojure"]
+  xfuncname = "^\\(.*"
 [alias]
   aa = add --all
   ap = add --patch
   ca = commit --amend
   ci = commit -v
   co = checkout
+  cob = checkout -b
+  cot = checkout -t
   dc = diff --cached
   ds = diff --staged
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%Creset' --abbrev-commit --date=relative
-  pr = pull-request
-  st = status --short --branch
+  l = log --pretty="format:'%C(yellow)%h %C(red)%G? %C(blue)%aN%C(reset)  %s'" --show-signature
+  lol = log --graph --decorate --pretty=oneline --abbrev-commit
+  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  st = status -sb
+  stat = status -sb
+  status = status -sb
+  rips = rebase -i -p -s subtree
+  headless = !sh -c 'git symbolic-ref HEAD refs/heads/$0 && rm .git/index && git clean -fdx'
+  vtags = !sh -c 'git tag -l | xargs git tag -v'
+  ver = "!git log --pretty=format:'%ai %h' -1 | perl -pe 's,(\\d\\d\\d\\d)-(\\d\\d)-(\\d\\d) (\\d\\d):(\\d\\d):(\\d\\d) [^ ]+ ([a-z0-9]+),\\1\\2\\3+\\7,'"
+  pr = "!f() { git fetch origin pull/$1/head:pr/$1; }; f"
   up = !git fetch origin && git rebase origin/master
   in = !git up -i && git push -f && git checkout master && git pull && git merge -
   br = branch
@@ -29,6 +44,7 @@
 	ilm = !echo $(git log --author=\"$(git config user.name)\" --no-merges --before=$(date \"+%Y-%m-01T00:00\") --after=$(date -d \"-$(date +%d) days -1 month\" \"+%Y-%m-%dT23:59\") --reverse --stat | grep -Eo \"[0-9]{1,} insertions?\" | grep -Eo \"[0-9]{1,}\" | awk \"{ sum += \\$1 } END { print sum }\") insertions last month
 	dlm = !echo $(git log --author=\"$(git config user.name)\" --no-merges --before=$(date \"+%Y-%m-01T00:00\") --after=$(date -d \"-$(date +%d) days -1 month\" \"+%Y-%m-%dT23:59\") --reverse --stat | grep -Eo \"[0-9]{1,} deletions?\" | grep -Eo \"[0-9]{1,}\" | awk \"{ sum += \\$1 } END { print sum }\") deletions last month
 	slm = !echo $(git log --author=\"$(git config user.name)\" --no-merges --before=$(date \"+%Y-%m-01T00:00\") --after=$(date -d \"-$(date +%d) days -1 month\" \"+%Y-%m-%dT23:59\") --reverse | grep commit | wc -l) commits, $(git log --author=\"$(git config user.name)\" --no-merges --before=$(date \"+%Y-%m-01T00:00\") --after=$(date -d \"-$(date +%d) days -1 month\" \"+%Y-%m-%dT23:59\") --reverse --stat | grep -Eo \"[0-9]{1,} files? changed\" | grep -Eo \"[0-9]{1,}\" | awk \"{ sum += \\$1 } END { print sum }\") files changed, $(git log --author=\"$(git config user.name)\" --no-merges --before=$(date \"+%Y-%m-01T00:00\") --after=$(date -d \"-$(date +%d) days -1 month\" \"+%Y-%m-%dT23:59\") --reverse --stat | grep -Eo \"[0-9]{1,} insertions?\" | grep -Eo \"[0-9]{1,}\" | awk \"{ sum += \\$1 } END { print sum }\") insertions and $(git log --author=\"$(git config user.name)\" --no-merges --before=$(date \"+%Y-%m-01T00:00\") --after=$(date -d \"-$(date +%d) days -1 month\" \"+%Y-%m-%dT23:59\") --reverse --stat | grep -Eo \"[0-9]{1,} deletions?\" | grep -Eo \"[0-9]{1,}\" | awk \"{ sum += \\$1 } END { print sum }\") deletions last month
+  unpushed = log --branches --not --remotes --simplify-by-decoration --decorate --oneline
 [merge]
   ff = only
   tool = vimdiff
@@ -37,7 +53,6 @@
 [help]
   autocorrect = 1
 [core]
-  editor = vim
   excludesfile = /home/dnewman/.gitignore
 [color "branch"]
   current = yellow reverse
@@ -53,4 +68,4 @@
   changed = green
   untracked = cyan
 [credential]
-	helper = wincred
+  helper = wincred

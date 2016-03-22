@@ -204,7 +204,7 @@ get_git_info () {
   # list of apps to be tried in order
   xbrowsers='google-chrome-stable'
   browsers='elinks:lynx:links:w3m'
-  editors='vim'
+  editors='emacsclient'
   export TERMINAL=terminator
   # }}}
   VBOX_USB=usbfs
@@ -281,6 +281,9 @@ get_git_info () {
 
   # set editor
   _set_editor
+
+  # JAVA
+  export JAVA_HOME=/usr/lib/jvm/java-8-oracle
 
   # custom ip var
   [[ -f "$HOME/.myip" ]] && export MYIP=$(cat "$HOME/.myip")
