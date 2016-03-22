@@ -1,0 +1,13 @@
+.tern-port
+TAGS
+GTAGS
+GPATH
+GRTAGS
+GSYM*
+.DS_Store
+.dir-locals.el
+LUCENE-*.patch
+.lein-repl*
+pom.xml.asc
+core/data
+.projectile
