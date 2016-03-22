@@ -204,7 +204,7 @@ get_git_info () {
   # list of apps to be tried in order
   xbrowsers='google-chrome-stable'
   browsers='elinks:lynx:links:w3m'
-  editors='emacsclient'
+  editors='emacs -nw'
   export TERMINAL=terminator
   # }}}
   VBOX_USB=usbfs
@@ -258,7 +258,9 @@ get_git_info () {
   ### Bash exports {{{
 
   # set path
-  _add_to_path "$HOME/.bin" 
+  _add_to_path "$HOME/.bin"
+
+  _add_to_path "$HOME/bin"
 
   # Node
   _add_to_path "$HOME/node_modules/.bin"
@@ -346,6 +348,12 @@ get_git_info () {
 
   alias blankoff='xset -dpms; xset s off'
   alias blankon='xset dpms; xset s on'
+  # emacs
+  alias emacs='TERM=xterm-256color /usr/bin/emacs -nw'
+  alias ec='emacsclient'
+
+  function ekill() { emacsclient -e '(kill-emacs)';}
+
   # git alias
   alias gcl='git clone'
   alias ga='git add'

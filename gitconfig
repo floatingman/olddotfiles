@@ -38,8 +38,7 @@
   br = branch
   bl = blame -C
   df = diff --word-diff
-  l1 = log --oneline --decorate
-	clm = !echo $(git log --author=\"$(git config user.name)\" --no-merges --before=$(date \"+%Y-%m-01T00:00\") --after=$(date -d \"-$(date +%d) days -1 month\" \"+%Y-%m-%dT23:59\") --reverse | grep commit | wc -l) commits last month
+  clm = !echo $(git log --author=\"$(git config user.name)\" --no-merges --before=$(date \"+%Y-%m-01T00:00\") --after=$(date -d \"-$(date +%d) days -1 month\" \"+%Y-%m-%dT23:59\") --reverse | grep commit | wc -l) commits last month
 	flm = !echo $(git log --author=\"$(git config user.name)\" --no-merges --before=$(date \"+%Y-%m-01T00:00\") --after=$(date -d \"-$(date +%d) days -1 month\" \"+%Y-%m-%dT23:59\") --reverse --stat | grep -Eo \"[0-9]{1,} files? changed\" | grep -Eo \"[0-9]{1,}\" | awk \"{ sum += \\$1 } END { print sum }\") files changed last month
 	ilm = !echo $(git log --author=\"$(git config user.name)\" --no-merges --before=$(date \"+%Y-%m-01T00:00\") --after=$(date -d \"-$(date +%d) days -1 month\" \"+%Y-%m-%dT23:59\") --reverse --stat | grep -Eo \"[0-9]{1,} insertions?\" | grep -Eo \"[0-9]{1,}\" | awk \"{ sum += \\$1 } END { print sum }\") insertions last month
 	dlm = !echo $(git log --author=\"$(git config user.name)\" --no-merges --before=$(date \"+%Y-%m-01T00:00\") --after=$(date -d \"-$(date +%d) days -1 month\" \"+%Y-%m-%dT23:59\") --reverse --stat | grep -Eo \"[0-9]{1,} deletions?\" | grep -Eo \"[0-9]{1,}\" | awk \"{ sum += \\$1 } END { print sum }\") deletions last month
