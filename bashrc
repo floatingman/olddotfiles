@@ -271,6 +271,9 @@ get_git_info () {
   #pyroscope and other custom programs
   _add_to_path "$HOME/bin"
 
+  #misc apps
+  _add_to_path "$HOME/apps"
+
   # set browser
   $_isxrunning && _set_browser "$xbrowsers" || _set_browser "$browsers"
 
@@ -1291,3 +1294,7 @@ fi
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
