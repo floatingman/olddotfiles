@@ -197,6 +197,10 @@ get_git_info () {
     _have dircolors && eval $( dircolors -b $HOME/.lscolors )
   fi
 
+  #GO Language
+  if [[ -r "$HOME/golang" ]]; then
+    export GOPATH=$HOME/golang
+  fi
 
   # should've done this a long time ago
   set -o vi
@@ -274,6 +278,8 @@ get_git_info () {
   #misc apps
   _add_to_path "$HOME/apps"
 
+  _add_to_path ${GOPATH//://bin:}/bin
+  
   # set browser
   $_isxrunning && _set_browser "$xbrowsers" || _set_browser "$browsers"
 
@@ -287,8 +293,6 @@ get_git_info () {
   # set editor
   _set_editor
 
-  # JAVA
-  export JAVA_HOME=/usr/lib/jvm/java-8-oracle
 
   # custom ip var
   [[ -f "$HOME/.myip" ]] && export MYIP=$(cat "$HOME/.myip")
@@ -1297,4 +1301,3 @@ export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
-

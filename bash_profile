@@ -6,6 +6,7 @@
 
 # MPD daemon start (if no other user instance exists)
 [ ! -s ~/.config/mpd/mpd.pid ] && mpd
+
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 export ICAROOT='/home/dnewman/ICAClient'
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 #[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
