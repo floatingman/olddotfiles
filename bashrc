@@ -280,6 +280,9 @@ get_git_info () {
 
   _add_to_path ${GOPATH//://bin:}/bin
   
+  # if eclipse is installed
+  [[-f $HOME/apps/eclipse/eclipse]] && _add_to_path "$HOME/apps/eclipse"
+
   # set browser
   $_isxrunning && _set_browser "$xbrowsers" || _set_browser "$browsers"
 
