@@ -314,7 +314,23 @@ get_git_info () {
     # dmenu-xft required
     export DMENU_OPTIONS='-i -fn Verdana-8 -nb #303030 -nf #909090 -sb #909090 -sf #303030'
   fi
+  
+  # docker options
+  if _have docker; then
 
+    # Kill all running containers
+    alias dockerkillall='docker kill $(docker ps -q)'
+
+    # Delete all stopped containers.
+    alias dockercleanc='printf "\n>>> Deleting stopped containers\n\n" && docker rm $(docker ps -a -q)'
+
+    # Delete all untagged images.
+    alias dockercleani='printf "\n>>> Deleting untagged images\n\n" && docker rmi $(docker images -q -f dangling=true)'
+
+    # Delete all stopped conatiners and untagged images.
+    alias dockerclean='dockercleanc || true && dockercleani'
+  fi
+  
   # standard in linux
   if $_islinux; then
     export LANG=en_US.UTF-8
