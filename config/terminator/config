@@ -1,0 +1,100 @@
+[global_config]
+  borderless = True
+  enabled_plugins = InactivityWatch, ActivityWatch, TerminalShot, LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
+  window_state = maximise
+[keybindings]
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+  [[3terms]]
+    [[[child0]]]
+      fullscreen = False
+      last_active_term = 14495f66-d426-4295-ab27-d15038914c32
+      last_active_window = True
+      maximised = True
+      order = 0
+      parent = ""
+      position = 0:25
+      profile = None
+      size = 1920, 997
+      title = /bin/bash
+      type = Window
+    [[[child1]]]
+      order = 0
+      parent = child0
+      position = 958
+      ratio = 0.499739583333
+      type = HPaned
+    [[[child3]]]
+      order = 1
+      parent = child1
+      position = 497
+      ratio = 0.5
+      type = VPaned
+    [[[terminal2]]]
+      order = 0
+      parent = child1
+      profile = default
+      type = Terminal
+      uuid = 14495f66-d426-4295-ab27-d15038914c32
+    [[[terminal4]]]
+      order = 0
+      parent = child3
+      profile = default
+      type = Terminal
+      uuid = 5fb296fc-4074-4edb-837f-aef3365a0998
+    [[[terminal5]]]
+      order = 1
+      parent = child3
+      profile = default
+      type = Terminal
+      uuid = 7be1534c-c500-4cf5-8a5d-a0597b01793a
+  [[twoterms]]
+    [[[child0]]]
+      fullscreen = False
+      last_active_term = 88d3d590-49a2-4979-8422-a63675876f2a
+      last_active_window = True
+      maximised = False
+      order = 0
+      parent = ""
+      position = 960:25
+      size = 953, 963
+      title = /bin/bash
+      type = Window
+    [[[child1]]]
+      order = 0
+      parent = child0
+      position = 479
+      ratio = 0.498961578401
+      type = VPaned
+    [[[terminal2]]]
+      order = 0
+      parent = child1
+      profile = default
+      type = Terminal
+      uuid = 88d3d590-49a2-4979-8422-a63675876f2a
+    [[[terminal3]]]
+      order = 1
+      parent = child1
+      profile = default
+      type = Terminal
+      uuid = 60c5d398-bd63-4010-af82-bf51be3eafd4
+[plugins]
+[profiles]
+  [[default]]
+    background_color = "#002b36"
+    background_image = None
+    copy_on_selection = True
+    cursor_shape = underline
+    font = Liberation Mono 10
+    foreground_color = "#839496"
+    scrollback_infinite = True
+    scrollback_lines = 10000
+    scrollbar_position = hidden
+    show_titlebar = False
+    use_system_font = False
