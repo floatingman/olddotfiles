@@ -17,6 +17,8 @@ _have() { which "$1" &>/dev/null; }
 _islinux=false
 [[ "$(uname -s)" =~ Linux|GNU|GNU/* ]] && _islinux=true
 
+_isubuntu=false
+[[ "$(uname -v)" =~ Ubuntu ]] && _isubuntu=true
 _isarch=false
 [[ -f /etc/arch-release ]] && _isarch=true
 
@@ -30,7 +32,6 @@ _isroot=false
 ## PS1 CONFIG {{{
 [[ -f $HOME/.dircolors ]] && eval $(dircolors -b $HOME/.dircolors)
 if $_isxrunning; then
-
   [[ -f $HOME/.dircolors_256 ]] && eval $(dircolors -b $HOME/.dircolors_256)
 
   export TERM='xterm-256color'
@@ -45,92 +46,10 @@ if $_isxrunning; then
   Y='\[\e[1;38;5;214m\]'
   W='\[\e[0m\]'
 
-  get_prompt_symbol() {
-    [[ $UID == 0 ]] && echo "#" || echo "\$"
-  }
+else
+  export TERM='xterm-color'
+fi
 
-  get_git_branch() {
-    # On branches, this will return the branch name
-    # On non-branches, (no branch)
-    ref="$(git symbolic-ref HEAD 2> /dev/null | sed -e 's/refs\/heads\///')"
-    [[ -n $ref ]] && echo "$ref" || echo "(no branch)"
-  }
-
-  is_branch1_behind_branch2 () {
-    # Find the first log (if any) that is in branch1 but not branch2
-    first_log="$(git log $1..$2 -1 2> /dev/null)"
-    # Exit with 0 if there is a first log, 1 if there is not
-    [[ -n "$first_log" ]]
-  }
-
-  branch_exists () {
-    # List remote branches | # Find our branch and exit with 0 or 1 if found/not found
-    git branch --remote 2> /dev/null | grep --quiet "$1"
-  }
-
-  parse_git_ahead () {
-    # Grab the local and remote branch
-    branch="$(get_git_branch)"
-    remote_branch=origin/"$branch"
-    # If the remote branch is behind the local branch
-    # or it has not been merged into origin (remote branch doesn't exist)
-    (is_branch1_behind_branch2 $remote_branch $branch || ! branch_exists $remote_branch) && echo 1
-  }
-
-  parse_git_behind () {
-    # Grab the branch
-    branch=$(get_git_branch)
-    remote_branch=origin/$branch
-    # If the local branch is behind the remote branch
-    is_branch1_behind_branch2 $branch $remote_branch && echo 1
-  }
-
-  parse_git_dirty () {
-    # If the git status has *any* changes (i.e. dirty)
-    [[ -n "$(git status --porcelain 2> /dev/null)" ]] && echo 1
-  }
-
-  function get_git_status() {
-  # Grab the git dirty and git behind
-  dirty_branch="$(parse_git_dirty)"
-  branch_ahead="$(parse_git_ahead)"
-  branch_behind="$(parse_git_behind)"
-
-  # Iterate through all the cases and if it matches, then echo
-  if [[ $dirty_branch == 1 && $branch_ahead == 1 && $branch_behind == 1 ]]; then
-    echo "⬢"
-  elif [[ $dirty_branch == 1 && $branch_ahead == 1 ]]; then
-    echo "▲"
-  elif [[ $dirty_branch == 1 && $branch_behind == 1 ]]; then
-    echo "▼"
-  elif [[ $branch_ahead == 1 && $branch_behind == 1 ]]; then
-    echo "⬡"
-  elif [[ $branch_ahead == 1 ]]; then
-    echo "△"
-  elif [[ $branch_behind == 1 ]]; then
-    echo "▽"
-  elif [[ $dirty_branch == 1 ]]; then
-    echo "*"
-  fi
-}
-
-get_git_info () {
-  # Grab the branch
-  branch="$(git branch --no-color 2> /dev/null | awk '{print $2}')"
-  # If there are any branches
-  if [[ -n $branch ]]; then
-    # Add on the git status
-    output=$(get_git_status)
-    # Echo our output
-    echo -e -n " $branch$output"
-  fi
-}
-
-#export PS1="$GY[$Y\u$GY@$P\h$GY:$B\W$LB\$(get_git_info)$GY]$W\$(get_prompt_symbol) "
-#export PS1="$GY[$Y\u$GY@$P\h$GY:$B\W$LB] "
-  else
-    export TERM='xterm-color'
-  fi
 # Using bash-git-prompt to set prompt
   source ~/.bash-git-prompt/gitprompt.sh
   GIT_PROMPT_ONLY_IN_REPO=1
@@ -173,24 +92,6 @@ get_git_info () {
   if [[ -f /home/dnewman/.bin/composer ]]; then
     export PATH=/home/dnewman/.composer/vendor/bin/:$PATH
   fi
-
-
-  #Ruby support
-  #if which ruby &>/dev/null; then
-  #  GEM_DIR=$(ruby -rubygems -e 'puts Gem.user_dir')/bin
-  #  if [[ -d "$GEM_DIR" ]]; then
-  #    export PATH=$GEM_DIR:$PATH
-  #  fi
-  #fi
-
-  #PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
-
-  #}}}
-
-  #RVM stuff
-
-  # RVM bash completion
-  [[ -r "$HOME/.rvm/scripts/completion" ]] && source "$HOME/.rvm/scripts/completion"
 
   if [[ -f "$HOME/.lscolors" ]] && [[ $(tput colors) == "256" ]]; then
     # https://github.com/trapd00r/LS_COLORS
@@ -272,9 +173,6 @@ get_git_info () {
   # Haskell
   _add_to_path "$HOME/.cabal/bin"
 
-  #pyroscope and other custom programs
-  _add_to_path "$HOME/bin"
-
   #misc apps
   _add_to_path "$HOME/apps"
 
@@ -309,12 +207,6 @@ get_git_info () {
   # raw AWS keys stored and exported in separate file
   _source "$HOME/.aws_keys"
 
-  # dmenu options
-  if _have dmenu; then
-    # dmenu-xft required
-    export DMENU_OPTIONS='-i -fn Verdana-8 -nb #303030 -nf #909090 -sb #909090 -sf #303030'
-  fi
-  
   # docker options
   if _have docker; then
 
@@ -546,12 +438,6 @@ get_git_info () {
 
   _have albumbler && alias a='albumbler'
 
-  if _have ossvol; then
-    alias u='ossvol -i 3'
-    alias d='ossvol -d 3'
-    alias m='ossvol -t'
-  fi
-
   if _have colortail; then
     alias tailirc='/usr/bin/colortail -q -k /etc/colortail/conf.irc'
     alias colortail='colortail -q -k /etc/colortail/conf.messages'
@@ -584,32 +470,24 @@ get_git_info () {
   alias balanced='echo "balanced" | sudo tee /sys/devices/platform/sony-laptop/thermal_control'
   alias performance='echo "performance" | sudo tee /sys/devices/platform/sony-laptop/thermal_control'
 
-  # wipro proxy
-  function wiproproxyon() {
-  echo -n "username:"
-  read -e username
-  echo -n "password:"
-  read -es password
-  export http_proxy="http://$username:$password@proxy4.wipro.com:8080"
-  export https_proxy=$http_proxy
-  export ftp_proxy=$http_proxy
-  export rsync_proxy=$http_proxy
-  export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
-  echo -e "\nProxy environment variable set."
-}
+# root aliases
+if ! $_isroot; then
+  alias svim='sudo vim'
+  alias reboot='sudo reboot'
+  alias shutdown='sudo shutdown -hP now'
+  alias scat='sudo cat'
+  alias root='sudo su'
+  alias windows='sudo grub-set-default 3 && sudo reboot'
+  alias bb="sudo bleachbit --clean system.cache system.localizations system.trash system.tmp"
+fi
 
-function wiproproxyoff() {
-unset HTTP_PROXY
-unset http_proxy
-unset HTTPS_PROXY
-unset https_proxy
-unset FTP_PROXY
-unset ftp_proxy
-unset RSYNC_PROXY
-unset rsync_proxy
-echo -e "\nProxy environment variable removed"
-}
-
+# ubuntu aliases
+if $_isubuntu; then
+  if ! $_isroot; then
+    alias upgrade='sudo apt-get update && sudo apt-get upgrade -y'
+    alias apt='sudo apt'
+  fi
+fi
 
 # pacman aliases
 if $_isarch; then
@@ -627,17 +505,10 @@ if $_isarch; then
   alias paccorrupt='sudo find /var/cache/pacman/pkg -name '\''*.part.*'\''' # sudo so we can quickly add -delete
   alias pactesting='pacman -Q $(pacman -Sql {community-,multilib-,}testing) 2>/dev/null'
   alias remove='sudo pacman -Rsc'
-  alias svim='sudo vim'
-  alias reboot='sudo reboot'
-  alias shutdown='sudo shutdown -hP now'
-  alias scat='sudo cat'
-  alias root='sudo su'
-  alias windows='sudo grub-set-default 3 && sudo reboot'
   alias pacin='pacman -S'
   alias pacout='pacman -R'
   alias pacsearch='pacman -Ss'
   alias pacup='pacup.rb && sudo pacman -Suy'
-  alias bb="sudo bleachbit --clean system.cache system.localizations system.trash system.tmp"
   alias upp='sudo reflector -c "United States" -a 1 -f 3 --sort rate --save /etc/pacman.d/mirrorlist && cat /etc/pacman.d/mirrorlist && sudo pacman -Syyu'
   # Pacman alias examples
   alias pacupg='sudo pacman -Syu'		# Synchronize with repositories and then upgrade packages that are out of date on the local system.
@@ -932,254 +803,6 @@ webman() { echo "http://unixhelp.ed.ac.uk/CGI/man-cgi?$1"; }
 
 # }}}
 
-### Titlebar and Prompt {{{
-#
-# /[0]/[1]/[2]/[3]/
-#
-# 0: % batt remaining (if BAT0 exists)
-# 1: host name
-# 2: last exit status
-# 3: git/svn summary or current directory
-#
-###
-
-# colors setup {{{
-
-# element colors
-batt_color=WHITE
-batt_med_color=YELLOW
-batt_low_color=RED
-host_color=WHITE
-dir_color=WHITE
-retval_color=WHITE
-retval_nonzero_color=MAGENTA
-sep_color=BLUE
-root_sep_color=RED
-
-# vcs colors
-init_vcs_color=white
-clean_vcs_color=white
-modified_vcs_color=magenta
-added_vcs_color=green
-addmoded_vcs_color=yellow
-untracked_vcs_color=cyan
-op_vcs_color=magenta
-detached_vcs_color=red
-hex_vcs_color=white
-
-# term color codes
-black='\['`tput sgr0; tput setaf 0`'\]'
-red='\['`tput sgr0; tput setaf 1`'\]'
-green='\['`tput sgr0; tput setaf 2`'\]'
-yellow='\['`tput sgr0; tput setaf 3`'\]'
-blue='\['`tput sgr0; tput setaf 4`'\]'
-magenta='\['`tput sgr0; tput setaf 5`'\]'
-cyan='\['`tput sgr0; tput setaf 6`'\]'
-white='\['`tput sgr0; tput setaf 7`'\]'
-
-BLACK='\['`tput setaf 0; tput bold`'\]'
-RED='\['`tput setaf 1; tput bold`'\]'
-GREEN='\['`tput setaf 2; tput bold`'\]'
-YELLOW='\['`tput setaf 3; tput bold`'\]'
-BLUE='\['`tput setaf 4; tput bold`'\]'
-MAGENTA='\['`tput setaf 5; tput bold`'\]'
-CYAN='\['`tput setaf 6; tput bold`'\]'
-WHITE='\['`tput setaf 7; tput bold`'\]'
-
-colors_reset='\['`tput sgr0`'\]'
-
-# replace symbolic colors names to raw terminfo strings
-batt_color=${!batt_color}
-batt_med_color=${!batt_med_color}
-batt_low_color=${!batt_low_color}
-host_color=${!host_color}
-dir_color=${!dir_color}
-retval_color=${!retval_color}
-retval_nonzero_color=${!retval_nonzero_color}
-sep_color=${!sep_color}
-root_sep_color=${!root_sep_color}
-
-init_vcs_color=${!init_vcs_color}
-modified_vcs_color=${!modified_vcs_color}
-untracked_vcs_color=${!untracked_vcs_color}
-clean_vcs_color=${!clean_vcs_color}
-added_vcs_color=${!added_vcs_color}
-op_vcs_color=${!op_vcs_color}
-addmoded_vcs_color=${!addmoded_vcs_color}
-detached_vcs_color=${!detached_vcs_color}
-hex_vcs_color=${!hex_vcs_color}
-
-# }}}
-
-_update_title() { # {{{
-  case ${TERM} in
-    xterm*|rxvt*|Eterm|aterm|kterm|gnome*) echo -en "\033]0;${PWD/$HOME/~}\007" ;;
-  esac
-}
-#}}}
-
-_battery_info() { # {{{
-  local bat='/sys/class/power_supply/BAT0' batt_level _batt_color
-
-  unset batt_info
-
-  if [[ -d "$bat" ]]; then
-    rem=$(cat "$bat/energy_now")
-    max=$(cat "$bat/energy_full")
-    batt_level=`awk 'BEGIN{printf("%d", '$rem' / '$max' * 100)}'`
-    # set color based on level
-    if [[ batt_level -le 10 ]]; then
-      _batt_color=$batt_low_color
-    elif [[ $batt_level -le 30 ]]; then
-      _batt_color=$batt_med_color
-    else
-      _batt_color=$batt_color
-    fi
-
-    batt_info="${batt_color}~${_batt_color}${batt_level}${batt_color}%${colors_reset}"
-  fi
-}
-# }}}
-
-# a simplification on http://volnitsky.com/project/git-prompt/ {{{
-_parse_git_status() {
-  local git_dir file_regex added_files modified_files untracked_files file_list
-  local freshness clean init added modified untracked detached
-  local op rawhex branch vcs_info status vcs_color
-
-  unset git_info
-
-  git_dir="$(git rev-parse --git-dir 2> /dev/null)"
-
-  if [[ -n ${git_dir/./} ]]; then
-    file_regex='\([^/ ]*\/\{0,1\}\).*'
-    added_files=()
-    modified_files=()
-    untracked_files=()
-
-    eval "$(
-    git status 2>/dev/null |
-    sed -n '
-    s/^# On branch /branch=/p
-    s/^nothing to commi.*/clean=clean/p
-    s/^# Initial commi.*/init=init/p
-
-    s/^# Your branch is ahead of .[/[:alnum:]]\+. by [[:digit:]]\+ commit.*/freshness=\" ${WHITE}↑\"/p
-    s/^# Your branch is behind .[/[:alnum:]]\+. by [[:digit:]]\+ commit.*/  freshness=\" ${YELLOW}↓\"/p
-    s/^# Your branch and .[/[:alnum:]]\+. have diverged.*/freshness=${YELLOW}↕/p
-
-    /^# Changes to be committed:/,/^# [A-Z]/ {
-    s/^# Changes to be committed:/added=added;/p
-    s/^#	modified:   '"$file_regex"'/    [[ \" ${added_files[*]} \" =~ \" \1 \" ]] || added_files+=(\"\1\")/p
-    s/^#	new file:   '"$file_regex"'/    [[ \" ${added_files[*]} \" =~ \" \1 \" ]] || added_files+=(\"\1\")/p
-    s/^#	renamed:[^>]*> '"$file_regex"'/ [[ \" ${added_files[*]} \" =~ \" \1 \" ]] || added_files+=(\"\1\")/p
-    s/^#	copied:[^>]*> '"$file_regex"'/  [[ \" ${added_files[*]} \" =~ \" \1 \" ]] || added_files+=(\"\1\")/p
-  }
-
-  /^# Changed but not updated:/,/^# [A-Z]/ {
-  s/^# Changed but not updated:/modified=modified;/p
-  s/^#	modified:   '"$file_regex"'/ [[ \" ${modified_files[*]} \" =~ \" \1 \" ]] || modified_files+=(\"\1\")/p
-  s/^#	unmerged:   '"$file_regex"'/ [[ \" ${modified_files[*]} \" =~ \" \1 \" ]] || modified_files+=(\"\1\")/p
-}
-
-/^# Changes not staged for commit:/,/^# [A-Z]/ {
-s/^# Changes not staged for commit:/modified=modified;/p
-s/^#	modified:   '"$file_regex"'/ [[ \" ${modified_files[*]} \" =~ \" \1 \" ]] || modified_files+=(\"\1\")/p
-s/^#	unmerged:   '"$file_regex"'/ [[ \" ${modified_files[*]} \" =~ \" \1 \" ]] || modified_files+=(\"\1\")/p
-      }
-
-      /^# Unmerged paths:/,/^[^#]/ {
-      s/^# Unmerged paths:/modified=modified;/p
-      s/^#	both modified:\s*'"$file_regex"'/ [[ \" ${modified_files[*]} \" =~ \" \1 \" ]] || modified_files+=(\"\1\")/p
-    }
-
-    /^# Untracked files:/,/^[^#]/{
-    s/^# Untracked files:/untracked=untracked;/p
-    s/^#	'"$file_regex"'/ [[ \" ${untracked_files[*]} ${modified_files[*]} ${added_files[*]} \" =~ \" \1 \" ]] || untracked_files+=(\"\1\")/p
-  }
-  '
-  )"
-
-  grep -q "^ref:" $git_dir/HEAD 2>/dev/null || detached=detached
-
-  if [[ -d "$git_dir/.dotest" ]] ;  then
-    if [[ -f "$git_dir/.dotest/rebasing" ]]; then
-      op="rebase"
-    elif [[ -f "$git_dir/.dotest/applying" ]]; then
-      op="am"
-    else
-      op="am/rebase"
-    fi
-  elif [[ -f "$git_dir/.dotest-merge/interactive" ]]; then
-    op="rebase -i"
-  elif [[ -d "$git_dir/.dotest-merge" ]]; then
-    op="rebase -m"
-  elif [[ -f "$git_dir/MERGE_HEAD" ]]; then
-    op="merge"
-  elif [[ -f "$git_dir/index.lock" ]]; then
-    op="locked"
-  elif [[ -f "$git_dir/BISECT_LOG" ]]; then
-    op="bisect"
-  fi
-
-  rawhex=$(git rev-parse HEAD 2>/dev/null)
-  rawhex=${rawhex/HEAD/}
-  rawhex="$hex_vcs_color${rawhex:0:5}"
-
-  if [[ $init ]]; then
-    vcs_info=${white}init
-  else
-    if [[ "$detached" ]]; then
-      branch="<detached:`git name-rev --name-only HEAD 2>/dev/null`"
-    elif [[ "$op" ]]; then
-      branch="$op:$branch"
-      [[ "$op" == 'merge' ]] && branch+="<--$(git name-rev --name-only $(<$git_dir/MERGE_HEAD))"
-    fi
-
-    vcs_info="$branch${white}[$rawhex${white}]$fresshness"
-  fi
-
-  status=${op:+op}
-  status=${status:-$detached}
-  status=${status:-$clean}
-  status=${status:-$modified}
-  status=${status:-$added}
-  status=${status:-$untracked}
-  status=${status:-$init}
-  eval vcs_color="\${${status}_vcs_color}"
-
-  [[ ${added_files[0]}     ]] && file_list+=" $added_vcs_color${added_files[@]}"
-  [[ ${modified_files[0]}  ]] && file_list+=" $modified_vcs_color${modified_files[@]}"
-  [[ ${untracked_files[0]} ]] && file_list+=" $untracked_vcs_color${untracked_files[@]}"
-
-  # real git info
-  git_info="${vcs_color}${vcs_info}${vcs_color}${file_list}${colors_reset}"
-fi
-}
-
-_parse_svn_status() {
-  local repo_dir rev branch vcs_info
-
-  unset svn_info # default
-
-  if [[ -d ./.svn  ]]; then
-    eval $(sed -n '
-    s@^URL[^/]*//@repo_dir=@p
-    s/^Revision: /rev=/p
-    ' < <(svn info)
-    )
-
-    if [[ "$repo_dir" =~ trunk ]]; then
-      branch='trunk'
-    elif [[ "$repo_dir" =~ branches/(.*) ]]; then
-      branch="${BASH_REMATCH[1]}"
-    fi
-
-    vcs_info=svn:$branch:r$rev
-    svn_info="${clean_vcs_color}${vcs_info}${colors_reset}"
-  fi
-}
-
 # extract - archive extractor
 # usage: extract <file>
 extract() {
@@ -1208,110 +831,6 @@ extract() {
   return 0
 }
 
-### Starting X {{{
-
-if [[ $(tty) = /dev/tty1 ]] && ! $_isroot && ! $_isxrunning; then
-  _set_browser "$xbrowsers"
-  #  exec startx
-fi
-
-# }}}
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
-#systemctl --user import-environment PATH
-
-# }}}
-
-#prompt_command_function() {
-#local retval="$?" _sep_color host_info retval_info ps
-
-## sep changes colors for root
-#$_isroot && _sep_color=$root_sep_color || _sep_color=$sep_color
-
-#_battery_info
-#_parse_git_status
-#_parse_svn_status
-
-#if [[ -n "$git_info" ]]; then
-## Git
-#vcs_info="$git_info"
-#elif [[ -n "$svn_info" ]]; then
-## SVN
-#vcs_info="$svn_info"
-#else
-## directory display
-#vcs_info="${dir_color}${PWD/$HOME/~}${colors_reset}"
-#fi
-
-#host_info="$host_color${HOSTNAME/.local/}"
-
-#if [[ $retval -eq 0 ]]; then
-#retval_info="$retval_color$retval"
-#else
-#retval_info="$retval_nonzero_color$retval"
-#fi
-
-## add control characters for screen
-#[[ -n "$STY" ]] && ps='\[\ek\e\\\]\[\ek\w\e\\\]' || ps=''
-
-## build that prompt
-#ps+="$_sep_color/$batt_info"
-#ps+="$_sep_color/$host_info"
-#ps+="$_sep_color/$retval_info"
-#ps+="$_sep_color/$vcs_info"
-#ps+="$_sep_color/ $colors_reset"
-
-#PS1="$ps"
-#PS2="$_sep_color// $colors_reset"
-#PS3="$_sep_color// $colors_reset"
-
-#_update_title
-#}
-
-#unset PROMPT_COMMAND
-#PROMPT_COMMAND=prompt_command_function
-# }}}
-
-# ssh-agent stuff
-#_ssh_env="$HOME/.ssh/environment"
-
-#_start_agent() {
-#  [[ -d "$HOME/.ssh" ]] || return 1
-#  _have ssh-agent       || return 1
-
-#  local key keyfile
-
-#  ssh-agent | sed 's/^echo/#echo/g' > "$_ssh_env"
-
-#  chmod 600 "$_ssh_env"
-#  . "$_ssh_env" >/dev/null
-
-#  for key in id_rsa id_rsa.github; do
-#    keyfile="$HOME/.ssh/$key"
-#    if [[ -r "$keyfile" ]]; then
-#      ssh-add "$keyfile"
-#    fi
-#  done
-#}
-
-#if [[ -f "$_ssh_env" ]]; then
-#  . "$_ssh_env" >/dev/null
-#  if ! ps "$SSH_AGENT_PID" | grep -q 'ssh-agent$'; then
-#    _start_agent
-#  fi
-#else
-#  _start_agent
-#fi
-
-### Starting X {{{
-
-if [[ $(tty) = /dev/tty1 ]] && ! $_isroot && ! $_isxrunning; then
-  _set_browser "$xbrowsers"
-  exec startx
-fi
-
-# }}}
 
 # }}}
 export PATH="$HOME/.rbenv/bin:$PATH"
