@@ -326,11 +326,10 @@ fi
 
   # ssh
   alias sql='mysql -p -u root'
-  alias starscreamer='ssh dnewman@starscreamer'
   alias mybook='ssh dnewman@mybook'
   alias myrouter='ssh root@192.168.0.1'
-  alias frank='ssh dwnewman@frank.mtsu.edu'
-  alias schoollinux='ssh dwnewman@linux.cs.mtsu.edu'
+  alias shockwave='ssh dnewman@thenewmans.no-ip.org -p2222'
+  
   alias vnc='x11vnc -display :0 -forever -noxdamage -usepw -httpdir /usr/share/vnc-java/ -httpport 5800 &'
   alias lisp='/usr/bin/sbcl'
 
