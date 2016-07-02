@@ -1,0 +1,8 @@
+Host shockwave
+  Hostname thenewmans.no-ip.org
+  Port 2222
+  User dnewman
+
+Host github.com
+  IdentityFile  ~/.ssh/githubmaster.key
+
