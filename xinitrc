@@ -42,6 +42,7 @@ conky &
 #redshift-gtk &
 #cairo-dock &
 dropbox-cli start &
-exec openbox-session
+exec startlxde
+#exec openbox-session
 #exec i3
 #exec enlightenment_start
