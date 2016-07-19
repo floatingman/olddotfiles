@@ -50,6 +50,9 @@ else
   export TERM='xterm-color'
 fi
 
+## set xterm for tmux
+[ -z "$TMUX" ] && export TERM=xterm-256color
+
 # Using bash-git-prompt to set prompt
   source ~/.bash-git-prompt/gitprompt.sh
   GIT_PROMPT_ONLY_IN_REPO=1
