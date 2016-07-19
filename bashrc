@@ -181,6 +181,9 @@ fi
   # if eclipse is installed
   [[ -f "$HOME/apps/eclipse/eclipse" ]] && _add_to_path "$HOME/apps/eclipse"
 
+  # if intellij is installed
+  [[ -f "$HOME/apps/intellij/bin/idea.sh" ]] && _add_to_path "$HOME/apps/intellij/bin"
+
   # set browser
   $_isxrunning && _set_browser "$xbrowsers" || _set_browser "$browsers"
 
