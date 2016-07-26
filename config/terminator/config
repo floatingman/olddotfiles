@@ -1,12 +1,12 @@
 [global_config]
   borderless = True
   enabled_plugins = InactivityWatch, ActivityWatch, TerminalShot, LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
-  window_state = maximise
 [keybindings]
 [layouts]
   [[default]]
     [[[child1]]]
       parent = window0
+      profile = default
       type = Terminal
     [[[window0]]]
       parent = ""
@@ -87,14 +87,15 @@
 [plugins]
 [profiles]
   [[default]]
-    background_color = "#002b36"
     background_image = None
     copy_on_selection = True
     cursor_shape = underline
     font = Liberation Mono 10
-    foreground_color = "#839496"
+    foreground_color = "#00ff00"
     scrollback_infinite = True
     scrollback_lines = 10000
     scrollbar_position = hidden
     show_titlebar = False
+    urgent_bell = True
     use_system_font = False
+    visible_bell = True
