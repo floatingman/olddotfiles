@@ -105,7 +105,12 @@ fi
   if [[ -r "$HOME/golang" ]]; then
     export GOPATH=$HOME/golang
   fi
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
+  export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 
+  ### Added by the Heroku Toolbelt
+  export PATH="/usr/local/heroku/bin:$PATH"
   # should've done this a long time ago
   set -o vi
 
@@ -180,7 +185,7 @@ fi
   _add_to_path "$HOME/apps"
 
   _add_to_path ${GOPATH//://bin:}/bin
-  
+
   # if eclipse is installed
   [[ -f "$HOME/apps/eclipse/eclipse" ]] && _add_to_path "$HOME/apps/eclipse"
 
@@ -228,7 +233,7 @@ fi
     # Delete all stopped conatiners and untagged images.
     alias dockerclean='dockercleanc || true && dockercleani'
   fi
-  
+
   # standard in linux
   if $_islinux; then
     export LANG=en_US.UTF-8
@@ -263,7 +268,7 @@ fi
     alias ytwl='youtube-dl -o "/mnt/SuperBigMama/Media/Video/YouTube/%(uploader)s-%(title)s.%(ext)s" https://www.youtube.com/playlist?list=WL'
     alias podcast='youtube-dl --verbose -x --audio-format mp3 --audio-quality 0 -o "/mnt/SuperBigMama/Media/Audio/podcast/%(uploader)s-%(upload_date)s-%(title)s.%(ext)s" https://www.youtube.com/playlist?list=PL5D8rBmak6B39tevwhz_LMTrEof7MeyQt'
   fi
-  
+
  alias tigervncserver='x0vncserver --Geometry=1440x900 -display :0 -passwordfile ~/.vnc/passwd'
 
   if _have rtorrent; then
@@ -335,9 +340,14 @@ fi
   alias mybook='ssh dnewman@mybook'
   alias myrouter='ssh root@192.168.0.1'
   #alias shockwave='ssh dnewman@thenewmans.no-ip.org -p2222'
-  
+
   alias vnc='x11vnc -display :0 -forever -noxdamage -usepw -httpdir /usr/share/vnc-java/ -httpport 5800 &'
   alias lisp='/usr/bin/sbcl'
+
+  #update dotfiles
+  if [ -d "$HOME/.dotfiles" ]; then
+    alias ud='cd $HOME/.dotfiles && git pull origin master && rcup -v && cd -'
+  fi
 
   # only for linux
   if $_islinux; then
@@ -466,10 +476,10 @@ fi
     alias playdvd='mplayer dvdnav:// /dev/sr0'
     alias playcda='mplayer cdda:// -cdrom-device /dev/sr0 -cache 10000'
   fi
-  
+
   # mount an iso
   function mountiso() { sudo mount -t iso9660 -o loop "$@" /media/iso ;}
-  
+
 
   alias silent='echo "silent" | sudo tee /sys/devices/platform/sony-laptop/thermal_control'
   alias balanced='echo "balanced" | sudo tee /sys/devices/platform/sony-laptop/thermal_control'
@@ -519,7 +529,7 @@ if $_isarch; then
   alias pacupg='sudo pacman -Syu'		# Synchronize with repositories and then upgrade packages that are out of date on the local system.
   alias pacdl='pacman -Sw'		# Download specified package(s) as .tar.xz ball
   alias pacin='sudo pacman -S'		# Install specific package(s) from the repositories
-  alias pacins='sudo pacman -U'		# Install specific package not from the repositories but from a file 
+  alias pacins='sudo pacman -U'		# Install specific package not from the repositories but from a file
   alias pacre='sudo pacman -R'		# Remove the specified package(s), retaining its configuration(s) and required dependencies
   alias pacrem='sudo pacman -Rns'     	# Remove the specified package(s), its configuration(s) and unneeded dependencies
   alias pacrep='pacman -Si'		# Display information about a given package in the repositories
@@ -530,7 +540,7 @@ if $_isarch; then
   alias pacc="sudo pacman -Scc"		# Clean cache - delete all the package files in the cache
   alias paclf="pacman -Ql"		# List all files installed by a given package
   alias pacown="pacman -Qo"		# Show package(s) owning the specified file(s)
-  alias pacexpl="pacman -D --asexp"	# Mark one or more installed packages as explicitly installed 
+  alias pacexpl="pacman -D --asexp"	# Mark one or more installed packages as explicitly installed
   alias pacimpl="pacman -D --asdep"	# Mark one or more installed packages as non explicitly installed
 
   # Additional pacman alias examples
@@ -539,16 +549,16 @@ if $_isarch; then
   alias pacmir='sudo pacman -Syy'                    # Force refresh of all package lists after updating /etc/pacman.d/mirrorlist
 
   # dealing with the following message from pacman:
-  # 
+  #
   #     error: couldnt lock database: file exists
   #     if you are sure a package manager is not already running, you can remove /var/lib/pacman/db.lck
 
   alias pacunlock="sudo rm /var/lib/pacman/db.lck"   # Delete the lock file /var/lib/pacman/db.lck
   alias paclock="sudo touch /var/lib/pacman/db.lck"  # Create the lock file /var/lib/pacman/db.lck
-  
+
   # Show directory not owned by any package
   alias pacman-disowned-dirs="comm -23 <(sudo find / \( -path '/dev' -o -path '/sys' -o -path '/run' -o -path '/tmp' -o -path '/mnt' -o -path '/srv' -o -path '/proc' -o -path '/boot' -o -path '/home' -o -path '/root' -o -path '/media' -o -path '/var/lib/pacman' -o -path '/var/cache/pacman' \) -prune -o -type d -print | sed 's/\([^/]\)$/\1\//' | sort -u) <(pacman -Qlq | sort -u)"
-  
+
   # Show files not owned by any packages
   alias pacman-disowned-files="comm -23 <(sudo find / \( -path '/dev' -o -path '/sys' -o -path '/run' -o -path '/tmp' -o -path '/mnt' -o -path '/srv' -o -path '/proc' -o -path '/boot' -o -path '/home' -o -path '/root' -o -path '/media' -o -path '/var/lib/pacman' -o -path '/var/cache/pacman' \) -prune -o -type f -print | sort -u) <(pacman -Qlq | sort -u)"
 
@@ -838,9 +848,4 @@ extract() {
 
 
 # }}}
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
