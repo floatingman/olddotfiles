@@ -117,7 +117,7 @@ fi
   # list of apps to be tried in order
   xbrowsers='google-chrome-stable'
   browsers='elinks:lynx:links:w3m'
-  editors='emacs -nw'
+  editors='vim'
   export TERMINAL=terminator
   # }}}
   VBOX_USB=usbfs
@@ -282,6 +282,9 @@ fi
   alias ec='emacsclient'
 
   function ekill() { emacsclient -e '(kill-emacs)';}
+
+  # reload bash
+  alias r="source ~/.bashrc"
 
   # git alias
   alias gcl='git clone'
