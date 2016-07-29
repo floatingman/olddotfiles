@@ -117,7 +117,7 @@ fi
   # list of apps to be tried in order
   xbrowsers='google-chrome-stable'
   browsers='elinks:lynx:links:w3m'
-  editors='vim'
+  editors='emacsclient -t'
   export TERMINAL=terminator
   # }}}
   VBOX_USB=usbfs
@@ -203,8 +203,10 @@ fi
   fi
 
   # set editor
-  _set_editor
-
+  #_set_editor
+  export ALTERNATE_EDITOR=""
+  export EDITOR="emacsclient -t"
+  export VISUAL="emacsclient -c -a emacs"
 
   # custom ip var
   [[ -f "$HOME/.myip" ]] && export MYIP=$(cat "$HOME/.myip")
@@ -239,8 +241,6 @@ fi
     export LANG=en_US.UTF-8
     export LC_ALL=en_US.utf8
   fi
-
-
 
   # less
   if _have less; then
@@ -278,8 +278,9 @@ fi
   alias blankoff='xset -dpms; xset s off'
   alias blankon='xset dpms; xset s on'
   # emacs
-  alias emacs='TERM=xterm-256color /usr/bin/emacs -nw'
-  alias ec='emacsclient'
+  alias emax="emacsclient -t"
+  alias semacs="sudo emacsclient -t"
+  alias emacsc="emacsclient -c -a emacs"
 
   function ekill() { emacsclient -e '(kill-emacs)';}
 
