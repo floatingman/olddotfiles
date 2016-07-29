@@ -87,11 +87,13 @@
 [plugins]
 [profiles]
   [[default]]
+    background_color = "#300a24"
     background_image = None
+    background_type = transparent
     copy_on_selection = True
     cursor_shape = underline
     font = Liberation Mono 10
-    foreground_color = "#00ff00"
+    foreground_color = "#ffffff"
     scrollback_infinite = True
     scrollback_lines = 10000
     scrollbar_position = hidden
