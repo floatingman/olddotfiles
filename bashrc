@@ -117,7 +117,7 @@ fi
   # list of apps to be tried in order
   xbrowsers='google-chrome-stable'
   browsers='elinks:lynx:links:w3m'
-  editors='emacsclient -t'
+  editors='vim'
   export TERMINAL=terminator
   # }}}
   VBOX_USB=usbfs
@@ -203,10 +203,10 @@ fi
   fi
 
   # set editor
-  #_set_editor
+  _set_editor
   export ALTERNATE_EDITOR=""
-  export EDITOR="emacsclient -t"
-  export VISUAL="emacsclient -c -a emacs"
+  #export EDITOR="emacsclient -t"
+  #export VISUAL="emacsclient -c -a emacs"
 
   # custom ip var
   [[ -f "$HOME/.myip" ]] && export MYIP=$(cat "$HOME/.myip")
