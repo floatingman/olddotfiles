@@ -87,13 +87,30 @@
 [plugins]
 [profiles]
   [[default]]
-    background_color = "#300a24"
+    background_color = "#fafafa"
     background_image = None
-    background_type = transparent
+    copy_on_selection = True
+    cursor_color = "#d6d6d6"
+    cursor_shape = underline
+    font = Liberation Mono 10
+    foreground_color = "#4d4d4c"
+    palette = "#000000:#c82829:#718c00:#f5871f:#4271ae:#8959a8:#3e999f:#d6d6d6:#8e908c:#ff3334:#9ec400:#eab700:#5795e6:#b777e0:#54ced6:#efefef"
+    scrollback_infinite = True
+    scrollback_lines = 10000
+    scrollbar_position = hidden
+    show_titlebar = False
+    urgent_bell = True
+    use_system_font = False
+    visible_bell = True
+  [[tomorrow-night]]
+    palette = "#000000:#912226:#778900:#ae7b00:#1d2594:#682a9b:#2b6651:#929593:#666666:#cc6666:#b5bd68:#f0c674:#81a2be:#b294bb:#8abeb7:#ecebec"
+    foreground_color="#c5c8c6"
+    background_color= "#1d1f21"
+    cursor_color = "#aeafad"
+    background_image = None
     copy_on_selection = True
     cursor_shape = underline
     font = Liberation Mono 10
-    foreground_color = "#ffffff"
     scrollback_infinite = True
     scrollback_lines = 10000
     scrollbar_position = hidden
