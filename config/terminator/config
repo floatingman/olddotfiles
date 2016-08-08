@@ -1,4 +1,5 @@
 [global_config]
+  always_split_with_profile = True
   borderless = True
   enabled_plugins = InactivityWatch, ActivityWatch, TerminalShot, LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
 [keybindings]
@@ -6,7 +7,7 @@
   [[default]]
     [[[child1]]]
       parent = window0
-      profile = default
+      profile = tomorrow-eighties
       type = Terminal
     [[[window0]]]
       parent = ""
@@ -39,19 +40,19 @@
     [[[terminal2]]]
       order = 0
       parent = child1
-      profile = default
+      profile = tomorrow-eighties
       type = Terminal
       uuid = 14495f66-d426-4295-ab27-d15038914c32
     [[[terminal4]]]
       order = 0
       parent = child3
-      profile = default
+      profile = tomorrow-eighties
       type = Terminal
       uuid = 5fb296fc-4074-4edb-837f-aef3365a0998
     [[[terminal5]]]
       order = 1
       parent = child3
-      profile = default
+      profile = tomorrow-eighties
       type = Terminal
       uuid = 7be1534c-c500-4cf5-8a5d-a0597b01793a
   [[twoterms]]
@@ -75,13 +76,13 @@
     [[[terminal2]]]
       order = 0
       parent = child1
-      profile = default
+      profile = tomorrow-eighties
       type = Terminal
       uuid = 88d3d590-49a2-4979-8422-a63675876f2a
     [[[terminal3]]]
       order = 1
       parent = child1
-      profile = default
+      profile = tomorrow-eighties
       type = Terminal
       uuid = 60c5d398-bd63-4010-af82-bf51be3eafd4
 [plugins]
@@ -102,15 +103,31 @@
     urgent_bell = True
     use_system_font = False
     visible_bell = True
-  [[tomorrow-night]]
-    palette = "#000000:#912226:#778900:#ae7b00:#1d2594:#682a9b:#2b6651:#929593:#666666:#cc6666:#b5bd68:#f0c674:#81a2be:#b294bb:#8abeb7:#ecebec"
-    foreground_color="#c5c8c6"
-    background_color= "#1d1f21"
-    cursor_color = "#aeafad"
+  [[tomorrow-eighties]]
+    background_color = "#2d2d2d"
     background_image = None
     copy_on_selection = True
+    cursor_color = "#aeafad"
     cursor_shape = underline
     font = Liberation Mono 10
+    foreground_color = "#cccccc"
+    palette = "#000000:#f2777a:#99cc99:#f99157:#6699cc:#cc99cc:#66cccc:#515151:#666666:#FF3334:#9ec400:#ffcc66:#6699cc:#b777e0:#54ced6:#393939"
+    scrollback_infinite = True
+    scrollback_lines = 10000
+    scrollbar_position = hidden
+    show_titlebar = False
+    urgent_bell = True
+    use_system_font = False
+    visible_bell = True
+  [[tomorrow-night]]
+    background_color = "#1d1f21"
+    background_image = None
+    copy_on_selection = True
+    cursor_color = "#aeafad"
+    cursor_shape = underline
+    font = Liberation Mono 10
+    foreground_color = "#c5c8c6"
+    palette = "#000000:#912226:#778900:#ae7b00:#1d2594:#682a9b:#2b6651:#929593:#666666:#cc6666:#b5bd68:#f0c674:#81a2be:#b294bb:#8abeb7:#ecebec"
     scrollback_infinite = True
     scrollback_lines = 10000
     scrollbar_position = hidden
