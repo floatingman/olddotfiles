@@ -1,0 +1,89 @@
+#########
+# Media #
+#########
+
+# Toggle mute
+XF86AudioMute
+    volume toggle
+
+# Toggle mic mute
+XF86AudioMicMute
+    volume mic
+
+# Change volume
+XF86Audio{Raise,Lower}Volume
+    volume {up,down}
+
+# Change volume
+super + {k,j}
+    volume {up,down}
+
+# Toggle mpd
+super + 0
+    mpc -q toggle
+
+# Navigate mpd playlist
+super + {comma, period}
+    mpc -q {prev, next}
+
+# Display current mpd track
+super + slash
+    notify-send -u low "$(mpc -f "%artist%" current)" "$(mpc -f "%title%" current)"
+
+# Play the video URL in the clipboard
+super + m
+    play
+
+
+################
+# Applications #
+################
+
+# Launch terminal
+super + t
+    $TERMINAL
+
+# Launch web browser
+super + w
+    firefox -P default
+
+# Launch web browser with work profile
+super + shift + w
+    firefox -P work
+
+# Launch application launcher
+super + space
+    rofi -show run
+
+# Launch window switcher
+alt + Tab
+    rofi -show window
+
+# Launch password manager
+super + p
+    menu=$(echo -e "$HOME/.password-store\n$ALTPASSDIR" | rofi -dmenu); rofi-pass --root "${menu}"
+
+
+########
+# Misc #
+########
+
+# Lock the screen
+super + l
+    /usr/local/bin/lock
+
+# Lock the screen
+XF86ScreenSaver
+    /usr/local/bin/lock
+
+# Change screen brightness
+XF86MonBrightness{Up,Down}
+    light -{A,U} 10
+
+# Take a screenshot
+Print
+    scrot 'screenshot_%Y-%m-%d-%H%M%S.png' -e 'mv $f ~/tmp'
+
+# Generate a QR code from the clipboard
+super + q
+    qcode
