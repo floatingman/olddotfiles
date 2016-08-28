@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# misc aliases
+alias open='xdg-open "$@"'
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+
+# docker
+if _have docker; then
+
+    # Kill all running containers
+    alias dockerkillall='docker kill $(docker ps -q)'
+
+    # Delete all stopped containers.
+    alias dockercleanac='printf "\n>>> Deleting stopped containers\n\n" && docker rm $(docker ps -a -q)'
+
+    # Delete all untagged images.
+    alias dockercleani='printf "\n>>> Deleting untagged images\n\n" && docker rmi $(docker images -q -f dangling=true)'
+
+    # Delete all stopped conatiners and untagged images.
+    alias dockerclean='dockercleanc || true && dockercleani'
+fi

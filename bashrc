@@ -11,51 +11,12 @@
 
 ### General options {{{
 
-# is $1 installed?
-_have() { which "$1" &>/dev/null; }
-
-_islinux=false
-[[ "$(uname -s)" =~ Linux|GNU|GNU/* ]] && _islinux=true
-
-_isubuntu=false
-[[ "$(uname -v)" =~ Ubuntu ]] && _isubuntu=true
-_isarch=false
-[[ -f /etc/arch-release ]] && _isarch=true
-
-_isxrunning=false
-[[ -n "$DISPLAY" ]] && _isxrunning=true
-
-_isroot=false
-[[ $UID -eq 0 ]] && _isroot=true
 
 # }}}
-## PS1 CONFIG {{{
-[[ -f $HOME/.dircolors ]] && eval $(dircolors -b $HOME/.dircolors)
-if $_isxrunning; then
-  [[ -f $HOME/.dircolors_256 ]] && eval $(dircolors -b $HOME/.dircolors_256)
-
-  export TERM='xterm-256color'
-
-  B='\[\e[1;38;5;33m\]'
-  LB='\[\e[1;38;5;81m\]'
-  GY='\[\e[1;38;5;242m\]'
-  G='\[\e[1;38;5;82m\]'
-  P='\[\e[1;38;5;161m\]'
-  PP='\[\e[1;38;5;93m\]'
-  R='\[\e[1;38;5;196m\]'
-  Y='\[\e[1;38;5;214m\]'
-  W='\[\e[0m\]'
-
-else
-  export TERM='xterm-color'
-fi
 
 ## set xterm for tmux
 [ -z "$TMUX" ] && export TERM=xterm-256color
 
-# Using bash-git-prompt to set prompt
-  source ~/.bash-git-prompt/gitprompt.sh
-  GIT_PROMPT_ONLY_IN_REPO=1
   #}}}
 
   ## BASH OPTIONS {{{
@@ -219,22 +180,6 @@ fi
 
   # raw AWS keys stored and exported in separate file
   _source "$HOME/.aws_keys"
-
-  # docker options
-  if _have docker; then
-
-    # Kill all running containers
-    alias dockerkillall='docker kill $(docker ps -q)'
-
-    # Delete all stopped containers.
-    alias dockercleanc='printf "\n>>> Deleting stopped containers\n\n" && docker rm $(docker ps -a -q)'
-
-    # Delete all untagged images.
-    alias dockercleani='printf "\n>>> Deleting untagged images\n\n" && docker rmi $(docker images -q -f dangling=true)'
-
-    # Delete all stopped conatiners and untagged images.
-    alias dockerclean='dockercleanc || true && dockercleani'
-  fi
 
   # standard in linux
   if $_islinux; then
