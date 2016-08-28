@@ -1,48 +1,29 @@
-#!/bin/sh
-
-# Source scripts in /etc/X11/xinit/xinitrc.d/
-if [ -d /etc/X11/xinit/xinitrc.d ]; then
-    for f in /etc/X11/xinit/xinitrc.d/*; do
-        [ -x "$f" ] && . "$f"
-    done
-    unset f
-fi
-
-#run systemd as user intsance
-systemd --user &
-
-# set key repeat rate
-xset r rate 300
-
-# Configure X
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
-# load keyboard modifications
-[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
+xmodmap ~/.Xmodmap
 
-# composting
-compton --inactive-dim 0.02 -b
+sxhkd &
 
-# start pulseaudio if it isn't running already
-if [ ! "`pgrep pulseaudio`" ]; then
-	pulseaudio --start
+xautolock -time 09 -locker "/usr/local/bin/lock" -detectsleep -secure &
+
+if [ -f ~/.fehbg ]; then
+  sh ~/.fehbg &
 fi
 
-xset s off
-setxkbmap -option terminate:ctrl_alt_bksp
-xfce4-panel &
-numlockx &
-parcellite &
-#synergys &
-plank &
-#wallpaper.sh &
-xscreensaver &
-#pidgin &
-conky &
-#redshift-gtk &
-#cairo-dock &
-dropbox-cli start &
-exec startlxde
-#exec openbox-session
-#exec i3
-#exec enlightenment_start
+volwheel &
+
+nm-applet &
+
+unclutter &
+
+dunst &
+
+redshift-gtk &
+
+autorandr --change --default mobile
+
+srandrd autorandr --change --default mobile
+
+udiskie &
+
+exec i3
