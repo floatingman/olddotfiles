@@ -1,0 +1,36 @@
+#!/bin/bash
+
+[[ -r "$HOME/bin" ]] && _add_to_path "$HOME/bin"
+
+# Node
+[[ -r "$HOME/node_modules" ]] && _add_to_path "$HOME/node_modules/.bin"
+
+# Haskell
+[[ -r "$HOME/.cabal" ]] && _add_to_path "$HOME/.cabal/bin"
+
+#misc apps
+[[ -r "$HOME/apps" ]] && _add_to_path "$HOME/apps"
+
+# if eclipse is installed
+[[ -f "$HOME/apps/eclipse/eclipse" ]] && _add_to_path "$HOME/apps/eclipse"
+
+# if intellij is installed
+[[ -f "$HOME/apps/intellij/bin/idea.sh" ]] && _add_to_path "$HOME/apps/intellij/bin"
+
+#GO Language
+if [[ -r "$HOME/golang" ]]; then
+    export GOPATH=$HOME/golang
+    _add_to_path ${GOPATH//://bin:}/bin
+fi
+
+if [[ -r "$HOME/.rbenv" ]]; then
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    eval "$(rbenv init -)"
+    export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+fi
+
+#Composer
+[[ -f "$HOME/bin/composer" ]] && _add_to_path "$HOME/.composer/vendor/bin/"
+
+# Heroku
+[[ -r "/usr/local/heroku" ]] && _add_to_path "/usr/local/heroku/bin"

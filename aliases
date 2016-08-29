@@ -20,3 +20,386 @@ if _have docker; then
     # Delete all stopped conatiners and untagged images.
     alias dockerclean='dockercleanc || true && dockercleani'
 fi
+
+# only if we have mpc
+if _have mpc; then
+    alias addall='mpc --no-status clear && mpc listall | mpc --no-status add && mpc play'
+    alias n='mpc next'
+    alias p='mpc prev'
+fi
+
+if _have youtube-dl; then
+    alias ytwl='youtube-dl -o "/mnt/SuperBigMama/Media/Video/YouTube/%(uploader)s-%(title)s.%(ext)s" https://www.youtube.com/playlist?list=WL'
+    alias podcast='youtube-dl --verbose -x --audio-format mp3 --audio-quality 0 -o "/mnt/SuperBigMama/Media/Audio/podcast/%(uploader)s-%(upload_date)s-%(title)s.%(ext)s" https://www.youtube.com/playlist?list=PL5D8rBmak6B39tevwhz_LMTrEof7MeyQt'
+fi
+
+alias tigervncserver='x0vncserver --Geometry=1440x900 -display :0 -passwordfile ~/.vnc/passwd'
+
+if _have rtorrent; then
+    alias rtunlock="rm -f /mnt/Extra2/mediadownload/torrents/session/rtorrent.lock"
+fi
+
+alias blankoff='xset -dpms; xset s off'
+alias blankon='xset dpms; xset s on'
+# emacs
+alias emax="emacsclient -t"
+alias semacs="sudo emacsclient -t"
+alias emacsc="emacsclient -c -a emacs"
+
+function ekill() { emacsclient -e '(kill-emacs)';}
+
+# reload bash
+alias r="source ~/.bashrc"
+
+# git alias
+alias gcl='git clone'
+alias ga='git add'
+alias gall='git add .'
+alias gus='git reset HEAD'
+alias gm="git merge"
+alias g='git'
+alias get='git'
+alias gst='git status'
+alias gs='git status'
+alias gss='git status -s'
+alias gl='git pull'
+alias gpr='git pull --rebase'
+alias gpp='git pull && git push'
+alias gup='git fetch && git rebase'
+alias gp='git push'
+alias gpo='git push origin'
+alias gdv='git diff -w "$@" | vim -R -'
+alias gc='git commit -v'
+alias gca='git commit -v -a'
+alias gcm='git commit -v -m'
+alias gci='git commit --interactive'
+alias gb='git branch'
+alias gba='git branch -a'
+alias gcount='git shortlog -sn'
+alias gcp='git cherry-pick'
+alias gco='git checkout'
+alias gexport='git archive --format zip --output'
+alias gdel='git branch -D'
+alias gmu='git fetch origin -v; git fetch upstream -v; git merge upstream/master'
+alias gll='git log --graph --pretty=oneline --abbrev-commit'
+alias gg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+alias ggs="gg --stat"
+alias gsl="git shortlog -sn"
+alias gw="git whatchanged"
+alias gd='git diff | vim -R -'
+
+#vagrant
+alias vup="vagrant up"
+alias vh="vagrant halt"
+alias vs="vagrant suspend"
+alias vr="vagrant resume"
+alias vrl="vagrant reload"
+alias vssh="vagrant ssh"
+alias vst="vagrant status"
+alias vp="vagrant provision"
+alias vdstr="vagrant destroy"
+# requires vagrant-list plugin
+alias vl="vagrant list"
+# requires vagrant-hostmanager plugin
+alias vhst="vagrant hostmanager"
+
+# ssh
+alias sql='mysql -p -u root'
+alias mybook='ssh dnewman@mybook'
+alias myrouter='ssh root@192.168.0.1'
+#alias shockwave='ssh dnewman@thenewmans.no-ip.org -p2222'
+
+#
+# setup ssh-agent
+#
+
+# set environemtnvariables if user's agent already exists
+#[ -z "$SSH_AUTH_SOCK" ] && SSH_AUTH_SOCK=$(ls -l /tmp/ssh-*/agent.* 2> /dev/null | grep $(whoami) | awk '{print $9}')
+#[ -z "$SSH_AGENT_PID" -a -z `echo $SSH_AUTH_SOCK | cut -d. -f2` ] && SSH_AGENT_PID=$((`echo $SSH_AUTH_SOCK | cut -d. -f2` + 1))
+#[ -n "$SSH_AUTH_SOCK" ] && export SSH_AUTH_SOCK
+#[ -n "$SSH_AGENT_PID" ] && export SSH_AGENT_PID
+
+# start agent if necessary
+#if [ -z $SSH_AGENT_PID ] && [ -z $SSH_TTY ]; then  # if no agent & not in ssh
+#   eval `ssh-agent -s` > /dev/null
+#fi
+
+# setup addition of keys when needed
+#if [ -z "$SSH_TTY" ] ; then                     # if not using ssh
+#   ssh-add -l > /dev/null                        # check for keys
+#   if [ $? -ne 0 ] ; then
+#      alias ssh='ssh-add -l > /dev/null || ssh-add && unalias ssh ; ssh'
+#      if [ -f "/usr/lib/ssh/x11-ssh-askpass" ] ; then
+#               SSH_ASKPASS="/usr/lib/ssh/x11-ssh-askpass" ; export SSH_ASKPASS
+#      fi
+#   fi
+#fi
+
+alias vnc='x11vnc -display :0 -forever -noxdamage -usepw -httpdir /usr/share/vnc-java/ -httpport 5800 &'
+alias lisp='/usr/bin/sbcl'
+
+#update dotfiles
+if [ -d "$HOME/.dotfiles" ]; then
+    alias ud='cd $HOME/.dotfiles && git pull origin master && rcup -v && cd -'
+fi
+
+# only for linux
+if $_islinux; then
+    alias dir='dir --color'
+    alias ls='ls -h --group-directories-first --color=auto'
+
+
+else
+    alias ls='ls -h'
+fi
+
+# standard
+alias la='ls -la'
+alias ll='ls -l'
+alias lr='ls -R'
+alias laa='ls --color=auto -la'
+alias lx='ll -BX'                   # sort by extension
+alias lz='ll -rS'                   # sort by size
+alias lt='ll -rt'                   # sort by date
+alias li="ls -li | sort -n | more" #lists all files with their inode numbers
+alias lm="ls -al | more" #lists your files a screen at a time
+alias l.="ls -d .* --color=auto"  #list all hidden files and directories
+alias usage="du -skc * | sort -rn | more" #lists the sizes in blocks of all your files and sorts them in size order
+alias total="du -ch | grep total" #find total size of directory and subdirectories
+alias lsDir='ls -d */' #lisitng directories only
+alias again="vim `ls -t | head -1`"
+alias fixdirs="find . -type d -exec chmod o-rwx {} \;"
+alias prev='ls -t | head -l'
+alias findbig="find . -type f -exec ls -s {} \; | sort -n -r | head -5"
+# safety features
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -I --preserve-root'
+alias ln='ln -i'
+alias chown='chown --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chgrp='chgrp --preserve-root'
+
+alias bc='bc -l' # start calculator with math support
+alias sha1='openssl sha1' # generate sha1 digest
+alias ports='netstat -tulanp' # show open ports
+
+#default interfaces for network commands
+alias ednstop='dnstop -l 5 eth0'
+alias evnstat='vnstat -i eth0'
+alias eiftop='iftop -i eth0'
+alias etcpdump='tpdump -i eth0'
+alias ethtool='ethtool eth0'
+
+alias iwconfig='iwconfig wlan0'
+
+alias locate='locate -e -L'
+alias mkdir='mkdir -pv'
+alias tree='tree -L 2 -d -l'
+alias tree2="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
+alias up="cd .."
+alias cd..='cd ..'
+alias ..='cd ..'
+alias ...='cd ../../../'
+alias ....='cd ../../../../'
+alias .....='cd ../../../../../'
+alias .4='cd ../../../../'
+alias .5='cd ../../../../../'
+alias diff='colordiff'
+alias mount='mount |column -t'
+alias c='clear'
+alias h='history'
+alias j='jobs -l'
+alias now='date +"%T"'
+alias nowtime=now
+alias nowdate='date +"%d-%m-%Y"'
+alias ping='ping -c 5'
+alias fastping='ping -c 100 -s.2'
+
+alias ducks="du -cks * |sort -rn |head -10" # print top 10 largest files in pwd
+alias free="free -m"                        # show sizes in MB
+alias sps="ps aux | grep -v grep | grep"    # search and display processes by keyword
+
+alias df='df -h'
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias mkdir='mkdir -p'
+alias myip='printf "%s\n" "$(curl --silent http://tnx.nl/ip)"'
+alias path='echo -e "${PATH//:/\n}"'
+alias reload='source ~/.bashrc'
+alias ruler="echo .........1.........2.........3.........4.........5.........6.........7.........8"
+alias psm="echo '%CPU %MEM   PID COMMAND' && ps hgaxo %cpu,%mem,pid,comm | sort -nrk1 | head -n 10 | sed -e 's/-bin//' | sed -e 's/-media-play//'"
+alias blankcd="wodim -v dev=/dev/cdrw -blank=fast -eject"
+# a good overview of a yesod application
+alias apptree='tree -I "dist|config|static|pandoc|tmp"'
+
+# setup dual-montiors when plugged in
+alias dual='xrandr --output LVDS-0 --auto --output HDMI-0 --auto --right-of LVDS-0'
+
+
+
+
+_have albumbler && alias a='albumbler'
+
+if _have colortail; then
+    alias tailirc='/usr/bin/colortail -q -k /etc/colortail/conf.irc'
+    alias colortail='colortail -q -k /etc/colortail/conf.messages'
+fi
+
+
+
+# only if we have a disc drive
+if [[ -b '/dev/sr0' ]]; then
+    alias eject='eject -T /dev/sr0'
+    alias mountdvd='sudo mount -t iso9660 -o ro /dev/sr0 /media/dvd/'
+    alias backupdvd='dvdbackup -M -i /dev/sr0 -o ~/ripped/'
+fi
+
+# only if we have xmonad
+[[ -f "$HOME/.xmonad/xmonad.hs" ]] && alias checkmonad='(cd ~/.xmonad && ghci -ilib xmonad.hs)'
+
+# only for mplayer
+if _have mplayer; then
+    alias playiso='mplayer dvd://1 -dvd-device'
+    alias playdvd='mplayer dvdnav:// /dev/sr0'
+    alias playcda='mplayer cdda:// -cdrom-device /dev/sr0 -cache 10000'
+fi
+
+# mount an iso
+function mountiso() { sudo mount -t iso9660 -o loop "$@" /media/iso ;}
+
+
+alias silent='echo "silent" | sudo tee /sys/devices/platform/sony-laptop/thermal_control'
+alias balanced='echo "balanced" | sudo tee /sys/devices/platform/sony-laptop/thermal_control'
+alias performance='echo "performance" | sudo tee /sys/devices/platform/sony-laptop/thermal_control'
+
+# root aliases
+if ! $_isroot; then
+    alias svim='sudo vim'
+    alias reboot='sudo reboot'
+    alias shutdown='sudo shutdown -hP now'
+    alias scat='sudo cat'
+    alias root='sudo su'
+    alias windows='sudo grub-set-default 3 && sudo reboot'
+    alias bb="sudo bleachbit --clean system.cache system.localizations system.trash system.tmp"
+fi
+
+# ubuntu aliases
+if $_isubuntu; then
+    if ! $_isroot; then
+        alias upgrade='sudo apt-get update && sudo apt-get upgrade -y'
+        alias apt='sudo apt'
+    fi
+fi
+
+# pacman aliases
+if $_isarch; then
+    if ! $_isroot; then
+        _have pacman-color && alias pacman='sudo pacman-color' || alias pacman='sudo pacman'
+        _have powerpill && alias powerpill='sudo powerpill'
+    else
+        _have pacman-color && alias pacman='pacman-color'
+    fi
+
+    alias y='LD_PRELOAD= yaourt'
+    alias yaourt='LD_PRELOAD= yaourt'
+    alias upgrade='yaourt -Syu --aur --devel && sudo pacdiffviewer && cd /etc/ && sudo etckeeper commit "Auto Commit"; cd -'
+    alias pacorphans='pacman -Rs $(pacman -Qtdq)'
+    alias paccorrupt='sudo find /var/cache/pacman/pkg -name '\''*.part.*'\''' # sudo so we can quickly add -delete
+    alias pactesting='pacman -Q $(pacman -Sql {community-,multilib-,}testing) 2>/dev/null'
+    alias remove='sudo pacman -Rsc'
+    alias pacin='pacman -S'
+    alias pacout='pacman -R'
+    alias pacsearch='pacman -Ss'
+    alias pacup='pacup.rb && sudo pacman -Suy'
+    alias upp='sudo reflector -c "United States" -a 1 -f 3 --sort rate --save /etc/pacman.d/mirrorlist && cat /etc/pacman.d/mirrorlist && sudo pacman -Syyu'
+    # Pacman alias examples
+    alias pacupg='sudo pacman -Syu'		# Synchronize with repositories and then upgrade packages that are out of date on the local system.
+    alias pacdl='pacman -Sw'		# Download specified package(s) as .tar.xz ball
+    alias pacin='sudo pacman -S'		# Install specific package(s) from the repositories
+    alias pacins='sudo pacman -U'		# Install specific package not from the repositories but from a file
+    alias pacre='sudo pacman -R'		# Remove the specified package(s), retaining its configuration(s) and required dependencies
+    alias pacrem='sudo pacman -Rns'     	# Remove the specified package(s), its configuration(s) and unneeded dependencies
+    alias pacrep='pacman -Si'		# Display information about a given package in the repositories
+    alias pacreps='pacman -Ss'		# Search for package(s) in the repositories
+    alias pacloc='pacman -Qi'		# Display information about a given package in the local database
+    alias paclocs='pacman -Qs'		# Search for package(s) in the local database
+    alias paclo="pacman -Qdt"		# List all packages which are orphaned
+    alias pacc="sudo pacman -Scc"		# Clean cache - delete all the package files in the cache
+    alias paclf="pacman -Ql"		# List all files installed by a given package
+    alias pacown="pacman -Qo"		# Show package(s) owning the specified file(s)
+    alias pacexpl="pacman -D --asexp"	# Mark one or more installed packages as explicitly installed
+    alias pacimpl="pacman -D --asdep"	# Mark one or more installed packages as non explicitly installed
+
+    # Additional pacman alias examples
+    alias pacupd='sudo pacman -Sy && sudo abs'         # Update and refresh the local package and ABS databases against repositories
+    alias pacinsd='sudo pacman -S --asdeps'            # Install given package(s) as dependencies
+    alias pacmir='sudo pacman -Syy'                    # Force refresh of all package lists after updating /etc/pacman.d/mirrorlist
+
+    # dealing with the following message from pacman:
+    #
+    #     error: couldnt lock database: file exists
+    #     if you are sure a package manager is not already running, you can remove /var/lib/pacman/db.lck
+
+    alias pacunlock="sudo rm /var/lib/pacman/db.lck"   # Delete the lock file /var/lib/pacman/db.lck
+    alias paclock="sudo touch /var/lib/pacman/db.lck"  # Create the lock file /var/lib/pacman/db.lck
+
+    # Show directory not owned by any package
+    alias pacman-disowned-dirs="comm -23 <(sudo find / \( -path '/dev' -o -path '/sys' -o -path '/run' -o -path '/tmp' -o -path '/mnt' -o -path '/srv' -o -path '/proc' -o -path '/boot' -o -path '/home' -o -path '/root' -o -path '/media' -o -path '/var/lib/pacman' -o -path '/var/cache/pacman' \) -prune -o -type d -print | sed 's/\([^/]\)$/\1\//' | sort -u) <(pacman -Qlq | sort -u)"
+
+    # Show files not owned by any packages
+    alias pacman-disowned-files="comm -23 <(sudo find / \( -path '/dev' -o -path '/sys' -o -path '/run' -o -path '/tmp' -o -path '/mnt' -o -path '/srv' -o -path '/proc' -o -path '/boot' -o -path '/home' -o -path '/root' -o -path '/media' -o -path '/var/lib/pacman' -o -path '/var/cache/pacman' \) -prune -o -type f -print | sort -u) <(pacman -Qlq | sort -u)"
+
+
+fi
+# ghc aliases
+if _have ghc-pkg; then
+    alias gc='ghc-pkg check'
+    alias gl='ghc-pkg list'
+    alias gu='ghc-pkg unregister'
+fi
+
+# }}}
+
+# iptables
+alias ipt='sudo /sbin/iptables'
+
+# display all rules
+alias iptlist='sudo /sbin/iptables -L -n -v --line-numbers'
+alias iptlistin='sudo /sbin/iptables -L INPUT -n -v --line-numbers'
+alias iptlistout='sudo /sbin/iptables -L OUTPUT -n -v --line-numbers'
+alias iptlistfw='sudo /sbin/iptables -L FORWARD -n -v --line-numbers'
+alias firewall=iptlist
+
+# Debugging web servers
+# get web server headers
+alias header='curl -I'
+
+# find out if remote server supports gzip or mod_deflate
+alias headerc='curl -I --compress'
+
+# get computer stats asap
+alias meminfo='free -m -l -t'
+
+#get top processes eating memory
+alias psmem='ps auxf | sort -nr -k 4'
+alias psmem10='ps auxf | sort -nr -k 4 | head -10'
+
+#get top processes eating cpu
+alias pscpu='ps auxf | sort -nr -k 3'
+alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
+
+#get cpu info
+alias cpuinfo='lscpu'
+
+#get GPU ram
+alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
+
+# resume wget downloads by default
+alias wget='wget -c'
+
+alias top='atop'
+
+# ruby rvm veewee
+alias veewee='bundle exec veewee'

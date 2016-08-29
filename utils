@@ -14,3 +14,19 @@ _isxrunning=false
 
 _isroot=false
 [[ $UID -eq 0 ]] && _isroot=true
+
+# add directories to $PATH
+_add_to_path() {
+    local path
+
+    for path; do
+        [[ -d "$path" ]] && [[ ! ":${PATH}:" =~ :${path}: ]] && export PATH=${path}:$PATH
+    done
+}
+
+# source a file if readable
+_source () {
+    local file="$1"
+    [[ -r "$file" ]] || return 1
+    . "$file"
+}

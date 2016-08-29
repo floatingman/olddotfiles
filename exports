@@ -1,0 +1,48 @@
+#!/bin/bash
+
+export EDITOR="vim";
+export TERMINAL="urxvt";
+
+export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd*";
+export HISTCONTROL="ignoreboth:erasedups";
+export HISTSIZE=50000000;
+export HISTFILESIZE=$HISTSIZE;
+
+# standard in linux
+if $_islinux; then
+    export LANG=en_US.UTF-8
+    export LC_ALL=en_US.utf8
+fi
+
+# less
+if _have less; then
+    export PAGER=less
+
+    LESS=-R # use -X to avoid sending terminal initialization
+    LESS_TERMCAP_mb=$'\e[01;31m'
+    LESS_TERMCAP_md=$'\e[01;31m'
+    LESS_TERMCAP_me=$'\e[0m'
+    LESS_TERMCAP_se=$'\e[0m'
+    LESS_TERMCAP_so=$'\e[01;44;33m'
+    LESS_TERMCAP_ue=$'\e[0m'
+    LESS_TERMCAP_us=$'\e[01;32m'
+    export ${!LESS@}
+fi
+
+# Don’t clear the screen after quitting a manual page
+export MANPAGER="less -X";
+
+export DBUS_SESSION_BUS_ADDRESS=unix:path=/var/run/user/$(id -u)/bus;
+
+
+# custom ip var
+[[ -f "$HOME/.myip" ]] && export MYIP=$(cat "$HOME/.myip")
+
+# custom log directory
+[[ -d "$HOME/.logs" ]] && export LOGS="$HOME/.logs" || export LOGS='/tmp'
+
+# screen tricks
+_source "$HOME/.screen/bashrc.screen"
+
+# raw AWS keys stored and exported in separate file
+_source "$HOME/.aws_keys"

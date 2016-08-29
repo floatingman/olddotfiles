@@ -1,0 +1,229 @@
+#!/bin/bash
+
+# demolish any --user installed cabal packages.
+cabalwipe() {
+    rm -rf "$HOME/.cabal/packages"/*/*
+    rm -rf "$HOME/.cabal/bin"/*
+    rm -rf "$HOME/.ghc"
+}
+
+# filegrep 'foo.*' ./some/dir, greps all files in the given dir for the
+# given regex
+filegrep() {
+    local dir="$2" regex="$1"
+    find "$dir" -type f ! -wholename '*/.svn/*' ! -wholename '*/.git/*' -exec grep --color=auto -- "$regex" {} \+
+}
+
+# combine pdfs into one using ghostscript
+combinepdf() {
+    _have gs       || return 1
+    [[ $# -ge 2 ]] || return 1
+
+    local out="$1"; shift
+
+    gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile="$out" "$@"
+}
+
+# add by artist to mpc
+addartist() {
+    _have mpc || return 1
+
+    mpc search artist "$*" | mpc add &>/dev/null
+    mpc play
+}
+
+# make a thumb %20 the size of a pic
+thumbit() {
+    _have mogrify || return 1
+
+    for pic; do
+        case "$pic" in
+            *.jpg)  thumb="${pic/.jpg/-thumb.jpg}"   ;;
+            *.jpeg) thumb="${pic/.jpeg/-thumb.jpeg}" ;;
+            *.png)  thumb="${pic/.png/-thumb.png}"   ;;
+            *.bmp)  thumb="${pic/.bmp/-thumb.bmp}"   ;;
+        esac
+
+        [[ -z "$thumb" ]] && return 1
+
+        cp "$pic" "$thumb" && mogrify -resize 10% "$thumb"
+    done
+}
+
+# rip a dvd with handbrake
+hbrip() {
+    _have HandBrakeCLI || return 1
+    [[ -n "$1" ]]      || return 1
+
+    local name="$1" out drop="$HOME/Videos"; shift
+    [[ -d "$drop" ]] || mkdir -p "$drop"
+
+    out="$drop/$name.m4v"
+
+    echo "rip /dev/sr0 --> $out"
+    HandBrakeCLI --main-feature -m -s scan -F -N eng -Z High Profile "$@" -i /dev/sr0 -o "$out" 2>/dev/null
+    echo
+}
+
+# convert media to ipad format with handbrake
+hbconvert() {
+    _have HandBrakeCLI || return 1
+    [[ -n "$1" ]]      || return 1
+
+    local in="$1" out drop="$HOME/Videos/converted"; shift
+    [[ -d "$drop" ]] || mkdir -p "$drop"
+
+    out="$drop/$(basename "${in%.*}").mp4"
+
+    echo "convert $in --> $out"
+    HandBrakeCLI -Z iPad "$@" -i "$in" -o "$out" 2>/dev/null
+    echo
+}
+
+# simple spellchecker, uses /usr/share/dict/words
+spellcheck() {
+    [[ -f /usr/share/dict/words ]] || return 1
+
+    for word; do
+        if grep -Fqx "$word" /usr/share/dict/words; then
+            echo -e "\e[1;32m$word\e[0m" # green
+        else
+            echo -e "\e[1;31m$word\e[0m" # red
+        fi
+    done
+}
+
+# go to google for anything
+google() {
+    [[ -z "$BROWSER" ]] && return 1
+
+    local term="${*:-$(xclip -o)}"
+
+    $BROWSER "http://www.google.com/search?q=${term// /+}" &>/dev/null &
+}
+
+# go to google for a definition
+define() {
+    _have w3m     || return 1
+    _have mplayer || return 1
+
+    local word="$*"
+
+    w3m -dump "http://www.google.com/search?q=define%20${word// /_}" | awk '/^     1./,/^        More info >>/'
+    mplayer "http://ssl.gstatic.com/dictionary/static/sounds/de/0/${word// /_}.mp3" &>/dev/null
+}
+
+# grep by paragraph
+grepp() { perl -00ne "print if /$1/i" < "$2"; }
+
+# pull a single file out of an achive, stops on first match. useful for
+# .PKGINFO files in .pkg.tar.[gx]z files.
+pullout() {
+    _have bsdtar || return 1
+
+    local opt
+
+    case "$2" in
+        *gz) opt='-qxzf' ;;
+        *xz) opt='-qxJf' ;;
+        *)   return 1    ;;
+    esac
+
+    bsdtar $opt "$2" "$1"
+}
+
+# recursively 'fix' dir/file perm
+fix() {
+    local dir
+
+    for dir; do
+        find "$dir" -type d -exec chmod 755 {} \;
+        find "$dir" -type f -exec chmod 644 {} \;
+    done
+}
+
+# print docs to default printer in reverse page order
+printr() {
+    _have enscript || return 1
+
+    # stdin?
+    if [[ -z "$*" ]]; then
+        cat | enscript -p - | psselect -r | lp
+        return 0
+    fi
+
+    local file
+
+    for file; do
+        enscript -p - "$file" | psselect -r | lp
+    done
+}
+
+# set an ad-hoc GUI timer
+timer() {
+    $_isxrunning || return 1
+    _have zenity || return 1
+
+    local N="${1:-5m}"; shift
+
+    (sleep $N && zenity --info --title="Time's Up" --text="${*:-DING}") &
+    echo "timer set for $N"
+}
+
+# send an attachment from CLI
+send() {
+    _have mutt    || return 1
+    [[ -f "$1" ]] || return 1
+    [[ -z "$2" ]] || return 1
+
+    echo 'Please see attached.' | mutt -s "File: $1" -a "$1" -- "$2"
+}
+
+# run a bash script in 'debug' mode
+debug() {
+    local script="$1"; shift
+
+    if _have "$script"; then
+        PS4='+$LINENO:$FUNCNAME: ' bash -x "$script" "$@"
+    fi
+}
+
+# go to a directory or file's parent
+goto() { [[ -d "$1" ]] && cd "$1" || cd "$(dirname "$1")"; }
+
+# copy and follow
+cpf() { cp "$@" && goto "$_"; }
+
+# move and follow
+mvf() { mv "$@" && goto "$_"; }
+
+# print the url to a manpage
+webman() { echo "http://unixhelp.ed.ac.uk/CGI/man-cgi?$1"; }
+
+# extract - archive extractor
+# usage: extract <file>
+extract() {
+    if [ -f "$1" ] ; then
+        case "$1" in
+            *.tar.bz2) tar xvjf "$1" ;;
+            *.tar.gz) tar xvzf "$1" ;;
+            *.bz2) bunzip2 "$1" ;;
+            *.rar) unrar x "$1" ;;
+            *.gz) gunzip "$1" ;;
+            *.tar) tar xvf "$1" ;;
+            *.tbz2) tar xvjf "$1" ;;
+            *.tgz) tar xvzf "$1" ;;
+            *.zip) unzip "$1" ;;
+            *.Z) uncompress "$1" ;;
+            *.7z) 7z x "$1" ;;
+            *)
+                echo "$1 is not a valid archive"
+                return 1
+                ;;
+        esac
+    else
+        echo "$1 is not a valid file"
+        return 1
+    fi
+    return 0
+}
