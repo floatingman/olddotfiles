@@ -13,14 +13,7 @@
 [ -z "$TMUX" ] && export TERM=xterm-256color
 
 ## BASH OPTIONS {{{
-# bash 4 features
-if [[ ${BASH_VERSINFO[0]} -ge 4 ]]; then
-    shopt -s globstar autocd dirspell
-fi
 
-shopt -s cdspell extglob histverify no_empty_cmd_completion checkwinsize
-
-shopt -s histappend
 complete -cf sudo
 
 if [[ -f /etc/bash_completion ]]; then
