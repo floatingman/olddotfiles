@@ -250,3 +250,8 @@ client.focused_inactive $base02 $base02 $base03 $base02
 client.unfocused $base01 $base01 $base03 $base01
 client.urgent $base02 $base08 $base07 $base02
 
+# run the merge for good colors
+exec xrdb -merge $HOME/.Xresources
+exec xrdb -merge $HOME/.Xdefaults
+
+

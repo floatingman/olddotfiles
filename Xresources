@@ -1,136 +1,94 @@
-! Hybrid Terminal Colours. Uses the palette from Tomorrow-Night:
-! https://github.com/chriskempson/tomorrow-theme/blob/master/vim/colors/Tomorrow-Night.vim
-! vim: ft=xdefaults
+! font settings
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.hinting:    true
+Xft.rgba:       rgb
+Xft.hintstyle:  hintslight
 
-*background: #1D1F21
-*foreground: #C5C8C6
-! black
-*color0: #282A2E
-*color8: #373B41
-! red
-*color1: #A54242
-*color9: #CC6666
-! green
-*color2: #8C9440
-*color10: #B5BD68
-! yellow
-*color3: #DE935F
-*color11: #F0C674
-! blue
-*color4: #5F819D
-*color12: #81A2BE
-! magenta
-*color5: #85678F
-*color13: #B294BB
-! cyan
-*color6: #5E8D87
-*color14: #8ABEB7
-! white
-*color7: #707880
-*color15: #C5C8C6
+! LOGIN SHELLLLLLLLLLLLLLLLLL!!!!!!!!!!!
+URxvt.loginShell: true
 
-! choose color scheme
-!#define use_solorized_terminal_color_scheme
-! for solorized you can pick light or dark
-!#define use_solorized_dark_color_scheme
-!#define use_solorized_light_color_scheme
+! reclaim ctrl+shift
+URxvt.iso14755: false
 
-!#ifdef use_solorized_terminal_color_scheme
-! Common
-!#define S_yellow        #b58900
-!#define S_orange        #cb4b16
-!#define S_red           #dc322f
-!#define S_magenta       #d33682
-!#define S_violet        #6c71c4
-!#define S_blue          #268bd2
-!#define S_cyan          #2aa198
-!#define S_green         #859900
+! disable the scrollbar
+URxvt.scrollBar: none
 
-!#ifdef use_solorized_dark_color_scheme
-! Dark
-!#define S_base03        #002b36
-!#define S_base02        #073642
-!#define S_base01        #586e75
-!#define S_base00        #657b83
-!#define S_base0         #839496
-!#define S_base1         #93a1a1
-!#define S_base2         #eee8d5
-!#define S_base3         #fdf6e3
-!#endif
+! font
+URxvt.font: xft:terminus:size=12
 
-!#ifdef use_solorized_light_color_scheme
-! Light
-!#define S_base03        #fdf6e3
-!#define S_base02        #eee8d5
-!#define S_base01        #93a1a1
-!#define S_base00        #839496
-!#define S_base0         #657b83
-!#define S_base1         #586e75
-!#define S_base2         #073642
-!#define S_base3         #002b36
-!#endif
+! enabled clipboard and selectable URLs
+URxvt.perl-ext-common:  default,clipboard,url-select
 
-!*background:              S_base03
-!*foreground:              S_base0
-!*fading:                  40
-!*fadeColor:               S_base03
-!*cursorColor:             S_base1
-!*pointerColorBackground:  S_base01
-!*pointerColorForeground:  S_base1
+! set copy/paste shortcuts
+URxvt.keysym.Control-Shift-C: perl:clipboard:copy
+URxvt.keysym.Control-Shift-V: perl:clipboard:paste
 
-!*color0:                  S_base02
-!*color1:                  S_red
-!*color2:                  S_green
-!*color3:                  S_yellow
-!*color4:                  S_blue
-!*color5:                  S_magenta
-!*color6:                  S_cyan
-!*color7:                  S_base2
-!*color9:                  S_orange
-!*color8:                  S_base03
-!*color10:                 S_base01
-!*color11:                 S_base00
-!*color12:                 S_base0
-!*color13:                 S_violet
-!*color14:                 S_base1
-!*color15:                 S_base3
+! set a taskbar icon
+URxvt.iconFile:         /usr/share/icons/oxygen/16x16/apps/utilities-terminal.png
 
-!#endif
+! configure selectable URLs
+URxvt.keysym.M-u:           perl:url-select:select_next
+URxvt.url-select.launcher:  xdg-open
+URxvt.url-select.underline: true
+
+! Rofi font and colors
+rofi.font: terminus 12
+rofi.color-enabled: true
+rofi.color-window: #273238, #273238, #1e2529
+rofi.color-normal: #273238, #c1c1c1, #273238, #394249, #ffffff
+rofi.color-active: #273238, #80cbc4, #273238, #394249, #80cbc4
+rofi.color-urgent: #273238, #ff1844, #273238, #394249, #ff1844
 
 
 
-! To only apply colors to your terminal, for example, prefix
-! the color assignment statement with its name. Example:
-!
-! URxvt*background:            S_base03
+! Base16 Tomorrow
+! Scheme: Chris Kempson (http://chriskempson.com)
 
+#define base00 #1d1f21
+#define base01 #282a2e
+#define base02 #373b41
+#define base03 #969896
+#define base04 #b4b7b4
+#define base05 #c5c8c6
+#define base06 #e0e0e0
+#define base07 #ffffff
+#define base08 #cc6666
+#define base09 #de935f
+#define base0A #f0c674
+#define base0B #b5bd68
+#define base0C #8abeb7
+#define base0D #81a2be
+#define base0E #b294bb
+#define base0F #a3685a
 
+*.foreground:   base05
+*.background:   base00
+*.cursorColor:  base05
 
-!black
-!*color0: #222222
-!*color8: #454545
-!red
-!*color1: #9E5641
-!*color9: #CC896D
-!green
-!*color2: #6C7E55
-!*color10: #7DB37D
-!yellow
-!*color3: #CAAF2B
-!*color11: #BFB556
-!blue
-!*color4: #4c8ea1
-!*color12: #6bc1d0
-!magenta
-!*color5: #956D9D
-!*color13: #C18FCB
-!cyan
-!*color6: #7C9AA6
-!*color14: #8FADBF
-!white
-!*color7: #909090
-!*color15: #FFFFFF
+*.color0:       base00
+*.color1:       base08
+*.color2:       base0B
+*.color3:       base0A
+*.color4:       base0D
+*.color5:       base0E
+*.color6:       base0C
+*.color7:       base05
 
-URxvt*letterSpace: -1
-URxvt*font:         xft:Bitstream Vera Sans Mono:pixelsize=15
-URxvt*boldFont:     xft:Bitstream Vera Sans Mono:pixelsize=15
+*.color8:       base03
+*.color9:       base08
+*.color10:      base0B
+*.color11:      base0A
+*.color12:      base0D
+*.color13:      base0E
+*.color14:      base0C
+*.color15:      base07
+
+! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
+! use 'shell' template to set these if necessary
+*.color16:      base09
+*.color17:      base0F
+*.color18:      base01
+*.color19:      base02
+*.color20:      base04
+*.color21:      base06
