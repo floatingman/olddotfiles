@@ -48,10 +48,4 @@ VBOX_USB=usbfs
 
 ### Bash exports {{{
 
-#bash autojump
-if $_isarch; then
-    . /etc/profile.d/autojump.bash
-else
-    . /usr/share/autojump/autojump.sh
-fi
 # }}}
