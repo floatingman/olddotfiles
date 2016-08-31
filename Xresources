@@ -22,7 +22,13 @@ URxvt.font: xft:inconsolata:size=12
 URxvt.letterSpace: -1
 
 ! enabled clipboard and selectable URLs
-URxvt.perl-ext-common:  default,clipboard,url-select,keyboard-select
+URxvt.perl-ext-common:  default,clipboard,url-select,keyboard-select,resize-font
+
+! activate resize font
+URxvt.resize-font.smaller: C-minus
+URxvt.resize-font.bigger: C-plus
+URxvt.resize-font.reset: C-equal
+URxvt.resize-font.show: C-question
 
 ! activate keyboard-select
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
