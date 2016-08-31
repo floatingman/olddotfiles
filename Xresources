@@ -3,7 +3,8 @@ Xft.dpi:        96
 Xft.antialias:  true
 Xft.hinting:    true
 Xft.rgba:       rgb
-Xft.hintstyle:  hintslight
+Xft.hintstyle:  hintfull
+Xft.autohint:   0
 
 ! LOGIN SHELLLLLLLLLLLLLLLLLL!!!!!!!!!!!
 URxvt.loginShell: true
@@ -18,33 +19,29 @@ URxvt.iso14755: false
 URxvt.scrollBar: none
 
 ! font
-URxvt.font: xft:inconsolata:size=12
+URxvt.font:xft:Inconsolata:pixelsize=14,style=Medium, xft:Symbola:pixelsize=10,style=Regular
+URxvt.boldFont:xft:Inconsolata:style=Bold,pixelsize=14, xft:Symbola:pixelsize=10,style=Regular
 URxvt.letterSpace: -1
 
 ! enabled clipboard and selectable URLs
-URxvt.perl-ext-common:  default,clipboard,url-select,keyboard-select,resize-font
+URxvt.perl-ext-common:  default,matcher,selection-to-clipboard,clipboard,resize-font
 
 ! activate resize font
-URxvt.resize-font.smaller: C-minus
-URxvt.resize-font.bigger: C-plus
-URxvt.resize-font.reset: C-equal
-URxvt.resize-font.show: C-question
+URxvt.resize-font.smaller: C-Down
+URxvt.resize-font.bigger: C-Up
 
-! activate keyboard-select
-URxvt.keysym.M-Escape: perl:keyboard-select:activate
-URxvt.keysym.M-s: perl:keyboard-select:search
 
 ! set copy/paste shortcuts
-URxvt.keysym.Control-Shift-C: perl:clipboard:copy
-URxvt.keysym.Control-Shift-V: perl:clipboard:paste
+URxvt.keysym.C-C: perl:clipboard:copy
+URxvt.keysym.C-V: perl:clipboard:paste
 URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
 
 ! set a taskbar icon
 URxvt.iconFile:         /usr/share/icons/oxygen/16x16/apps/utilities-terminal.png
 
 ! configure selectable URLs
-URxvt.keysym.M-u:           perl:url-select:select_next
-URxvt.url-select.launcher:  xdg-open
+URxvt.url-launcher:  /urs/bin/xdg-open
+URxvt.matcher.button: 1
 URxvt.url-select.underline: true
 
 ! Rofi font and colors
