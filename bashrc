@@ -14,10 +14,8 @@
 
 ## BASH OPTIONS {{{
 
-complete -cf sudo
-
-if [[ -f /etc/bash_completion ]]; then
-    . /etc/bash_completion
+if [[ -f /usr/share/bash-completion/bash_completion ]]; then
+    . /usr/share/bash-completion/bash_completion
     _have sudo && complete -cf sudo
 fi
 
@@ -38,14 +36,8 @@ if [[ -f "$HOME/.lscolors" ]] && [[ $(tput colors) == "256" ]]; then
     _have dircolors && eval $( dircolors -b $HOME/.lscolors )
 fi
 
-
-
-### Added by the Heroku Toolbelt
 # should've done this a long time ago
 set -o vi
 
 VBOX_USB=usbfs
-
-### Bash exports {{{
-
-# }}}
+#}}}

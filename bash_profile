@@ -3,7 +3,7 @@
 # * ~/.extra can be used for other settings you don’t want to commit.
 # * ~/.utils is for any utility functons used by other shell dotfiles
 
-for file in ~/.{bash_prompt,utils,aliases,functions,path,dockerfunc,extra,exports}; do
+for file in ~/.{utils,bash_prompt,aliases,functions,path,dockerfunc,extra,exports}; do
     [[ -r "$file" ]] && [[ -f "$file" ]] && source "$file"
 done
 unset file
