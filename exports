@@ -48,4 +48,4 @@ _source "$HOME/.screen/bashrc.screen"
 _source "$HOME/.aws_keys"
 
 #bash autojump
-    _source /usr/share/autojump/autojump.bash
+#    _source /usr/share/autojump/autojump.bash
