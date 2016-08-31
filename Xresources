@@ -9,7 +9,7 @@ Xft.hintstyle:  hintslight
 URxvt.loginShell: true
 
 ! perl library
-URxvt.perl-lib: ~/.urxvt-perl/
+URxvt.perl-lib: ~/.urxvt-perls/
 
 ! reclaim ctrl+shift
 URxvt.iso14755: false
