@@ -76,6 +76,11 @@ super + l
 XF86ScreenSaver
     /usr/local/bin/lock
 
+# Toggle trackpad
+XF86TouchpadToggle
+    trackpad-toggle.sh
+
+
 # Change screen brightness
 XF86MonBrightness{Up,Down}
     light -{A,U} 10

@@ -39,7 +39,7 @@ export DBUS_SESSION_BUS_ADDRESS=unix:path=/var/run/user/$(id -u)/bus;
 [[ -f "$HOME/.myip" ]] && export MYIP=$(cat "$HOME/.myip")
 
 # custom log directory
-[[ -d "$HOME/.logs" ]] && export LOGS="$HOME/.logs" || export LOGS='/tmp'
+[[ -d "$HOME/log" ]] && export LOGS="$HOME/log" || export LOGS='/tmp'
 
 # screen tricks
 _source "$HOME/.screen/bashrc.screen"

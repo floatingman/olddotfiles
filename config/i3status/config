@@ -10,24 +10,34 @@ general {
         colors = true
         color_good = "#b5bd68"
         color_bad = "#cc6666"
-        interval = 5
+        interval = 2
 }
 
-order += "volume master"
+order += "disk /"
+order += "run_watch Docker"
 order += "run_watch DHCP"
-order += "ethernet ens33"
-order += "battery 1"
+order += "path_exists VPN"
+order += "wireless wlan0"
+order += "ethernet eth0"
+order += "volume master"
+order += "battery 0"
+order += "cpu_temperature 0"
 order += "load"
 order += "tztime local"
 
+wireless wlan0 {
+        format_up = "W: (%quality at %essid) %ip"
+        format_down = "W: down"
+}
 
-ethernet ens33 {
+
+ethernet eth0 {
         # if you use %speed, i3status requires root privileges
         format_up = "E: %ip (%speed)"
         format_down = "E: down"
 }
 
-battery 1 {
+battery 0 {
         format = "%status %percentage %remaining"
         format_down = "No battery"
         integer_battery_capacity = true
@@ -38,8 +48,16 @@ battery 1 {
         path = "/sys/class/power_supply/BAT%d/uevent"
 }
 
+run_watch Docker {
+        pidfile = "/run/docker.pid"
+}
+
 run_watch DHCP {
         pidfile = "/var/run/dhc*.pid"
+}
+
+path_exists VPN {
+        path = "/proc/sys/net/ipv4/conf/tun0"
 }
 
 tztime local {
@@ -47,7 +65,16 @@ tztime local {
 }
 
 load {
-        format = "%5min"
+        format = "%1min"
+}
+
+cpu_temperature 0 {
+        format = "T: %degrees °C"
+        path   = "/sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input"
+}
+
+disk "/" {
+        format = "%avail"
 }
 
 volume master {
