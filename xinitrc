@@ -1,61 +1,52 @@
-#!/bin/sh
+# Read the Xresources file if it exists.
+[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
-userresources=$HOME/.Xresources
-usermodmap=$HOME/.Xmodmap
-sysresources=/etc/X11/xinit/.Xresources
-sysmodmap=/etc/X11/xinit/.Xmodmap
+# Map keys with xmodmap
+xmodmap ~/.Xmodmap
 
-if [ -f $sysresources ]; then
-    xrdb -merge $sysresources
-fi
-
-if [ -f $sysmodmap ]; then
-    xmodmap $sysmodmap
-fi
-
-if [ -f "$userresources" ]; then
-    xrdb -merge "$userresources"
-fi
-
-if [-f "$usermodmap" ]; then
-    xmodmap "$usermodmap"
-fi
-
-if [-d /etc/X11/xinit/xinitrc.d ]; then
-    for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
-        [ -x "$f" ] && . "$f"
-    done
-    unset f
-fi
-
+# Bind keys with sxhkd
 sxhkd &
 
+# Launch the screen locker.
 xautolock -time 09 -locker "/usr/local/bin/lock" -detectsleep -secure &
 
+# Restore teh desktop background
 if [ -f ~/.fehbg ]; then
     sh ~/.fehbg &
 fi
 
+# Control volume with volwheel
 volwheel &
 
+# NetworkManager for managing networks
 nm-applet &
 
+# Hide the cursor when idle
 unclutter &
 
+# Notifications with dunst
 dunst &
 
+# Adjust color temperature with Redshift
 redshift-gtk &
 
+# Load the best monitor profile available
 autorandr --change --default mobile
 
+# Monitor monitors for changes
 srandrd autorandr --change --default mobile
 
+# Udiskie for mounting
 udiskie &
 
+# start the wallpaper switcher
 $HOME/bin/wallpaper.sh &
 
+# start bluetooth applet
 blueman-applet &
 
-dropboxy &
+# start dropbox
+dropbox &
 
+# Finally launch the session
 exec i3
