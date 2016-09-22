@@ -40,4 +40,6 @@ fi
 set -o vi
 
 VBOX_USB=usbfs
+
+eval "$(fasd --init auto)"
 #}}}

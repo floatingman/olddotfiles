@@ -52,4 +52,10 @@ srandrd autorandr --change --default mobile
 
 udiskie &
 
+$HOME/bin/wallpaper.sh &
+
+blueman-applet &
+
+dropboxy &
+
 exec i3
