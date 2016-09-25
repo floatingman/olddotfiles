@@ -128,7 +128,7 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # move current workspace to different output
-bindsym $mod+x move workspace to output right
+#bindsym $mod+x move workspace to output right
 
 # mark windows
 mode "focused" {
@@ -231,6 +231,9 @@ focus_follows_mouse no
 for_window [title="taskwin"] floating enable
 bindsym $mod+t exec termite --title taskwin -e ~/bin/display_tasks.sh
 bindsym $mod+Shift+D exec task $(task ls | awk 'NR==4  { print $1 }') done
+
+# Focus urgent workspaces
+bindsym $mod+x [urgent=latest] focus
 
 # Float pinentry windows
 for_window [title="pinentry"] floating enable
