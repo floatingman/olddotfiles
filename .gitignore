@@ -1,0 +1,17 @@
+# Ignore tmux plugins, except Tmux Plugin Manager
+tmux/plugins/*
+!tmux/plugins/tpm
+!tmux/plugins/tmux-urlview
+
+# Ignore tmux resurrection
+tmux/resurrect/*
+
+# Ignore rofi-pass past password used
+config/rofi-pass/last_used
+
+# Ignore ranger stuff
+config/ranger/bookmarks
+config/ranger/history
+config/ranger/tagged
+
+
