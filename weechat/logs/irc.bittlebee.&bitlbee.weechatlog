@@ -1,0 +1,160 @@
+2016-10-06 20:55:18	-->	dnewman (dnewman@localhost.localdomain) has joined &bitlbee
+2016-10-06 20:55:18	--	Topic for &bitlbee is "Welcome to the control channel. Type help for help information."
+2016-10-06 20:55:18	--	Topic set by root (root@localhost.localdomain) on Thu, 06 Oct 2016 20:55:18
+2016-10-06 20:55:18	--	Channel &bitlbee: 2 nicks (2 ops, 0 halfops, 0 voices, 0 normals)
+2016-10-06 20:55:18	@root	Welcome to the BitlBee gateway!
+2016-10-06 20:55:18	@root	 
+2016-10-06 20:55:18	@root	Running BitlBee 3.4.2
+2016-10-06 20:55:18	@root	 
+2016-10-06 20:55:18	@root	If you've never used BitlBee before, please do read the help information using the help command. Lots of FAQs are answered there.
+2016-10-06 20:55:18	@root	If you already have an account on this server, just use the identify command to identify yourself.
+2016-10-06 20:55:50	@dnewman	help quickstart
+2016-10-06 20:55:50	@root	Welcome to BitlBee, your IRC gateway to ICQ, MSN, AOL, Jabber, Yahoo! and Twitter.
+2016-10-06 20:55:50	@root	 
+2016-10-06 20:55:50	@root	The center of BitlBee is the control channel, &bitlbee. Two users will always be there, you (where "you" is the nickname you are using) and the system user, root.
+2016-10-06 20:55:50	@root	 
+2016-10-06 20:55:50	@root	You need to register so that all your IM settings (passwords, contacts, etc) can be saved on the BitlBee server. It's important that you pick a good password so no one else can access your account. Register with this password using the register command: register <password> (without the brackets!).
+2016-10-06 20:55:50	@root	 
+2016-10-06 20:55:50	@root	Be sure to remember your password. The next time you connect to the BitlBee server you will need to identify <password> so that you will be recognised and logged in to all the IM services automatically.
+2016-10-06 20:55:50	@root	 
+2016-10-06 20:55:50	@root	When finished, type help quickstart2 to continue.
+2016-10-06 20:58:00	@dnewman	register ***REMOVED***
+2016-10-06 20:58:00	@root	Account successfully created
+2016-10-06 20:58:18	@dnewman	help quickstart2
+2016-10-06 20:58:18	@root	Step Two: Add and Connect To your IM Account(s).
+2016-10-06 20:58:18	@root	 
+2016-10-06 20:58:18	@root	To add an account to the account list you will need to use the account add command: account add <protocol> <username> <password> [<server>].
+2016-10-06 20:58:18	@root	 
+2016-10-06 20:58:18	@root	For instance, suppose you have a Jabber account at jabber.org with handle bitlbee@jabber.org with password QuickStart, you would:
+2016-10-06 20:58:18	@root	 
+2016-10-06 20:58:18	@root	<you> account add jabber bitlbee@jabber.org QuickStart
+2016-10-06 20:58:18	@root	<root> Account successfully added
+2016-10-06 20:58:18	@root	 
+2016-10-06 20:58:18	@root	Other available IM protocols are msn, oscar, yahoo and twitter. OSCAR is the protocol used by ICQ and AOL. For more information about the account add command, see help account add.
+2016-10-06 20:58:18	@root	 
+2016-10-06 20:58:18	@root	When you are finished adding your account(s) use the account on command to enable all your accounts, type help quickstart3 to continue.
+2016-10-06 20:59:02	@dnewman	account add jabber dwnewman78@gmail.com
+2016-10-06 20:59:02	@root	Account successfully added with tag gtalk
+2016-10-06 20:59:02	@root	You can now use the /OPER command to enter the password
+2016-10-06 20:59:02	@root	Alternatively, enable OAuth if the account supports it: account gtalk set oauth on
+2016-10-06 20:59:22	@dnewman	account gtalk set oauth on
+2016-10-06 20:59:22	@root	oauth = `on'
+2016-10-06 20:59:43	@dnewman	account on
+2016-10-06 20:59:43	@root	Trying to get all accounts connected...
+2016-10-06 20:59:43	@root	jabber - Logging in: Starting OAuth authentication
+2016-10-06 21:03:11	@dnewman	help account add
+2016-10-06 21:03:11	@root	Syntax: account add <protocol> <username> [<password>]
+2016-10-06 21:03:11	@root	 
+2016-10-06 21:03:11	@root	Adds an account on the given server with the specified protocol, username and password to the account list. Supported protocols right now are: Jabber, MSN, OSCAR (AIM/ICQ), Yahoo and Twitter. For more information about adding an account, see help account add <protocol>.
+2016-10-06 21:03:11	@root	 
+2016-10-06 21:03:11	@root	You can omit the password and enter it separately using the IRC /OPER command. This lets you enter your password without your IRC client echoing it on screen or recording it in logs.
+2016-10-06 21:08:19	@dnewman	help quickstart4
+2016-10-06 21:08:19	@root	Step Five: Chatting.
+2016-10-06 21:08:19	@root	 
+2016-10-06 21:08:19	@root	First of all, a person must be on your contact list for you to chat with them (unless it's a group chat, help groupchats for more). If someone not on your contact list sends you a message, simply add them to the proper account with the add command. Once they are on your list and online, you can chat with them in &bitlbee:
+2016-10-06 21:08:19	@root	 
+2016-10-06 21:08:19	@root	<you> tux: hey, how's the weather down there?
+2016-10-06 21:08:19	@root	<tux> you: a bit chilly!
+2016-10-06 21:08:19	@root	 
+2016-10-06 21:08:19	@root	Note that, although all contacts are in the &bitlbee channel, only tux will actually receive this message. The &bitlbee channel shouldn't be confused with a real IRC channel.
+2016-10-06 21:08:19	@root	 
+2016-10-06 21:08:19	@root	If you prefer chatting in a separate window, use the /msg or /query command, just like on real IRC. BitlBee will remember how you talk to someone and show his/her responses the same way. If you want to change the default behaviour (for people you haven't talked to yet), see help set private.
+2016-10-06 21:08:19	@root	 
+2016-10-06 21:08:19	@root	You know the basics. If you want to know about some of the neat features BitlBee offers, please type help quickstart5.
+2016-10-06 21:08:21	@dnewman	help quickstart3
+2016-10-06 21:08:21	@root	Now you might want to add some contacts, to do this we will use the add command. It needs two arguments: a connection ID (which can be a number (try account list), protocol name or (part of) the screenname) and the user's handle. It is used in the following way: add <connection> <handle>
+2016-10-06 21:08:21	@root	 
+2016-10-06 21:08:21	@root	<you> add 0 r2d2@example.com
+2016-10-06 21:08:21	@root	* r2d2  has joined &bitlbee
+2016-10-06 21:08:21	@root	 
+2016-10-06 21:08:21	@root	In this case r2d2 is online, since he/she joins the channel immediately. If the user is not online you will not see them join until they log on.
+2016-10-06 21:08:21	@root	 
+2016-10-06 21:08:21	@root	Lets say you accidentally added r2d3@example.com rather than r2d2@example.com, or maybe you just want to remove a user from your list because you never talk to them. To remove a name you will want to use the remove command: remove r2d3
+2016-10-06 21:08:21	@root	 
+2016-10-06 21:08:21	@root	Finally, if you have multiple users with similar names you may use the rename command to make it easier to remember: rename r2d2_ r2d2_aim
+2016-10-06 21:08:21	@root	 
+2016-10-06 21:08:21	@root	When finished, type help quickstart4 to continue.
+2016-10-06 21:14:40	@dnewman	account gtalk set oauth off
+2016-10-06 21:14:40	@root	oauth = `off'
+2016-10-06 21:15:04	@dnewman	account gtalk set oauth on
+2016-10-06 21:15:04	@root	oauth = `on'
+2016-10-06 21:15:08	@dnewman	account on
+2016-10-06 21:15:08	@root	Trying to get all accounts connected...
+2016-10-06 21:30:08	@root	jabber - Logging in: Requesting OAuth access token
+2016-10-06 21:30:08	@root	jabber - Logging in: Connecting
+2016-10-06 21:30:08	@root	jabber - Logging in: Connected to server, logging in
+2016-10-06 21:30:08	@root	jabber - Logging in: Converting stream to TLS
+2016-10-06 21:30:08	@root	jabber - Logging in: Connected to server, logging in
+2016-10-06 21:30:08	@root	jabber - Logging in: Authentication finished
+2016-10-06 21:30:09	@root	jabber - Logging in: Server changed session resource string to `BitlBeeCEF96812'
+2016-10-06 21:30:09	@root	jabber - Logging in: Authenticated, requesting buddy list
+2016-10-06 21:30:09	@root	jabber - Logging in: Logged in
+2016-10-06 21:30:09	-->	de2en (de2en@bot.talk.google.com) has joined &bitlbee
+2016-10-06 21:30:09	--	Mode &bitlbee [+v de2en] by localhost.localdomain
+2016-10-06 21:30:09	-->	en2de (en2de@bot.talk.google.com) has joined &bitlbee
+2016-10-06 21:30:09	--	Mode &bitlbee [+v en2de] by localhost.localdomain
+2016-10-06 21:30:09	-->	en2es (en2es@bot.talk.google.com) has joined &bitlbee
+2016-10-06 21:30:09	--	Mode &bitlbee [+v en2es] by localhost.localdomain
+2016-10-06 21:30:09	-->	es2en (es2en@bot.talk.google.com) has joined &bitlbee
+2016-10-06 21:30:09	--	Mode &bitlbee [+v es2en] by localhost.localdomain
+2016-10-06 21:30:09	-->	_1j85m7vfhzbic2znxcc4d3 (1j85m7vfhzbic2znxcc4d3ugok@public.talk.google.com) has joined &bitlbee
+2016-10-06 21:30:09	-->	aliceliza (aliceliza@gmail.com) has joined &bitlbee
+2016-10-06 21:30:09	-->	gene (gene@stickybomb.com) has joined &bitlbee
+2016-10-06 21:30:09	-->	_0it87abehaodi0lq9ooafe (0it87abehaodi0lq9ooafef9ca@public.talk.google.com) has joined &bitlbee
+2016-10-06 21:30:09	-->	_2he4bobted24i09idh6rg5 (2he4bobted24i09idh6rg52v66@public.talk.google.com) has joined &bitlbee
+2016-10-06 21:30:09	-->	_0f1os2oq331e10umxxa6sn (0f1os2oq331e10umxxa6snx8u8@public.talk.google.com) has joined &bitlbee
+2016-10-06 21:30:09	-->	campbellked (campbellked@gmail.com) has joined &bitlbee
+2016-10-06 21:30:09	-->	_04mxyhkvucq963jibm5tc4 (04mxyhkvucq963jibm5tc4hye7@public.talk.google.com) has joined &bitlbee
+2016-10-06 21:30:09	-->	_2y74zs25wmipm25qx26vki (2y74zs25wmipm25qx26vkim1hc@public.talk.google.com) has joined &bitlbee
+2016-10-06 21:30:09	-->	_12tz5i3pc3lak14ag2lz0h (12tz5i3pc3lak14ag2lz0hi6rd@public.talk.google.com) has joined &bitlbee
+2016-10-06 21:30:09	-->	_39083vhbck53t2d81fseqn (39083vhbck53t2d81fseqn8bw1@public.talk.google.com) has joined &bitlbee
+2016-10-06 21:30:09	-->	_1o8i7jfwf8vrv1w2f00tco (1o8i7jfwf8vrv1w2f00tcomecr@public.talk.google.com) has joined &bitlbee
+2016-10-06 21:30:09	-->	daniel (daniel@stickybomb.com) has joined &bitlbee
+2016-10-06 21:30:09	-->	_34hkjenxm5sso344frcl5v (34hkjenxm5sso344frcl5vgq9b@public.talk.google.com) has joined &bitlbee
+2016-10-06 21:30:09	-->	_12ja4wcmn3uog2nzwstscr (12ja4wcmn3uog2nzwstscrjyci@public.talk.google.com) has joined &bitlbee
+2016-10-06 21:30:09	-->	_05964ogx37dea16o7brcv6 (05964ogx37dea16o7brcv6xfe2@public.talk.google.com) has joined &bitlbee
+2016-10-06 21:30:09	-->	_2uph4bj5r8bmj1i0gti2i2 (2uph4bj5r8bmj1i0gti2i2qp06@public.talk.google.com) has joined &bitlbee
+2016-10-06 21:30:09	-->	_1qgbgv14dn6m12j84uzt8w (1qgbgv14dn6m12j84uzt8wj4qu@public.talk.google.com) has joined &bitlbee
+2016-10-06 21:30:09	-->	_09jau63a2pyx31bkyc9k13 (09jau63a2pyx31bkyc9k13nl0i@public.talk.google.com) has joined &bitlbee
+2016-10-06 21:30:09	-->	_33b8nojepgium2revv8kkn (33b8nojepgium2revv8kknaklx@public.talk.google.com) has joined &bitlbee
+2016-10-06 21:30:09	-->	_3sdmgtyfwzz9e0tqi0hgfm (3sdmgtyfwzz9e0tqi0hgfmddyj@public.talk.google.com) has joined &bitlbee
+2016-10-06 21:31:35	@dnewman	help quickstart3
+2016-10-06 21:31:35	@root	Now you might want to add some contacts, to do this we will use the add command. It needs two arguments: a connection ID (which can be a number (try account list), protocol name or (part of) the screenname) and the user's handle. It is used in the following way: add <connection> <handle>
+2016-10-06 21:31:35	@root	 
+2016-10-06 21:31:35	@root	<you> add 0 r2d2@example.com
+2016-10-06 21:31:35	@root	* r2d2  has joined &bitlbee
+2016-10-06 21:31:35	@root	 
+2016-10-06 21:31:35	@root	In this case r2d2 is online, since he/she joins the channel immediately. If the user is not online you will not see them join until they log on.
+2016-10-06 21:31:35	@root	 
+2016-10-06 21:31:35	@root	Lets say you accidentally added r2d3@example.com rather than r2d2@example.com, or maybe you just want to remove a user from your list because you never talk to them. To remove a name you will want to use the remove command: remove r2d3
+2016-10-06 21:31:35	@root	 
+2016-10-06 21:31:35	@root	Finally, if you have multiple users with similar names you may use the rename command to make it easier to remember: rename r2d2_ r2d2_aim
+2016-10-06 21:31:35	@root	 
+2016-10-06 21:31:35	@root	When finished, type help quickstart4 to continue.
+2016-10-06 21:31:51	@dnewman	help quickstart4
+2016-10-06 21:31:51	@root	Step Five: Chatting.
+2016-10-06 21:31:51	@root	 
+2016-10-06 21:31:51	@root	First of all, a person must be on your contact list for you to chat with them (unless it's a group chat, help groupchats for more). If someone not on your contact list sends you a message, simply add them to the proper account with the add command. Once they are on your list and online, you can chat with them in &bitlbee:
+2016-10-06 21:31:51	@root	 
+2016-10-06 21:31:51	@root	<you> tux: hey, how's the weather down there?
+2016-10-06 21:31:51	@root	<tux> you: a bit chilly!
+2016-10-06 21:31:51	@root	 
+2016-10-06 21:31:51	@root	Note that, although all contacts are in the &bitlbee channel, only tux will actually receive this message. The &bitlbee channel shouldn't be confused with a real IRC channel.
+2016-10-06 21:31:51	@root	 
+2016-10-06 21:31:51	@root	If you prefer chatting in a separate window, use the /msg or /query command, just like on real IRC. BitlBee will remember how you talk to someone and show his/her responses the same way. If you want to change the default behaviour (for people you haven't talked to yet), see help set private.
+2016-10-06 21:31:51	@root	 
+2016-10-06 21:31:51	@root	You know the basics. If you want to know about some of the neat features BitlBee offers, please type help quickstart5.
+2016-10-06 21:33:52	@dnewman	help quickstart5
+2016-10-06 21:33:52	@root	So you want more than just chatting? Or maybe you're just looking for more features?
+2016-10-06 21:33:52	@root	 
+2016-10-06 21:33:52	@root	With multiple channel support you can have contacts for specific protocols in their own channels, for instance, if you /join &msn you will join a channel that only contains your MSN contacts.
+2016-10-06 21:33:52	@root	 
+2016-10-06 21:33:52	@root	Account tagging allows you to use the given account name rather than a number when referencing your account. If you wish to turn off your gtalk account, you may account gtalk off rather than account 3 off where "3" is the account number.
+2016-10-06 21:33:52	@root	 
+2016-10-06 21:33:52	@root	You can type help set to learn more about the possible BitlBee user settings. Among these user settings you will find options for common issues, such as changing the charset, HTML stripping and automatic connecting (simply type set to see current user settings).
+2016-10-06 21:33:52	@root	 
+2016-10-06 21:33:52	@root	For more subjects (like groupchats and away states), please type help index.
+2016-10-06 21:33:52	@root	 
+2016-10-06 21:33:52	@root	If you're still looking for something, please visit us in #bitlbee on the OFTC network (you can connect via irc.bitlbee.org), or mail us your problem/suggestion. Good luck and enjoy the Bee!
+2016-10-06 21:48:21	--	irc: disconnected from server
+2016-10-07 06:36:10	=!=	irc: you are not connected to server
