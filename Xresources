@@ -10,7 +10,7 @@ Xft.autohint:   0
 URxvt.loginShell: true
 
 ! perl library
-URxvt.perl-lib: ~/.urxvt-perls/
+URxvt.perl-lib: ~/.urxvt/ext
 
 ! reclaim ctrl+shift
 URxvt.iso14755: false
@@ -25,7 +25,7 @@ URxvt.font: xft:terminus:size=12
 URxvt.letterSpace: -1
 
 ! enabled clipboard and selectable URLs
-URxvt.perl-ext-common:  default,matcher,selection-to-clipboard,clipboard,resize-font
+URxvt.perl-ext-common:  default,clipboard,url-select,resize-font
 
 ! activate resize font
 URxvt.resize-font.smaller: C-Down
@@ -33,9 +33,8 @@ URxvt.resize-font.bigger: C-Up
 
 
 ! set copy/paste shortcuts
-URxvt.keysym.C-C: perl:clipboard:copy
-URxvt.keysym.C-V: perl:clipboard:paste
-URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+URxvt.keysym.Control-Shift-C: perl:clipboard:copy
+URxvt.keysym.Control-Shift-V: perl:clipboard:paste
 
 ! set a taskbar icon
 URxvt.iconFile:         /usr/share/icons/oxygen/16x16/apps/utilities-terminal.png
