@@ -24,3 +24,6 @@ weechat/*.log
 weechat/urlserver_list.txt
 weechat/sec.conf
 weechat/slack.cache
+
+# Ignore vimperator's info directory
+vimperator/info
