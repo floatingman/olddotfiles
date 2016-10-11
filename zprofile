@@ -77,7 +77,7 @@ TMPPREFIX="${TMPDIR%/}/zsh"
 #
 
 # Set the default project directory for virtualenvwrapper.
-export PROJECT_HOME="$HOME/projects"
+export PROJECT_HOME="$HOME/Projects"
 
 # Set the default virtualenvwrapper options.
 export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
