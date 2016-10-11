@@ -16,3 +16,6 @@
 [submodule "zprezto"]
 	path = zprezto
 	url = git@github.com:floatingman/prezto.git
+[submodule "dircolors-solarized"]
+	path = dircolors-solarized
+	url = https://github.com/seebi/dircolors-solarized.git
