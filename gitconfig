@@ -68,3 +68,5 @@
   untracked = cyan
 [credential]
   helper = wincred
+[github]
+	user = floatingman
