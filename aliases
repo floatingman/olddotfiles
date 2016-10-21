@@ -173,8 +173,8 @@ alias prev='ls -t | head -l'
 alias findbig="find . -type f -exec ls -s {} \; | sort -n -r | head -5"
 # safety features
 alias cp='cp -i'
+alias rm='rm -i --preserve-root'
 alias mv='mv -i'
-alias rm='rm -I --preserve-root'
 alias ln='ln -i'
 alias chown='chown --preserve-root'
 alias chmod='chmod --preserve-root'
