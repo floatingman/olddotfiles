@@ -1,6 +1,7 @@
 Host shockwave
   Hostname thenewmans.no-ip.org
   Port 2222
+  LocalForward 3389 192.168.0.3:3389
   User dnewman
 
 Host github.com
