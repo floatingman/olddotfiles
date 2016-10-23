@@ -12,7 +12,6 @@ clickable_url = true
 font = Terminus 12
 scrollback_lines = 1000
 search_wrap = true
-
 cursor_blink = off
 
 # "block", "underline" or "ibeam"
