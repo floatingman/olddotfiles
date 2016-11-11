@@ -30,7 +30,13 @@ if [[ -r "$HOME/.rbenv" ]]; then
 fi
 
 #Composer
-[[ -f "$HOME/bin/composer" ]] && _add_to_path "$HOME/.composer/vendor/bin/"
+[[ -f "$HOME/bin/composer" ]] && _add_to_path "$HOME/.composer/vendor/bin"
 
 # Heroku
 [[ -r "/usr/local/heroku" ]] && _add_to_path "/usr/local/heroku/bin"
+
+# PHP5
+[[ -f /usr/local/php5/bin/php ]] && _add_to_path "/usr/local/php5/bin"
+
+# MYSQL
+[[ -f /usr/local/mysql/bin/mysql ]] && _add_to_path "/usr/local/mysql/bin"
