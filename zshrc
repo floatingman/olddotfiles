@@ -25,3 +25,5 @@ alias uu='udiskie-umount'
 
 # Use SSH completion for Mosh.
 compdef mosh=ssh
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
