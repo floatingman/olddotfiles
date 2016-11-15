@@ -47,8 +47,6 @@ _source "$HOME/.screen/bashrc.screen"
 # raw AWS keys stored and exported in separate file
 _source "$HOME/.aws_keys"
 
-export NVM_DIR="$HOME/.nvm"
-  . "/usr/local/opt/nvm/nvm.sh"
 
 #bash autojump
 #    _source /usr/share/autojump/autojump.bash
