@@ -34,8 +34,8 @@ tr ' ' '\n')" scp sftp ssh
 if $_ismac; then
   export JAVA_HOME=$(/usr/libexec/java_home)
 fi
-  #export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
-
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+source "$HOME/.bashrc"
 
