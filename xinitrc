@@ -1,52 +1,6 @@
-# Read the Xresources file if it exists.
-[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+#!/bin/sh
 
-# Map keys with xmodmap
-xmodmap ~/.Xmodmap
+[ -f ~/.xprofile ] && source ~/.xprofile
 
-# Bind keys with sxhkd
-sxhkd &
-
-# Launch the screen locker.
-xautolock -time 09 -locker "/usr/local/bin/lock" -detectsleep -secure &
-
-# Restore teh desktop background
-if [ -f ~/.fehbg ]; then
-    sh ~/.fehbg &
-fi
-
-# Control volume with pasystray
-pasystray &
-
-# NetworkManager for managing networks
-nm-applet &
-
-# Hide the cursor when idle
-unclutter &
-
-# Notifications with dunst
-dunst &
-
-# Adjust color temperature with Redshift
-redshift-gtk &
-
-# Load the best monitor profile available
-autorandr --change --default mobile
-
-# Monitor monitors for changes
-srandrd autorandr --change --default mobile
-
-# Udiskie for mounting
-udiskie &
-
-# start the wallpaper switcher
-$HOME/bin/wallpaper.sh &
-
-# start bluetooth applet
-blueman-applet &
-
-# start dropbox
-dropbox &
-
-# Finally launch the session
 exec i3
+
