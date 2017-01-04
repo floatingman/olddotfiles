@@ -1,4 +1,6 @@
 Host shockwave
+  IdentityFile ~/.ssh/id_ed25519
+  IdentitiesOnly yes
   Hostname thenewmans.no-ip.org
   Port 2222
   LocalForward 3389 192.168.0.3:3389
