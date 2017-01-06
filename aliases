@@ -295,6 +295,7 @@ if $_isarch; then
     if ! $_isroot; then
         _have pacman-color && alias pacman='sudo pacman-color' || alias pacman='sudo pacman'
         _have powerpill && alias powerpill='sudo powerpill'
+        _have aura && alias aura='sudo aura'
     else
         _have pacman-color && alias pacman='pacman-color'
     fi
