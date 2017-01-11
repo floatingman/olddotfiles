@@ -2,8 +2,10 @@
 
 # misc aliases
 #alias open='xdg-open "$@"'
-alias pbcopy='xclip -selection clipboard'
-alias pbpaste='xclip -selection clipboard -o'
+if $_islinux; then
+    alias pbcopy='xclip -selection clipboard'
+    alias pbpaste='xclip -selection clipboard -o'
+fi
 
 # docker
 if _have docker; then
