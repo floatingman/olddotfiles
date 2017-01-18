@@ -326,7 +326,7 @@ if $_isarch; then
     alias pacout='pacman -R'
     alias pacsearch='pacman -Ss'
     alias pacup='pacup.rb && sudo pacman -Suy'
-    alias upp='sudo reflector -c "United States" -a 1 -f 3 --sort rate --save /etc/pacman.d/mirrorlist && cat /etc/pacman.d/mirrorlist && sudo pacman -Syyu'
+    alias upp='sudo reflector -c "United States" -a 1 -f 3 --sort rate --save /etc/pacman.d/mirrorlist && cat /etc/pacman.d/mirrorlist && sudo pacman -Syyu && cd /etc/ && sudo etckeeper commit "Auto Commit"; cd -'
     # Pacman alias examples
     alias pacupg='sudo pacman -Syu'		# Synchronize with repositories and then upgrade packages that are out of date on the local system.
     alias pacdl='pacman -Sw'		# Download specified package(s) as .tar.xz ball
