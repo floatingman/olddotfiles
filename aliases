@@ -7,6 +7,19 @@ if $_islinux; then
     alias pbpaste='xclip -selection clipboard -o'
 fi
 
+
+if $_islinux; then
+  alias um='udiskie-mount -r'
+  alias uu='udiskie-umount'
+  alias gx='git annex'
+  alias gxa='git annex add'
+  alias gxs='git annex sync'
+  alias gxg='git annex get'
+  alias gxd='git annex drop'
+  alias gxc='git annex copy'
+  alias gxe='git annex edit'
+fi
+
 # docker
 if _have docker; then
 
