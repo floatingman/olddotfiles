@@ -1,3 +1,11 @@
+Host ad-0.dev.digitalreasoning.com
+  IdentityFile ~/.ssh/id_rsa
+  User daniel.newman
+
+Host ad-1.dev.digitalreasoning.com
+  IdentityFile ~/.ssh/id_rsa
+  User daniel.newman
+
 Host shockwave
   IdentityFile ~/.ssh/id_ed25519
   IdentitiesOnly yes
