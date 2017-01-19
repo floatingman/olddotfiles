@@ -1,8 +1,10 @@
-Host ad-0.dev.digitalreasoning.com
+Host ad-0
+  Hostname ad-0.dev.digitalreasoning.com
   IdentityFile ~/.ssh/id_rsa
   User daniel.newman
 
-Host ad-1.dev.digitalreasoning.com
+Host ad-1
+  Hostname ad-1.dev.digitalreasoning.com
   IdentityFile ~/.ssh/id_rsa
   User daniel.newman
 

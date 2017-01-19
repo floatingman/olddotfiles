@@ -44,6 +44,16 @@
 	dlm = !echo $(git log --author=\"$(git config user.name)\" --no-merges --before=$(date \"+%Y-%m-01T00:00\") --after=$(date -d \"-$(date +%d) days -1 month\" \"+%Y-%m-%dT23:59\") --reverse --stat | grep -Eo \"[0-9]{1,} deletions?\" | grep -Eo \"[0-9]{1,}\" | awk \"{ sum += \\$1 } END { print sum }\") deletions last month
 	slm = !echo $(git log --author=\"$(git config user.name)\" --no-merges --before=$(date \"+%Y-%m-01T00:00\") --after=$(date -d \"-$(date +%d) days -1 month\" \"+%Y-%m-%dT23:59\") --reverse | grep commit | wc -l) commits, $(git log --author=\"$(git config user.name)\" --no-merges --before=$(date \"+%Y-%m-01T00:00\") --after=$(date -d \"-$(date +%d) days -1 month\" \"+%Y-%m-%dT23:59\") --reverse --stat | grep -Eo \"[0-9]{1,} files? changed\" | grep -Eo \"[0-9]{1,}\" | awk \"{ sum += \\$1 } END { print sum }\") files changed, $(git log --author=\"$(git config user.name)\" --no-merges --before=$(date \"+%Y-%m-01T00:00\") --after=$(date -d \"-$(date +%d) days -1 month\" \"+%Y-%m-%dT23:59\") --reverse --stat | grep -Eo \"[0-9]{1,} insertions?\" | grep -Eo \"[0-9]{1,}\" | awk \"{ sum += \\$1 } END { print sum }\") insertions and $(git log --author=\"$(git config user.name)\" --no-merges --before=$(date \"+%Y-%m-01T00:00\") --after=$(date -d \"-$(date +%d) days -1 month\" \"+%Y-%m-%dT23:59\") --reverse --stat | grep -Eo \"[0-9]{1,} deletions?\" | grep -Eo \"[0-9]{1,}\" | awk \"{ sum += \\$1 } END { print sum }\") deletions last month
   unpushed = log --branches --not --remotes --simplify-by-decoration --decorate --oneline
+  # counts how far behind current branch is
+  count = "!f() { compareBranch=${1-master}; git rev-list --count HEAD ^$compareBranch; }; f"
+  # allows you to rebase commits from a branch into current checked out branch
+  squashbase = "!f() { branchName=${1-master}; commitCount=$(git count $branchName); git rebase -i HEAD~$commitCount; }; f"
+  # Creates a new branch named POD-number/new-feature
+  newb = "!f() { ticketnum=$1; branchName=$2; git checkout -b \"POD-${ticketnum}/${branchName}\"; }; f"
+  # Checkout the branch, pull it, check out the previous branch and rebase.
+  pullbase = "!f() { branchName=${1-master}; git checkout $branchName && git pull && git checkout - && git rebase -i $branchName; }; f"
+
+
 [merge]
   ff = only
   tool = vimdiff
