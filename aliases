@@ -5,9 +5,8 @@
 if $_islinux; then
     alias pbcopy='xclip -selection clipboard'
     alias pbpaste='xclip -selection clipboard -o'
-    alias utc='env TZ="UTC" date'
 fi
-
+alias utc='env TZ="UTC" date'
 
 if $_islinux; then
   alias um='udiskie-mount -r'
