@@ -1,5 +1,5 @@
 --restrict-filenames
 --console-title
 --netrc
--r 2M
+-r 8M
 
