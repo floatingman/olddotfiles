@@ -49,10 +49,10 @@
   # allows you to rebase commits from a branch into current checked out branch
   squashbase = "!f() { branchName=${1-master}; commitCount=$(git count $branchName); git rebase -i HEAD~$commitCount; }; f"
   # Creates a new branch named POD-number/new-feature
-  newb = "!f() { ticketnum=$1; branchName=$2; git checkout -b \"POD-${ticketnum}/${branchName}\"; }; f"
+  newb = "!f() { ticketnum=$1; branchName=$2; git checkout -b \"PE-${ticketnum}/${branchName}\"; }; f"
   # Checkout the branch, pull it, check out the previous branch and rebase.
   pullbase = "!f() { branchName=${1-master}; git checkout $branchName && git pull && git checkout - && git rebase -i $branchName; }; f"
-  # update local repo and delete any PRs matching number and pull latest PR 
+  # update local repo and delete any PRs matching number and pull latest PR
   prstash = "!f(){ \
                    git checkout master        && \
                    git fetch origin           && \
