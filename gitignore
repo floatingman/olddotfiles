@@ -11,3 +11,15 @@ LUCENE-*.patch
 pom.xml.asc
 core/data
 .projectile
+
+# Python #
+##########
+*.py[co]
+*.egg*
+build/
+dist/
+
+
+# Editors #
+###########
+.*.sw[a-z]
