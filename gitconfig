@@ -1,6 +1,5 @@
 [user]
   name = Daniel Newman
-  email = dwnewman78@gmail.com
 [color]
   ui = auto
 [push]
@@ -60,6 +59,7 @@
                    git fetch origin refs/pull-requests/$1/merge:pr/$1 && \
                    git checkout pr/$1; \
                };f"
+	email-guess = !. ~/.git-scripts/email-guess.sh
 [merge]
   ff = only
   tool = vimdiff

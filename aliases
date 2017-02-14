@@ -104,6 +104,7 @@ alias ggs="gg --stat"
 alias gsl="git shortlog -sn"
 alias gw="git whatchanged"
 alias gd='git diff | vim -R -'
+alias cara='git commit --amend --reset-author'
 
 #vagrant
 alias vup="vagrant up"
