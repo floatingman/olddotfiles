@@ -18,6 +18,7 @@
   co = checkout
   cob = checkout -b
   cot = checkout -t
+  rso = remote show origin
   dc = diff --cached
   ds = diff --staged
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%Creset' --abbrev-commit --date=relative
@@ -36,6 +37,8 @@
   in = !git up -i && git push -f && git checkout master && git pull && git merge -
   br = branch
   bl = blame -C
+  rb = branch -r
+  ab = branch -a
   df = diff --word-diff
   clm = !echo $(git log --author=\"$(git config user.name)\" --no-merges --before=$(date \"+%Y-%m-01T00:00\") --after=$(date -d \"-$(date +%d) days -1 month\" \"+%Y-%m-%dT23:59\") --reverse | grep commit | wc -l) commits last month
 	flm = !echo $(git log --author=\"$(git config user.name)\" --no-merges --before=$(date \"+%Y-%m-01T00:00\") --after=$(date -d \"-$(date +%d) days -1 month\" \"+%Y-%m-%dT23:59\") --reverse --stat | grep -Eo \"[0-9]{1,} files? changed\" | grep -Eo \"[0-9]{1,}\" | awk \"{ sum += \\$1 } END { print sum }\") files changed last month
