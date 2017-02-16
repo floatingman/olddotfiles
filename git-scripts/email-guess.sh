@@ -1,7 +1,7 @@
 #!/bin/bash
 
 remote=`git remote -v | awk '/\(push\)$/ {print $2}'`
-email=will@itsananderson.com # default
+email=dwnewman78@gmail.com # default
 
 if [[ $remote == *digitalreasoning* ]]; then
   email=daniel.newman@digitalreasoning.com
