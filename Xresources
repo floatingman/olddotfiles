@@ -22,7 +22,7 @@ URxvt.scrollBar: none
 URxvt.font: xft:terminus:size=12
 !URxvt.font:xft:Inconsolata:pixelsize=14,style=Medium, xft:Symbola:pixelsize=10,style=Regular
 !URxvt.boldFont:xft:Inconsolata:style=Bold,pixelsize=14, xft:Symbola:pixelsize=10,style=Regular
-URxvt.letterSpace: -1
+!URxvt.letterSpace: -1
 
 ! enabled clipboard and selectable URLs
 URxvt.perl-ext-common:  default,clipboard,url-select,resize-font
@@ -40,8 +40,8 @@ URxvt.keysym.Control-Shift-V: perl:clipboard:paste
 URxvt.iconFile:         /usr/share/icons/oxygen/16x16/apps/utilities-terminal.png
 
 ! configure selectable URLs
-URxvt.url-launcher:  /urs/bin/xdg-open
-URxvt.matcher.button: 1
+URxvt.keysym.M-u:           perl:url-select:select_next
+URxvt.url-select.launcher:  xdg-open
 URxvt.url-select.underline: true
 
 !! scroll
@@ -56,14 +56,12 @@ URxvt.secondaryScroll:      0
 URxvt.secondaryWheel:       1
 
 ! Rofi font and colors
-rofi.font: terminus 12
+rofi.font:xos4 Terminus Regular 10
 rofi.color-enabled: true
 rofi.color-window: #273238, #273238, #1e2529
 rofi.color-normal: #273238, #c1c1c1, #273238, #394249, #ffffff
 rofi.color-active: #273238, #80cbc4, #273238, #394249, #80cbc4
 rofi.color-urgent: #273238, #ff1844, #273238, #394249, #ff1844
-
-
 
 ! Base16 Tomorrow
 ! Scheme: Chris Kempson (http://chriskempson.com)
