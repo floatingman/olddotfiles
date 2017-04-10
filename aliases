@@ -38,6 +38,11 @@ if _have docker; then
     alias dockerclean='dockercleanc || true && dockercleani'
 fi
 
+# tmux
+if _have tmux; then
+  alias t='tmux attach || tmux'
+fi
+
 # only if we have mpc
 if _have mpc; then
     alias addall='mpc --no-status clear && mpc listall | mpc --no-status add && mpc play'
@@ -187,6 +192,7 @@ alias total="du -ch | grep total" #find total size of directory and subdirectori
 alias lsDir='ls -d */' #lisitng directories only
 alias again="vim `ls -t | head -1`"
 alias fixdirs="find . -type d -exec chmod o-rwx {} \;"
+alias fixvideo="sudo chown -R dnewman /mnt/SuperBig/Media/Video/Movies/ && sudo chown -R dnewman /mnt/SuperBig/Media/Video/TV/"
 alias prev='ls -t | head -l'
 alias findbig="find . -type f -exec ls -s {} \; | sort -n -r | head -5"
 # safety features
