@@ -237,7 +237,7 @@ alias nowdate='date +"%d-%m-%Y"'
 alias ping='ping -c 5'
 alias fastping='ping -c 100 -s.2'
 
-alias ducks="du -cks * |sort -rn |head -10" # print top 10 largest files in pwd
+alias ducks="du -sch .i[!.]* * |sort -rh |head -10" # print top 10 largest files in pwd
 alias free="free -m"                        # show sizes in MB
 alias sps="ps aux | grep -v grep | grep"    # search and display processes by keyword
 
