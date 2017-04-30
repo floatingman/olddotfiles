@@ -423,9 +423,6 @@ alias wget='wget -c'
 
 alias top='atop'
 
-# ruby rvm veewee
-alias veewee='bundle exec veewee'
-
 # Common Hadoop File System Aliases
 if _have hadoop; then
   alias hf="hadoop fs"                                         # Base Hadoop fs command

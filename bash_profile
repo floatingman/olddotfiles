@@ -35,8 +35,6 @@ if $_ismac; then
   export JAVA_HOME=$(/usr/libexec/java_home)
 fi
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
 source "$HOME/.bashrc"
 
 
