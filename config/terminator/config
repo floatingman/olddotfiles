@@ -89,11 +89,10 @@
 [profiles]
   [[default]]
     background_color = "#fafafa"
-    background_image = None
     copy_on_selection = True
     cursor_color = "#d6d6d6"
     cursor_shape = underline
-    font = Liberation Mono 10
+    font = Hack 16
     foreground_color = "#4d4d4c"
     login_shell = True
     palette = "#000000:#c82829:#718c00:#f5871f:#4271ae:#8959a8:#3e999f:#d6d6d6:#8e908c:#ff3334:#9ec400:#eab700:#5795e6:#b777e0:#54ced6:#efefef"
@@ -105,32 +104,26 @@
     use_system_font = False
     visible_bell = True
   [[tomorrow-eighties]]
-    background_color = "#2d2d2d"
-    background_image = None
     copy_on_selection = True
-    cursor_color = "#aeafad"
+    cursor_color = "#aaaaaa"
     cursor_shape = underline
-    font = Liberation Mono 10
-    foreground_color = "#cccccc"
+    font = Hack 14
     login_shell = True
-    palette = "#000000:#f2777a:#99cc99:#f99157:#6699cc:#cc99cc:#66cccc:#515151:#666666:#FF3334:#9ec400:#ffcc66:#6699cc:#b777e0:#54ced6:#393939"
     scrollback_infinite = True
-    scrollback_lines = 10000
     scrollbar_position = hidden
     show_titlebar = False
     urgent_bell = True
     use_system_font = False
     visible_bell = True
   [[tomorrow-night]]
-    background_color = "#1d1f21"
-    background_image = None
+    background_color = "#2d2d2d"
     copy_on_selection = True
     cursor_color = "#aeafad"
     cursor_shape = underline
-    font = Liberation Mono 10
-    foreground_color = "#c5c8c6"
+    font = Hack 14
+    foreground_color = "#cccccc"
     login_shell = True
-    palette = "#000000:#912226:#778900:#ae7b00:#1d2594:#682a9b:#2b6651:#929593:#666666:#cc6666:#b5bd68:#f0c674:#81a2be:#b294bb:#8abeb7:#ecebec"
+    palette = "#000000:#f2777a:#99cc99:#f99157:#6699cc:#cc99cc:#66cccc:#515151:#666666:#ff3334:#9ec400:#ffcc66:#6699cc:#b777e0:#54ced6:#393939"
     scrollback_infinite = True
     scrollback_lines = 10000
     scrollbar_position = hidden
