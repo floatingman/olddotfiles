@@ -163,7 +163,7 @@ alias lisp='/usr/bin/sbcl'
 
 #update dotfiles
 if [ -d "$HOME/.dotfiles" ]; then
-    alias ud='cd $HOME/.dotfiles && git pull origin master && rcup -v && cd -'
+    alias ud='cd $HOME/.dotfiles && git pull origin master && rcup -v -x README.md && cd -'
 fi
 
 # only for linux
@@ -290,10 +290,11 @@ fi
 # mount an iso
 function mountiso() { sudo mount -t iso9660 -o loop "$@" /media/iso ;}
 
-
-alias silent='echo "silent" | sudo tee /sys/devices/platform/sony-laptop/thermal_control'
-alias balanced='echo "balanced" | sudo tee /sys/devices/platform/sony-laptop/thermal_control'
-alias performance='echo "performance" | sudo tee /sys/devices/platform/sony-laptop/thermal_control'
+if [[ -f '/sys/devices/platform/sony-laptop/thermal_control' ]]; then
+  alias silent='echo "silent" | sudo tee /sys/devices/platform/sony-laptop/thermal_control'
+  alias balanced='echo "balanced" | sudo tee /sys/devices/platform/sony-laptop/thermal_control'
+  alias performance='echo "performance" | sudo tee /sys/devices/platform/sony-laptop/thermal_control'
+fi
 
 # root aliases
 if ! $_isroot; then
