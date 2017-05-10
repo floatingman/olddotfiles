@@ -36,15 +36,15 @@ module.exports = {
 
     // set to `true` (without backticks) if you're using a Linux setup that doesn't show native menus
     // default: `false` on Linux, `true` on Windows (ignored on macOS)
-    showHamburgerMenu: '',
+    showHamburgerMenu: false,
 
     // set to `false` if you want to hide the minimize, maximize and close buttons
     // additionally, set to `'left'` if you want them on the left, like in Ubuntu
     // default: `true` on windows and Linux (ignored on macOS)
-    showWindowControls: '',
+    showWindowControls: false,
 
     // custom padding (css format, i.e.: `top right bottom left`)
-    padding: '12px 14px',
+    padding: '0px 0px',
 
     // the full list. if you're going to provide the full color palette,
     // including the 6 x 6 color cubes and the grayscale map, just provide
@@ -67,6 +67,18 @@ module.exports = {
       lightCyan: '#00ffff',
       lightWhite: '#ffffff'
     },
+
+    // Set the theme variant,
+    // OPTIONS: 'Darker', 'Palenight', ''
+    theme: 'Darker',
+    // Set the rgba() app background opacity, useful when enableVibrance is true
+    // OPTIONS: From 0.1 to 1
+    backgroundOpacity: '0.7',
+    // Set the accent color for the current active tab
+    accentColor: '#64FFDA',
+    // Mac Only, Need restart. Enable the dark vibrance and blurred background
+    // NOTE: The backgroundOpacity should be between 0.1 and 0.9 to see the effect.
+    enableVibrance: false,
 
     // the shell to run when spawning a new session (i.e. /usr/local/bin/fish)
     // if left empty, your system's login shell will be used by default
@@ -104,7 +116,9 @@ module.exports = {
   //   `hyperpower`
   //   `@company/project`
   //   `project#1.0.1`
-  plugins: [],
+  plugins: [
+    'hyper-tomorrow-night'
+  ],
 
   // in development, you can create a directory under
   // `~/.hyper_plugins/local/` and include it here
