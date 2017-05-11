@@ -62,7 +62,11 @@
                    git fetch origin refs/pull-requests/$1/merge:pr/$1 && \
                    git checkout pr/$1; \
                };f"
-	email-guess = !. ~/.git-scripts/email-guess.sh
+  email-guess = !. ~/.git-scripts/email-guess.sh
+  # subtree add
+  sba = "!f() { git subtree add --prefix $2 $1 master --sqaush; }; f"
+  # subtree update
+  sbu = "!f() { git subtree pull --prefix $2 $1 master --squash; }; f"
 [merge]
   ff = only
   tool = vimdiff
