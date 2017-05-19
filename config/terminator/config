@@ -89,6 +89,7 @@
 [profiles]
   [[default]]
     background_color = "#fafafa"
+    background_image = None
     copy_on_selection = True
     cursor_color = "#d6d6d6"
     cursor_shape = underline
@@ -104,9 +105,9 @@
     use_system_font = False
     visible_bell = True
   [[tomorrow-eighties]]
+    background_image = None
     copy_on_selection = True
-    cursor_color = "#aaaaaa"
-    cursor_shape = underline
+    cursor_color = "#23e214"
     font = Hack 14
     login_shell = True
     scrollback_infinite = True
@@ -117,6 +118,7 @@
     visible_bell = True
   [[tomorrow-night]]
     background_color = "#2d2d2d"
+    background_image = None
     copy_on_selection = True
     cursor_color = "#aeafad"
     cursor_shape = underline
