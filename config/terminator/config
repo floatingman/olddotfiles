@@ -93,7 +93,7 @@
     copy_on_selection = True
     cursor_color = "#d6d6d6"
     cursor_shape = underline
-    font = Hack 16
+    font = Hack 14
     foreground_color = "#4d4d4c"
     login_shell = True
     palette = "#000000:#c82829:#718c00:#f5871f:#4271ae:#8959a8:#3e999f:#d6d6d6:#8e908c:#ff3334:#9ec400:#eab700:#5795e6:#b777e0:#54ced6:#efefef"
