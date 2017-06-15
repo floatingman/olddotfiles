@@ -64,12 +64,12 @@
                };f"
   email-guess = !. ~/.git-scripts/email-guess.sh
   # subtree add
-  sba = "!f() { git subtree add --prefix $2 $1 master --sqaush; }; f"
+  sba = "!f() { git subtree add --prefix $2 $1 master --squash; }; f"
   # subtree update
   sbu = "!f() { git subtree pull --prefix $2 $1 master --squash; }; f"
 [merge]
   ff = only
-  tool = vimdiff
+  tool = meld
 [diff]
   mnemonicprefix = true
 [help]
