@@ -42,7 +42,14 @@ test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shel
 test -e "/usr/local/opt/git/etc/bash_completion.d/git-completion.bash" && source "/usr/local/opt/git/etc/bash_completion.d/git-completion.bash"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/daniel.newman/.sdkman"
-[[ -s "/Users/daniel.newman/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/daniel.newman/.sdkman/bin/sdkman-init.sh"
+if $_ismac; then
+  export SDKMAN_DIR="/Users/daniel.newman/.sdkman"
+  [[ -s "/Users/daniel.newman/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/daniel.newman/.sdkman/bin/sdkman-init.sh"
+  test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+fi
 
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+if $_islinux; then
+  export SDKMAN_DIR="/home/dnewman/.sdkman"
+  [[ -s "/home/dnewman/.sdkman/bin/sdkman-init.sh" ]] && source "/home/dnewman/.sdkman/bin/sdkman-init.sh"
+fi
+if [ -e /home/dnewman/.nix-profile/etc/profile.d/nix.sh ]; then . /home/dnewman/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
