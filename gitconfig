@@ -1,5 +1,6 @@
 [user]
-  name = Daniel Newman
+	name = Daniel Newman
+	email = daniel.newman@digitalreasoning.com
 [color]
   ui = auto
 [push]
