@@ -53,3 +53,8 @@ if $_islinux; then
   [[ -s "/home/dnewman/.sdkman/bin/sdkman-init.sh" ]] && source "/home/dnewman/.sdkman/bin/sdkman-init.sh"
 fi
 if [ -e /home/dnewman/.nix-profile/etc/profile.d/nix.sh ]; then . /home/dnewman/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+# Setting PATH for Python 3.6
+# The original version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
+export PATH
