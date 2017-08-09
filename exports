@@ -47,6 +47,5 @@ _source "$HOME/.screen/bashrc.screen"
 # raw AWS keys stored and exported in separate file
 _source "$HOME/.aws_keys"
 
-
-#bash autojump
-#    _source /usr/share/autojump/autojump.bash
+export GTAGSCONF=/usr/local/share/gtags/gtags.conf
+export GTAGSLABEL=ctags
