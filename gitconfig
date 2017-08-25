@@ -69,6 +69,7 @@
   # subtree update
   sbu = "!f() { git subtree pull --prefix $2 $1 master --squash; }; f"
   next = '!git checkout `git rev-list HEAD..demo-end | tail -1`'
+  prev = 'checkout HEAD^'
 [merge]
   ff = only
   tool = meld
