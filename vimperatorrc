@@ -1,14 +1,11 @@
 " Set the colorscheme
-" colorscheme base16-tomorrow
-
-" Show tab numbers
-set guioptions+=n
+colorscheme solarized
 
 " Hide scrollbars
-set guioptions-=r
+set sb=false
 
-" zenburn color theme
-colo zenburn
+" turn off top menu bar
+set gui=none,addons,bookmarks,navigation,tabs
 
 " Default editor when C-i is invoked
 set editor=emacsclient
@@ -19,29 +16,31 @@ set history=10000
 " Show pattern matches as you type
 set incsearch
 
+" Change suggestion engine to duckduckgo 
+set suggestengines=duckduckgo
+
 " Hilight previous search pattern matches
 set hlsearch
 
 " Override ignorecase if pattern has uppercase chars
 set smartcase
 
-" Show the tab bar only if more then one tab is open
-set showtabline=0
-
-" Focus content after a page has loaded
+" :Focus content after a page has loaded
 set focuscontent
 
 " Show destination links in 1=status line, 2=command line
 set showstatuslinks=2
 
+" Show tabnumbers in tab
+set tabnumbers=true
+
 " Show completions and use AwesomeBar (+search plugins)
 set complete=sl
-set wildoptions=auto
 
 " Ex commands output in a new tab by default (prefs, addons...)
 set newtab=all
 
-"     - Emacs GTK key-theme and FF already provide bindings for input fields
+" - Emacs GTK key-theme and FF already provide bindings for input fields
 
 " M-x enters command mode
 noremap <A-x> :
