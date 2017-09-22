@@ -34,7 +34,7 @@
   vtags = !sh -c 'git tag -l | xargs git tag -v'
   ver = "!git log --pretty=format:'%ai %h' -1 | perl -pe 's,(\\d\\d\\d\\d)-(\\d\\d)-(\\d\\d) (\\d\\d):(\\d\\d):(\\d\\d) [^ ]+ ([a-z0-9]+),\\1\\2\\3+\\7,'"
   pr = "!f() { git fetch origin pull/$1/head:pr/$1; }; f"
-  up = !git fetch origin && git rebase origin/master
+  up = "!git remote update -p; git merge --ff-only @{u}"
   in = !git up -i && git push -f && git checkout master && git pull && git merge -
   br = branch
   bl = blame -C
