@@ -69,7 +69,8 @@
   sbu = "!f() { git subtree pull --prefix $2 $1 master --squash; }; f"
   next = '!git checkout `git rev-list HEAD..demo-end | tail -1`'
   prev = 'checkout HEAD^'
-  both-merged = !. ~/.git-scripts/git-both-merged
+  remote-merged = !. ~/.git-scripts/git-remote-merged
+  remote-notmerged = !. ~/.git-scripts/git-remote-notmerged
 [merge]
   ff = only
   tool = meld
