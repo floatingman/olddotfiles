@@ -1,6 +1,5 @@
 [user]
 	name = Daniel Newman
-	email = daniel.newman@digitalreasoning.com
 [color]
   ui = auto
 [push]
@@ -70,6 +69,7 @@
   sbu = "!f() { git subtree pull --prefix $2 $1 master --squash; }; f"
   next = '!git checkout `git rev-list HEAD..demo-end | tail -1`'
   prev = 'checkout HEAD^'
+  both-merged = !. ~/.git-scripts/git-both-merged
 [merge]
   ff = only
   tool = meld
@@ -96,4 +96,6 @@
   helper = wincred
 [github]
 	user = floatingman
-	oauth-token = 
+	oauth-token =
+[gui]
+	recentrepo = /Users/daniel.newman/gitrepo/synthesys

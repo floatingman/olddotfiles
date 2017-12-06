@@ -62,3 +62,6 @@ if $_ismac; then
    PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
    export PATH
 fi
+
+# added by Anaconda3 5.0.0 installer
+export PATH="/Users/daniel.newman/anaconda3/bin:$PATH"
