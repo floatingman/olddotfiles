@@ -487,3 +487,8 @@ if _have oozie; then
   alias ojlist="oozie jobs -localtime"                         # Display a list of jobs
   alias ojlistr="oozie jobs -localtime -filter status=RUNNING" # Display a list of running jobs
 fi
+
+if $_ismac; then
+    alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+    alias chrome-canary='/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary'
+fi
