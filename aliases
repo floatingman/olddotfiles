@@ -159,6 +159,11 @@ alias myrouter='ssh root@192.168.0.1'
 #   fi
 #fi
 
+# setup intellij idea
+if [ -d $HOME/tools/idea ] ; then
+  alias idea='$HOME/tools/idea/bin/idea.sh &'
+fi
+
 alias vnc='x11vnc -display :0 -forever -noxdamage -usepw -httpdir /usr/share/vnc-java/ -httpport 5800 &'
 alias lisp='/usr/bin/sbcl'
 
