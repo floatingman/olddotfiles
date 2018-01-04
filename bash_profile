@@ -52,6 +52,7 @@ if $_islinux; then
   export SDKMAN_DIR="/home/dnewman/.sdkman"
   [[ -s "/home/dnewman/.sdkman/bin/sdkman-init.sh" ]] && source "/home/dnewman/.sdkman/bin/sdkman-init.sh"
 fi
+
 if [ -e /home/dnewman/.nix-profile/etc/profile.d/nix.sh ]; then
    . /home/dnewman/.nix-profile/etc/profile.d/nix.sh;
 fi # added by Nix installer
@@ -63,5 +64,7 @@ if $_ismac; then
    export PATH
 fi
 
-# added by Anaconda3 5.0.0 installer
-export PATH="/Users/daniel.newman/anaconda3/bin:$PATH"
+if $_ismac; then
+  # added by Anaconda3 5.0.0 installer
+  export PATH="/Users/daniel.newman/anaconda3/bin:$PATH"
+fi
