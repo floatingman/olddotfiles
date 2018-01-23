@@ -2,6 +2,8 @@
 
 [[ -r "$HOME/bin" ]] && _add_to_path "$HOME/bin"
 
+[[ -r "$HOME/.local/bin" ]] && _add_to_path "$HOME/.local/bin"
+
 # Node
 [[ -r "$HOME/node_modules" ]] && _add_to_path "$HOME/node_modules/.bin"
 
