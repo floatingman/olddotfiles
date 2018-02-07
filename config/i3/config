@@ -247,6 +247,9 @@ for_window [title="^qcode$"] floating enable
 # float showme windows
 for_window [title="^showme$"] floating enable
 
+# float ediff windows
+for_window [title="Ediff"] floating enable
+
 # Window colors
 client.focused $base0D $base0D $base00 $base0D
 client.focused_inactive $base02 $base02 $base03 $base02
