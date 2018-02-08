@@ -92,7 +92,7 @@
     copy_on_selection = True
     cursor_color = "#d6d6d6"
     cursor_shape = underline
-    font = Iosevka Term 16
+    font = Iosevka 16
     foreground_color = "#4d4d4c"
     login_shell = True
     palette = "#000000:#c82829:#718c00:#f5871f:#4271ae:#8959a8:#3e999f:#d6d6d6:#8e908c:#ff3334:#9ec400:#eab700:#5795e6:#b777e0:#54ced6:#efefef"
@@ -106,7 +106,7 @@
   [[tomorrow-eighties]]
     copy_on_selection = True
     cursor_color = "#23e214"
-    font = Iosevka Term 16
+    font = Iosevka 16
     login_shell = True
     scrollback_infinite = True
     scrollbar_position = hidden
@@ -119,7 +119,7 @@
     copy_on_selection = True
     cursor_color = "#aeafad"
     cursor_shape = underline
-    font = Iosevka Term 16
+    font = Iosevka 16
     foreground_color = "#cccccc"
     login_shell = True
     palette = "#000000:#f2777a:#99cc99:#f99157:#6699cc:#cc99cc:#66cccc:#515151:#666666:#ff3334:#9ec400:#ffcc66:#6699cc:#b777e0:#54ced6:#393939"
