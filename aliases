@@ -220,7 +220,6 @@ alias ethtool='ethtool eth0'
 
 alias iwconfig='iwconfig wlan0'
 
-alias locate='locate -e -L'
 alias mkdir='mkdir -pv'
 alias tree='tree -L 2 -d -l'
 alias tree2="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
