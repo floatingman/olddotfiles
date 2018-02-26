@@ -18,11 +18,14 @@ URxvt.iso14755: false
 ! disable the scrollbar
 URxvt.scrollBar: none
 
+
 ! font
 !URxvt.font: xft:terminus:size=12
 !URxvt.font:xft:Inconsolata:pixelsize=14,style=Medium, xft:Symbola:pixelsize=10,style=Regular
-URxvt.boldFont:xft:Inconsolata:style=Bold,pixelsize=14, xft:Symbola:pixelsize=10,style=Regular
-!URxvt.letterSpace: -1
+!URxvt.boldFont:xft:Inconsolata:style=Bold,pixelsize=14, xft:Symbola:pixelsize=10,style=Regular
+URxvt.font: xft:Hack:pixelsize=16
+URxvt.boldFont: xft:Hack:bold:pixelsize=16
+URxvt.letterSpace: -1
 
 ! enabled clipboard and selectable URLs
 URxvt.perl-ext-common:  default,clipboard,url-select,resize-font
