@@ -58,13 +58,6 @@ if [ -e /home/dnewman/.nix-profile/etc/profile.d/nix.sh ]; then
 fi # added by Nix installer
 
 if $_ismac; then
-   # Setting PATH for Python 3.6
-   # The original version is saved in .bash_profile.pysave
-   PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
-   export PATH
-fi
-
-if $_ismac; then
   # added by Anaconda3 5.0.0 installer
   export PATH="/Users/daniel.newman/anaconda3/bin:$PATH"
 fi

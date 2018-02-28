@@ -100,3 +100,8 @@
 	oauth-token =
 [gui]
 	recentrepo = /Users/daniel.newman/gitrepo/synthesys
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
