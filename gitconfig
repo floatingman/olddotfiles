@@ -55,13 +55,7 @@
   # Checkout the branch, pull it, check out the previous branch and rebase.
   pullbase = "!f() { branchName=${1-master}; git checkout $branchName && git pull && git checkout - && git rebase -i $branchName; }; f"
   # update local repo and delete any PRs matching number and pull latest PR
-  prstash = "!f(){ \
-                   git checkout master        && \
-                   git fetch origin           && \
-                   (git branch -D pr/$1 || :) && \
-                   git fetch origin refs/pull-requests/$1/merge:pr/$1 && \
-                   git checkout pr/$1; \
-               };f"
+  prstash = "!f(){ git checkout master && git fetch origin && (git branch -D pr/$1 || :) && git fetch origin refs/pull-requests/$1/merge:pr/$1 && git checkout pr/$1; };f"
   email-guess = !. ~/.git-scripts/email-guess.sh
   # subtree add
   sba = "!f() { git subtree add --prefix $2 $1 master --squash; }; f"
