@@ -70,6 +70,8 @@ alias blankon='xset dpms; xset s on'
 alias emax="emacsclient -t"
 alias semacs="sudo emacsclient -t"
 alias emacsc="emacsclient -c -a emacs"
+alias ed="emacs --daemon"
+alias ec="emacsclient -c -nw"
 
 function ekill() { emacsclient -e '(kill-emacs)';}
 
@@ -492,4 +494,5 @@ fi
 if $_ismac; then
     alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
     alias chrome-canary='/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary'
+    alias grep='ggrep'
 fi
