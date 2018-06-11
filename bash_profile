@@ -58,6 +58,5 @@ if [ -e /home/dnewman/.nix-profile/etc/profile.d/nix.sh ]; then
 fi # added by Nix installer
 
 if $_ismac; then
-  # added by Anaconda3 5.0.0 installer
-  export PATH="/Users/daniel.newman/anaconda3/bin:$PATH"
+  export PATH="/Users/daniel.newman/miniconda3/bin:$PATH"
 fi
