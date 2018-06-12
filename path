@@ -46,3 +46,5 @@ fi
 if $_ismac; then
   _add_to_path "/usr/local/sbin"
 fi
+
+[[ -d "$HOME/miniconda3" ]] && _add_to_path "$HOME/miniconda3/bin"
