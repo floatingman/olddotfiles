@@ -496,3 +496,6 @@ if $_ismac; then
     alias chrome-canary='/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary'
     alias grep='ggrep'
 fi
+
+alias startv='curl -sSL https://raw.githubusercontent.com/dosel/t/i/p | bash -s start'
+alias stopv='curl -sSL https://raw.githubusercontent.com/dosel/t/i/p | bash -s stop'
