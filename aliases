@@ -497,5 +497,5 @@ if $_ismac; then
     alias grep='ggrep'
 fi
 
-alias startv='curl -sSL https://raw.githubusercontent.com/dosel/t/i/p | bash -s start'
-alias stopv='curl -sSL https://raw.githubusercontent.com/dosel/t/i/p | bash -s stop'
+alias startz='curl -sSL https://raw.githubusercontent.com/dosel/t/i/p | bash -s start'
+alias stopz='curl -sSL https://raw.githubusercontent.com/dosel/t/i/p | bash -s stop'
