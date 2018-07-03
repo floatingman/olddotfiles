@@ -18,6 +18,10 @@ if [[ -f /usr/share/bash-completion/bash_completion ]]; then
     _have sudo && complete -cf sudo
 fi
 
+if [[ -d $HOME/.bash_completion/ ]]; then
+    _load_bash_completion_files
+fi
+
 # macports path
 if [[ -f /opt/local/etc/bash_completion ]]; then
     . /opt/local/etc/bash_completion

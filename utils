@@ -35,3 +35,13 @@ _source () {
     [[ -r "$file" ]] || return 1
     . "$file"
 }
+
+_load_bash_completion_files() {
+    FILES="$HOME/.bash_completion/*.bash"
+    for config_file in $FILES
+    do
+        if [[ -e "${config_file}" ]]; then
+            source $config_file
+        fi
+    done
+}
