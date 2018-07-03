@@ -1,0 +1,1 @@
+/Users/daniel.newman/.dotfiles/bash_completion/django.completion.bash
