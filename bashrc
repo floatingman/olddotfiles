@@ -18,7 +18,7 @@ if [[ -f /usr/share/bash-completion/bash_completion ]]; then
     _have sudo && complete -cf sudo
 fi
 
-if [[ -d $HOME/.bash_completion/ ]]; then
+if [[ -d $HOME/.bash_completion ]]; then
     _load_bash_completion_files
 fi
 
