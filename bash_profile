@@ -30,14 +30,7 @@ fi
 grep -v "[?*]" | cut -d " " -f2 | \
 tr ' ' '\n')" scp sftp ssh
 
-# set javahome on mac
-if $_ismac; then
-  export JAVA_HOME=$(/usr/libexec/java_home)
-fi
-
 source "$HOME/.bashrc"
-
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 test -e "/usr/local/opt/git/etc/bash_completion.d/git-completion.bash" && source "/usr/local/opt/git/etc/bash_completion.d/git-completion.bash"
 
