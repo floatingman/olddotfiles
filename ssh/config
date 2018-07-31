@@ -21,3 +21,6 @@ Host github.com
 
 Host thatsmyproblem.com
   IdentityFile ~/.ssh/id_ed25519
+
+Host 10.100.77.9
+  IdentityFile ~/.ssh/id_rsa_dr
