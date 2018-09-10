@@ -51,10 +51,6 @@ _source "$HOME/.aws_keys"
 export GTAGSCONF=/usr/local/share/gtags/gtags.conf
 export GTAGSLABEL=ctags
 
-if $_ismac; then
-    export VIRTUALENVWRAPPER_PYTHON=$HOME/miniconda3/bin/python
-fi
-
 _source virtualenvwrapper.sh
 
 # Let's keep a virtualenv workon directory

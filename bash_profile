@@ -50,10 +50,6 @@ if [ -e /home/dnewman/.nix-profile/etc/profile.d/nix.sh ]; then
    . /home/dnewman/.nix-profile/etc/profile.d/nix.sh;
 fi # added by Nix installer
 
-if $_ismac; then
-  export PATH="/Users/daniel.newman/miniconda3/bin:$PATH"
-fi
-
 if [ ! -f /mnt/keytabs/${USER}.keytab ]; then
     if [ -x /mnt/keytabs/generate_user_keytab.sh ]; then
         /mnt/keytabs/generate_user_keytab.sh &> /dev/null
