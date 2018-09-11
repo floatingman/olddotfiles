@@ -55,4 +55,4 @@ _source virtualenvwrapper.sh
 
 # Let's keep a virtualenv workon directory
 
-[[ -d "$HOME/.venvs/" ]] && export WORKON_HOME='$HOME/.venvs/'
+[[ -d "$HOME/.venvs/" ]] && export WORKON_HOME="$HOME/.venvs/"
