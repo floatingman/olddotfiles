@@ -65,3 +65,7 @@ fi
 if [ -f /mnt/keytabs/${USER}.keytab ]; then
     kinit -kt /mnt/keytabs/${USER}.keytab ${USER}/$(hostname -f)
 fi
+
+if [ -f $HOME/apache-maven/bin/mvn ]; then
+    alias mvn='$HOME/apache-maven/bin/mvn'
+fi
