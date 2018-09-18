@@ -35,10 +35,7 @@ source "$HOME/.bashrc"
 test -e "/usr/local/opt/git/etc/bash_completion.d/git-completion.bash" && source "/usr/local/opt/git/etc/bash_completion.d/git-completion.bash"
 
 
-if [[ -d "$HOME/.pyenv/" ]]; then
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
-fi
+
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 if $_ismac; then
@@ -68,4 +65,11 @@ fi
 
 if [ -f $HOME/apache-maven/bin/mvn ]; then
     alias mvn='$HOME/apache-maven/bin/mvn'
+fi
+
+if [ -d $HOME/.pyenv ]; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
 fi
