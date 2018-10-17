@@ -50,3 +50,7 @@ fi
 if $_ismac; then
     _add_to_path "/Library/Frameworks/Python.framework/Versions/3.7/bin"
 fi
+
+[[ -d "$HOME/.local/bin" ]] && _add_to_path "$HOME/.local/bin"
+
+[[ -d "$HOME/.cargo/bin" ]] && _add_to_path "$HOME/.cargo/bin"
