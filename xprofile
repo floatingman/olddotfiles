@@ -8,7 +8,7 @@ xmodmap ~/.Xmodmap
 sxhkd &
 
 # Launch the screen locker.
-xautolock -time 09 -locker "/usr/local/bin/lock" -detectsleep -secure -corners 0-+0 -cornerdelay 1 -cornerredelay 5 &
+xautolock -time 09 -locker "/usr/local/bin/lock" -detectsleep -secure &
 
 # Restore teh desktop background
 if [ -f ~/.fehbg ]; then
@@ -26,6 +26,9 @@ unclutter &
 
 # Notifications with dunst
 dunst &
+
+# Start geoclue
+/usr/lib/geoclue-2.0/demos/agent &
 
 # Adjust color temperature with Redshift
 redshift-gtk &
