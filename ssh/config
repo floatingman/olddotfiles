@@ -1,13 +1,3 @@
-Host ad-0
-  Hostname ad-0.dev.digitalreasoning.com
-  IdentityFile ~/.ssh/id_rsa
-  User daniel.newman
-
-Host ad-1
-  Hostname ad-1.dev.digitalreasoning.com
-  IdentityFile ~/.ssh/id_rsa
-  User daniel.newman
-
 Host shockwave
   IdentityFile ~/.ssh/id_ed25519
   IdentitiesOnly yes
@@ -21,6 +11,3 @@ Host github.com
 
 Host thatsmyproblem.com
   IdentityFile ~/.ssh/id_ed25519
-
-Host 10.100.77.9
-  IdentityFile ~/.ssh/id_rsa_dr
