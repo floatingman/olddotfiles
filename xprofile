@@ -2,51 +2,51 @@
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
 # Map keys with xmodmap
-xmodmap ~/.Xmodmap
+#xmodmap ~/.Xmodmap
 
 # Bind keys with sxhkd
-sxhkd &
+#sxhkd &
 
 # Launch the screen locker.
-xautolock -time 09 -locker "/usr/local/bin/lock" -detectsleep -secure &
+#xautolock -time 09 -locker "/usr/local/bin/lock" -detectsleep -secure &
 
 # Restore teh desktop background
-if [ -f ~/.fehbg ]; then
-    sh ~/.fehbg &
-fi
+#if [ -f ~/.fehbg ]; then
+#    sh ~/.fehbg &
+#fi
 
 # Control volume with pasystray
-pasystray &
+#pasystray &
 
 # NetworkManager for managing networks
-nm-applet &
+#nm-applet &
 
 # Hide the cursor when idle
-unclutter &
+#unclutter &
 
 # Notifications with dunst
-dunst &
+#dunst &
 
 # Start geoclue
-/usr/lib/geoclue-2.0/demos/agent &
+#/usr/lib/geoclue-2.0/demos/agent &
 
 # Adjust color temperature with Redshift
-redshift-gtk &
+#redshift-gtk &
 
 # Load the best monitor profile available
-autorandr --change --default mobile
+#autorandr --change --default mobile
 
 # Monitor monitors for changes
-srandrd autorandr --change --default mobile
+#srandrd autorandr --change --default mobile
 
 # Udiskie for mounting
-udiskie &
+#udiskie &
 
 # start the wallpaper switcher
-$HOME/bin/wallpaper.sh &
+#$HOME/bin/wallpaper.sh &
 
 # start bluetooth applet
-blueman-applet &
+#blueman-applet &
 
 # start dropbox
-dropbox &
+#dropbox &
