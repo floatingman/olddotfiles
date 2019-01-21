@@ -17,4 +17,9 @@ GIT_PROMPT_THEME=TruncatedPwd_WindowTitle # use custom theme specified in file G
 # GIT_PROMPT_THEME_FILE=~/.git-prompt-colors.sh
 # GIT_PROMPT_THEME=Solarized # use theme optimized for solarized color scheme
 
-source ~/.bash-git-prompt/gitprompt.sh
+#if [ -d @HOME/.bash-git-prompt ]; then
+  source ~/.bash-git-prompt/gitprompt.sh
+#else
+#  export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 3)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 4)\]\h \[$(tput setaf 5)\]\W\[$(tput setaf 1)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
+#fi
+

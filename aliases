@@ -83,12 +83,11 @@ alias ec='emacsclient -c -a emacs'
 function ekill() { emacsclient -e '(kill-emacs)';}
 
 # vim
-alias e="$EDITOR"
-alias v="vim"
+alias e=$EDITOR
 alias f="vifm"
 
 # reload bash
-alias r="source ~/.bashrc"
+alias r="source ~/.profile"
 
 alias gcl='git clone'
 alias ga='git add'
