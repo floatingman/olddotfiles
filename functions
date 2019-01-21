@@ -640,3 +640,8 @@ dell_monitor() {
 	  xrandr --addmode  DP1 "3840x2160_30.00"
 	  xrandr --output eDP1 --auto --primary --output DP1 --mode 3840x2160_30.00 --above eDP1 --rate 30
 }
+
+shdl() { curl -O $(curl -s http://sci-hub.tw/"$@" | grep location.href | grep -o http.*pdf) ;}
+se() { du -a ~/bin/* ~/.config/* | awk '{print $2}' | fzf | xargs -r $EDITOR ;}
+sv() { vcopy "$(du -a ~/bin/* ~/.config/* | awk '{print $2}' | fzf)" ;}
+vf() { fzf | xargs -r -I % $EDITOR % ;}

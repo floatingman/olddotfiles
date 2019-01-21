@@ -1,61 +1,43 @@
-# ~/.bashrc
-# Daniel Newman 2014
-#
-# an attempt at a monolithic/portable bashrc
-# taken from pbrisbin and helmuthdu and other sources
-#
-###
-stty -ixon # Disable ctrl-s and ctrl-q
-shopt -s autocd
-HISTSIZE= HISTFILESIZE=
-export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 3)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 4)\]\h \[$(tput setaf 5)\]\W\[$(tput setaf 1)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
+# get out if non-interactive
+[[ $- != *i* ]] && return
 
-[ -f "$HOME/.shortcuts" ] && source "$HOME/.shortcuts" # Load shortcut aliases
+## set xterm for tmux
+[ -z "$TMUX" ] && export TERM=xterm-256color
 
-# System Maintainence
-alias mw="~/.config/mutt/mutt-wizard.sh"
-alias sdn="sudo shutdown now"
-alias psref="gpg-connect-agent RELOADAGENT /bye" # Refresh gpg
-alias gua="git remote | xargs -L1 git push --all"
 
-# Some aliases
-alias e="$EDITOR"
-alias p="sudo pacman"
-alias SS="sudo systemctl"
-alias v="vim"
-alias f="vifm"
-alias r="ranger"
-alias sr="sudo ranger"
-alias ka="killall"
-alias g="git"
-alias trem="transmission-remote"
-alias mkd="mkdir -pv"
-alias ref="shortcuts >/dev/null ; source ~/.bashrc" # Refresh shortcuts manually and reload bashrc
-alias mpv="mpv --input-ipc-server=/tmp/mpvsoc$(date +%s)"
-alias x="sxiv -ft *"
-alias lsp="pacman -Qett --color=always | less"
+if [[ -f /usr/share/bash-completion/bash_completion ]]; then
+    . /usr/share/bash-completion/bash_completion
+    _have sudo && complete -cf sudo
+fi
 
-# Adding color
-alias ls='ls -hN --color=auto --group-directories-first'
-alias grep="grep --color=auto"
-alias diff="diff --color=auto"
-alias ccat="highlight --out-format=ansi" # Color cat - print file with syntax highlighting.
+if [[ -d $HOME/.bash_completion ]]; then
+    _load_bash_completion_files
+fi
 
-# Internet
-alias yt="youtube-dl --add-metadata -i" # Download video link
-alias yta="yt -x -f bestaudio/best" # Download only audio
-alias YT="youtube-viewer"
+# macports path
+if [[ -f /opt/local/etc/bash_completion ]]; then
+    . /opt/local/etc/bash_completion
+    _have sudo && complete -cf sudo
+fi
 
-shdl() { curl -O $(curl -s http://sci-hub.tw/"$@" | grep location.href | grep -o http.*pdf) ;}
-se() { du -a ~/.scripts/* ~/.config/* | awk '{print $2}' | fzf | xargs  -r $EDITOR ;}
-sv() { vcopy "$(du -a ~/.scripts/* ~/.config/* | awk '{print $2}' | fzf)" ;}
-vf() { fzf | xargs -r -I % $EDITOR % ;}
+if [[ -f "$HOME/.lscolors" ]] && [[ $(tput colors) == "256" ]]; then
+    # https://github.com/trapd00r/LS_COLORS
+    _have dircolors && eval $( dircolors -b $HOME/.lscolors )
+fi
 
+# should've done this a long time ago
+set -o vi
+
+VBOX_USB=usbfs
+
+eval "$(fasd --init auto)"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# autojump on mac
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
