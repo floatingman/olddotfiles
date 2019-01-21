@@ -1,34 +1,80 @@
-#!/bin/bash
-# Profile file. Runs on login.
+## Load the shell dotfiles, and then some:
+# * ~/.path can be used to extend `$PATH`.
+# * ~/.extra can be used for other settings you don’t want to commit.
+# * ~/.utils is for any utility functons used by other shell dotfiles
 
-# Adds `~/.scripts` and all subdirectories to $PATH
-export PATH="$PATH:$(du "$HOME/bin/" | cut -f2 | tr '\n' ':')"
-export EDITOR="vim"
-export TERMINAL="st"
-export BROWSER="firefox"
-export READER="zathura"
-export FILE="ranger"
-export BIB="$HOME/Documents/LaTeX/uni.bib"
-export REFER="$HOME/.referbib"
-export SUDO_ASKPASS="$HOME/.scripts/tools/dmenupass"
-export PIX="$HOME/.pix/"
+for file in ~/.{utils,bash_prompt,aliases,functions,path,dockerfunc,extra,exports}; do
+    [[ -r "$file" ]] && [[ -f "$file" ]] && source "$file"
+done
+unset file
 
-# less/man colors
-export LESS=-R
-export LESS_TERMCAP_mb=$'\E[1;31m'     # begin bold
-export LESS_TERMCAP_md=$'\E[1;36m'     # begin blink
-export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
-export LESS_TERMCAP_so=$'\E[01;44;33m' # begin reverse video
-export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
-export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
-export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
+# Case-insensitive globbing (used in pathname expansion)
+shopt -s nocaseglob
+
+# Append to the Bash history file, rather than overwriting it
+shopt -s histappend
+
+# Autocorrect typos in path names when using `cd`
+shopt -s cdspell
+
+# bash 4 features
+if [[ ${BASH_VERSINFO[0]} -ge 4 ]]; then
+    shopt -s globstar autocd dirspell
+fi
+
+# Add tab completion for SSH hostnames based on ~/.ssh/config
+# ignoring wildcards
+[[ -e "$HOME/.ssh/config" ]] && complete -o "default" \
+                                         -o "nospace" \
+                                         -W "$(grep "^Host" ~/.ssh/config | \
+grep -v "[?*]" | cut -d " " -f2 | \
+tr ' ' '\n')" scp sftp ssh
 
 [ ! -f ~/.shortcuts ] && shortcuts >/dev/null 2>&1
 
-echo "$0" | grep "bash$" >/dev/null && [ -f ~/.bashrc ] && source "$HOME/.bashrc"
+# Switch escape and caps if tty
+sudo -n loadkeys ~/bin/ttymaps.kmap 2>/dev/null
 
-# Start graphical server if i3 not already running.
-[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x i3 >/dev/null && exec startx
+source "$HOME/.bashrc"
 
-# Switch escape and caps if tty:
-sudo -n loadkeys ~/.scripts/ttymaps.kmap 2>/dev/null
+test -e "/usr/local/opt/git/etc/bash_completion.d/git-completion.bash" && source "/usr/local/opt/git/etc/bash_completion.d/git-completion.bash"
+
+
+
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+if $_ismac; then
+  export SDKMAN_DIR="/Users/daniel.newman/.sdkman"
+  [[ -s "/Users/daniel.newman/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/daniel.newman/.sdkman/bin/sdkman-init.sh"
+  test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+fi
+
+if $_islinux; then
+  export SDKMAN_DIR="/home/dnewman/.sdkman"
+  [[ -s "/home/dnewman/.sdkman/bin/sdkman-init.sh" ]] && source "/home/dnewman/.sdkman/bin/sdkman-init.sh"
+fi
+
+if [ -e /home/dnewman/.nix-profile/etc/profile.d/nix.sh ]; then
+   . /home/dnewman/.nix-profile/etc/profile.d/nix.sh;
+fi # added by Nix installer
+
+if [ ! -f /mnt/keytabs/${USER}.keytab ]; then
+    if [ -x /mnt/keytabs/generate_user_keytab.sh ]; then
+        /mnt/keytabs/generate_user_keytab.sh &> /dev/null
+    fi
+fi
+
+if [ -f /mnt/keytabs/${USER}.keytab ]; then
+    kinit -kt /mnt/keytabs/${USER}.keytab ${USER}/$(hostname -f)
+fi
+
+if [ -f $HOME/apache-maven/bin/mvn ]; then
+    alias mvn='$HOME/apache-maven/bin/mvn'
+fi
+
+if [ -d $HOME/.pyenv ]; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
