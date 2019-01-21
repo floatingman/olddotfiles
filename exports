@@ -6,15 +6,14 @@ export BROWSER="firefox";
 export READER="zathura"
 export FILE="ranger"
 export BIB="$HOME/Documents/LaTeX/uni.bib"
-export REFER="$HOME/.referbib"
+export REFER="$HOME/.refer.bib"
 export SUDO_ASKPASS="$HOME/bin/tools/dmenupass"
-export PIX"$HOME/.pix/"
+export PIX="$HOME/.pix/"
 
 
 export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd*";
 export HISTCONTROL="ignoreboth:erasedups";
-export HISTSIZE=50000000;
-export HISTFILESIZE=$HISTSIZE;
+export HISTSIZE= HISTFILESIZE=
 export HISTTIMEFORMAT="%c "
 
 # standard in linux

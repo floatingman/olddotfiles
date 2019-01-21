@@ -39,9 +39,6 @@ source "$HOME/.bashrc"
 
 test -e "/usr/local/opt/git/etc/bash_completion.d/git-completion.bash" && source "/usr/local/opt/git/etc/bash_completion.d/git-completion.bash"
 
-
-
-
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 if $_ismac; then
   export SDKMAN_DIR="/Users/daniel.newman/.sdkman"
