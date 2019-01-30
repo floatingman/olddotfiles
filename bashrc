@@ -1,3 +1,5 @@
+#!/bin/bash
+
 stty -ixon # Disable ctrl-s and ctrl-q
 
 # get out if non-interactive
@@ -23,13 +25,11 @@ fi
 
 if [[ -f "$HOME/.lscolors" ]] && [[ $(tput colors) == "256" ]]; then
     # https://github.com/trapd00r/LS_COLORS
-    _have dircolors && eval $( dircolors -b $HOME/.lscolors )
+    _have dircolors && eval "$(dircolors -b "$HOME"/.lscolors)"
 fi
 
 # should've done this a long time ago
 set -o vi
-
-VBOX_USB=usbfs
 
 eval "$(fasd --init auto)"
 
