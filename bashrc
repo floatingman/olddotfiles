@@ -39,3 +39,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # autojump on mac
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
+# Start graphical server if i3 not already running.
+[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x i3 >/dev/null && exec startx
+
