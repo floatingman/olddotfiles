@@ -27,3 +27,6 @@ weechat/slack.cache
 
 # Ignore vimperator's info directory
 vimperator/info
+
+# Ignore neovim plugged files
+config/nvim/plugged/
