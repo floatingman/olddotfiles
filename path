@@ -1,6 +1,6 @@
 #!/bin/bash
 
-[[ -r "$HOME/bin" ]] && _add_to_path "$HOME/bin"
+[[ -r "$HOME/bin" ]] && export PATH="$PATH:$(du "$HOME/bin/" | cut -f2 | tr '\n' ':')"
 
 [[ -r "$HOME/.local/bin" ]] && _add_to_path "$HOME/.local/bin"
 
@@ -50,7 +50,5 @@ fi
 if $_ismac; then
     _add_to_path "/Library/Frameworks/Python.framework/Versions/3.7/bin"
 fi
-
-[[ -d "$HOME/.local/bin" ]] && _add_to_path "$HOME/.local/bin"
 
 [[ -d "$HOME/.cargo/bin" ]] && _add_to_path "$HOME/.cargo/bin"

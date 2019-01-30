@@ -6,7 +6,7 @@ export BROWSER="firefox";
 export READER="zathura"
 export FILE="ranger"
 export BIB="$HOME/Documents/LaTeX/uni.bib"
-export REFER="$HOME/.refer.bib"
+export REFER="$HOME/.referbib"
 export SUDO_ASKPASS="$HOME/bin/tools/dmenupass"
 export PIX="$HOME/.pix/"
 
