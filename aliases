@@ -262,6 +262,8 @@ alias rm='rm -i'
 alias mv='mv -i'
 alias ln='ln -i'
 
+
+alias rm30='find * -mtime +30 -exec rm {} \;' # remove files older than 30 days
 alias r="ranger"
 alias sr="sudo ranger"
 alias ka="killall"
