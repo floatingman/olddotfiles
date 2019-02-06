@@ -19,7 +19,7 @@ set nohlsearch
 set clipboard=unnamedplus
 " Some basics:
 	set nocompatible
-	filetype plugin on
+	filetype plugin indent on
 	syntax on
 	set encoding=utf-8
 	set number relativenumber
