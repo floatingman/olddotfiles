@@ -1,17 +1,28 @@
 let mapleader =","
 
-call plug#begin('~/.config/nvim/plugged')
-Plug 'tpope/vim-surround'
-Plug 'scrooloose/nerdtree'
-Plug 'junegunn/goyo.vim'
-Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'jreybert/vimagit'
-Plug 'LukeSmithxyz/vimling'
-Plug 'vimwiki/vimwiki'
-Plug 'bling/vim-airline'
-Plug 'tpope/vim-commentary'
-Plug 'scrooloose/nerdcommenter'
-call plug#end()
+
+" Plugins installed
+	call plug#begin('~/.config/nvim/plugged')
+	Plug 'tpope/vim-surround'
+	Plug 'scrooloose/nerdtree'
+	Plug 'jistr/vim-nerdtree-tabs'
+	Plug 'junegunn/goyo.vim'
+	Plug 'PotatoesMaster/i3-vim-syntax'
+	Plug 'vimwiki/vimwiki'
+	Plug 'bling/vim-airline'
+	Plug 'tpope/vim-commentary'
+	Plug 'scrooloose/nerdcommenter'
+	Plug 'tmhedberg/SimpylFold'
+	Plug 'vim-scripts/indentpython.vim'
+	Plug 'Valloric/YouCompleteMe'
+	Plug 'vim-syntastic/syntastic'
+	Plug 'nvie/vim-flake8'
+	Plug 'kien/ctrlp.vim'
+	Plug 'tpope/vim-fugitive'
+	Plug 'vim-scripts/Pydiction'
+	Plug 'klen/rope-vim'
+	Plug 'ervandew/supertab'
+	call plug#end()
 
 set bg=light
 set mouse=a
@@ -23,6 +34,14 @@ set clipboard=unnamedplus
 	syntax on
 	set encoding=utf-8
 	set number relativenumber
+" Folding
+	set foldmethod=indent
+	set foldlevel=99
+	" Enable folding with spacebar
+	nnoremap <space> za
+	" See docstrings for folded code
+	let g:SimpylFold_docstring_preview=1
+
 " Enable autocompletion:
 	set wildmode=longest,list,full
 " Disables automatic commenting on newline:
@@ -39,6 +58,7 @@ set clipboard=unnamedplus
 " Nerd tree
 	map <C-n> :NERDTreeToggle<CR>
 	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+	let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTREE
 
 " Shortcutting split navigation, saving a keypress:
 	map <C-h> <C-w>h
@@ -71,3 +91,45 @@ set clipboard=unnamedplus
 	inoremap <leader><leader> <Esc>/<++><Enter>"_c4l
 	vnoremap <leader><leader> <Esc>/<++><Enter>"_c4l
 	map <leader><leader> <Esc>/<++><Enter>"_c4l
+
+" Set web programming defaults
+	au BufNewFile,BufRead *.js, *.html, *.css
+				\ set tabstop=2
+				\ set softtabstop=2
+				\ set shiftwidth=2
+
+" Use the below highlight group when displaying bad whitespace is desired
+highlight BadWhitespace ctermbg=red guibg=red
+
+" Flag tabs instead of spaces
+	au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
+
+" Flag Unnecessary Whitespace
+	au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+" YouCompleteMe config
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" Make backspaces more powerfull
+set backspace=indent,eol,start
+
+" Make vim aware of virtualenv
+py << EOF
+import os.path
+import sys
+import vim
+if 'VIRTUAL_ENV' in os.environ:
+	project_base_dir = os.environ['VIRTUAL_ENV']
+	sys.path.insert(0, project_base_dir)
+	activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+	execfile(activate_this, dict(__file__=activate_this))
+EOF
+
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+
+" Set syntax highlighting
+	let python_highlight_all=1
+
+" Pydiction setup
+	let g:pydiction_location = '/home/dnewman/.config/nvim/plugged/Pydiction/complete-dict'
