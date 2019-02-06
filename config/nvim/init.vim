@@ -10,6 +10,7 @@ Plug 'LukeSmithxyz/vimling'
 Plug 'vimwiki/vimwiki'
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-commentary'
+Plug 'scrooloose/nerdcommenter'
 call plug#end()
 
 set bg=light
@@ -47,3 +48,26 @@ set clipboard=unnamedplus
 
 " Check file in shellcheck:
 	map <leader>s :!clear && shellcheck %<CR>
+
+" Copy selected text to system clipboard (requires gvim/nvim/vim-xll installed):
+	vnoremap <C-c> "+y
+	map <C-p> "+P
+
+" Enable Goyo by default for mutt writing
+" Goyo's width will be the line limit in mutt.
+	autocmd BufRead,BufNewFile /tmp/neomutt* let g:goyo_width=80
+	autocmd BufRead,BufNewFile /tmp/neomutt* :Goyo
+
+" Automatically deletes all trailing whitespace on save
+	autocmd BufWritePre * %s/\s\+$//e
+
+" When shortcut files are updated, renew bash and ranger configs with new material:
+	autocmd BufWritePost ~/.bmdirs,~/.bmfiles !shortcuts
+
+" Run xrdb whenever Xdefaults or Xresources are updated.
+	autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb %
+
+" Navigating with guides
+	inoremap <leader><leader> <Esc>/<++><Enter>"_c4l
+	vnoremap <leader><leader> <Esc>/<++><Enter>"_c4l
+	map <leader><leader> <Esc>/<++><Enter>"_c4l
