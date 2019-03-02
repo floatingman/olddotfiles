@@ -298,7 +298,6 @@ alias .....='cd ../../../../../'
 alias .4='cd ../../../../'
 alias .5='cd ../../../../../'
 alias diff='colordiff'
-alias mount='mount |column -t'
 alias ccat="highlight --out-format=ansi" # Color cat - print file
 
 alias c='clear'
