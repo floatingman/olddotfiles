@@ -36,6 +36,11 @@ tr ' ' '\n')" scp sftp ssh
 # Switch escape and caps if tty
 sudo -n loadkeys ~/bin/ttymaps.kmap 2>/dev/null
 
+if test -z "$DBUS_SESSION_BUS_ADDRESS"; then
+	eval $(dbus-launch --sh-syntax --exit-with-session)
+	export $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gnupg)
+fi
+
 source "$HOME/.bashrc"
 
 test -e "/usr/local/opt/git/etc/bash_completion.d/git-completion.bash" && source "/usr/local/opt/git/etc/bash_completion.d/git-completion.bash"
