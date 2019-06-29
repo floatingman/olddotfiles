@@ -37,6 +37,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+export ASDF_DIR="$HOME/.asdf"
+[ -s "$ASDF_DIR/asdf.sh" ] && \. "$ASDF_DIR/asdf.sh"
+[ -s "$ASDF_DIR/completions/asdf.bash" ] && \. "$ASDF_DIR/completions/asdf.bash"
+
 # autojump on mac
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
@@ -56,4 +60,3 @@ if [[ -d "$HOME/Library/Android/sdk" ]]; then
        export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
        export ANDROID_BUILD_TOOLS=$ANDROID_HOME/build-tools
 fi
-
