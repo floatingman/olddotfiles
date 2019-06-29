@@ -32,6 +32,7 @@ exec --no-startup-id xcompmgr
 exec --no-startup-id remaps
 # Unclutter makes the mouse invisible after a brief period
 exec --no-startup-id unclutter
+
 # Run the script to update the mpd i3block on change
 exec_always --no-startup-id mpdupdate
 # mpd startup
@@ -125,7 +126,8 @@ bindsym $mod+q        [con_id="__focused__" instance="^(?!dropdown_).*$"] kill
 bindsym $mod+Shift+q  [con_id="__focused__" instance="^(?!dropdown_).*$"] kill
 
 bindsym $mod+w        exec $term -e nmtui
-bindsym $mod+Shift+w  exec --no-startup-id $BROWSER
+bindsym $mod+Shift+w  exec --no-startup-id firefox -P work -no-remote
+bindsym $mod4+Shift+w exec --no-startup-id firefox -P accounts -no-remote
 
 bindsym $mod+e			exec $term -e neomutt && pkill -RTMIN+12 i3blocks
 bindsym $mod+Shift+e		exec --no-startup-id tutorialvids
