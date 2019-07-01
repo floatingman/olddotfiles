@@ -1,6 +1,7 @@
 #!/bin/bash
 
 [[ -r "$HOME/bin" ]] && export PATH="$PATH:$(du "$HOME/bin/" | cut -f2 | tr '\n' ':')"
+[[ -r "$HOME/.bin" ]] && export PATH="$PATH:$(du "$HOME/.bin/" | cut -f2 | tr '\n' ':')"
 
 [[ -r "$HOME/.local/bin" ]] && _add_to_path "$HOME/.local/bin"
 

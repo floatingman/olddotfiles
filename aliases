@@ -306,8 +306,8 @@ alias h='history'
 alias now='date +"%T"'
 alias nowtime=now
 alias nowdate='date +"%d-%m-%Y"'
-alias ping='ping -c 5'
-alias fastping='ping -c 100 -s.2'
+#alias ping='ping -c 5'
+alias fastping='ping -c 100 -s .2'
 
 alias ducks="du -sch .i[!.]* * |sort -rh |head -10" # print top 10 largest files in pwd
 alias free="free -m"                        # show sizes in MB
