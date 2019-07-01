@@ -50,3 +50,10 @@ if $_ismac; then
   [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
   source <(kubectl completion bash)
 fi
+
+if [[ -d "$HOME/Library/Android/sdk" ]]; then
+       export ANDROID_HOME="$HOME/Library/Android/sdk"
+       export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+       export ANDROID_BUILD_TOOLS=$ANDROID_HOME/build-tools
+fi
+
