@@ -43,3 +43,10 @@ export NVM_DIR="$HOME/.nvm"
 # Start graphical server if i3 not already running.
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x i3 >/dev/null && exec startx
 
+[ -d "$HOME/Qt5.5.0/5.5/clang_64/bin/" ] && export PATH="$HOME/Qt5.5.0/5.5/clang_64/bin:$PATH"
+
+if $_ismac; then
+  export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+  [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+  source <(kubectl completion bash)
+fi
