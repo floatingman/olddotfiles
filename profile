@@ -73,3 +73,8 @@ if [ -d "$HOME/.pyenv" ]; then
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
 fi
+
+if [ -d "$HOME/.asdf" ]; then
+	. $HOME/.asdf/asdf.sh
+	. $HOME/.asdf/completions/asdf.bash
+fi
