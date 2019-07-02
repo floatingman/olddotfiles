@@ -65,7 +65,7 @@ fi
 alias tigervncserver='x0vncserver --Geometry=1440x900 -display :0 -passwordfile ~/.vnc/passwd'
 
 if _have rtorrent; then
-    alias rtunlock="rm -f /mnt/Extra2/mediadownload/torrents/session/rtorrent.lock"
+    alias rtunlock="rm -f /mnt/SuperBig/Downloads/torrents/session/rtorrent.lock"
 fi
 
 alias blankoff='xset -dpms; xset s off'
