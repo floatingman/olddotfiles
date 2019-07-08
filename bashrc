@@ -17,12 +17,6 @@ if [[ -d $HOME/.bash_completion ]]; then
     _load_bash_completion_files
 fi
 
-# macports path
-if [[ -f /opt/local/etc/bash_completion ]]; then
-    . /opt/local/etc/bash_completion
-    _have sudo && complete -cf sudo
-fi
-
 if [[ -f "$HOME/.lscolors" ]] && [[ $(tput colors) == "256" ]]; then
     # https://github.com/trapd00r/LS_COLORS
     _have dircolors && eval "$(dircolors -b "$HOME"/.lscolors)"
@@ -46,8 +40,6 @@ export ASDF_DIR="$HOME/.asdf"
 
 # Start graphical server if i3 not already running.
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x i3 >/dev/null && exec startx
-
-[ -d "$HOME/Qt5.5.0/5.5/clang_64/bin/" ] && export PATH="$HOME/Qt5.5.0/5.5/clang_64/bin:$PATH"
 
 if $_ismac; then
   export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
