@@ -34,7 +34,7 @@ tr ' ' '\n')" scp sftp ssh
 [ ! -f ~/.shortcuts ] && shortcuts >/dev/null 2>&1
 
 # Switch escape and caps if tty
-sudo -n loadkeys ~/bin/ttymaps.kmap 2>/dev/null
+#sudo -n loadkeys ~/bin/ttymaps.kmap 2>/dev/null
 
 if test -z "$DBUS_SESSION_BUS_ADDRESS"; then
 	eval $(dbus-launch --sh-syntax --exit-with-session)
