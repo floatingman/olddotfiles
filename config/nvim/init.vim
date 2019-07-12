@@ -22,6 +22,8 @@ let mapleader =","
 	Plug 'vim-scripts/Pydiction'
 	Plug 'klen/rope-vim'
 	Plug 'ervandew/supertab'
+	Plug 'kovetskiy/sxhkd-vim'
+	Plug 'vifm/vifm.vim'
 	call plug#end()
 
 set bg=light
@@ -83,6 +85,9 @@ set clipboard=unnamedplus
 
 " When shortcut files are updated, renew bash and ranger configs with new material:
 	autocmd BufWritePost ~/.bmdirs,~/.bmfiles !shortcuts
+
+" Update binds when sxhkdrc is updated
+	autocmd BufWritePost *sxhkdrc !pkill -USR1 sxhkd
 
 " Run xrdb whenever Xdefaults or Xresources are updated.
 	autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb %

@@ -1,8 +1,8 @@
 #!/bin/bash
 
 export EDITOR="nvim";
-export TERMINAL="urxvt";
-export BROWSER="firefox";
+export TERMINAL="st";
+export BROWSER="surf";
 export READER="zathura"
 export FILE="ranger"
 export BIB="$HOME/Documents/LaTeX/uni.bib"

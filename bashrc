@@ -39,7 +39,7 @@ export ASDF_DIR="$HOME/.asdf"
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 # Start graphical server if i3 not already running.
-[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x i3 >/dev/null && exec startx
+[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x Xorg >/dev/null && exec startx
 
 if $_ismac; then
   export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"

@@ -1,94 +1,79 @@
-#########
-# Media #
-#########
-
-# Toggle mute
-XF86AudioMute
-    volume toggle
-
-# Toggle mic mute
-XF86AudioMicMute
-    volume mic
-
-# Change volume
-XF86Audio{Raise,Lower}Volume
-    volume {up,down}
-
-# Change volume
-super + {k,j}
-    volume {up,down}
-
-# Toggle mpd
-super + 0
-    mpc -q toggle
-
-# Navigate mpd playlist
-super + {comma, period}
-    mpc -q {prev, next}
-
-# Display current mpd track
-super + slash
-    notify-send -u low "$(mpc -f "%artist%" current)" "$(mpc -f "%title%" current)"
-
-# Play the video URL in the clipboard
-super + m
-    play
-
-
-################
-# Applications #
-################
-
 # Launch terminal
-super + t
+super + Return
     $TERMINAL
 
-# Launch web browser
-super + w
-    firefox -P Default
+super + shift + q
+	kill -9 `xdotool getwindowfocus getwindowpid`
 
-# Launch web browser with work profile
+super + d
+	dmenu_run
+
+super + r
+	$TERMINAL -e $FILE
+super + e
+	$TERMINAL -e neomutt
+super + m
+	$TERMINAL -e ncmpcpp
+super + n
+	$TERMINAL -e newsboat
+super + s
+	$TERMINAL -e htop
+super + shift + a
+	$TERMINAL -e alsamixer; refbar
+super + shift + c
+	mpv --no-osc --no-input-default-bindings --input-conf=/dev/null --title='mpvfloat' /dev/video0
 super + shift + w
-    firefox -P work
+	$BROWSER
+super + shift + x
+	prompt "Shutdown computer?" "sudo -A shutdown -h now"
+super + shift + BackSpace
+	prompt "Reboot computer?" "sudo -A shutdown -r now"
+super + shift + Escape
+	prompt 'Leave Xorg?' 'killall Xorg'
+super + x
+	ifinstalled slock && ( slock & xset dpms force off ; mpc pause ; pauseallmpv )
 
-# Launch application launcher
-super + space
-    rofi -show run
+# Increase volume
+super + {equal,plus}
+	amixer sset Master {5,15}%+; refbar
+# Decrease volume
+super {_,shift +} + minus
+	amixer sset Master {5,15}%-; refbar
+super + shift + m
+	amixer sset Master toggle; refbar
 
-# Launch window switcher
-alt + Tab
-    rofi -show window
+# Audiokeys
+XF86AudioMute
+	amixer sset Master toggle; refbar
+XF86Audio{Raise,Lower}Volume
+	amixer sset Master 5%{+,-}; refbar
+XF86Audio{Next,Prev}
+	mpc {next,prev}
+XF86Audio{Pause,Play,Stop}
+	mpc {pause,play,stop}
+XF86Audio{Rewind,Forward}
+	mpc seek {-,+}10
+XF86AudioRecord
+	dmenurecord
+XF86AudioMedia
+	$TERMINAL -e ncmpcpp
 
-# Launch password manager
-super + p
-    menu=$(echo -e "$HOME/.password-store\n$ALTPASSDIR" | rofi -dmenu); rofi-pass --root "${menu}"
-
-
-########
-# Misc #
-########
-
-# Lock the screen
-control + alt + l
-    /usr/local/bin/lock
-
-# Lock the screen
+XF86PowerOff
+	prompt "Shutdown computer?" "sudo -A shutdown -h now"
+XF86Calculator
+	$TERMINAL -e bc
+XF86Sleep
+	prompt 'Hibernate computer?' 'sudo -A zzz'
+XF86WWW
+	$BROWSER
+XF86DOS
+	$TERMINAL
 XF86ScreenSaver
-    /usr/local/bin/lock
+	mpc pause; pauseallmpv; i3lock -e -f -c 1d2021; xset dpms force off
+XF86TaskPane
+	$TERMINAL -e htop
+XF86Mail
+	$TERMINAL -e neomutt
+XF86MyComputer
+	$TERMINAL -e $FILE /
 
-# Toggle trackpad
-XF86TouchpadToggle
-    trackpad-toggle.sh
-
-
-# Change screen brightness
-XF86MonBrightness{Up,Down}
-    light -{A,U} 10
-
-# Take a screenshot
-Print
-    scrot 'screenshot_%Y-%m-%d-%H%M%S.png' -e 'mv $f ~/tmp'
-
-# Generate a QR code from the clipboard
-super + q
-    qcode
