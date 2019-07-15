@@ -562,7 +562,8 @@ if $_ismac; then
     alias grep='ggrep'
 fi
 
-alias startz='curl -sSL https://raw.githubusercontent.com/dosel/t/i/p | bash -s start'
+#alias startz='curl -sSL https://raw.githubusercontent.com/dosel/t/i/p | bash -s start'
+alias startz='docker run --rm -ti --name zalenium -p 4444:4444 -e ZALENIUM_SELENIUM_CONTAINER_MEMORY_LIMIT=4294967296 -e ZALENIUM_SELENIUM_CONTAINER_CPU_LIMIT=400000000 -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/videos:/home/seluser/videos --privileged dosel/zalenium start --screenWidth 1920 --screenHeight 1080 --timeZone "America/Chicago"'
 alias stopz='curl -sSL https://raw.githubusercontent.com/dosel/t/i/p | bash -s stop'
 
 if _have curl; then
