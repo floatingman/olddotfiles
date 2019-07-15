@@ -30,3 +30,4 @@ vimperator/info
 
 # Ignore neovim plugged files
 config/nvim/plugged/
+config/nvim/autoload/plug.vim
