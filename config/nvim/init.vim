@@ -1,5 +1,10 @@
 let mapleader =","
 
+if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
+	echo "Downloading junegunn/vim-plug to manage plugins..."
+	silent !mkdir -p ~/.config/nvim/autoload/
+	silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.config/nvim/autoload/plug.vim
+endif
 
 " Plugins installed
 	call plug#begin('~/.config/nvim/plugged')
@@ -12,22 +17,26 @@ let mapleader =","
 	Plug 'bling/vim-airline'
 	Plug 'tpope/vim-commentary'
 	Plug 'scrooloose/nerdcommenter'
+	Plug 'jreybert/vimagit'
 	Plug 'tmhedberg/SimpylFold'
 	Plug 'vim-scripts/indentpython.vim'
 	Plug 'Valloric/YouCompleteMe'
 	Plug 'vim-syntastic/syntastic'
 	Plug 'nvie/vim-flake8'
 	Plug 'kien/ctrlp.vim'
-	Plug 'tpope/vim-fugitive'
 	Plug 'vim-scripts/Pydiction'
 	Plug 'klen/rope-vim'
 	Plug 'ervandew/supertab'
+	Plug 'vifm/vifm.vim'
+	Plug 'kovetskiy/sxhkd-vim'
 	call plug#end()
 
 set bg=light
+set go=a
 set mouse=a
 set nohlsearch
-set clipboard=unnamedplus
+set clipboard+=unnamedplus
+
 " Some basics:
 	set nocompatible
 	filetype plugin indent on
@@ -44,8 +53,10 @@ set clipboard=unnamedplus
 
 " Enable autocompletion:
 	set wildmode=longest,list,full
+
 " Disables automatic commenting on newline:
 	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
 " Goyo plugin makes text more readable when writing prose:
 	map <leader>f :Goyo \| set linebreak<CR>
 
@@ -56,7 +67,7 @@ set clipboard=unnamedplus
 	set splitbelow splitright
 
 " Nerd tree
-	map <C-n> :NERDTreeToggle<CR>
+	map <leader>n :NERDTreeToggle<CR>
 	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 	let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTREE
 
@@ -84,13 +95,11 @@ set clipboard=unnamedplus
 " When shortcut files are updated, renew bash and ranger configs with new material:
 	autocmd BufWritePost ~/.bmdirs,~/.bmfiles !shortcuts
 
+" Update binds when sxhkdrc is updated.
+	autocmd BufWritePost *sxhkdrc !pkill -USR1 sxhkd
+
 " Run xrdb whenever Xdefaults or Xresources are updated.
 	autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb %
-
-" Navigating with guides
-	inoremap <leader><leader> <Esc>/<++><Enter>"_c4l
-	vnoremap <leader><leader> <Esc>/<++><Enter>"_c4l
-	map <leader><leader> <Esc>/<++><Enter>"_c4l
 
 " Set web programming defaults
 	au BufNewFile,BufRead *.js, *.html, *.css
