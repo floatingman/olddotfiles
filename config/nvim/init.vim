@@ -10,14 +10,13 @@ endif
 	call plug#begin('~/.config/nvim/plugged')
 	Plug 'tpope/vim-surround'
 	Plug 'scrooloose/nerdtree'
-	Plug 'jistr/vim-nerdtree-tabs'
 	Plug 'junegunn/goyo.vim'
+	Plug 'junegunn/limelight.vim'
 	Plug 'PotatoesMaster/i3-vim-syntax'
 	Plug 'vimwiki/vimwiki'
 	Plug 'bling/vim-airline'
 	Plug 'tpope/vim-commentary'
 	Plug 'scrooloose/nerdcommenter'
-	Plug 'jreybert/vimagit'
 	Plug 'tmhedberg/SimpylFold'
 	Plug 'vim-scripts/indentpython.vim'
 	Plug 'Valloric/YouCompleteMe'
@@ -26,15 +25,26 @@ endif
 	Plug 'kien/ctrlp.vim'
 	Plug 'vim-scripts/Pydiction'
 	Plug 'klen/rope-vim'
-	Plug 'ervandew/supertab'
 	Plug 'vifm/vifm.vim'
 	Plug 'kovetskiy/sxhkd-vim'
+	Plug 'plasticboy/vim-markdown'
+	Plug 'honza/vim-snippets'
+	Plug 'ervandew/supertab'
+	Plug 'elzr/vim-json'
+	Plug 'godlygeek/tabular'
+	Plug 'vim-pandoc/vim-pandoc-syntax'
+	Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
+	Plug 'godlygeek/tabular'
 	call plug#end()
+	"
 
 set bg=light
 set go=a
 set mouse=a
 set nohlsearch
+set ignorecase
+set smartcase
+set incsearch
 set clipboard+=unnamedplus
 
 " Some basics:
@@ -59,6 +69,19 @@ set clipboard+=unnamedplus
 
 " Goyo plugin makes text more readable when writing prose:
 	map <leader>f :Goyo \| set linebreak<CR>
+
+"" Limelight helps with editing
+	let g:limelight_conceal_ctermfg = 'gray'
+	let g:limelight_conceal_ctermfg = 240
+	let g:limelight_conceal_guifg = 'DarkGray'
+	let g:limelight_conceal_guifg = '#777777'
+	let g:limelight_deafault_coeffiecient = 0.7
+	let g:limelight_paragraph_span = 1
+	let g:limelight_bob = '^\s'
+	let g:limelight_eop = '\ze\n^\s'
+	let g:limelight_priority = -1
+	autocmd! User GoyoEnter Limelight
+	autocmd! User GoyoLeave Limelight!
 
 " Spell-check set to <leader>o, 'o' for 'orthography':
 	map <leader>o :setlocal spell! spelllang=en_us<CR>
@@ -108,7 +131,7 @@ set clipboard+=unnamedplus
 				\ set shiftwidth=2
 
 " Use the below highlight group when displaying bad whitespace is desired
-highlight BadWhitespace ctermbg=red guibg=red
+	highlight BadWhitespace ctermbg=red guibg=red
 
 " Flag tabs instead of spaces
 	au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
@@ -117,11 +140,11 @@ highlight BadWhitespace ctermbg=red guibg=red
 	au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 " YouCompleteMe config
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+	let g:ycm_autoclose_preview_window_after_completion=1
+	map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " Make backspaces more powerfull
-set backspace=indent,eol,start
+	set backspace=indent,eol,start
 
 " Make vim aware of virtualenv
 py << EOF
@@ -142,3 +165,34 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 
 " Pydiction setup
 	let g:pydiction_location = '/home/dnewman/.config/nvim/plugged/Pydiction/complete-dict'
+
+" Markdown
+	au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+	au FileType markdown set autoindent
+	au FileType markdown set smartindent
+	au FileType markdown set list
+	au FileType markdown set textwidth=115
+"" Markdown.vim
+	let g:vim_markdown_folding_disabled = 1
+	let g:vim_markdown_conceal = 0
+	let g:tex_concearl = ""
+	let g:vim_markdown_math = 1
+
+	let g:vim_markdown_frontmatter = 1 " for YAML format
+	let g:vim_markdown_toml_frontmatter = 1 " for TOML format
+	let g:vim_markdown_json_frontmatter = 1 " for JSON format
+
+"" Markdown Preview
+let g:mkdp_auto_close = 0
+nnoremap <M-m> :MarkdownPreview<CR>
+
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+"
