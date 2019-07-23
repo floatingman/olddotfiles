@@ -35,6 +35,7 @@ endif
 	Plug 'vim-pandoc/vim-pandoc-syntax'
 	Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 	Plug 'godlygeek/tabular'
+	Plug 'pearofducks/ansible-vim'
 	call plug#end()
 	"
 
