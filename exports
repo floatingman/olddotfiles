@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export EDITOR="nvim";
-export TERMINAL="urxvt";
+export TERMINAL="termite";
 export BROWSER="firefox";
 export READER="zathura"
 export FILE="ranger"
@@ -40,17 +40,17 @@ fi
 # Don’t clear the screen after quitting a manual page
 export MANPAGER="less -X";
 
-export DBUS_SESSION_BUS_ADDRESS=unix:path=/var/run/user/$(id -u)/bus;
+#export DBUS_SESSION_BUS_ADDRESS=unix:path=/var/run/user/$(id -u)/bus;
 
 
 # custom ip var
 [[ -f "$HOME/.myip" ]] && export MYIP=$(cat "$HOME/.myip")
 
 # custom log directory
-[[ -d "$HOME/log" ]] && export LOGS="$HOME/log" || export LOGS='/tmp'
+#[[ -d "$HOME/log" ]] && export LOGS="$HOME/log" || export LOGS='/tmp'
 
 # screen tricks
-_source "$HOME/.screen/bashrc.screen"
+#_source "$HOME/.screen/bashrc.screen"
 
 # raw AWS keys stored and exported in separate file
 _source "$HOME/.aws_keys"
@@ -58,11 +58,11 @@ _source "$HOME/.aws_keys"
 export GTAGSCONF=/usr/local/share/gtags/gtags.conf
 export GTAGSLABEL=ctags
 
-_source virtualenvwrapper.sh
-
 # Let's keep a virtualenv workon directory
 [[ -d "$HOME/.venvs/" ]] && export WORKON_HOME="$HOME/.venvs/"
 
-if $_ismac; then
-	export SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk MACOSX_DEPLOYMENT_TARGET=10.14
-fi
+_source /usr/bin/virtualenvwrapper_lazy.sh
+
+#if $_ismac; then
+	#export SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk MACOSX_DEPLOYMENT_TARGET=10.14
+#fi
