@@ -45,11 +45,11 @@ super + t
 
 # Launch web browser
 super + w
-    firefox -P Default
+    firefox -P Accounts
 
 # Launch web browser with work profile
 super + shift + w
-    firefox -P work
+    firefox -P Work
 
 # Launch application launcher
 super + space
