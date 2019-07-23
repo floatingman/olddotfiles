@@ -1,1 +1,33 @@
-profile
+[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+
+xmodmap ~/.Xmodmap
+
+sxhkd &
+
+xautolock -time 09 -locker "/usr/local/bin/lock" -detectsleep -secure -corners 0-00 -cornerdelay 3 -cornerredelay 20 &
+
+if [ -f ~/.fehbg ]; then
+	sh ~/.fehbg &
+fi
+
+pasystray &
+
+nm-applet &
+
+unclutter &
+
+dunst &
+
+/usr/lib/geoclue-2.0/demos/agent &
+
+redshift-gtk &
+
+autorandr --change --default mobile
+
+srandrd autorandr --change --default mobile
+
+udiskie &
+
+blueman-applet &
+
+
