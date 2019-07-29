@@ -8,19 +8,54 @@ endif
 
 " Plugins installed
 	call plug#begin('~/.config/nvim/plugged')
-	Plug 'tpope/vim-surround'
+	Plug 'autozimu/LanguageClient-neovim', {
+				\ 'branch': 'next',
+				\ 'do': 'bash install.sh',
+				\}
+
+  if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+  endif
+
+  Plug 'tpope/vim-surround'
 	Plug 'scrooloose/nerdtree'
+	Plug 'airblade/vim-gitgutter'
+	Plug 'craigemery/vim-autotag'
+	Plug 'benizi/vim-automkdir'
+	Plug 'easymotion/vim-easymotion'
+	Plug 'editorconfig/editorconfig-vim'
+	Plug 'haya14busa/incsearch-easymotion.vim'
+	Plug 'haya14busa/incsearch.vim'
+	Plug 'justinmk/vim-dirvish'
+	Plug 'matze/vim-move'
+	Plug 'ntpeters/vim-better-whitespace'
+	Plug 'rhysd/conflict-marker.vim'
+	Plug 'sbdchd/neoformat'
+	Plug 'sheerun/vim-polyglot'
+	Plug 'tpope/vim-eunuch'
+	Plug 'tpope/vim-fugitive'
+	Plug 'tpope/vim-repeat'
+	Plug 'trevordmiller/nova-vim'
+
+	Plug 'whatyouhide/vim-lengthmatters'
+
+	Plug 'edkolev/promptline.vim'
+	Plug 'xolox/vim-misc'
+	Plug 'xolox/vim-easytags'
+
+
 	Plug 'junegunn/goyo.vim'
 	Plug 'junegunn/limelight.vim'
 	Plug 'PotatoesMaster/i3-vim-syntax'
 	Plug 'vimwiki/vimwiki'
-	Plug 'bling/vim-airline'
+	Plug 'vim-airline/vim-airline'
+	Plug 'vim-airline/vim-airline-themes'
 	Plug 'tpope/vim-commentary'
-	Plug 'scrooloose/nerdcommenter'
-	Plug 'tmhedberg/SimpylFold'
 	Plug 'vim-scripts/indentpython.vim'
-	Plug 'Valloric/YouCompleteMe'
-	Plug 'vim-syntastic/syntastic'
 	Plug 'nvie/vim-flake8'
 	Plug 'kien/ctrlp.vim'
 	Plug 'vim-scripts/Pydiction'
@@ -29,44 +64,63 @@ endif
 	Plug 'kovetskiy/sxhkd-vim'
 	Plug 'plasticboy/vim-markdown'
 	Plug 'honza/vim-snippets'
-	Plug 'ervandew/supertab'
 	Plug 'elzr/vim-json'
 	Plug 'godlygeek/tabular'
 	Plug 'vim-pandoc/vim-pandoc-syntax'
 	Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
-	Plug 'godlygeek/tabular'
 	Plug 'pearofducks/ansible-vim'
 	call plug#end()
 	"
 
-set bg=light
-set go=a
-set mouse=a
-set nohlsearch
-set ignorecase
-set smartcase
-set incsearch
-set clipboard+=unnamedplus
-
-" Some basics:
+" common vim settings
 	set nocompatible
-	filetype plugin indent on
-	syntax on
 	set encoding=utf-8
-	set number relativenumber
+	set backupdir=~/.vim/backups
+	set directory=~/.vim/swaps
+	set undofile
+	set undodir=~/.vim/undo
+	set noerrorbells
+	set splitbelow
+	set splitright
+	set exrc
+	set secure
+	set nojoinspaces
+	set clipboard+=unnamed
+	set completeopt=preview
+	set number
+	set ruler
+	set smartcase
+	set infercase
+	set ignorecase
+	set diffopt+=filler,vertical
+	set breakindent
+	set t_Co=256
+	set expandtab
 	set tabstop=2
 	set softtabstop=2
 	set shiftwidth=2
-" Folding
-	set foldmethod=indent
-	set foldlevel=99
-	" Enable folding with spacebar
-	nnoremap <space> za
-	" See docstrings for folded code
-	let g:SimpylFold_docstring_preview=1
 
-" Enable autocompletion:
-	set wildmode=longest,list,full
+" Some basics:
+	filetype plugin indent on
+	syntax on
+
+	colorscheme solarized
+
+" deoplete
+	let g:deoplete#enable_at_startup = 1
+
+" better-whitespace
+  map ,W :ToggleWhitespace<CR>
+	let g:better_whitespace_enabled = 0
+
+" lengthmatters
+	map ,L :LengthmattersToggle<CR>
+	let g:lengthmatters_on_by_default = 0
+	let g:lengthmatters_start_at_column = 130
+
+" buffers
+	nnoremap <Tab> :bnext<cr>
+	nnoremap <S-Tab> :bprevious<cr>
 
 " Disables automatic commenting on newline:
 	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -94,15 +148,9 @@ set clipboard+=unnamedplus
 	set splitbelow splitright
 
 " Nerd tree
-	map <leader>n :NERDTreeToggle<CR>
-	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-	let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTREE
+	nnoremap <C-[> :NERDTreeToggle<cr>
+	nnoremap <C-]> :NERDTreeVCS
 
-" Shortcutting split navigation, saving a keypress:
-	map <C-h> <C-w>h
-	map <C-j> <C-w>j
-	map <C-k> <C-w>k
-	map <C-l> <C-w>l
 
 " Check file in shellcheck:
 	map <leader>s :!clear && shellcheck %<CR>
@@ -127,12 +175,6 @@ set clipboard+=unnamedplus
 
 " Run xrdb whenever Xdefaults or Xresources are updated.
 	autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb %
-
-" Set web programming defaults
-	au BufNewFile,BufRead *.js, *.html, *.css
-				\ set tabstop=2
-				\ set softtabstop=2
-				\ set shiftwidth=2
 
 " Use the below highlight group when displaying bad whitespace is desired
 	highlight BadWhitespace ctermbg=red guibg=red
@@ -176,7 +218,8 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 	au FileType markdown set smartindent
 	au FileType markdown set list
 	au FileType markdown set textwidth=115
-"" Markdown.vim
+
+	"" Markdown.vim
 	let g:vim_markdown_folding_disabled = 1
 	let g:vim_markdown_conceal = 0
 	let g:tex_concearl = ""
@@ -190,13 +233,37 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 let g:mkdp_auto_close = 0
 nnoremap <M-m> :MarkdownPreview<CR>
 
-" Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" vim-airline
+let g:airline_theme = 'kolor'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-"
+" gitgutter
+let g:gitgutter_max_signs = 100000
+
+" LanguageClient-neovim
+let g:LanguageClient_serverCommands = {
+			\ 'cpp': ['/usr/local/Cellar/cquery/20180718/bin/cquery',
+			\ '--log-file=/tmp/cq.log',
+			\ '--init={"cacheDirectory":"/tmp/cquery/",
+			\									"blacklist": ["./build", "./ext"]}'],
+			\ 'ruby': ['~/.asdf/shims/solargraph', 'stdio'],
+			\ 'python': ['~/.asdf/shims/pyls'],
+			\ }
+let g:LanguageClient_autoStart = 1
+
+" autotag
+let g:autotagTagsFile=".tags"
+
+" cscope
+if has("cscope")
+	set csprg=/usr/local/bin/cscope
+	set csto=0
+	set cst
+	set nocsverb
+	if filereadable("cscope.out")
+		cs add cscope.out
+	elseif $CSOPE_DB != ""
+		cs add $CSCOPE_DB
+	endif
+endif
