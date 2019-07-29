@@ -33,13 +33,6 @@ tr ' ' '\n')" scp sftp ssh
 
 [ ! -f ~/.shortcuts ] && shortcuts >/dev/null 2>&1
 
-if test -z "$DBUS_SESSION_BUS_ADDRESS"; then
-	eval "$(dbus-launch --sh-syntax --exit-with-session)"
-	export "$(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gnupg)"
-fi
-
-#test -e "/usr/local/opt/git/etc/bash_completion.d/git-completion.bash" && source "/usr/local/opt/git/etc/bash_completion.d/git-completion.bash"
-
 export SDKMAN_DIR="${HOME}/.sdkman"
 [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
