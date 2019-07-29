@@ -67,3 +67,9 @@ if [ -d "$HOME/.asdf" ]; then
 	. $HOME/.asdf/completions/asdf.bash
 fi
 
+if $_ismac; then
+	LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
+	export PATH="/usr/local/opt/llvm/bin:$PATH"
+	export LDFLAGS="-L/usr/local/opt/llvm/lib"
+  export CPPFLAGS="-I/usr/local/opt/llvm/include"
+fi
