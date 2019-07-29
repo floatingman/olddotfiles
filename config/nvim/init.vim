@@ -54,6 +54,9 @@ set clipboard+=unnamedplus
 	syntax on
 	set encoding=utf-8
 	set number relativenumber
+	set tabstop=2
+	set softtabstop=2
+	set shiftwidth=2
 " Folding
 	set foldmethod=indent
 	set foldlevel=99
