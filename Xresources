@@ -92,9 +92,9 @@ Xft.dpi:        96
 Xft.antialias:  true
 Xft.hinting:    true
 Xft.rgba:       rgb
-Xft.hintstyle:  hintfull
+Xft.hintstyle:  hintslight
 Xft.autohint:   false
-Xft.lcdfilter:  lcdlight
+Xft.lcdfilter:  lcddefault
 
 ! LOGIN SHELLLLLLLLLLLLLLLLLL!!!!!!!!!!!
 URxvt.loginShell: true
@@ -106,20 +106,25 @@ URxvt.perl-lib: ~/.urxvt/ext
 URxvt.iso14755: false
 
 ! disable the scrollbar
-URxvt.scrollBar: none
 
 
 ! font
 !URxvt.font: xft:terminus:size=12
 !URxvt.font:xft:Inconsolata:pixelsize=16,style=Medium, xft:Symbola:pixelsize=16,style=Regular
 !URxvt.boldFont:xft:Inconsolata:style=Bold,pixelsize=16, xft:Symbola:pixelsize=16,style=Regular
+
+!FiraMono
 URxvt.font: xft:FiraMono:size=12,hintstyle=hintfull
 URxvt.boldFont: xft:FiraMono:size=12,hintstyle=hintfull
 URxvt.italicFont: xft:FiraMono:size=12,hintstyle=hintfull
 URxvt.boldItalicFont: xft:FiraMono:size=12,hintstyle=hintfull
 URxvt.letterSpace: -2
 URxvt.linespace: 2
+URxvt.cursorUnderline: true
 URxvt.cursorBlink: 1
+URxvt.scrollBar: false
+/* URxvt.externalBorder: 0 */
+/* URxvt.internalBorder: 20 */
 
 ! enabled clipboard and selectable URLs
 URxvt.perl-ext-common:  default,clipboard,url-select,resize-font
