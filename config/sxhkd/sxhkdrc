@@ -39,10 +39,6 @@ super + m
 # Applications #
 ################
 
-# Launch terminal
-super + t
-    $TERMINAL
-
 # Launch web browser
 super + w
     firefox -P Accounts
