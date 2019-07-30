@@ -7,6 +7,9 @@
 for file in ~/.{utils,exports,bash_prompt,functions,path,aliases,dockerfunc,extra,bashrc}; do
     [[ -r "$file" ]] && [[ -f "$file" ]] && source "$file"
 done
+# for file in ~/.{utils,exports,functions,path,aliases,dockerfunc,extra,bashrc}; do
+    # [[ -r "$file" ]] && [[ -f "$file" ]] && source "$file"
+# done
 unset file
 
 # Case-insensitive globbing (used in pathname expansion)
