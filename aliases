@@ -89,130 +89,101 @@ alias f="vifm"
 # reload bash
 alias r="source ~/.profile"
 
-alias gcl='git clone'
-alias ga='git add'
-alias grm='git rm'
-alias gap='git add  -p'
-alias gall='git add -A'
-alias gf='git fetch --all --prune'
-alias gft='git fetch --all --prune --tags'
-alias gfv='git fetch --all --prune --verbose'
-alias gftv='git fetch --all --prune --tags --verbose'
-alias gus='git reset HEAD'
-alias gpristine='git reset  --hard && git clean -dfx'
-alias gclean='git clean -fd'
-alias gm="git merge"
-alias gmv='git mv'
-alias g='git'
-alias get='git'
-alias gst='git status'
-alias gs='git status'
-alias gss='git status -s'
-alias gsu='git submodule update --init --recursive'
-alias gl='git pull'
-alias glum='git pull upstream master'
-alias gpr='git pull --rebase'
-alias gpp='git pull && git push'
-alias gup='git fetch && git rebase'
-alias gp='git push'
-alias gpo='git push origin'
-alias gpu='git push --set-upstream'
-alias gpuo='git push --set-upstream origin'
-alias gpom='git push origin master'
-alias gr='git remote'
-alias grv='git remote -v'
-alias gra='git remote add'
-alias gua="git remote | xargs -L1 git push --all"
-alias gd='git diff'
-alias gdv='git diff -w "$@" | vim -R -'
-alias gc='git commit -v'
-alias gca='git commit -v -a'
-alias gcm='git commit -v -m'
-alias gcam='git commit -v -am'
-alias gci='git commit --interactive'
-alias gb='git branch'
-alias gba='git branch -a'
-alias gbt='git branch --track'
-alias gbm='git branch -m'
-alias gbd='git branch -d'
-alias gbD='git branch -D'
-alias gcount='git shortlog -sn'
-alias gcp='git cherry-pick'
-alias gco='git checkout'
-alias gcom='git checkout master'
-alias gcb='git checkout -b'
-alias gcob='git checkout -b'
-alias gct='git checkout --track'
-alias gexport='git archive --format zip --output'
-alias gdel='git branch -D'
-alias gmu='git fetch origin -v; git fetch upstream -v; git merge upstream/master'
-alias gll='git log --graph --pretty=oneline --abbrev-commit'
-alias gg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
-alias ggs="gg --stat"
-alias gsl="git shortlog -sn"
-alias gwc="git whatchanged"
-alias gt="git tag"
-alias gta="git tag -a"
-alias gtd="git tag -d"
-alias gtl="git tag -l"
-# From http://blogs.atlassian.com/2014/10/advanced-git-aliases/
-# Show commits since last pull
-alias gnew="git log HEAD@{1}..HEAD@{0}"
-# Add uncommitted and unstaged changes to the last commit
-alias gcaa="git commit -a --amend -C HEAD"
-alias ggui="git gui"
-alias gcsam="git commit -S -am"
-alias gstd="git stash drop"
-alias gstl="git stash list"
-alias gh='cd "$(git rev-parse --show-toplevel)"'
-alias cara='git commit --amend --reset-author'
-
-#vagrant
-alias vup="vagrant up"
-alias vh="vagrant halt"
-alias vs="vagrant suspend"
-alias vr="vagrant resume"
-alias vrl="vagrant reload"
-alias vssh="vagrant ssh"
-alias vst="vagrant status"
-alias vp="vagrant provision"
-alias vdstr="vagrant destroy"
-# requires vagrant-list plugin
-alias vl="vagrant list"
-# requires vagrant-hostmanager plugin
-alias vhst="vagrant hostmanager"
-
-# ssh
-alias sql='mysql -p -u root'
-alias mybook='ssh dnewman@mybook'
-alias myrouter='ssh root@192.168.0.1'
-#alias shockwave='ssh dnewman@thenewmans.no-ip.org -p2222'
-
-#
-# setup ssh-agent
-#
-
-# set environemtnvariables if user's agent already exists
-#[ -z "$SSH_AUTH_SOCK" ] && SSH_AUTH_SOCK=$(ls -l /tmp/ssh-*/agent.* 2> /dev/null | grep $(whoami) | awk '{print $9}')
-#[ -z "$SSH_AGENT_PID" -a -z `echo $SSH_AUTH_SOCK | cut -d. -f2` ] && SSH_AGENT_PID=$((`echo $SSH_AUTH_SOCK | cut -d. -f2` + 1))
-#[ -n "$SSH_AUTH_SOCK" ] && export SSH_AUTH_SOCK
-#[ -n "$SSH_AGENT_PID" ] && export SSH_AGENT_PID
-
-# start agent if necessary
-#if [ -z $SSH_AGENT_PID ] && [ -z $SSH_TTY ]; then  # if no agent & not in ssh
-#   eval `ssh-agent -s` > /dev/null
-#fi
-
-# setup addition of keys when needed
-#if [ -z "$SSH_TTY" ] ; then                     # if not using ssh
-#   ssh-add -l > /dev/null                        # check for keys
-#   if [ $? -ne 0 ] ; then
-#      alias ssh='ssh-add -l > /dev/null || ssh-add && unalias ssh ; ssh'
-#      if [ -f "/usr/lib/ssh/x11-ssh-askpass" ] ; then
-#               SSH_ASKPASS="/usr/lib/ssh/x11-ssh-askpass" ; export SSH_ASKPASS
-#      fi
-#   fi
-#fi
+if _have git; then
+	alias gcl='git clone'
+	alias ga='git add'
+	alias grm='git rm'
+	alias gap='git add  -p'
+	alias gall='git add -A'
+	alias gf='git fetch --all --prune'
+	alias gft='git fetch --all --prune --tags'
+	alias gfv='git fetch --all --prune --verbose'
+	alias gftv='git fetch --all --prune --tags --verbose'
+	alias gus='git reset HEAD'
+	alias gpristine='git reset  --hard && git clean -dfx'
+	alias gclean='git clean -fd'
+	alias gm="git merge"
+	alias gmv='git mv'
+	alias g='git'
+	alias get='git'
+	alias gst='git status'
+	alias gs='git status'
+	alias gss='git status -s'
+	alias gsu='git submodule update --init --recursive'
+	alias gl='git pull'
+	alias glum='git pull upstream master'
+	alias gpr='git pull --rebase'
+	alias gpp='git pull && git push'
+	alias gup='git fetch && git rebase'
+	alias gp='git push'
+	alias gpo='git push origin'
+	alias gpu='git push --set-upstream'
+	alias gpuo='git push --set-upstream origin'
+	alias gpom='git push origin master'
+	alias gr='git remote'
+	alias grv='git remote -v'
+	alias gra='git remote add'
+	alias gua="git remote | xargs -L1 git push --all"
+	alias gd='git diff'
+	alias gdv='git diff -w "$@" | vim -R -'
+	alias gc='git commit -v'
+	alias gca='git commit -v -a'
+	alias gcm='git commit -v -m'
+	alias gcam='git commit -v -am'
+	alias gci='git commit --interactive'
+	alias gb='git branch'
+	alias gba='git branch -a'
+	alias gbt='git branch --track'
+	alias gbm='git branch -m'
+	alias gbd='git branch -d'
+	alias gbD='git branch -D'
+	alias gcount='git shortlog -sn'
+	alias gcp='git cherry-pick'
+	alias gco='git checkout'
+	alias gcom='git checkout master'
+	alias gcb='git checkout -b'
+	alias gcob='git checkout -b'
+	alias gct='git checkout --track'
+	alias gexport='git archive --format zip --output'
+	alias gdel='git branch -D'
+	alias gmu='git fetch origin -v; git fetch upstream -v; git merge upstream/master'
+	alias gll='git log --graph --pretty=oneline --abbrev-commit'
+	alias gg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+	alias ggs="gg --stat"
+	alias gsl="git shortlog -sn"
+	alias gwc="git whatchanged"
+	alias gt="git tag"
+	alias gta="git tag -a"
+	alias gtd="git tag -d"
+	alias gtl="git tag -l"
+	# From http://blogs.atlassian.com/2014/10/advanced-git-aliases/
+	# Show commits since last pull
+	alias gnew="git log HEAD@{1}..HEAD@{0}"
+	# Add uncommitted and unstaged changes to the last commit
+	alias gcaa="git commit -a --amend -C HEAD"
+	alias ggui="git gui"
+	alias gcsam="git commit -S -am"
+	alias gstd="git stash drop"
+	alias gstl="git stash list"
+	alias gh='cd "$(git rev-parse --show-toplevel)"'
+	alias cara='git commit --amend --reset-author'
+fi
+if _have vagrant; then
+	#vagrant
+	alias vup="vagrant up"
+	alias vh="vagrant halt"
+	alias vs="vagrant suspend"
+	alias vr="vagrant resume"
+	alias vrl="vagrant reload"
+	alias vssh="vagrant ssh"
+	alias vst="vagrant status"
+	alias vp="vagrant provision"
+	alias vdstr="vagrant destroy"
+	# requires vagrant-list plugin
+	alias vl="vagrant list"
+	# requires vagrant-hostmanager plugin
+	alias vhst="vagrant hostmanager"
+fi
 
 # setup intellij idea
 if [ -d $HOME/tools/idea ] ; then
@@ -273,14 +244,6 @@ alias sha1='openssl sha1' # generate sha1 digest
 alias ports='netstat -tulanp' # show open ports
 
 #default interfaces for network commands
-alias ednstop='dnstop -l 5 eth0'
-alias evnstat='vnstat -i eth0'
-alias eiftop='iftop -i eth0'
-alias etcpdump='tpdump -i eth0'
-alias ethtool='ethtool eth0'
-
-alias iwconfig='iwconfig wlan0'
-
 alias ref="shortcuts >/dev/null ; source ~/.bashrc" # Refresh shortcuts
 alias mpv="mpv --input-ipc-server=/tmp/mpvsoc$(date +%s)"
 alias x="sxiv -ft *"
@@ -336,8 +299,6 @@ if _have colortail; then
     alias tailirc='/usr/bin/colortail -q -k /etc/colortail/conf.irc'
     alias colortail='colortail -q -k /etc/colortail/conf.messages'
 fi
-
-
 
 # only if we have a disc drive
 if [[ -b '/dev/sr0' ]]; then
@@ -581,14 +542,16 @@ if _have curl; then
 fi
 
 #Maven
-alias mci='mvn clean install'
-alias mi='mvn install'
-alias mrprep='mvn release:prepare'
-alias mrperf='mvn release:perform'
-alias mrrb='mvn release:rollback'
-alias mdep='mvn dependency:tree'
-alias mpom='mvn help:effective-pom'
-alias mcisk='mci -Dmaven.test.skip=true'
+if _have mvn; then
+	alias mci='mvn clean install'
+	alias mi='mvn install'
+	alias mrprep='mvn release:prepare'
+	alias mrperf='mvn release:perform'
+	alias mrrb='mvn release:rollback'
+	alias mdep='mvn dependency:tree'
+	alias mpom='mvn help:effective-pom'
+	alias mcisk='mci -Dmaven.test.skip=true'
+fi
 
 #NordVPN
 alias nord='sudo openvpn ~/Dropbox/nordvpn/us1967.nordvpn.com.udp1194.ovpn'

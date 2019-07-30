@@ -5,14 +5,18 @@
 # This config file will use environmental variabls such as $BROWSER and $TERMINAL.
 # You can set these variables in ~/.profile or ~/.bash_profile if you have it as bellow:
 #
-# export FILE="ranger"
-# export TERMINAL="st"
+
+font pango:Iosevka 9
+
+title_align center
 
 # #---Basic Definitions---# #
 # Needed for i3-gaps
-for_window [class="^.*"] border pixel 2
-gaps inner 15
-gaps outer 15
+for_window [class="^.*"] border pixel 0
+gaps inner 35
+
+floating_modifier $mod
+
 set $term --no-startup-id $TERMINAL
 set $mod Mod4
 set $stoprec --no-startup-id dmenurecord kill
@@ -21,85 +25,12 @@ set $reboot sudo -A reboot
 set $netrefresh --no-startup-id sudo -A systemctl restart NetworkManager
 set $hibernate sudo -A systemctl suspend
 
-# #---Starting External Scripts---# #
-# Setting the background
-exec --no-startup-id setbg
-# Starts dunst for notifications:
-exec --no-startup-id dunst
-# Composite manager:
-exec --no-startup-id xcompmgr
-# Runs the key remapping scripts
-exec --no-startup-id remaps
-# Unclutter makes the mouse invisible after a brief period
-exec --no-startup-id unclutter
-
 # Run the script to update the mpd i3block on change
-exec_always --no-startup-id mpdupdate
+#exec_always --no-startup-id mpdupdate
 # mpd startup
-exec --no-startup-id mpd
+#exec --no-startup-id mpd
 # Podboat automatic queue and download
-exec_always --no-startup-id podentr
-
-# Base16 Tomorrow colors
-#set $base00 #1d1f21
-#set $base01 #282a2e
-#set $base02 #373b41
-#set $base03 #969896
-#set $base04 #b4b7b4
-#set $base05 #c5c8c6
-#set $base06 #e0e0e0
-#set $base07 #ffffff
-#set $base08 #cc6666
-#set $base09 #de935f
-#set $base0A #f0c674
-#set $base0B #b5bd68
-#set $base0C #8abeb7
-#set $base0D #81a2be
-#set $base0E #b294bb
-#set $base0F #a3685a
-
-# Set Xresources colors
-set_from_resource $darkblack    color0  #000000
-set_from_resource $black        color8  #000000
-set_from_resource $darkred      color1  #000000
-set_from_resource $red          color9  #000000
-set_from_resource $darkgreen    color2  #000000
-set_from_resource $green        color10 #000000
-set_from_resource $darkyellow   color3  #000000
-set_from_resource $yellow       color11 #000000
-set_from_resource $darkblue     color4  #000000
-set_from_resource $blue         color12 #000000
-set_from_resource $darkmagenta  color5  #000000
-set_from_resource $magenta      color13 #000000
-set_from_resource $darkcyan     color6  #000000
-set_from_resource $cyan         color14 #000000
-set_from_resource $darkwhite    color7  #000000
-set_from_resource $white        color15 #000000
-set $transparent                #00000000
-
-#                       BORDER        BACKGROUND    TEXT      INDICATOR     CHILD_BORDER
-client.focused          $red          $red          $magenta  $darkmagenta  $darkblue
-client.unfocused        $transparent  $blue         $white    $darkblue     $darkblack
-client.focused_inactive $transparent  $blue         $white    $darkblue     $darkblack
-client.urgent           $darkred      $darkred      $black    $darkred      $darkred
-client.background $black
-
-bar {
-      font pango:mono 10
-      colors  {
-                background          $darkblack
-                statusline          $darkwhite
-                separator           $cyan
-                focused_workspace   $blue $darkblue $darkblack
-                active_workspace    $blue $blue     $darkwhite
-                inactive_workspace  $darkblack $darkblack $white
-                urgent_workspace    $darkblack $darkblack $white
-              }
-      status_command i3blocks
-      position top
-      mode dock
-      modifier None
-}
+#exec_always --no-startup-id podentr
 
 # #---Basic Bindings---# #
 bindsym $mod+Return       exec $term
@@ -118,21 +49,15 @@ bindsym $mod+grave           exec --no-startup-id dmenuunicode
 bindsym $mod+Shift+Delete     exec --no-startup-id lmc truemute ; exec --no-startup-id lmc pause ; exec --no-startup-id pauseallmpv; workspace 0; exec $term -e htop ; exec $term -e $FILE
 
 # Show selection:
-exec --no-startup-id showclip
-exec --no-startup-id xcqr
+#exec --no-startup-id showclip
+#exec --no-startup-id xcqr
 
 # #---Letter Key Bindings---# #
 bindsym $mod+q        [con_id="__focused__" instance="^(?!dropdown_).*$"] kill
 bindsym $mod+Shift+q  [con_id="__focused__" instance="^(?!dropdown_).*$"] kill
 
-bindsym $mod+w        exec $term -e nmtui
-bindsym $mod+Shift+w  exec --no-startup-id firefox -P work -no-remote
-bindsym $mod4+Shift+w exec --no-startup-id firefox -P accounts -no-remote
-
 bindsym $mod+e			exec $term -e neomutt && pkill -RTMIN+12 i3blocks
-bindsym $mod+Shift+e		exec --no-startup-id tutorialvids
 
-bindsym $mod+r 			exec $term -e $FILE
 bindsym $mod+Shift+r		exec --no-startup-id winresize
 
 bindsym $mod+t			split toggle
@@ -159,7 +84,7 @@ bindsym $mod+Shift+a		exec $term -e pulsemixer
 bindsym $mod+s			gaps inner current plus 5
 bindsym $mod+Shift+s		gaps inner current minus 5
 
-bindsym $mod+d			exec --no-startup-id dmenu_run
+bindsym $mod+d			exec rofi -show run -theme gruvbox_custom -font "Iosevka 9"
 bindsym $mod+Shift+d		gaps inner current set 0; gaps outer current set 0
 
 set $freeze Distraction-free mode (super+shift+f to reactivate bindings)
@@ -194,9 +119,7 @@ bindsym $mod+c			exec --no-startup-id freealf
 bindsym $mod+Shift+c		exec --no-startup-id camtoggle
 
 bindsym $mod+v			exec --no-startup-id st -e vim -c "VimwikiIndex"
-#bindsym $mod+Shift+v
 
-bindsym $mod+b			bar mode toggle
 bindsym $mod+Shift+b		floating toggle; sticky toggle; exec --no-startup-id bottomleft
 
 bindsym $mod+n			exec $term -e newsboat && pkill -RTMIN+6 i3blocks
@@ -408,4 +331,20 @@ bindsym XF86Documents		exec $term -e $FILE ~/Documents
 ##bindsym XF86Battery		exec
 ##bindsym XF86Bluetooth		exec
 bindsym XF86WLAN		exec $netrefresh
+
+# Resize window
+mode "resize" {
+	bindsym Left resize shrink width 10 px or 10 ppt
+	bindsym Down resize grow height 10 px or 10 ppt
+	bindsym Up resize shrink height 10 px or 10 ppt
+	bindsym Right resize grow width 10 px or 10 ppt
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+	bindsym $mod+r mode "default"
+}
+
+# Enter resize mode
+bindsym $mod+r mode "resize"
+
+exec_always --no-startup-id bash $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id compton -b
