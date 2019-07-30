@@ -21,7 +21,6 @@ endif
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
 
-  Plug 'tpope/vim-surround'
 	Plug 'scrooloose/nerdtree'
 	Plug 'airblade/vim-gitgutter'
 	Plug 'craigemery/vim-autotag'
@@ -32,42 +31,46 @@ endif
 	Plug 'haya14busa/incsearch.vim'
 	Plug 'justinmk/vim-dirvish'
 	Plug 'matze/vim-move'
+  Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-eunuch'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-repeat'
+  Plug 'tpope/vim-commentary'
 	Plug 'ntpeters/vim-better-whitespace'
 	Plug 'rhysd/conflict-marker.vim'
 	Plug 'sbdchd/neoformat'
 	Plug 'sheerun/vim-polyglot'
-	Plug 'tpope/vim-eunuch'
-	Plug 'tpope/vim-fugitive'
-	Plug 'tpope/vim-repeat'
 	Plug 'trevordmiller/nova-vim'
-
 	Plug 'whatyouhide/vim-lengthmatters'
-
 	Plug 'edkolev/promptline.vim'
 	Plug 'xolox/vim-misc'
-	Plug 'xolox/vim-easytags'
 
+  "" Markdown editing
+  Plug 'junegunn/goyo.vim'
+  Plug 'junegunn/limelight.vim'
+  Plug 'PotatoesMaster/i3-vim-syntax'
+  Plug 'vimwiki/vimwiki'
+  Plug 'plasticboy/vim-markdown'
+  Plug 'honza/vim-snippets'
+  Plug 'elzr/vim-json'
+  Plug 'godlygeek/tabular'
+  Plug 'vim-pandoc/vim-pandoc-syntax'
+  Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 
-	Plug 'junegunn/goyo.vim'
-	Plug 'junegunn/limelight.vim'
-	Plug 'PotatoesMaster/i3-vim-syntax'
-	Plug 'vimwiki/vimwiki'
-	Plug 'vim-airline/vim-airline'
+  "" Mode Line config
+  Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
-	Plug 'tpope/vim-commentary'
-	Plug 'vim-scripts/indentpython.vim'
+
+  "" Python coding
+  Plug 'vim-scripts/indentpython.vim'
 	Plug 'nvie/vim-flake8'
-	Plug 'kien/ctrlp.vim'
-	Plug 'vim-scripts/Pydiction'
-	Plug 'klen/rope-vim'
+  Plug 'vim-scripts/Pydiction'
+  Plug 'klen/rope-vim'
+
+
+  Plug 'kien/ctrlp.vim'
 	Plug 'vifm/vifm.vim'
 	Plug 'kovetskiy/sxhkd-vim'
-	Plug 'plasticboy/vim-markdown'
-	Plug 'honza/vim-snippets'
-	Plug 'elzr/vim-json'
-	Plug 'godlygeek/tabular'
-	Plug 'vim-pandoc/vim-pandoc-syntax'
-	Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 	Plug 'pearofducks/ansible-vim'
 	call plug#end()
 	"
@@ -104,7 +107,7 @@ endif
 	filetype plugin indent on
 	syntax on
 
-	colorscheme solarized
+	colorscheme xoria256
 
 " deoplete
 	let g:deoplete#enable_at_startup = 1

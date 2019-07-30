@@ -1,350 +1,239 @@
 # i3 config file (v4)
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
-
-# This config file will use environmental variabls such as $BROWSER and $TERMINAL.
-# You can set these variables in ~/.profile or ~/.bash_profile if you have it as bellow:
 #
+set $mod Mod4
 
-font pango:Iosevka 9
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below. ISO 10646 = Unicode
+font pango:Inconsolata Regular 10
 
-title_align center
-
-# #---Basic Definitions---# #
-# Needed for i3-gaps
-for_window [class="^.*"] border pixel 0
-gaps inner 35
-
+# Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-set $term --no-startup-id $TERMINAL
-set $mod Mod4
-set $stoprec --no-startup-id dmenurecord kill
-set $shutdown sudo shutdown -h now
-set $reboot sudo -A reboot
-set $netrefresh --no-startup-id sudo -A systemctl restart NetworkManager
-set $hibernate sudo -A systemctl suspend
+# start a terminal
+bindsym $mod+Return exec i3-sensible-terminal
 
-# Run the script to update the mpd i3block on change
-#exec_always --no-startup-id mpdupdate
-# mpd startup
-#exec --no-startup-id mpd
-# Podboat automatic queue and download
-#exec_always --no-startup-id podentr
+# kill focused window
+bindsym $mod+Shift+q kill
 
-# #---Basic Bindings---# #
-bindsym $mod+Return       exec $term
-bindsym $mod+Shift+Return exec --no-startup-id samedir
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
-bindsym $mod+Shift+space  floating toggle
-bindsym $mod+space        focus mode_toggle
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
 
-bindsym $mod+Escape       workspace prev
-bindsym $mod+Shift+Escape exec --no-startup-id prompt "Exit i3?" "i3-msg exit"
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
-bindsym $mod+Shift+BackSpace  exec --no-startup-id prompt "Reboot computer?" "$reboot"
-bindsym $mod+grave           exec --no-startup-id dmenuunicode
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
 
-#STOP/HIDE EVERYTHING
-bindsym $mod+Shift+Delete     exec --no-startup-id lmc truemute ; exec --no-startup-id lmc pause ; exec --no-startup-id pauseallmpv; workspace 0; exec $term -e htop ; exec $term -e $FILE
+# split in horizontal orientation
+bindsym $mod+n split h
 
-# Show selection:
-#exec --no-startup-id showclip
-#exec --no-startup-id xcqr
+# split in vertical orientation
+bindsym $mod+v split v
 
-# #---Letter Key Bindings---# #
-bindsym $mod+q        [con_id="__focused__" instance="^(?!dropdown_).*$"] kill
-bindsym $mod+Shift+q  [con_id="__focused__" instance="^(?!dropdown_).*$"] kill
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
 
-bindsym $mod+e			exec $term -e neomutt && pkill -RTMIN+12 i3blocks
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
 
-bindsym $mod+Shift+r		exec --no-startup-id winresize
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
 
-bindsym $mod+t			split toggle
-bindsym $mod+Shift+t		gaps inner current set 15; gaps outer current set 15
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
 
-bindsym $mod+y			exec $term -e calcurse
-bindsym $mod+Shift+y		exec --no-startup-id i3resize left
+# focus the parent container
+bindsym $mod+a focus parent
 
-bindsym $mod+u			exec --no-startup-id ddspawn tmuxdd
-bindsym $mod+Shift+u		exec --no-startup-id i3resize down
-
-bindsym $mod+i 			exec $term -e htop
-bindsym $mod+Shift+i		exec --no-startup-id i3resize up
-
-bindsym $mod+o			sticky toggle
-bindsym $mod+Shift+o		exec --no-startup-id i3resize right
-
-bindsym $mod+p			exec --no-startup-id lmc toggle
-bindsym $mod+Shift+p		exec --no-startup-id lmc pause
-
-bindsym $mod+a			exec --no-startup-id ddspawn dropdowncalc -f mono:pixelsize=24
-bindsym $mod+Shift+a		exec $term -e pulsemixer
-
-bindsym $mod+s			gaps inner current plus 5
-bindsym $mod+Shift+s		gaps inner current minus 5
-
-bindsym $mod+d			exec rofi -show run -theme gruvbox_custom -font "Iosevka 9"
-bindsym $mod+Shift+d		gaps inner current set 0; gaps outer current set 0
-
-set $freeze Distraction-free mode (super+shift+f to reactivate bindings)
-mode "$freeze" { bindsym $mod+Shift+f mode "default"
-}
-
-bindsym $mod+f			fullscreen toggle
-bindsym $mod+Shift+f		mode "$freeze" ;; exec --no-startup-id notify-send "<b>Distraction-free mode activated.</b> Press Super+Shift+f to return."
-
-bindsym $mod+g			workspace prev
-bindsym $mod+Shift+g		exec --no-startup-id gimp; workspace $ws5
-
-bindsym $mod+h			focus left
-bindsym $mod+Shift+h		move left 30
-
-bindsym $mod+j			focus down
-bindsym $mod+Shift+j		move down 30
-
-bindsym $mod+k			focus up
-bindsym $mod+Shift+k		move up 30
-
-bindsym $mod+l			focus right
-bindsym $mod+Shift+l		move right 30
-
-bindsym $mod+z			gaps outer current plus 5
-bindsym $mod+Shift+z		gaps outer current minus 5
-
-bindsym $mod+x			exec --no-startup-id lockscreen
-bindsym $mod+Shift+x		exec --no-startup-id prompt "Shutdown computer?" "$shutdown"
-
-bindsym $mod+c			exec --no-startup-id freealf
-bindsym $mod+Shift+c		exec --no-startup-id camtoggle
-
-bindsym $mod+v			exec --no-startup-id st -e vim -c "VimwikiIndex"
-
-bindsym $mod+Shift+b		floating toggle; sticky toggle; exec --no-startup-id bottomleft
-
-bindsym $mod+n			exec $term -e newsboat && pkill -RTMIN+6 i3blocks
-bindsym $mod+Shift+n		floating toggle; sticky toggle; exec --no-startup-id bottomright
-
-bindsym $mod+m 			exec --no-startup-id $term -e ncmpcpp
-bindsym $mod+Shift+m		exec --no-startup-id lmc mute
-
-# #---Workspace Bindings---# #
-bindsym $mod+Home		workspace $ws1
-bindsym $mod+Shift+Home		move container to workspace $ws1
-bindsym $mod+End		workspace $ws10
-bindsym $mod+Shift+End		move container to workspace $ws10
-bindsym $mod+Prior		workspace prev
-bindsym $mod+Shift+Prior	move container to workspace prev
-bindsym $mod+Next		workspace next
-bindsym $mod+Shift+Next		move container to workspace next
-bindsym $mod+Tab		workspace back_and_forth
-bindsym $mod+XF86Back		workspace prev
-bindsym $mod+Shift+XF86Back	move container to workspace prev
-bindsym $mod+XF86Forward	workspace next
-bindsym $mod+Shift+XF86Forward	move container to workspace next
-bindsym $mod+semicolon		workspace next
-bindsym $mod+apostrophe		split horizontal ;; exec $term
-bindsym $mod+slash		split vertical ;; exec $term
-bindsym $mod+Shift+slash	kill
-bindsym $mod+backslash		workspace back_and_forth
-
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+# focus the child container
+#bindsym $mod+d focus child
 
 # switch to workspace
-bindsym $mod+1		workspace $ws1
-bindsym $mod+2		workspace $ws2
-bindsym $mod+3		workspace $ws3
-bindsym $mod+4		workspace $ws4
-bindsym $mod+5		workspace $ws5
-bindsym $mod+6		workspace $ws6
-bindsym $mod+7		workspace $ws7
-bindsym $mod+8		workspace $ws8
-bindsym $mod+9		workspace $ws9
-bindsym $mod+0		workspace $ws10
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+1	move container to workspace $ws1
-bindsym $mod+Shift+2	move container to workspace $ws2
-bindsym $mod+Shift+3	move container to workspace $ws3
-bindsym $mod+Shift+4	move container to workspace $ws4
-bindsym $mod+Shift+5	move container to workspace $ws5
-bindsym $mod+Shift+6	move container to workspace $ws6
-bindsym $mod+Shift+7	move container to workspace $ws7
-bindsym $mod+Shift+8	move container to workspace $ws8
-bindsym $mod+Shift+9	move container to workspace $ws9
-bindsym $mod+Shift+0	move container to workspace $ws10
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
 
-for_window [class="Pinentry"] sticky enable
-for_window [class="sent"] border pixel 0px
-for_window [class="Blender"] move to workspace $ws6
-for_window [class="marble"] move to workspace $ws7
-for_window [title="GIMP Startup"] move workspace $ws5
-for_window [class="Gimp"] move workspace $ws5
-for_window [window_role="GtkFileChooserDialog"] resize shrink height 10 px
-for_window [title="Default - Wine desktop"] floating enable
+# move current workspace to different output
+bindsym $mod+x move workspace to output right
 
-# Bindings to make the webcam float and stick.
-for_window [title="mpvfloat"] floating enable
-for_window [title="mpvfloat"] sticky enable
-for_window [title="mpvfloat"] border pixel 0
-no_focus [title="mpvfloat"]
+# mark windows
+mode "focused" {
+    # keybindings for marking and jumping to clients
+    bindsym a exec i3-input -F 'mark %s' -P 'Mark name: '
+    bindsym g exec i3-input -F '[con_mark=%s] focus' -P 'Go to mark: '
 
-# #---Function Buttons---# #
-bindsym $mod+F1		exec --no-startup-id groff -kejpt -mom ~/.readme.mom -Tpdf | zathura -
-bindsym $mod+F2		restart
-bindsym $mod+F3		exec --no-startup-id displayselect
-bindsym $mod+F4		exec --no-startup-id prompt "Hibernate computer?" "$hibernate"
-bindsym $mod+F5		exec --no-startup-id $netrefresh
-bindsym $mod+F6		exec --no-startup-id $term -e transmission-remote-cli
-bindsym $mod+F7		exec --no-startup-id td-toggle
-bindsym $mod+F8		exec --no-startup-id ~/.config/mutt/etc/mailsync.sh
-bindsym $mod+F9		exec --no-startup-id dmenumount
-bindsym $mod+F10	exec --no-startup-id dmenuumount
-bindsym $mod+F11	exec --no-startup-id ducksearch
-bindsym $mod+F12	exec $term -e nmtui
+    # Assign marks to keys 1-10
+    bindsym Shift+1 mark mark1
+    bindsym Shift+2 mark mark2
+    bindsym Shift+3 mark mark3
+    bindsym Shift+4 mark mark4
+    bindsym Shift+5 mark mark5
+    bindsym Shift+6 mark mark6
+    bindsym Shift+7 mark mark7
+    bindsym Shift+8 mark mark8
+    bindsym Shift+9 mark mark9
+    bindsym Shift+0 mark mark10
 
-# #---Arrow Keys---# #
-bindsym $mod+Left		focus left
-bindsym $mod+Down		focus down
-bindsym $mod+Up			focus up
-bindsym $mod+Right 		focus right
-bindsym $mod+Shift+Left		move left
-bindsym $mod+Shift+Down		move down
-bindsym $mod+Shift+Up		move up
-bindsym $mod+Shift+Right 	move right
+    # Jump to clients marked 1-10
+    bindsym 1 [con_mark="mark1"] focus
+    bindsym 2 [con_mark="mark2"] focus
+    bindsym 3 [con_mark="mark3"] focus
+    bindsym 4 [con_mark="mark4"] focus
+    bindsym 5 [con_mark="mark5"] focus
+    bindsym 6 [con_mark="mark6"] focus
+    bindsym 7 [con_mark="mark7"] focus
+    bindsym 8 [con_mark="mark8"] focus
+    bindsym 9 [con_mark="mark9"] focus
+    bindsym 0 [con_mark="mark0"] focus
 
-# #---Media Keys---# #
-
-# Volume keys
-bindsym $mod+plus		exec --no-startup-id lmc up 5
-bindsym $mod+Shift+plus		exec --no-startup-id lmc up 15
-bindsym $mod+minus 		exec --no-startup-id lmc down 5
-bindsym $mod+Shift+minus	exec --no-startup-id lmc down 15
-bindsym $mod+less 		exec --no-startup-id lmc prev
-bindsym $mod+Shift+less		exec --no-startup-id lmc replay
-bindsym $mod+greater		exec --no-startup-id lmc next
-bindsym $mod+Shift+greater	exec --no-startup-id lmc next
-
-# For advancing forward/backward in an mpd song
-bindsym $mod+bracketleft 	exec --no-startup-id lmc back 10
-bindsym $mod+Shift+bracketleft 	exec --no-startup-id lmc back 120
-bindsym $mod+bracketright 	exec --no-startup-id lmc forward 10
-bindsym $mod+Shift+bracketright exec --no-startup-id lmc forward 120
-
-# For screenshots and recording
-bindsym Print 			exec --no-startup-id maim pic-full-"$(date '+%y%m%d-%H%M-%S').png"
-bindsym Shift+Print 		exec --no-startup-id maimpick
-bindsym $mod+Print		exec --no-startup-id dmenurecord
-bindsym $mod+Scroll_Lock	exec --no-startup-id "killall screenkey || screenkey"
-bindsym $mod+Delete		exec $stoprec
-bindsym XF86Launch1		exec --no-startup-id xset dpms force off
-
-# #---Extra XF86 Keys---# #
-# These are the extra media keys that some keyboards have.
-bindsym XF86AudioMute		exec --no-startup-id lmc mute
-bindsym XF86AudioLowerVolume	exec --no-startup-id lmc down 5
-bindsym Shift+XF86AudioLowerVolume	exec --no-startup-id lmc down 10
-bindsym Control+XF86AudioLowerVolume	exec --no-startup-id lmc down 1
-bindsym XF86AudioRaiseVolume	exec --no-startup-id lmc up 5
-bindsym Shift+XF86AudioRaiseVolume	exec --no-startup-id lmc up 10
-bindsym Control+XF86AudioRaiseVolume	exec --no-startup-id lmc up 1
-bindsym XF86PowerOff		exec --no-startup-id prompt "Shutdown computer?" "$shutdown"
-##bindsym XF86Copy		exec
-##bindsym XF86Open		exec
-##bindsym XF86Paste		exec
-##bindsym XF86Cut		exec
-##bindsym XF86MenuKB		exec
-bindsym XF86Calculator		exec $term -e R -q --no-save
-##bindsym XF86Sleep		This binding is typically mapped by systemd automatically.
-##bindsym XF86WakeUp		exec
-bindsym XF86Explorer		exec $term -e $FILE
-##bindsym XF86Send		exec
-##bindsym XF86Xfer		exec
-bindsym XF86WWW			exec --no-startup-id $BROWSER
-##bindsym XF86DOS		exec
-bindsym XF86ScreenSaver		exec exec --no-startup-id lockscreen
-##bindsym XF86RotateWindows	exec
-##bindsym XF86TaskPane		exec
-##bindsym XF86Favorites		exec
-bindsym XF86MyComputer		exec $term -e $FILE
-##bindsym XF86Back		exec
-##bindsym XF86Forward		exec
-bindsym XF86Eject		exec --no-startup-id dmenuumount
-bindsym XF86AudioNext		exec --no-startup-id lmc next
-bindsym XF86AudioPlay		exec --no-startup-id lmc toggle
-bindsym XF86AudioPrev		exec --no-startup-id lmc prev
-bindsym XF86AudioStop		exec --no-startup-id lmc toggle
-##bindsym XF86AudioRecord
-bindsym XF86AudioRewind		exec --no-startup-id lmc back 10
-bindsym XF86AudioForward	exec --no-startup-id lmc forward 10
-##bindsym XF86Phone		exec
-##bindsym XF86Tools		exec
-bindsym XF86HomePage		exec $BROWSER https://lukesmith.xyz
-bindsym XF86Reload		restart
-##bindsym XF86ScrollUp		exec
-##bindsym XF86ScrollDown		exec
-##bindsym XF86New		exec
-##bindsym XF86LaunchA		exec
-##bindsym XF86LaunchB		exec
-##bindsym XF86Launch2		exec
-##bindsym XF86Launch3		exec
-##bindsym XF86Launch4		exec
-##bindsym XF86Launch5		exec
-##bindsym XF86Launch6		exec
-##bindsym XF86Launch7		exec
-##bindsym XF86Launch8		exec
-##bindsym XF86Launch9		exec
-#bindsym XF86AudioMicMute	exec $micmute
-bindsym XF86TouchpadToggle	exec --no-startup-id toggletouchpad
-bindsym XF86TouchpadOn		exec --no-startup-id synclient TouchpadOff=0
-bindsym XF86TouchpadOff		exec --no-startup-id synclient TouchpadOff=1
-bindsym XF86Suspend		exec --no-startup-id lockscreen
-bindsym XF86Close		kill
-bindsym XF86WebCam		exec --no-startup-id camtoggle
-bindsym XF86Mail		exec $term -e neomutt && pkill -RTMIN+12 i3blocks
-bindsym XF86Messenger		exec $term -e weechat
-bindsym XF86Search		exec $BROWSER https://duckduckgo.com
-##bindsym XF86Go			exec
-##bindsym XF86Finance		exec
-##bindsym XF86Game		exec
-bindsym XF86Shop		exec $BROWSER https://ebay.com
-bindsym XF86MonBrightnessDown	exec --no-startup-id xbacklight -dec 15
-bindsym XF86MonBrightnessUp	exec --no-startup-id xbacklight -inc 15
-bindsym XF86AudioMedia		exec --no-startup-id $term -e ncmpcpp
-bindsym XF86Display		exec --no-startup-id displayselect
-#bindsym XF86KbdLightOnOff	exec
-#bindsym XF86KbdBrightnessDown	exec
-#bindsym XF86KbdBrightnessUp	exec
-##bindsym XF86Reply		exec
-##bindsym XF86MailForward	exec
-##bindsym XF86Save		exec
-bindsym XF86Documents		exec $term -e $FILE ~/Documents
-##bindsym XF86Battery		exec
-##bindsym XF86Bluetooth		exec
-bindsym XF86WLAN		exec $netrefresh
-
-# Resize window
-mode "resize" {
-	bindsym Left resize shrink width 10 px or 10 ppt
-	bindsym Down resize grow height 10 px or 10 ppt
-	bindsym Up resize shrink height 10 px or 10 ppt
-	bindsym Right resize grow width 10 px or 10 ppt
-	bindsym Return mode "default"
-	bindsym Escape mode "default"
-	bindsym $mod+r mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 
-# Enter resize mode
+bindsym $mod+m mode "focused"
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym l           resize shrink width 5 px or 5 ppt
+        bindsym k           resize grow height 5 px or 5 ppt
+        bindsym j           resize shrink height 5 px or 5 ppt
+        bindsym h           resize grow width 5 px or 5 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left        resize shrink width 5 px or 5 ppt
+        bindsym Down        resize grow height 5 px or 5 ppt
+        bindsym Up          resize shrink height 5 px or 5 ppt
+        bindsym Right       resize grow width 5 px or 5 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
 bindsym $mod+r mode "resize"
 
-exec_always --no-startup-id bash $HOME/.config/polybar/launch.sh
-exec_always --no-startup-id compton -b
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+    status_command  py3status
+    position        top
+    colors {
+        background #002b36
+        statusline #839496
+        separator #586e75
+
+        # State             Border  BG      Text
+        focused_workspace   #b58900 #b58900 #002b36
+        active_workspace    #586e75 #586e75 #002b36
+        inactive_workspace  #073642 #002b36 #839496
+        urgent_workspace    #cc6666 #cc6666 #fdf6e3
+    }
+}
+
+# Automatic workspace switching back-and-forth.
+workspace_auto_back_and_forth yes
+
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+minus scratchpad show
+
+# Window focus should not follow mouse
+focus_follows_mouse no
+
+# Cycle through workspaces with mouse.
+bindsym --whole-window button10 workspace next
+bindsym --whole-window button11 workspace prev
+
+# Show taskwarrior tasks.
+for_window [title="^taskwin$"] floating enable
+bindsym $mod+t exec termite --title taskwin -e ~/bin/display_tasks.sh
+
+# Float pinit windows
+for_window [title="^pinit$"] floating enable
+
+# Float pinentry windows
+for_window [title="^pinentry$"] floating enable
+
+# Float asoundconf-gtk windows
+for_window [title="^Default Sound Card$"] floating enable
+
+# Float pavucontrol windows
+for_window [title="^Volume Control$"] floating enable
+
+# float qcode windows
+for_window [title="^qcode$"] floating enable
+
+# float showme windows
+for_window [title="^showme$"] floating enable
+
+# float qalculate windows
+for_window [title="^Qalculate!$"] floating enable
+#
+# float edit_text windows
+for_window [title="^edit_text$"] floating enable
+
+# Window colors         Border  BG      Text    Indicator Child Border
+client.focused          #002b36 #586e75 #fdf6e3 #268bd2
+client.focused_inactive #002b36 #073642 #839496 #073642
+client.unfocused        #002b36 #073642 #839496 #073642
+client.urgent           #002b36 #cc6666 #fdf6e3 #002b36
+
+# Hide borders adjacent to screen edges
+hide_edge_borders both
+
+# Assign MPV to workspace 4 and focus
+assign [class="mpv"] 4
+for_window [class="mpv"] focus
