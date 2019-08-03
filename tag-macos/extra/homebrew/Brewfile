@@ -5,8 +5,15 @@ cask_args appdir: '/Applications'
 tap "caskroom/cask"
 tap "caskroom/fonts"
 tap "caskroom/versions"
+tap "heroku/brew"
 tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
 tap "homebrew/services"
+tap "koekeishiya/formulae"
+tap "thoughtbot/formulae"
+tap "universal-ctags/universal-ctags"
+
 
 # Core
 brew "openssl"
@@ -23,22 +30,55 @@ brew "libxslt"
 brew "libtool"
 brew "unixodbc"
 brew "unzip"
+brew "fasd"
+brew "bash"
+brew "bash-completion@2"
+brew "cmake"
+brew "cquery"
+brew "cscope"
+brew "ctags"
 
 # Handy Utils
 brew "ranger"
 brew "tree"
 brew "jq"
+brew "rcm"
+brew "heroku/brew/heroku"
+brew "vifm"
+brew "watchman"
+brew "redis", restart_service: true
+brew "shellcheck"
+brew "the_silver_searcher"
+brew "nmap"
+brew "postgresql", restart_service: true
+brew "sqlite"
+brew "mysql", restart_service: true
+brew "grep"
+brew "htop"
+brew "hub"
+brew "ifstat"
 
 # Handy Apps
 brew "neovim"
 brew "tmux"
 brew "youtube-dl"
+cask "meld"
+brew "kubernetes-helm"
 
 # Things to checkout
 brew "neofetch", args: ["HEAD"]
 brew "nnn"
 brew "figlet"
 brew "editorconfig"
+
+# Install yabai WM and utilities
+brew "yabai", args: ["HEAD"]
+brew "skhd"
+
+# Automation Utils
+brew "geckodriver"
+cask "chromedriver"
+
 
 cask "iterm2-nightly"
 cask "kitty"
