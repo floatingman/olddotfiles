@@ -1,0 +1,53 @@
+#!/usr/bin/env sh
+
+# bar settings
+yabai -m config status_bar                   off
+yabai -m config status_bar_text_font         "Iosevka Nerd Font:Bold:12.0"
+yabai -m config status_bar_icon_font         "Iosevka Nerd Font:Bold:14.0"
+yabai -m config status_bar_background_color  0xff000000
+yabai -m config status_bar_foreground_color  0xffa8a8a8
+yabai -m config status_bar_space_icon_strip          5 6 7 8 9 10
+yabai -m config status_bar_power_icon_strip   
+yabai -m config status_bar_clock_icon        
+
+# global settings
+yabai -m config mouse_follows_focus          off
+yabai -m config focus_follows_mouse          off
+yabai -m config window_placement             second_child
+yabai -m config window_topmost               off
+yabai -m config window_opacity               off
+yabai -m config window_shadow                on
+yabai -m config window_border                off
+yabai -m config window_border_width          2
+yabai -m config active_window_border_color   0xff0F72AB
+yabai -m config normal_window_border_color   0xff505050
+yabai -m config insert_window_border_color   0xffd75f5f
+yabai -m config active_window_opacity        1.0
+yabai -m config normal_window_opacity        0.90
+yabai -m config split_ratio                  0.50
+yabai -m config auto_balance                 off
+yabai -m config mouse_modifier               fn
+yabai -m config mouse_action1                move
+yabai -m config mouse_action2                resize
+
+# general space settings
+yabai -m config layout                       bsp
+yabai -m config top_padding                  50
+yabai -m config bottom_padding               20
+yabai -m config left_padding                 20
+yabai -m config right_padding                20
+yabai -m config window_gap                   10
+
+# rules
+yabai -m rule --add app=Mail space=2
+yabai -m rule --add app="Firefox Developer Edition" space=3
+yabai -m rule --add app=TIDAL space=4
+yabai -m rule --add app="^System Preferences$" manage=off border=off
+yabai -m rule --add app=Preview manage=off border=off
+yabai -m query --windows \
+    | jq '.[] | select(.shadow == 0 and (.app == "System Preferences" or .app == "Preview")).id' \
+    | xargs -I{} yabai -m window {} --toggle shadow
+yabai -m signal --add event=window_created  app='^(System Preferences|Preview)$' \
+    action='yabai -m window "${YABAI_WINDOW_ID}" --toggle shadow'
+
+echo "yabai configuration loaded.."
