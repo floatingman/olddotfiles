@@ -51,3 +51,8 @@ fi
 [[ -f /usr/local/mysql/bin/mysql ]] && _add_to_path "/usr/local/mysql/bin"
 
 [[ -d "$HOME/.cargo/bin" ]] && _add_to_path "$HOME/.cargo/bin"
+
+#mac stuff
+if $_ismac; then
+  _add_to_path "/usr/local/sbin"
+fi
