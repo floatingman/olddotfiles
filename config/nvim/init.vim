@@ -72,7 +72,10 @@ endif
 	Plug 'vifm/vifm.vim'
 	Plug 'kovetskiy/sxhkd-vim'
 	Plug 'pearofducks/ansible-vim'
-	call plug#end()
+
+  "" Theme related
+  Plug 'luochen1990/rainbow'
+  call plug#end()
 	"
 
 " common vim settings
@@ -270,3 +273,6 @@ if has("cscope")
 		cs add $CSCOPE_DB
 	endif
 endif
+
+" Rainbows!
+let g:rainbow_active = 1
