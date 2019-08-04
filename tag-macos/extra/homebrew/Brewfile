@@ -88,3 +88,7 @@ cask "sequel-pro"
 cask "firefox-developer-edition"
 cask "alfred"
 cask "docker"
+
+# fonts
+cask "font-iosevka"
+cask "font-iosevka-nerd-font"
