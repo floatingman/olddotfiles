@@ -32,18 +32,19 @@ yabai -m config mouse_action2                resize
 
 # general space settings
 yabai -m config layout                       bsp
-yabai -m config top_padding                  50
-yabai -m config bottom_padding               20
-yabai -m config left_padding                 20
-yabai -m config right_padding                20
+yabai -m config top_padding                  40
+yabai -m config bottom_padding               25
+yabai -m config left_padding                 0
+yabai -m config right_padding                0
 yabai -m config window_gap                   10
 
 # rules
-yabai -m rule --add app=Mail space=2
+yabai -m rule --add app=Newton space=2
 yabai -m rule --add app="Firefox Developer Edition" space=3
 yabai -m rule --add app=TIDAL space=4
 yabai -m rule --add app="^System Preferences$" manage=off border=off
 yabai -m rule --add app=Preview manage=off border=off
+yabai -m rule --add app=slack manage=on space=5
 yabai -m query --windows \
     | jq '.[] | select(.shadow == 0 and (.app == "System Preferences" or .app == "Preview")).id' \
     | xargs -I{} yabai -m window {} --toggle shadow
