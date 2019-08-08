@@ -75,6 +75,10 @@ endif
 
   "" Theme related
   Plug 'luochen1990/rainbow'
+
+  "" Coffeescript
+  Plug 'kchmck/vim-coffee-script'
+
   call plug#end()
 	"
 
