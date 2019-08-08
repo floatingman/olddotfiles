@@ -31,3 +31,4 @@ vimperator/info
 # Ignore neovim plugged files
 config/nvim/plugged/
 config/nvim/autoload/plug.vim
+tag-macos/config/ubersicht/widgets/mini-system-charts.widget/assets/network.db
