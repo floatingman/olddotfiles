@@ -22,6 +22,3 @@
 [submodule "bash-git-prompt"]
 	path = bash-git-prompt
 	url = https://github.com/magicmonty/bash-git-prompt.git
-[submodule "tag-macos/config/ubersicht/widgets/pecan"]
-	path = tag-macos/config/ubersicht/widgets/pecan
-	url = git@github.com:floatingman/pecan.git
