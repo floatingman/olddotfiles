@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # ===== Variables ========================
-gaps_top="30"
+gaps_top="20"
 gaps_bottom="24"
 gap_left="4"
 gaps_right="4"
@@ -12,9 +12,9 @@ focused_border_color="808080"
 preselect_border_color="2d74da"
 
 # ======= Status Bar =================================
-yabai -m config status_bar                   on
-yabai -m config status_bar_text_font         "Helvetica Neue:Bold:12.0"
-yabai -m config status_bar_icon_font         "FontAwesome:Regular:12.0"
+yabai -m config status_bar                   off
+yabai -m config status_bar_text_font         "Iosevka:Bold:14.0"
+yabai -m config status_bar_icon_font         "Iosevka:Regular:14.0"
 yabai -m config status_bar_background_color  0xff202020
 yabai -m config status_bar_foreground_color  0xffa8a8a8
 yabai -m config status_bar_space_icon_strip  I II III IV V VI VII VIII IX X
@@ -71,5 +71,17 @@ yabai -m rule --add app=Newton space=2
 #yabai -m rule --add app="Firefox Developer Edition" space=3
 yabai -m rule --add app=Preview manage=off border=off
 yabai -m rule --add label="Slack" app="^Slack$" manage=on display=2
+
+yabai -m signal --add event=space_changed \
+    action="osascript -e 'tell application \"Übersicht\" to refresh widget id \"nibar-spaces-primary-jsx\"'"
+yabai -m signal --add event=space_changed \
+    action="osascript -e 'tell application \"Übersicht\" to refresh widget id \"nibar-spaces-secondary-jsx\"'"
+
+yabai -m signal --add event=window_focused \
+    action="osascript -e 'tell application \"Übersicht\" to refresh widget id \"nibar-spaces-primary-jsx\"'"
+yabai -m signal --add event=window_focused \
+    action="osascript -e 'tell application \"Übersicht\" to refresh widget id \"nibar-spaces-secondary-jsx\"'"
+
+#YABAI_CERT=yabai-cert sh -c "$(curl -sSL "https://git.io/update-yabai")" &
 
 echo "yabai configuration loaded.."
