@@ -21,7 +21,7 @@ endif
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
 
-	Plug 'scrooloose/nerdtree'
+  Plug 'scrooloose/nerdtree'
 	Plug 'airblade/vim-gitgutter'
 	Plug 'craigemery/vim-autotag'
 	Plug 'benizi/vim-automkdir'
@@ -195,10 +195,6 @@ endif
 " Flag Unnecessary Whitespace
 	au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
-" YouCompleteMe config
-	let g:ycm_autoclose_preview_window_after_completion=1
-	map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
 " Make backspaces more powerfull
 	set backspace=indent,eol,start
 
@@ -280,3 +276,6 @@ endif
 
 " Rainbows!
 let g:rainbow_active = 1
+
+" vim-move
+let g:move_key_modifier = 'C'
