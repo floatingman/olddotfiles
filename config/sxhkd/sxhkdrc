@@ -4,19 +4,22 @@
 
 # Toggle mute
 XF86AudioMute
-    volume toggle
+   pulseaudio-ctl mute
 
 # Toggle mic mute
 XF86AudioMicMute
-    volume mic
+    pulseaudio-ctl mute-input
 
 # Change volume
 XF86Audio{Raise,Lower}Volume
-    volume {up,down}
+    pulseaudio-ctl {up,down} 2
 
 # Change volume
 super + {k,j}
-    volume {up,down}
+    pulseaudio-ctl {up,down} 2
+
+super + shift + {k,j}
+		pulseaudio-ctl {up,down} 10
 
 # Toggle mpd
 super + 0
@@ -34,10 +37,16 @@ super + slash
 super + m
     play
 
-
+# Mute individual pulse streams
+super + shift + m
+		pamute
 ################
 # Applications #
 ################
+
+# Launch terminal
+super + t
+		$TERMINAL
 
 # Launch web browser
 super + w
