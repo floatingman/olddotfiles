@@ -86,9 +86,6 @@ function ekill() { emacsclient -e '(kill-emacs)';}
 alias e=$EDITOR
 alias f="vifm"
 
-# reload bash
-alias r="source ~/.profile"
-
 if _have git; then
 	alias gcl='git clone'
 	alias ga='git add'
@@ -283,7 +280,7 @@ alias fgrep='fgrep --color=auto'
 alias mkdir='mkdir -p'
 alias myip='printf "%s\n" "$(curl --silent http://tnx.nl/ip)"'
 alias path='echo -e "${PATH//:/\n}"'
-alias reload='source ~/.bashrc'
+alias reload='source ~/.profile'
 alias ruler="echo .........1.........2.........3.........4.........5.........6.........7.........8"
 alias psm="echo '%CPU %MEM   PID COMMAND' && ps hgaxo %cpu,%mem,pid,comm | sort -nrk1 | head -n 10 | sed -e 's/-bin//' | sed -e 's/-media-play//'"
 alias blankcd="wodim -v dev=/dev/cdrw -blank=fast -eject"
@@ -524,7 +521,8 @@ if $_ismac; then
 fi
 
 #alias startz='curl -sSL https://raw.githubusercontent.com/dosel/t/i/p | bash -s start'
-alias startz='docker run --rm -ti --name zalenium -p 4444:4444 -e ZALENIUM_SELENIUM_CONTAINER_MEMORY_LIMIT=8589934592 -e ZALENIUM_SELENIUM_CONTAINER_CPU_LIMIT=400000000 -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/videos:/home/seluser/videos --privileged dosel/zalenium start --screenWidth 1920 --screenHeight 1080 --timeZone "America/Chicago"'
+alias startz='docker run --rm -ti --name zalenium -p 4444:4444 -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/videos:/home/seluser/videos --privileged dosel/zalenium start --screenWidth 1920 --screenHeight 1080 --timeZone "America/Chicago"'
+#alias startz='docker run --rm -ti --name zalenium -p 4444:4444 -e ZALENIUM_SELENIUM_CONTAINER_MEMORY_LIMIT=8589934592 -e ZALENIUM_SELENIUM_CONTAINER_CPU_LIMIT=400000000 -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/videos:/home/seluser/videos --privileged dosel/zalenium start --screenWidth 1920 --screenHeight 1080 --timeZone "America/Chicago"'
 alias stopz='curl -sSL https://raw.githubusercontent.com/dosel/t/i/p | bash -s stop'
 
 if _have curl; then

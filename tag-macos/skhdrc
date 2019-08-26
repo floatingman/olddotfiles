@@ -4,8 +4,8 @@ alt - return : "${HOME}"/bin/open_iterm2
 
 # focus window
 alt - h : yabai -m window --focus prev
-alt - j : yabai -m space  --focus next
-alt - k : yabai -m space  --focus prev
+alt - j : yabai -m space  --focus prev
+alt - k : yabai -m space  --focus next
 alt - l : yabai -m window --focus next
 
 # swap window
@@ -13,6 +13,16 @@ shift + alt - h : yabai -m window --warp prev
 shift + alt - j : yabai -m window --space next; yabai -m space --focus next
 shift + alt - k : yabai -m window --space prev; yabai -m space --focus prev
 shift + alt - l : yabai -m window --warp next
+
+# make floating window fill screen
+ shift + alt - up     : yabai -m window --grid 1:1:0:0:1:1
+
+# make floating window fill left-half of screen
+ shift + alt - left   : yabai -m window --grid 1:2:0:0:1:1
+
+# make floating window fill right-half of screen
+ shift + alt - right  : yabai -m window --grid 1:2:1:0:1:1
+
 
 # balance size of windows
 shift + alt - 0 : yabai -m space --balance
