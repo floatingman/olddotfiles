@@ -69,6 +69,8 @@ brew "tmux"
 brew "youtube-dl"
 cask "meld"
 brew "kubernetes-helm"
+brew "tldr"
+brew "ncdu"
 
 # Things to checkout
 brew "neofetch", args: ["HEAD"]
