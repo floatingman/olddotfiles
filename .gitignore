@@ -32,3 +32,12 @@ vimperator/info
 config/nvim/plugged/
 config/nvim/autoload/plug.vim
 tag-macos/config/ubersicht/widgets/mini-system-charts.widget/assets/network.db
+
+# Vim Temp Files #
+##################
+vim/backup/
+!vim/backup/.keep
+vim/undo
+!vim/undo/.keep
+vim/swaps
+!vim/swaps/.keep
