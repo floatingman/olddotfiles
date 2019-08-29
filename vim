@@ -1,1 +1,0 @@
-/home/dnewman/.config/nvim
