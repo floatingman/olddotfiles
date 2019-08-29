@@ -35,9 +35,9 @@ tag-macos/config/ubersicht/widgets/mini-system-charts.widget/assets/network.db
 
 # Vim Temp Files #
 ##################
-vim/backup/
-!vim/backup/.keep
-vim/undo
-!vim/undo/.keep
+vim/backups
+!vim/backups/.keep
+vim/undos
+!vim/undos/.keep
 vim/swaps
 !vim/swaps/.keep
