@@ -288,6 +288,11 @@ alias blankcd="wodim -v dev=/dev/cdrw -blank=fast -eject"
 # a good overview of a yesod application
 alias apptree='tree -I "dist|config|static|pandoc|tmp"'
 
+alias count_files_recursive='find . -type f -print | wc -l'
+alias count_files_recursive_per_directory='ls -d */ | xargs -I _ sh -c "find \"_\" -type f | wc -l | xargs echo _"'
+alias flat_this_dir="sudo find . -mindepth 2 -type f -exec mv -i '{}' . ';'"
+alias size_of_directory="ncdu --color dark -rr -x"
+
 # setup dual-montiors when plugged in
 alias dual='xrandr --output LVDS-0 --auto --output HDMI-0 --auto --right-of LVDS-0'
 
@@ -519,6 +524,28 @@ if $_ismac; then
     alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
     alias chrome-canary='/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary'
     alias grep='ggrep'
+
+    alias out="outdated_apps"
+    alias up="update_apps"
+
+    # Brew
+		alias brwe="brew"
+		alias bs="brew services"
+		alias bsl="brew services list"
+		alias bss="brew services start"
+		alias bssp="brew services stop"
+		alias bsr="brew services restart"
+		alias bsspa="brew services stop --all"
+		alias bi="brew_install"
+		alias bu="brew_uninstall"
+		alias bci="brew_cask_install"
+		alias bcu="brew_cask_uninstall"
+
+		alias i.='(idea $PWD &>/dev/null &)'
+    alias o.='open .'
+
+		alias privateip="ipconfig getifaddr en0"
+		alias publicip="dig +short myip.opendns.com @resolver1.opendns.com"
 fi
 
 #alias startz='curl -sSL https://raw.githubusercontent.com/dosel/t/i/p | bash -s start'
