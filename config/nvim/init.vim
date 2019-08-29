@@ -232,18 +232,18 @@ endif
 	set backspace=indent,eol,start
 
 " Make vim aware of virtualenv
-py << EOF
+  py << EOF
 import os.path
 import sys
 import vim
 if 'VIRTUAL_ENV' in os.environ:
-	project_base_dir = os.environ['VIRTUAL_ENV']
-	sys.path.insert(0, project_base_dir)
-	activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-	execfile(activate_this, dict(__file__=activate_this))
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  sys.path.insert(0, project_base_dir)
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
 EOF
 
-autocmd FileType python set omnifunc=pythoncomplete#Complete
+  autocmd FileType python set omnifunc=pythoncomplete#Complete
 
 " Set syntax highlighting
 	let python_highlight_all=1
@@ -269,62 +269,62 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 	let g:vim_markdown_json_frontmatter = 1 " for JSON format
 
 "" Markdown Preview
-let g:mkdp_auto_close = 0
-nnoremap <M-m> :MarkdownPreview<CR>
+  let g:mkdp_auto_close = 0
+  nnoremap <M-m> :MarkdownPreview<CR>
 
 " vim-airline
-let g:airline_theme = 'kolor'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
+  let g:airline_theme = 'kolor'
+  let g:airline_powerline_fonts = 1
+  let g:airline#extensions#tabline#enabled = 1
+  let g:airline#extensions#tabline#fnamemod = ':t'
 
 " gitgutter
-if exists('&signcolumn')
-  set signcolumn="yes"
-else
-  let g:gitgutter_sign_column_always = 1
-endif
+  if exists('&signcolumn')
+    set signcolumn="yes"
+  else
+    let g:gitgutter_sign_column_always = 1
+  endif
 
-let g:gitgutter_max_signs = 250
+  let g:gitgutter_max_signs = 250
 
 " LanguageClient-neovim
-let g:LanguageClient_serverCommands = {
-			\ 'cpp': ['/usr/local/Cellar/cquery/20180718/bin/cquery',
-			\ '--log-file=/tmp/cq.log',
-			\ '--init={"cacheDirectory":"/tmp/cquery/",
-			\									"blacklist": ["./build", "./ext"]}'],
-			\ 'ruby': ['~/.asdf/shims/solargraph', 'stdio'],
-			\ 'python': ['~/.asdf/shims/pyls'],
-			\ }
-let g:LanguageClient_autoStart = 1
+  let g:LanguageClient_serverCommands = {
+	  		\ 'cpp': ['/usr/local/Cellar/cquery/20180718/bin/cquery',
+		  	\ '--log-file=/tmp/cq.log',
+			  \ '--init={"cacheDirectory":"/tmp/cquery/",
+			  \									"blacklist": ["./build", "./ext"]}'],
+			  \ 'ruby': ['~/.asdf/shims/solargraph', 'stdio'],
+			  \ 'python': ['~/.asdf/shims/pyls'],
+			  \ }
+  let g:LanguageClient_autoStart = 1
 
 " cscope
-if has("cscope")
-	set csprg=/usr/local/bin/cscope
-	set csto=0
-	set cst
-	set nocsverb
-	if filereadable("cscope.out")
-		cs add cscope.out
-	elseif $CSOPE_DB != ""
-		cs add $CSCOPE_DB
-	endif
-endif
+  if has("cscope")
+	  set csprg=/usr/local/bin/cscope
+	  set csto=0
+	  set cst
+	  set nocsverb
+	  if filereadable("cscope.out")
+		  cs add cscope.out
+	  elseif $CSOPE_DB != ""
+		  cs add $CSCOPE_DB
+	  endif
+  endif
 
 " vim-fugitive
-map <leader>gs :Gstatus<cr>
-map <leader>gc :Gcommit<cr>
-map <leader>gl :Glog<cr>
+  map <leader>gs :Gstatus<cr>
+  map <leader>gc :Gcommit<cr>
+  map <leader>gl :Glog<cr>
 
 " config helpers
-command! InitEdit :e ~/.config/nvim/init.vim
-command! InitSource :source ~/.config/nvim/init.vim
+  command! InitEdit :e ~/.config/nvim/init.vim
+  command! InitSource :source ~/.config/nvim/init.vim
 
 " project level customization
-let g:project_file_name = 'project.vim'
-if !empty(glob(expand(g:project_file_name)))
-  exec 'source' fnameescape(g:project_file_name)
-endif
+  let g:project_file_name = 'project.vim'
+  if !empty(glob(expand(g:project_file_name)))
+    exec 'source' fnameescape(g:project_file_name)
+  endif
 
 " Rainbows!
-let g:rainbow_active = 1
+  let g:rainbow_active = 1
