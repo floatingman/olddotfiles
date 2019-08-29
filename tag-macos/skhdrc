@@ -3,10 +3,10 @@
 alt - return : "${HOME}"/bin/open_iterm2
 
 # focus window
-alt - h : yabai -m window --focus prev
-alt - j : yabai -m space  --focus prev
-alt - k : yabai -m space  --focus next
-alt - l : yabai -m window --focus next
+#alt - h : yabai -m window --focus prev
+# alt - j : yabai -m space  --focus prev
+# alt - k : yabai -m space  --focus next
+# alt - l : yabai -m window --focus next
 
 # swap window
 shift + alt - h : yabai -m window --warp prev
