@@ -88,7 +88,7 @@ endif
 	set backupdir=~/.vim/backups
 	set directory=~/.vim/swaps
 	set undofile
-	set undodir=~/.vim/undo
+	set undodir=~/.vim/undos
 	set noerrorbells
 	set splitbelow
 	set splitright
