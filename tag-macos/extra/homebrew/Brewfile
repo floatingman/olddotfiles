@@ -62,6 +62,7 @@ brew "prettyping"
 brew "fzf"
 brew "fasd"
 brew "bat"
+brew "diff-so-fancy"
 
 # Handy Apps
 brew "neovim"
