@@ -91,9 +91,10 @@ endif
 	set directory=~/.vim/swaps
 	set undofile
 	set undodir=~/.vim/undos
-	set noerrorbells
+	set visualbell
 	set splitbelow
 	set splitright
+  set autoread
 	set exrc
 	set secure
 	set nojoinspaces
@@ -101,9 +102,7 @@ endif
 	set completeopt=preview
 	set number
 	set ruler
-	set smartcase
 	set infercase
-	set ignorecase
 	set diffopt+=filler,vertical
 	set breakindent
 	set t_Co=256
@@ -111,6 +110,8 @@ endif
 	set tabstop=2
 	set softtabstop=2
 	set shiftwidth=2
+  set nowrap
+  set linebreak
 
 " Some basics:
 	filetype plugin indent on
@@ -133,7 +134,7 @@ endif
   nmap <leader>bq :bp <bar> bd #<cr>
   nmap <leader>bl :ls<cr>
 
-	colorscheme xoria256
+	colorscheme nova
 
 " deoplete
 	let g:deoplete#enable_at_startup = 1
@@ -328,3 +329,18 @@ EOF
 
 " Rainbows!
   let g:rainbow_active = 1
+
+" Auto indent pasted text
+  nnoremap p p=`]<C-o>
+  nnoremap P P=`]<C-o>
+
+" Folds
+  set foldmethod=indent   "fold based on indent
+  set foldnestmax=3       "deepest fold is 3 levels
+  set nofoldenable        "don't fold by default
+
+" Search
+  set incsearch
+  set hlsearch
+  set ignorecase
+  set smartcase
