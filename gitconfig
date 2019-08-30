@@ -1,99 +1,86 @@
 [user]
 	name = Daniel Newman
 [color]
-  ui = auto
+  ui = true
+  diff = auto
+  status = auto
+  branch = auto
+[fetch]
+  prune = true
 [push]
-  default = tracking
-[rerere]
-  enabled = 1
+  default = simple
 [diff]
-  algorithm = patience
-[diff "clojure"]
-  xfuncname = "^\\(.*"
+  tool = vimdiff
+  compactionHeuristic = true
+  indentHeuristic = true
+[difftool]
+  prompt = false
+[diff "json"]
+  textconv = python -m json.tool
+[diff "word"]
+  textconv = docx2txt
 [alias]
   aa = add --all
-  ap = add --patch
-  ca = commit --amend
-  ci = commit -v
   co = checkout
   cob = checkout -b
-  cot = checkout -t
   rso = remote show origin
   dc = diff --cached
   ds = diff --staged
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%Creset' --abbrev-commit --date=relative
-  l = log --pretty="format:'%C(yellow)%h %C(red)%G? %C(blue)%aN%C(reset)  %s'" --show-signature
-  lol = log --graph --decorate --pretty=oneline --abbrev-commit
-  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
   st = status -sb
-  stat = status -sb
-  status = status -sb
-  rips = rebase -i -p -s subtree
-  headless = !sh -c 'git symbolic-ref HEAD refs/heads/$0 && rm .git/index && git clean -fdx'
-  vtags = !sh -c 'git tag -l | xargs git tag -v'
-  ver = "!git log --pretty=format:'%ai %h' -1 | perl -pe 's,(\\d\\d\\d\\d)-(\\d\\d)-(\\d\\d) (\\d\\d):(\\d\\d):(\\d\\d) [^ ]+ ([a-z0-9]+),\\1\\2\\3+\\7,'"
-  pr = "!f() { git fetch origin pull/$1/head:pr/$1; }; f"
-  up = "!git remote update -p; git merge --ff-only @{u}"
-  in = !git up -i && git push -f && git checkout master && git pull && git merge -
-  br = branch
-  bl = blame -C
-  rb = branch -r
-  ab = branch -a
-  df = diff --word-diff
-  clm = !echo $(git log --author=\"$(git config user.name)\" --no-merges --before=$(date \"+%Y-%m-01T00:00\") --after=$(date -d \"-$(date +%d) days -1 month\" \"+%Y-%m-%dT23:59\") --reverse | grep commit | wc -l) commits last month
-	flm = !echo $(git log --author=\"$(git config user.name)\" --no-merges --before=$(date \"+%Y-%m-01T00:00\") --after=$(date -d \"-$(date +%d) days -1 month\" \"+%Y-%m-%dT23:59\") --reverse --stat | grep -Eo \"[0-9]{1,} files? changed\" | grep -Eo \"[0-9]{1,}\" | awk \"{ sum += \\$1 } END { print sum }\") files changed last month
-	ilm = !echo $(git log --author=\"$(git config user.name)\" --no-merges --before=$(date \"+%Y-%m-01T00:00\") --after=$(date -d \"-$(date +%d) days -1 month\" \"+%Y-%m-%dT23:59\") --reverse --stat | grep -Eo \"[0-9]{1,} insertions?\" | grep -Eo \"[0-9]{1,}\" | awk \"{ sum += \\$1 } END { print sum }\") insertions last month
-	dlm = !echo $(git log --author=\"$(git config user.name)\" --no-merges --before=$(date \"+%Y-%m-01T00:00\") --after=$(date -d \"-$(date +%d) days -1 month\" \"+%Y-%m-%dT23:59\") --reverse --stat | grep -Eo \"[0-9]{1,} deletions?\" | grep -Eo \"[0-9]{1,}\" | awk \"{ sum += \\$1 } END { print sum }\") deletions last month
-	slm = !echo $(git log --author=\"$(git config user.name)\" --no-merges --before=$(date \"+%Y-%m-01T00:00\") --after=$(date -d \"-$(date +%d) days -1 month\" \"+%Y-%m-%dT23:59\") --reverse | grep commit | wc -l) commits, $(git log --author=\"$(git config user.name)\" --no-merges --before=$(date \"+%Y-%m-01T00:00\") --after=$(date -d \"-$(date +%d) days -1 month\" \"+%Y-%m-%dT23:59\") --reverse --stat | grep -Eo \"[0-9]{1,} files? changed\" | grep -Eo \"[0-9]{1,}\" | awk \"{ sum += \\$1 } END { print sum }\") files changed, $(git log --author=\"$(git config user.name)\" --no-merges --before=$(date \"+%Y-%m-01T00:00\") --after=$(date -d \"-$(date +%d) days -1 month\" \"+%Y-%m-%dT23:59\") --reverse --stat | grep -Eo \"[0-9]{1,} insertions?\" | grep -Eo \"[0-9]{1,}\" | awk \"{ sum += \\$1 } END { print sum }\") insertions and $(git log --author=\"$(git config user.name)\" --no-merges --before=$(date \"+%Y-%m-01T00:00\") --after=$(date -d \"-$(date +%d) days -1 month\" \"+%Y-%m-%dT23:59\") --reverse --stat | grep -Eo \"[0-9]{1,} deletions?\" | grep -Eo \"[0-9]{1,}\" | awk \"{ sum += \\$1 } END { print sum }\") deletions last month
   unpushed = log --branches --not --remotes --simplify-by-decoration --decorate --oneline
   # counts how far behind current branch is
   count = "!f() { compareBranch=${1-master}; git rev-list --count HEAD ^$compareBranch; }; f"
-  # allows you to rebase commits from a branch into current checked out branch
-  squashbase = "!f() { branchName=${1-master}; commitCount=$(git count $branchName); git rebase -i HEAD~$commitCount; }; f"
-  # Creates a new branch named POD-number/new-feature
-  newb = "!f() { ticketnum=$1; branchName=$2; git checkout -b \"PE-${ticketnum}/${branchName}\"; }; f"
-  # Checkout the branch, pull it, check out the previous branch and rebase.
-  pullbase = "!f() { branchName=${1-master}; git checkout $branchName && git pull && git checkout - && git rebase -i $branchName; }; f"
-  # update local repo and delete any PRs matching number and pull latest PR
-  prstash = "!f(){ git checkout master && git fetch origin && (git branch -D pr/$1 || :) && git fetch origin refs/pull-requests/$1/merge:pr/$1 && git checkout pr/$1; };f"
+  # guesses which email address to use for a repo
   email-guess = !. ~/.git-scripts/email-guess.sh
   # subtree add
   sba = "!f() { git subtree add --prefix $2 $1 master --squash; }; f"
   # subtree update
   sbu = "!f() { git subtree pull --prefix $2 $1 master --squash; }; f"
+  # cool trick to use for demos
   next = '!git checkout `git rev-list HEAD..demo-end | tail -1`'
   prev = 'checkout HEAD^'
   remote-merged = !. ~/.git-scripts/git-remote-merged
   remote-notmerged = !. ~/.git-scripts/git-remote-notmerged
-[merge]
-  ff = only
-  tool = meld
-[diff]
-  mnemonicprefix = true
 [help]
   autocorrect = 1
 [core]
-  excludesfile = /home/dnewman/.gitignore
+  excludesfile = ~/.gitignore
+  attributesfile = ~/.gitattributes
+  editor = nvim
+  autocrlf = input
+  trustctime = false
+  precomposeunicode = false
 [color "branch"]
   current = yellow reverse
   local = yellow
   remote = green
 [color "diff"]
   meta = yellow bold
+  commit = green bold
   frag = magenta bold
   old = red bold
   new = green bold
+  whitespace = red reverse
+[color "diff-highlight"]
+  oldNormal = red bold
+  oldHighlight = "red bold 52"
+  newNormal = "green bold"
+  newHighlight = "green bold 22"
 [color "status"]
   added = yellow
   changed = green
   untracked = cyan
-[credential]
-  helper = wincred
 [github]
 	user = floatingman
-	oauth-token =
-[gui]
-	recentrepo = /Users/daniel.newman/gitrepo/synthesys
+  oauth-token =
+[apply]
+  # Detect whitespace errors when applying a patch
+  whitespace = fix
+[pager]
+  diff = diff-so-fancy | less --tabs=4 -RFX
+  show = diff-so-fancy | less --tabs=4 -RFX
+
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
