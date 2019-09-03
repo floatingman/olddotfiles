@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Action Configurations</key>
+	<array>
+		<dict>
+			<key>Action Type</key>
+			<integer>0</integer>
+			<key>Hot Key: Standard</key>
+			<dict>
+				<key>Key Code</key>
+				<integer>48</integer>
+				<key>Modifiers</key>
+				<integer>524288</integer>
+				<key>Visual Representation</key>
+				<string>⌥⇥</string>
+			</dict>
+			<key>Orientation</key>
+			<integer>0</integer>
+			<key>Placeholder</key>
+			<false/>
+			<key>Sort Order</key>
+			<integer>2</integer>
+			<key>Sort Order: Invert</key>
+			<false/>
+			<key>Spaces</key>
+			<true/>
+			<key>Tabs</key>
+			<true/>
+			<key>Tabs: Frontmost Window Only</key>
+			<false/>
+			<key>Tabs: Mode</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>Menu</key>
+			<true/>
+			<key>Placeholder: Mode</key>
+			<integer>1</integer>
+			<key>Sort Order</key>
+			<integer>9</integer>
+			<key>Spaces</key>
+			<true/>
+			<key>Tabs</key>
+			<true/>
+		</dict>
+	</array>
+	<key>Activate Item</key>
+	<true/>
+	<key>Activate On No Modifiers</key>
+	<true/>
+	<key>Application Name Color</key>
+	<data>
+	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMDhAJm
+	ZgEBhg==
+	</data>
+	<key>Application Name Shadow</key>
+	<false/>
+	<key>Auto-Enabled Once</key>
+	<true/>
+	<key>Classic Windowing Mode</key>
+	<true/>
+	<key>Cycle Apps &gt; Windows: Ignore Parent Orientation</key>
+	<true/>
+	<key>Dock Indicator Border Color</key>
+	<data>
+	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMDhAJm
+	ZoNmZmY/g83MTD+G
+	</data>
+	<key>Icon Mode: Superimpose Application Icon</key>
+	<true/>
+	<key>Ignore Non-Standard Windows</key>
+	<true/>
+	<key>Initial Selection: Sorted By Activity: Skip Active Entry</key>
+	<true/>
+	<key>Item Height</key>
+	<real>48</real>
+	<key>Key Badge Color</key>
+	<data>
+	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMGhANA
+	QECEhIQITlNTdHJpbmcBlIQBKwZTeXN0ZW2GhJaYHWFsdGVybmF0ZVNlbGVjdGVkQ29u
+	dHJvbENvbG9yhoSTlQGEBGZmZmYAAINQiX8/AYaG
+	</data>
+	<key>Last Daemon Hash</key>
+	<data>
+	UzJsDbqFRt/xqrsD7tvPfMVdHGM=
+	</data>
+	<key>Last Selected Tab</key>
+	<string>license</string>
+	<key>Maximum Width</key>
+	<real>-1</real>
+	<key>Panel Shadow</key>
+	<false/>
+	<key>Run Badge Script</key>
+	<true/>
+	<key>Selection Border Color</key>
+	<data>
+	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMDhAJm
+	ZgEBhg==
+	</data>
+	<key>Selection Color</key>
+	<data>
+	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMGhANA
+	QECEhIQITlNTdHJpbmcBlIQBKwZTeXN0ZW2GhJaYHWFsdGVybmF0ZVNlbGVjdGVkQ29u
+	dHJvbENvbG9yhoSTlQGEBGZmZmYAAINQiX8/AYaG
+	</data>
+	<key>Selection Window Name Color</key>
+	<data>
+	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMDhAJm
+	ZgEBhg==
+	</data>
+	<key>Show Application Names</key>
+	<true/>
+	<key>Show Minimized Bevels</key>
+	<true/>
+	<key>Show Previews</key>
+	<true/>
+	<key>Show Search Field</key>
+	<true/>
+	<key>Space Indicator Color</key>
+	<data>
+	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMDhAJm
+	ZoPNzEw/AYY=
+	</data>
+	<key>Use Core Window Fallback: Use AppleScript</key>
+	<true/>
+	<key>Window Name Color</key>
+	<data>
+	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMDhAJm
+	ZgEBhg==
+	</data>
+	<key>Window Name Shadow</key>
+	<false/>
+</dict>
+</plist>
