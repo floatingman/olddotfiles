@@ -235,7 +235,7 @@ alias cp='cp -i'
 alias rm='rm -i'
 alias mv='mv -i'
 alias ln='ln -i'
-alias t="fzf --preview 'bat --color \"always\" {}'"
+alias tp="fzf --preview 'bat --color \"always\" {}'"
 
 
 alias rm30='find * -mtime +30 -exec rm {} \;' # remove files older than 30 days
