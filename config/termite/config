@@ -9,7 +9,8 @@ allow_bold = true
 dynamic_title = true
 urgent_on_bell = true
 clickable_url = true
-#font = Iosevka 9
+font = IBM Plex Mono 16
+#font = Iosevka 16
 scrollback_lines = 1000
 search_wrap = true
 cursor_blink = system
@@ -20,43 +21,81 @@ cursor_shape = block
 scrollbar = off
 browser = xdg-open
 
+# [colors]
+# # Base16 Tomorrow
+# # Scheme: Chris Kempson (http://chriskempson.com)
+
+# foreground      = #c5c8c6
+# foreground_bold = #c5c8c6
+# cursor          = #c5c8c6
+# background      = #1d1f21
+
+# # 16 color space
+# color0  = #1d1f21
+# color1  = #cc6666
+# color2  = #b5bd68
+# color3  = #f0c674
+# color4  = #81a2be
+# color5  = #b294bb
+# color6  = #8abeb7
+# color7  = #c5c8c6
+# color8  = #969896
+# color9  = #cc6666
+# color10 = #b5bd68
+# color11 = #f0c674
+# color12 = #81a2be
+# color13 = #b294bb
+# color14 = #8abeb7
+# color15 = #ffffff
+
+# # 256 color space
+# color16 = #de935f
+# color17 = #a3685a
+# color18 = #282a2e
+# color19 = #373b41
+# color20 = #b4b7b4
+# color21 = #e0e0e0
 [colors]
-# Base16 Tomorrow
-# Scheme: Chris Kempson (http://chriskempson.com)
+# Gruvbox-dark
+# hard contrast: background = #1d2021
+background = #282828
+# soft contrast: background = #32302f
+foreground = #ebdbb2
+foreground_bold = #ebdbb2
 
-foreground      = #c5c8c6
-foreground_bold = #c5c8c6
-cursor          = #c5c8c6
-background      = #1d1f21
+# dark0 + gray
+color0 = #282828
+color8 = #928374
 
-# 16 color space
-color0  = #1d1f21
-color1  = #cc6666
-color2  = #b5bd68
-color3  = #f0c674
-color4  = #81a2be
-color5  = #b294bb
-color6  = #8abeb7
-color7  = #c5c8c6
-color8  = #969896
-color9  = #cc6666
-color10 = #b5bd68
-color11 = #f0c674
-color12 = #81a2be
-color13 = #b294bb
-color14 = #8abeb7
-color15 = #ffffff
+# neutral_red + bright_red
+color1 = #cc241d
+color9 = #fb4934
 
-# 256 color space
-color16 = #de935f
-color17 = #a3685a
-color18 = #282a2e
-color19 = #373b41
-color20 = #b4b7b4
-color21 = #e0e0e0
+# neutral_green + bright_green
+color2 = #98971a
+color10 = #b8bb26
+
+# neutral_yellow + bright_yellow
+color3 = #d79921
+color11 = #fabd2f
+
+# neutral_blue + bright_blue
+color4 = #458588
+color12 = #83a598
+
+# neutral_purple + bright_purple
+color5 = #b16286
+color13 = #d3869b
+
+# neutral_aqua + faded_aqua
+color6 = #689d6a
+color14 = #8ec07c
+
+# light4 + light1
+color7 = #a89984
+color15 = #ebdbb2
 
 [hints]
-font = xos4 Terminus Regular 12
 #foreground = #93e0e3
 #background = #3f3f3f
 #padding = 2
