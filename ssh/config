@@ -11,3 +11,7 @@ Host github.com
 
 Host thatsmyproblem.com
   IdentityFile ~/.ssh/id_ed25519
+
+Host jenkins
+  Hostname 192.168.97.31
+  User jenkins
