@@ -1,5 +1,7 @@
 [user]
-	name = Daniel Newman
+  name = Daniel Newman
+  email = dwnewman78@gmail.com
+  signingkey = C7B1A7755550807C
 [color]
   ui = true
   diff = auto
