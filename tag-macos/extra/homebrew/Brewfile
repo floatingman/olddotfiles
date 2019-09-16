@@ -1,7 +1,3 @@
-# vim:ft=ruby:
-
-cask_args appdir: '/Applications'
-
 tap "caskroom/cask"
 tap "caskroom/fonts"
 tap "caskroom/versions"
@@ -13,90 +9,103 @@ tap "homebrew/services"
 tap "koekeishiya/formulae"
 tap "thoughtbot/formulae"
 tap "universal-ctags/universal-ctags"
-
-
-# Core
-brew "openssl"
-brew "git"
-brew "gnupg"
-brew "wget"
-brew "curl"
-brew "coreutils"
-brew "automake"
 brew "autoconf"
-brew "libyaml"
-brew "readline"
-brew "libxslt"
-brew "libtool"
-brew "unixodbc"
-brew "unzip"
+brew "automake"
 brew "bash"
 brew "bash-completion@2"
+brew "bat"
+brew "libffi"
+brew "openssl@1.1"
+brew "readline"
+brew "sqlite"
+brew "xz"
+brew "openssl"
 brew "cmake"
+brew "coreutils"
 brew "cquery"
 brew "cscope"
 brew "ctags"
-brew "mas"
-
-# Handy Utils
-brew "imagemagick"
-brew "ranger"
-brew "tree"
-brew "jq"
-brew "rcm"
-brew "heroku/brew/heroku"
-brew "vifm"
-brew "watchman"
-brew "redis", restart_service: true
-brew "shellcheck"
-brew "the_silver_searcher"
-brew "nmap"
-brew "postgresql", restart_service: true
-brew "sqlite"
-brew "mysql", restart_service: true
+brew "curl"
+brew "diff-so-fancy"
+brew "editorconfig"
+brew "fasd"
+brew "p11-kit"
+brew "sdl2"
+brew "ffmpeg"
+brew "figlet"
+brew "fzf"
+brew "geckodriver"
+brew "git"
+brew "libgcrypt"
+brew "libusb"
+brew "gnupg"
 brew "grep"
 brew "htop"
 brew "hub"
 brew "ifstat"
-brew "prettyping"
-brew "fzf"
-brew "fasd"
-brew "bat"
-brew "diff-so-fancy"
-
-# Handy Apps
-brew "neovim"
-brew "tmux"
-brew "youtube-dl"
-cask "meld"
+brew "shared-mime-info"
+brew "libheif"
+brew "libtool"
+brew "imagemagick"
+brew "jq"
 brew "kubernetes-helm"
-brew "tldr"
+brew "libarchive"
+brew "libvterm"
+brew "libxslt"
+brew "libyaml"
+brew "mas"
+brew "youtube-dl"
+brew "mpv"
+brew "mysql", restart_service: true
 brew "ncdu"
-
-# Things to checkout
 brew "neofetch", args: ["HEAD"]
+brew "neovim"
+brew "nmap"
 brew "nnn"
-brew "figlet"
-brew "editorconfig"
-
-# Install yabai WM and utilities
-brew "yabai", args: ["HEAD"]
-brew "skhd"
-
-# Automation Utils
-brew "geckodriver"
-cask "chromedriver"
-
-
-cask "iterm2-nightly"
-cask "kitty"
-cask "keybase"
-cask "sketch"
-cask "sequel-pro"
-cask "firefox-developer-edition"
+brew "postgresql", restart_service: true
+brew "prettyping"
+brew "ranger"
+brew "redis", restart_service: true
+brew "shellcheck"
+brew "the_silver_searcher"
+brew "tldr"
+brew "tmux"
+brew "tree"
+brew "unixodbc"
+brew "unzip"
+brew "vifm"
+brew "watchman"
+brew "wget"
+brew "heroku/brew/heroku"
+brew "koekeishiya/formulae/skhd"
+brew "koekeishiya/formulae/yabai"
+brew "thoughtbot/formulae/rcm"
 cask "alfred"
+cask "chromedriver"
+cask "day-o"
 cask "docker"
-
-# fonts
-cask "font-iosevka"
-cask "font-iosevka-nerd-font"
+cask "gpg-suite"
+cask "keybase"
+cask "kitty"
+cask "meld"
+cask "sequel-pro"
+cask "sketch"
+cask "caskroom/fonts/font-iosevka"
+cask "caskroom/fonts/font-iosevka-nerd-font"
+cask "caskroom/versions/firefox-developer-edition"
+cask "caskroom/versions/iterm2-nightly"
+mas "Amphetamine", id: 937984704
+mas "Drafts", id: 1435957248
+mas "Evernote", id: 406056744
+mas "GarageBand", id: 682658836
+mas "iMovie", id: 408981434
+mas "Keynote", id: 409183694
+mas "LastPass", id: 926036361
+mas "Microsoft Remote Desktop", id: 1295203466
+mas "Monosnap", id: 540348655
+mas "Newton", id: 1059655371
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "Spark", id: 1176895641
+mas "Time Out", id: 402592703
+mas "Xcode", id: 497799835
