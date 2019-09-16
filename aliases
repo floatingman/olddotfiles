@@ -232,7 +232,7 @@ alias ccat="highlight --out-format=ansi" # Color cat - print file
 
 alias c='clear'
 alias h='history'
-#alias j='jobs -l'
+alias j='jobs -l'
 alias now='date +"%T"'
 alias nowtime=now
 alias nowdate='date +"%d-%m-%Y"'
@@ -261,6 +261,7 @@ alias count_files_recursive='find . -type f -print | wc -l'
 alias count_files_recursive_per_directory='ls -d */ | xargs -I _ sh -c "find \"_\" -type f | wc -l | xargs echo _"'
 alias flat_this_dir="sudo find . -mindepth 2 -type f -exec mv -i '{}' . ';'"
 alias size_of_directory="ncdu --color dark -rr -x"
+alias available_commands='bash -c "compgen -c"'
 
 # setup dual-montiors when plugged in
 alias dual='xrandr --output LVDS-0 --auto --output HDMI-0 --auto --right-of LVDS-0'
