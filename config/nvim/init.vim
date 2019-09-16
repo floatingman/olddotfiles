@@ -81,6 +81,9 @@ endif
   "" Coffeescript
   Plug 'kchmck/vim-coffee-script'
 
+  "" Colorscheme
+  Plug 'morhetz/gruvbox'
+
   call plug#end()
 	"
 
@@ -134,7 +137,7 @@ endif
   nmap <leader>bq :bp <bar> bd #<cr>
   nmap <leader>bl :ls<cr>
 
-	colorscheme nova
+	colorscheme gruvbox
 
 " deoplete
 	let g:deoplete#enable_at_startup = 1
@@ -344,3 +347,6 @@ EOF
   set hlsearch
   set ignorecase
   set smartcase
+
+" Vim-move
+  let g:move_key_modifier = 'C'
