@@ -16,6 +16,21 @@ export HISTCONTROL="ignoreboth:erasedups";
 export HISTSIZE= HISTFILESIZE=
 export HISTTIMEFORMAT="%c "
 
+
+# mac exports
+if $_ismac; then
+  export HOMEBREW_AUTO_UPDATE_SECS=86400
+  export HOMEBREW_NO_ANALYTICS=true
+  export HOMEBREW_INSTALL_BADGE="(ʘ‿ʘ)"
+  export HOMEBREW_BUNDLE_FILE_PATH=~/.extra/homebrew/Brewfile
+fi
+
+
+# For the fuzzy finder
+if _have fzf; then
+  export FZF_DEFAULT_OPTS='--color=bg+:24 --reverse'
+fi
+
 # standard in linux
 if $_islinux; then
     export LANG=en_US.UTF-8
@@ -40,17 +55,8 @@ fi
 # Don’t clear the screen after quitting a manual page
 export MANPAGER="less -X";
 
-#export DBUS_SESSION_BUS_ADDRESS=unix:path=/var/run/user/$(id -u)/bus;
-
-
 # custom ip var
 [[ -f "$HOME/.myip" ]] && export MYIP=$(cat "$HOME/.myip")
-
-# custom log directory
-#[[ -d "$HOME/log" ]] && export LOGS="$HOME/log" || export LOGS='/tmp'
-
-# screen tricks
-#_source "$HOME/.screen/bashrc.screen"
 
 # raw AWS keys stored and exported in separate file
 _source "$HOME/.aws_keys"
@@ -62,4 +68,3 @@ export GTAGSLABEL=ctags
 [[ -d "$HOME/.venvs/" ]] && export WORKON_HOME="$HOME/.venvs/"
 
 _source /usr/bin/virtualenvwrapper_lazy.sh
-
