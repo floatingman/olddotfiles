@@ -1,7 +1,13 @@
 #!/bin/bash
 
-[[ -r "$HOME/bin" ]] && export PATH="$PATH:$(du "$HOME/bin/" | cut -f2 | tr '\n' ':')"
-[[ -r "$HOME/.bin" ]] && export PATH="$PATH:$(du "$HOME/.bin/" | cut -f2 | tr '\n' ':')"
+
+if $_ismac; then
+  [[ -r "$HOME/bin" ]] && export PATH="$PATH:$(du -I .git "$HOME/bin" | cut -f2 | tr '\n' ':')"
+  [[ -r "$HOME/.bin" ]] && export PATH="$PATH:$(du -I .git "$HOME/.bin" | cut -f2 | tr '\n' ':')"
+else
+  [[ -r "$HOME/bin" ]] && export PATH="$PATH:$(du --exclude=.git "$HOME/bin" | cut -f2 | tr '\n' ':')"
+  [[ -r "$HOME/.bin" ]] && export PATH="$PATH:$(du --exclude=.git "$HOME/.bin" | cut -f2 | tr '\n' ':')"
+fi
 
 [[ -r "$HOME/.local/bin" ]] && _add_to_path "$HOME/.local/bin"
 
