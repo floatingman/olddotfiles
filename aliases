@@ -238,6 +238,9 @@ alias nowtime=now
 alias nowdate='date +"%d-%m-%Y"'
 #alias ping='ping -c 5'
 alias fastping='ping -c 100 -s .2'
+if _have prettyping; then
+  alias ping='prettyping --nolegend'
+fi
 
 alias ducks="du -sch .i[!.]* * |sort -rh |head -10" # print top 10 largest files in pwd
 alias free="free -m"                        # show sizes in MB
@@ -515,9 +518,9 @@ if $_ismac; then
     alias o.='open .'
 
 		alias privateip="ipconfig getifaddr en0"
-		alias publicip="dig +short myip.opendns.com @resolver1.opendns.com"
 fi
 
+alias publicip="dig +short myip.opendns.com @resolver1.opendns.com"
 #alias startz='curl -sSL https://raw.githubusercontent.com/dosel/t/i/p | bash -s start'
 alias startz='docker run --rm -ti --name zalenium -p 4444:4444 -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/videos:/home/seluser/videos --privileged dosel/zalenium start --screenWidth 1920 --screenHeight 1080 --timeZone "America/Chicago"'
 #alias startz='docker run --rm -ti --name zalenium -p 4444:4444 -e ZALENIUM_SELENIUM_CONTAINER_MEMORY_LIMIT=8589934592 -e ZALENIUM_SELENIUM_CONTAINER_CPU_LIMIT=400000000 -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/videos:/home/seluser/videos --privileged dosel/zalenium start --screenWidth 1920 --screenHeight 1080 --timeZone "America/Chicago"'
