@@ -39,3 +39,5 @@ if [[ -d "$HOME/Library/Android/sdk" ]]; then
        export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin
        export ANDROID_BUILD_TOOLS=$ANDROID_HOME/build-tools
 fi
+
+eval "$(starship init bash)"
