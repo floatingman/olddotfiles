@@ -143,16 +143,16 @@ URxvt.iso14755: false
 !URxvt.boldFont:xft:Inconsolata:style=Bold,pixelsize=16, xft:Symbola:pixelsize=16,style=Regular
 
 !FiraMono
-!URxvt.font: xft:FiraMono:size=16,hintstyle=hintfull
-!URxvt.boldFont: xft:FiraMono:size=16,hintstyle=hintfull
-!URxvt.italicFont: xft:FiraMono:size=16,hintstyle=hintfull
-!URxvt.boldItalicFont: xft:FiraMono:size=16,hintstyle=hintfull
+URxvt.font: xft:FiraMono:size=16,hintstyle=hintfull
+URxvt.boldFont: xft:FiraMono:size=16,hintstyle=hintfull
+URxvt.italicFont: xft:FiraMono:size=16,hintstyle=hintfull
+URxvt.boldItalicFont: xft:FiraMono:size=16,hintstyle=hintfull
 
 !IBM Plex Mono
-URxvt.font: xft:IBMPlexMono:size=16,hintstyle=hintfull
-URxvt.boldFont: xft:IBMPlexMono:size=16,hintstyle=hintfull
-URxvt.italicFont: xft:IBMPlexMono:size=16,hintstyle=hintfull
-URxvt.boldItalicFont: xft:IBMPlexMono:size=16,hintstyle=hintfull
+!URxvt.font: xft:IBMPlexMono:size=16,hintstyle=hintfull
+!URxvt.boldFont: xft:IBMPlexMono:size=16,hintstyle=hintfull
+!URxvt.italicFont: xft:IBMPlexMono:size=16,hintstyle=hintfull
+!URxvt.boldItalicFont: xft:IBMPlexMono:size=16,hintstyle=hintfull
 
 URxvt.letterSpace: -2
 URxvt.linespace: 2
