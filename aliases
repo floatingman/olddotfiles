@@ -554,3 +554,7 @@ fi
 
 #NordVPN
 alias nord='sudo openvpn ~/Dropbox/nordvpn/us1967.nordvpn.com.udp1194.ovpn'
+
+if [ -f ~/bin/composer.phar ]; then
+  alias composer='php ~/bin/composer.phar'
+fi
