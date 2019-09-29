@@ -1,194 +1,36 @@
-! hard contrast: *background: #1d2021
-*background: #282828
-! soft contrast: *background: #32302f
-*foreground: #ebdbb2
-! Black + DarkGrey
-*color0:  #282828
-*color8:  #928374
-! DarkRed + Red
-*color1:  #cc241d
-*color9:  #fb4934
-! DarkGreen + Green
-*color2:  #98971a
-*color10: #b8bb26
-! DarkYellow + Yellow
-*color3:  #d79921
-*color11: #fabd2f
-! DarkBlue + Blue
-*color4:  #458588
-*color12: #83a598
-! DarkMagenta + Magenta
-*color5:  #b16286
-*color13: #d3869b
-! DarkCyan + Cyan
-*color6:  #689d6a
-*color14: #8ec07c
-! LightGrey + White
-*color7:  #a89984
-*color15: #ebdbb2
-
-!! The default colors are "Gruvbox":
-/* *.color0: #1d2021 */
-/* *.color1: #cc241d */
-/* *.color2: #98971a */
-/* *.color3: #d79921 */
-/* *.color4: #458588 */
-/* *.color5: #b16286 */
-/* *.color6: #689d6a */
-/* *.color7: #a89984 */
-/* *.color8: #928374 */
-/* *.color9: #fb4934 */
-/* *.color10: #b8bb26 */
-/* *.color11: #fabd2f */
-/* *.color12: #83a598 */
-/* *.color13: #d3869b */
-/* *.color14: #8ec07c */
-/* *.color15: #ebdbb2 */
-
-! Base16 Tomorrow
-! Scheme: Chris Kempson (http://chriskempson.com)
-
-/* #define base00 #1d1f21 */
-/* #define base01 #282a2e */
-/* #define base02 #373b41 */
-/* #define base03 #969896 */
-/* #define base04 #b4b7b4 */
-/* #define base05 #c5c8c6 */
-/* #define base06 #e0e0e0 */
-/* #define base07 #ffffff */
-/* #define base08 #cc6666 */
-/* #define base09 #de935f */
-/* #define base0A #f0c674 */
-/* #define base0B #b5bd68 */
-/* #define base0C #8abeb7 */
-/* #define base0D #81a2be */
-/* #define base0E #b294bb */
-/* #define base0F #a3685a */
-
-/* *.foreground:   base05 */
-/* *.background:   base00 */
-/* *.cursorColor:  base05 */
-
-/* *.color0:       base00 */
-/* *.color1:       base08 */
-/* *.color2:       base0B */
-/* *.color3:       base0A */
-/* *.color4:       base0D */
-/* *.color5:       base0E */
-/* *.color6:       base0C */
-/* *.color7:       base05 */
-
-/* *.color8:       base03 */
-/* *.color9:       base08 */
-/* *.color10:      base0B */
-/* *.color11:      base0A */
-/* *.color12:      base0D */
-/* *.color13:      base0E */
-/* *.color14:      base0C */
-/* *.color15:      base07 */
-
-! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
-! use 'shell' template to set these if necessary
-/* *.color16:      base09 */
-/* *.color17:      base0F */
-/* *.color18:      base01 */
-/* *.color19:      base02 */
-/* *.color20:      base04 */
-/* *.color21: 	    base06 */
-
-! Dracula Xresources palette
-!*.foreground: #F8F8F2
-!*.background: #282A36
-!*.color0:     #000000
-!*.color8:     #4D4D4D
-!*.color1:     #FF5555
-!*.color9:     #FF6E67
-!*.color2:     #50FA7B
-!*.color10:    #5AF78E
-!*.color3:     #F1FA8C
-!*.color11:    #F4F99D
-!*.color4:     #BD93F9
-!*.color12:    #CAA9FA
-!*.color5:     #FF79C6
-!*.color13:    #FF92D0
-!*.color6:     #8BE9FD
-!*.color14:    #9AEDFE
-!*.color7:     #BFBFBF
-!*.color15:    #E6E6E6
-
 ! font settings
-Xft.dpi:        96
+Xft.dpi:        144
 Xft.antialias:  true
 Xft.hinting:    true
-Xft.rgba:       rgb
-Xft.hintstyle:  hintslight
+Xft.hintstyle:  hintfull
 Xft.autohint:   false
-Xft.lcdfilter:  lcddefault
-
-! LOGIN SHELLLLLLLLLLLLLLLLLL!!!!!!!!!!!
-URxvt.loginShell: true
-
-! perl library
-URxvt.perl-lib: ~/.urxvt/ext
-
-! reclaim ctrl+shift
-URxvt.iso14755: false
-
-! disable the scrollbar
-
 
 ! font
 !URxvt.font: xft:terminus:size=12
 !URxvt.font:xft:Inconsolata:pixelsize=16,style=Medium, xft:Symbola:pixelsize=16,style=Regular
 !URxvt.boldFont:xft:Inconsolata:style=Bold,pixelsize=16, xft:Symbola:pixelsize=16,style=Regular
 
-!FiraMono
-URxvt.font: xft:FiraMono:size=16,hintstyle=hintfull
-URxvt.boldFont: xft:FiraMono:size=16,hintstyle=hintfull
-URxvt.italicFont: xft:FiraMono:size=16,hintstyle=hintfull
-URxvt.boldItalicFont: xft:FiraMono:size=16,hintstyle=hintfull
+!Iosevka
+*.font: xft:Iosevka Nerd Font:size=11,style=regular
+*.boldFont: xft:Iosevka Nerd Font:size=11
+*.italicFont: xft:Iosevka Nerd Font:size=11
+*.boldItalicFont: xft:Iosevka Nerd Font:size=11
 
-!IBM Plex Mono
-!URxvt.font: xft:IBMPlexMono:size=16,hintstyle=hintfull
-!URxvt.boldFont: xft:IBMPlexMono:size=16,hintstyle=hintfull
-!URxvt.italicFont: xft:IBMPlexMono:size=16,hintstyle=hintfull
-!URxvt.boldItalicFont: xft:IBMPlexMono:size=16,hintstyle=hintfull
+!Iosevka
+!*.font: xft:Iosevka:size=16:style=medium
+!*.boldFont: xft:Iosevka:size=16:style=bold
+!*.italicFont: xft:Iosevka:size=16:style=italic
+!*.boldItalicFont: xft:Iosevka:size=16:style=bold
 
-URxvt.letterSpace: -2
+!Fira Mono
+!*.font: xft:Fira Mono:size=16:style=medium
+!*.boldFont: xft:Fira Mono:size=16:style=bold
+!*.italicFont: xft:Fira Mono:size=16:style=italic
+!*.boldItalicFont: xft:Fira Mono:size=16:style=bold
+
+*.letterSpace: -1
 URxvt.linespace: 2
-URxvt.cursorUnderline: true
-URxvt.cursorBlink: 1
-URxvt.scrollBar: false
-/* URxvt.externalBorder: 0 */
-/* URxvt.internalBorder: 20 */
 
-! enabled clipboard and selectable URLs
-URxvt.perl-ext-common:  default,clipboard,url-select,resize-font
-
-! activate resize font
-URxvt.resize-font.smaller: C-Down
-URxvt.resize-font.bigger: C-Up
-
-
-! set copy/paste shortcuts
-URxvt.keysym.Control-Shift-C: perl:clipboard:copy
-URxvt.keysym.Control-Shift-V: perl:clipboard:paste
-
-! set a taskbar icon
-URxvt.iconFile:         /usr/share/icons/oxygen/16x16/apps/utilities-terminal.png
-
-! configure selectable URLs
-URxvt.keysym.M-u:           perl:url-select:select_next
-URxvt.url-select.launcher:  xdg-open
-URxvt.url-select.underline: true
-
-!! scroll
-!! do not scroll with output
-URxvt*scrollTtyOutput:      false
-URxvt*scrollWithBuffer:     true
-URxvt*scrollTtyKeypress:    true
-
-!! scrollback buffer
-URxvt.secondaryScreen:      1
-URxvt.secondaryScroll:      0
-URxvt.secondaryWheel: 1
+#include ".Xresources.d/urxvt.xresources"
+#include ".Xresources.d/themes/grubox-dark.xresources"
+#include ".Xresources.d/themes/grubox-urxvt256.xresources"

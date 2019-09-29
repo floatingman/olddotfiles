@@ -335,7 +335,7 @@ if $_isarch; then
     else
         _have pacman-color && alias pacman='pacman-color'
     fi
-
+    _have yay && alias y='yay'
     alias p="sudo pacman"
     alias pacorphans='pacman -Rs $(pacman -Qtdq)'
     alias paccorrupt='sudo find /var/cache/pacman/pkg -name '\''*.part.*'\''' # sudo so we can quickly add -delete
