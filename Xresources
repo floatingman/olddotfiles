@@ -11,16 +11,16 @@ Xft.autohint:   false
 !URxvt.boldFont:xft:Inconsolata:style=Bold,pixelsize=16, xft:Symbola:pixelsize=16,style=Regular
 
 !Iosevka
-*.font: xft:Iosevka Nerd Font:size=11,style=regular
-*.boldFont: xft:Iosevka Nerd Font:size=11
-*.italicFont: xft:Iosevka Nerd Font:size=11
-*.boldItalicFont: xft:Iosevka Nerd Font:size=11
+!*.font: xft:Iosevka Nerd Font:size=11,style=regular
+!*.boldFont: xft:Iosevka Nerd Font:size=11
+!*.italicFont: xft:Iosevka Nerd Font:size=11
+!*.boldItalicFont: xft:Iosevka Nerd Font:size=11
 
 !Iosevka
-!*.font: xft:Iosevka:size=16:style=medium
-!*.boldFont: xft:Iosevka:size=16:style=bold
-!*.italicFont: xft:Iosevka:size=16:style=italic
-!*.boldItalicFont: xft:Iosevka:size=16:style=bold
+*.font: xft:Iosevka:size=16:style=medium
+*.boldFont: xft:Iosevka:size=16:style=bold
+*.italicFont: xft:Iosevka:size=16:style=italic
+*.boldItalicFont: xft:Iosevka:size=16:style=bold
 
 !Fira Mono
 !*.font: xft:Fira Mono:size=16:style=medium
