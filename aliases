@@ -92,45 +92,45 @@ fi
 
 if _have git; then
   alias gaa='git add -A'
-	alias gf='git fetch --all --prune'
-	alias gft='git fetch --all --prune --tags'
-	alias gfv='git fetch --all --prune --verbose'
-	alias gftv='git fetch --all --prune --tags --verbose'
-	alias gus='git reset HEAD'
-	alias gpristine='git reset --hard && git clean -dfx'
-	alias gclean='git clean -fd'
-	alias gs='git status'
-	alias gss='git status -s'
-	alias gsu='git submodule update --init --recursive'
-	alias gpr='git pull --rebase'
-	alias gpp='git pull && git push'
-	alias gup='git fetch && git rebase'
-	alias gps='git push'
-	alias gpo='git push origin'
+  alias gf='git fetch --all --prune'
+  alias gft='git fetch --all --prune --tags'
+  alias gfv='git fetch --all --prune --verbose'
+  alias gftv='git fetch --all --prune --tags --verbose'
+  alias gus='git reset HEAD'
+  alias gpristine='git reset --hard && git clean -dfx'
+  alias gclean='git clean -fd'
+  alias gs='git status'
+  alias gss='git status -s'
+  alias gsu='git submodule update --init --recursive'
+  alias gpr='git pull --rebase'
+  alias gpp='git pull && git push'
+  alias gup='git fetch && git rebase'
+  alias gps='git push'
+  alias gpo='git push origin'
   alias gpsf='git push --force'
-	alias gd='git diff --color'
-	alias gc='git commit -v'
-	alias gb='git branch'
-	alias gcount='git shortlog -sn'
-	alias gcp='git cherry-pick'
-	alias gco='git checkout'
-	alias gcom='git checkout master'
-	alias gcob='git checkout -b'
-	alias gexport='git archive --format zip --output'
-	alias gll='git log --graph --pretty=oneline --abbrev-commit'
-	alias gg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
-	alias ggs="gg --stat"
-	alias gwc="git whatchanged"
-	# From http://blogs.atlassian.com/2014/10/advanced-git-aliases/
-	# Show commits since last pull
-	alias gnew="git log HEAD@{1}..HEAD@{0}"
-	# Add uncommitted and unstaged changes to the last commit
-	alias gstd="git stash drop"
-	alias gstl="git stash list"
+  alias gd='git diff --color'
+  alias gc='git commit -v'
+  alias gb='git branch'
+  alias gcount='git shortlog -sn'
+  alias gcp='git cherry-pick'
+  alias gco='git checkout'
+  alias gcom='git checkout master'
+  alias gcob='git checkout -b'
+  alias gexport='git archive --format zip --output'
+  alias gll='git log --graph --pretty=oneline --abbrev-commit'
+  alias gg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+  alias ggs="gg --stat"
+  alias gwc="git whatchanged"
+  # From http://blogs.atlassian.com/2014/10/advanced-git-aliases/
+  # Show commits since last pull
+  alias gnew="git log HEAD@{1}..HEAD@{0}"
+  # Add uncommitted and unstaged changes to the last commit
+  alias gstd="git stash drop"
+  alias gstl="git stash list"
   alias gpl="git pull --rebase --autostash"
   grn() { git rebase -i HEAD~"$1"; }
-	alias gh='cd "$(git rev-parse --show-toplevel)"'
-	alias cara='git commit --amend --reset-author'
+  alias gh='cd "$(git rev-parse --show-toplevel)"'
+  alias cara='git commit --amend --reset-author'
   alias gca='git add --all && git commit --amend --no-edit'
 fi
 
@@ -168,8 +168,6 @@ fi
 if $_islinux; then
     alias dir='dir --color'
     alias ls='ls -h --group-directories-first --color=auto'
-
-
 else
     alias ls='ls -h'
 fi
@@ -249,15 +247,12 @@ alias df='df -h'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
-alias mkdir='mkdir -p'
 alias myip='printf "%s\n" "$(curl --silent http://tnx.nl/ip)"'
 alias path='echo -e "${PATH//:/\n}"'
 alias reload='source ~/.profile'
 alias ruler="echo .........1.........2.........3.........4.........5.........6.........7.........8"
 alias psm="echo '%CPU %MEM   PID COMMAND' && ps hgaxo %cpu,%mem,pid,comm | sort -nrk1 | head -n 10 | sed -e 's/-bin//' | sed -e 's/-media-play//'"
 alias blankcd="wodim -v dev=/dev/cdrw -blank=fast -eject"
-# a good overview of a yesod application
-alias apptree='tree -I "dist|config|static|pandoc|tmp"'
 
 alias count_files_recursive='find . -type f -print | wc -l'
 alias count_files_recursive_per_directory='ls -d */ | xargs -I _ sh -c "find \"_\" -type f | wc -l | xargs echo _"'
@@ -267,8 +262,6 @@ alias available_commands='bash -c "compgen -c"'
 
 # setup dual-montiors when plugged in
 alias dual='xrandr --output LVDS-0 --auto --output HDMI-0 --auto --right-of LVDS-0'
-
-_have albumbler && alias a='albumbler'
 
 if _have colortail; then
     alias tailirc='/usr/bin/colortail -q -k /etc/colortail/conf.irc'
@@ -282,24 +275,8 @@ if [[ -b '/dev/sr0' ]]; then
     alias backupdvd='dvdbackup -M -i /dev/sr0 -o ~/ripped/'
 fi
 
-# only if we have xmonad
-[[ -f "$HOME/.xmonad/xmonad.hs" ]] && alias checkmonad='(cd ~/.xmonad && ghci -ilib xmonad.hs)'
-
-# only for mplayer
-if _have mplayer; then
-    alias playiso='mplayer dvd://1 -dvd-device'
-    alias playdvd='mplayer dvdnav:// /dev/sr0'
-    alias playcda='mplayer cdda:// -cdrom-device /dev/sr0 -cache 10000'
-fi
-
 # mount an iso
 function mountiso() { sudo mount -t iso9660 -o loop "$@" /media/iso ;}
-
-if [[ -f '/sys/devices/platform/sony-laptop/thermal_control' ]]; then
-  alias silent='echo "silent" | sudo tee /sys/devices/platform/sony-laptop/thermal_control'
-  alias balanced='echo "balanced" | sudo tee /sys/devices/platform/sony-laptop/thermal_control'
-  alias performance='echo "performance" | sudo tee /sys/devices/platform/sony-laptop/thermal_control'
-fi
 
 alias sdn="sudo shutdown now"
 alias psref="gpg-connect-agent RELOADAGENT /bye" # Refresh gpg
@@ -322,8 +299,6 @@ if $_isubuntu; then
         alias apt='sudo apt'
     fi
 fi
-
-
 alias SS="sudo systemctl"
 alias trem="transmission-remote"
 
@@ -496,27 +471,24 @@ if $_ismac; then
     alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
     alias chrome-canary='/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary'
     alias grep='ggrep'
-
     alias out="outdated_apps"
     alias up="update_apps"
 
     # Brew
-		alias brwe="brew"
-		alias bs="brew services"
-		alias bsl="brew services list"
-		alias bss="brew services start"
-		alias bssp="brew services stop"
-		alias bsr="brew services restart"
-		alias bsspa="brew services stop --all"
-		alias bi="brew_install"
-		alias bu="brew_uninstall"
-		alias bci="brew_cask_install"
-		alias bcu="brew_cask_uninstall"
-
-		alias i.='(idea $PWD &>/dev/null &)'
+    alias brwe="brew"
+    alias bs="brew services"
+    alias bsl="brew services list"
+    alias bss="brew services start"
+    alias bssp="brew services stop"
+    alias bsr="brew services restart"
+    alias bsspa="brew services stop --all"
+    alias bi="brew_install"
+    alias bu="brew_uninstall"
+    alias bci="brew_cask_install"
+    alias bcu="brew_cask_uninstall"
+    alias i.='(idea $PWD &>/dev/null &)'
     alias o.='open .'
-
-		alias privateip="ipconfig getifaddr en0"
+    alias privateip="ipconfig getifaddr en0"
 fi
 
 alias publicip="dig +short myip.opendns.com @resolver1.opendns.com"
