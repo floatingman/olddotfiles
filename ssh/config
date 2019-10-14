@@ -1,3 +1,9 @@
+ControlMaster auto
+ControlPath /tmp/ssh_mux_%h_%p_%r
+ServerAliveInterval 30
+GSAPIAuthentication no
+UseRoaming no
+
 Host shockwave
   IdentityFile ~/.ssh/id_ed25519
   IdentitiesOnly yes
@@ -7,8 +13,15 @@ Host shockwave
   User dnewman
 
 Host github.com
-  IdentityFile  ~/.ssh/githubmaster.key
+     User git
+     HostName ssh.github.com
+     Port 443
 
+Host gist.github.com
+     User git
+     HostName ssh.github.com
+     Port 443
+     
 Host thatsmyproblem.com
   IdentityFile ~/.ssh/id_ed25519
 
