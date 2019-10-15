@@ -63,6 +63,21 @@ _load_bash_completion_files() {
     done
 }
 
+# Get screen dpi
+get_dpi() {
+    r=$( (xrandr | \
+             grep '\<connected\>' | \
+             head -n 1 | \
+             sed 's/[^0-9]/ /g' | \
+             awk '{printf "%.0f\n", $2 / ($6 * 0.0394)}') \
+           2>/dev/null)
+    if [ -z "$r" ]; then
+        echo 96  # fake it
+    else
+        echo "$r"
+    fi
+}
+
 # Add tab completion for SSH hostnames based on ~/.ssh/config
 # ignoring wildcards
 [[ -e "$HOME/.ssh/config" ]] && complete -o "default" \
