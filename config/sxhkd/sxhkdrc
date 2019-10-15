@@ -35,11 +35,11 @@ super + slash
 
 # Play the video URL in the clipboard
 super + m
-    play
+      play
 
 # Mute individual pulse streams
 super + shift + m
-		pamute
+      pamute
 ################
 # Applications #
 ################
@@ -75,16 +75,17 @@ super + p
 
 # Lock the screen
 control + alt + l
-    /usr/local/bin/lock
+    betterlockscreen -l
 
 # Lock the screen
 XF86ScreenSaver
-    /usr/local/bin/lock
+    betterlockscreen -l
 
 # Toggle trackpad
 XF86TouchpadToggle
-    trackpad-toggle.sh
-
+    toggle-touchpad.sh
+XF86Launch1
+    toggle-touchpad.sh
 
 # Change screen brightness
 XF86MonBrightness{Up,Down}
@@ -93,7 +94,3 @@ XF86MonBrightness{Up,Down}
 # Take a screenshot
 Print
     scrot 'screenshot_%Y-%m-%d-%H%M%S.png' -e 'mv $f ~/tmp'
-
-# Generate a QR code from the clipboard
-super + q
-    qcode
