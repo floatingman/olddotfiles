@@ -26,5 +26,6 @@ URxvt.linespace: 1
 URxvt.letterSpace: 0
 
 #include ".Xresources.d/urxvt.xresources"
-#include ".Xresources.d/themes/grubox-dark.xresources"
-#include ".Xresources.d/themes/grubox-urxvt256.xresources"
+!#include ".Xresources.d/themes/grubox-dark.xresources"
+!#include ".Xresources.d/themes/grubox-urxvt256.xresources"
+#include ".Xresources.d/themes/isotope.dark.xresource"
