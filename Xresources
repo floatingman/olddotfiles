@@ -1,29 +1,15 @@
+#include ".Xresources.h"
 ! font settings
-!Xft.dpi:        96
-!Xft.antialias:  true
-!Xft.hinting:    true
-!Xft.hintstyle:  hintfull
-!Xft.autohint:   false
-! font
-!*.font: xft:terminus:size=12
-!*.font:xft:Inconsolata:pixelsize=16,style=Medium, xft:Symbola:pixelsize=16,style=Regular
-!*.boldFont:xft:Inconsolata:style=Bold,pixelsize=16, xft:Symbola:pixelsize=16,style=Regular
+Xft.dpi:        $DPI
+Xft.antialias:  true
+Xft.hinting:    true
+Xft.hintstyle:  hintfull
+Xft.autohint:   false
 
-!Iosevka
-!URxvt.font: xft:Iosevka Nerd Font:size=11,style=medium
-!URxvt.boldFont: xft:Iosevka Nerd Font:size=11,style=bold
-!URxvt.italicFont: xft:Iosevka Nerd Font:size=11,style=italic
-!URxvt.boldItalicFont: xft:Iosevka Nerd Font:size=11,style=bold
-
-!Delugia font patched from Cascadia
-!URxvt.font: xft:DelugiaCode NF:size=16:style=medium
-!URxvt.boldFont: xft:DelugiaCode NF:size=16:style=bold
-!URxvt.italicFont: xft:DelugiaCode NF:size=16:style=italic
-!Urxvt.boldItalicFont: xft:DelugiaCode NF:size=16:style=bold
 
 XTerm.termName: xterm-256color
 XTerm.vt100.locale: true
-XTerm.vt100.faceName: Iosevka:size=12
+XTerm.vt100.faceName: Fira Code:size=FONT_SIZE
 XTerm.vt100.backarrowKey: false
 XTerm.ttyModes: erase ^?
 XTerm.vt100.metaSendsEscape: true
@@ -34,21 +20,11 @@ XTerm*multiScroll: true
 XTerm*scrollBar: false
 
 !Iosevka
-URxvt.font: xft:Iosevka:size=16:style=medium
-URxvt.boldFont: xft:Iosevka:size=16:style=bold
-URxvt.italicFont: xft:Iosevka:size=16:style=italic
-Urxvt.boldItalicFont: xft:Iosevka:size=16:style=bold
+!URxvt.font: xft:Noto Sans:size=FONT_SIZE
+URxvt.font: xft:Fira Code:style=Retina:pixelsize=FONT_SIZE:antialias=true:hinting=true
+URxvt.linespace: 1
+URxvt.letterSpace: 0
 
-
-!Fira Mono
-!URxvt.font: xft:Fira Mono:size=16:style=medium
-!URxvt.boldFont: xft:Fira Mono:size=16:style=bold
-!URxvt.italicFont: xft:Fira Mono:size=16:style=italic
-!URxvt.boldItalicFont: xft:Fira Mono:size=16:style=bold
-
-!*.letterSpace: -1
-URxvt.linespace: 2
-
-##include ".Xresources.d/urxvt.xresources"
-##include ".Xresources.d/themes/grubox-dark.xresources"
-##include ".Xresources.d/themes/grubox-urxvt256.xresources"
+#include ".Xresources.d/urxvt.xresources"
+#include ".Xresources.d/themes/grubox-dark.xresources"
+#include ".Xresources.d/themes/grubox-urxvt256.xresources"
