@@ -1,7 +1,6 @@
 ## -*- default-directory: "~/.dotfiles/"; -*-
 
 ## Options
-shopt -s globstar 2>/dev/null || true # quietly set if available
 shopt -s checkwinsize
 set +o histexpand
 # Append to the Bash history file, rather than overwriting it
@@ -243,29 +242,6 @@ export LD_LIBRARY_PATH
 export LD_RUN_PATH
 export PKG_CONFIG_PATH
 
-## Go
-_golatest() {
-    local r
-    if ! sort -rV </dev/null >/dev/null 2>&1; then
-        # Abort for crappy versions of sort
-        return
-    fi
-    for dir in "$@"; do
-        if [ -d "$dir" ]; then
-            r="$(find "$dir" -maxdepth 1 -name 'go-*' | sort -rV | head -n1)"
-            if [ -n "$r" ]; then
-                printf '%s' "$r"
-                break
-            fi
-        fi
-    done
-}
-PATH=$(add "${GOPATH:-$HOME/go}/bin" "$PATH")
-golatest="$(_golatest "${GOPATH:-$HOME/go}")"
-if [ -n "$golatest" ]; then
-    PATH=$(add "$golatest/bin" "$PATH")
-fi
-
 ## Agents
 if command -v keychain > /dev/null 2>&1; then
     eval $(keychain --eval --quiet)
@@ -297,20 +273,7 @@ colorscheme() {
 colorscheme
 
 ## Functions
-
-title() {
-  printf "\e]2;%s\a" $1
-}
-
-nporc() {
-  if $(which nproc >/dev/null 2>&1); then
-    command nproc
-  elif [ -e /proc/cpuinfo ]; then
-    grep ^processor < /proc/cpuinfo | wc -l
-  else
-    sysctl -n hw.ncpu
-  fi
-}
+source ~/.functions
 
 ## Aliases
 source ~/.bash_aliases
