@@ -105,12 +105,12 @@ google() {
 # go to google for a definition
 define() {
     _have w3m     || return 1
-    _have mplayer || return 1
+    _have mpv || return 1
 
     local word="$*"
 
     w3m -dump "http://www.google.com/search?q=define%20${word// /_}" | awk '/^     1./,/^        More info >>/'
-    mplayer "http://ssl.gstatic.com/dictionary/static/sounds/de/0/${word// /_}.mp3" &>/dev/null
+    mpv "http://ssl.gstatic.com/dictionary/static/sounds/de/0/${word// /_}.mp3" &>/dev/null
 }
 
 # grep by paragraph
@@ -612,3 +612,14 @@ shdl() { curl -O $(curl -s http://sci-hub.tw/"$@" | grep location.href | grep -o
 se() { du -a ~/bin/* ~/.config/* | awk '{print $2}' | fzf | xargs -r $EDITOR ;}
 sv() { vcopy "$(du -a ~/bin/* ~/.config/* | awk '{print $2}' | fzf)" ;}
 vf() { fzf | xargs -r -I % $EDITOR % ;}
+
+# Return the number of processors available
+nproc() {
+  if $(which nproc >/dev/null 2>&1); then
+    command nproc
+  elif [ -e /proc/cpuinfo ]; then
+    grep ^processor < /proc/cpuinfo | wc -l
+  else
+    sysctl -n hw.ncpu
+  fi
+}
