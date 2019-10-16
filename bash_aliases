@@ -16,12 +16,54 @@ alias m='mpv'
 alias ms='mpv --shuffle'
 alias npr='mpv http://wamu-1.streamguys.com'
 
+# docker
+if _have docker; then
+
+    # Kill all running containers
+    alias dockerkillall='docker kill $(docker ps -q)'
+
+    # Delete all stopped containers.
+    alias dockercleanac='printf "\n>>> Deleting stopped containers\n\n" && docker rm $(docker ps -a -q)'
+
+    # Delete all untagged images.
+    alias dockercleani='printf "\n>>> Deleting untagged images\n\n" && docker rmi $(docker images -q -f dangling=true)'
+
+    # Delete all stopped conatiners and untagged images.
+    alias dockerclean='dockercleanc || true && dockercleani'
+fi
+
+if $_islinux; then
+  alias um='udiskie-mount -r'
+  alias uu='udiskie-umount'
+fi
+
+if _have rtorrent; then
+    alias rtunlock="rm -f /mnt/SuperBig/Downloads/torrents/session/rtorrent.lock"
+fi
+
 # tmux
 if _have tmux; then
     alias t='tmux attach || tmux'
     alias txl='tmux ls'
     alias txn='tmux new -s'
     alias txa='tmux a -t'
+fi
+
+if _have vagrant; then
+	#vagrant
+	alias vup="vagrant up"
+	alias vh="vagrant halt"
+	alias vs="vagrant suspend"
+	alias vr="vagrant resume"
+	alias vrl="vagrant reload"
+	alias vssh="vagrant ssh"
+	alias vst="vagrant status"
+	alias vp="vagrant provision"
+	alias vdstr="vagrant destroy"
+	# requires vagrant-list plugin
+	alias vl="vagrant list"
+	# requires vagrant-hostmanager plugin
+	alias vhst="vagrant hostmanager"
 fi
 
 if _have youtube-dl; then
@@ -106,7 +148,7 @@ alias lm="ls -al | more" #lists your files a screen at a time
 alias l.="ls -d .* --color=auto"  #list all hidden files and directories
 alias usage="du -skc * | sort -rn | more" #lists the sizes in blocks of all your files and sorts them in size order
 alias total="du -ch | grep total" #find total size of directory and subdirectories
-alias lsDir='ls -d */' #lisitng directories only
+alias lsDir='ls -d */' #listing directories only
 alias again="vim `ls -t | head -1`"
 alias fixdirs="find . -type d -exec chmod o-rwx {} \;"
 alias fixvideo="sudo chown -R dnewman /mnt/SuperBig/Media/Video/Movies/ && sudo chown -R dnewman /mnt/SuperBig/Media/Video/TV/"
@@ -244,9 +286,6 @@ alias cpuinfo='lscpu'
 #get GPU ram
 alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 
-#NordVPN
-alias nord='sudo openvpn ~/Dropbox/nordvpn/us1967.nordvpn.com.udp1194.ovpn'
-
 alias publicip="dig +short myip.opendns.com @resolver1.opendns.com"
 
 #Misc Utilities
@@ -280,4 +319,125 @@ alias psref="gpg-connect-agent RELOADAGENT /bye" # Refresh gpg
 #update dotfiles
 if [ -d "$HOME/.dotfiles" ]; then
     alias ud='cd $HOME/.dotfiles && git pull origin master && rcup -v -x README.md && cd -'
+fi
+
+# Common Hadoop File System Aliases
+if _have hadoop; then
+  alias hf="hadoop fs"                                         # Base Hadoop fs command
+  alias hfcat="hf -cat"                                        # Output a file to standard out
+  alias hfchgrp="hf -chgrp"                                    # Change group association of files
+  alias hfchmod="hf -chmod"                                    # Change permissions
+  alias hfchown="hf -chown"                                    # Change ownership
+  alias hfcfl="hf -copyFromLocal"                              # Copy a local file reference to HDFS
+  alias hfctl="hf -copyToLocal"                                # Copy a HDFS file reference to local
+  alias hfcp="hf -cp"                                          # Copy files from source to destination
+  alias hfdu="hf -du"                                          # Display aggregate length of files
+  alias hfdus="hf -dus"                                        # Display a summary of file lengths
+  alias hfget="hf -get"                                        # Get a file from hadoop to local
+  alias hfgetm="hf -getmerge"                                  # Get files from hadoop to a local file
+  alias hfls="hf -ls"                                          # List files
+  alias hfll="hf -lsr"                                         # List files recursivly
+  alias hfmkdir="hf -mkdir"                                    # Make a directory
+  alias hfmv="hf -mv"                                          # Move a file
+  alias hfput="hf -put"                                        # Put a file from local to hadoop
+  alias hfrm="hf -rm"                                          # Remove a file
+  alias hfrmr="hf -rmr"                                        # Remove a file recursivly
+  alias hfsr="hf -setrep"                                      # Set the replication factor of a file
+  alias hfstat="hf -stat"                                      # Returns the stat information on the path
+  alias hftail="hf -tail"                                      # Tail a file
+  alias hftest="hf -test"                                      # Run a series of file tests. See options
+  alias hftouch="hf -touchz"                                   # Create a file of zero length
+
+  # Convenient Hadoop File System Aliases
+  alias hfet="hf -rmr .Trash"                                  # Remove/Empty the trash
+  function hfdub() {                                           # Display aggregate size of files descending
+    hadoop fs -du "$@" | sort -k 1 -n -r
+  }
+
+  #Common Hadoop Job Commands
+  alias hj="hadoop job"                                        # Base Hadoop job command
+  alias hjstat="hj -status"                                    # Print completion percentage and all job counters
+  alias hjkill="hj -kill"                                      # Kills the job
+  alias hjhist="hj -history"                                   # Prints job details, failed and killed tip details
+  alias hjlist="hj -list"                                      # List jobs
+
+#Common Hadoop DFS Admin Commands
+  alias habal="hadoop balancer"                                # Runs a cluster balancing utility
+  alias harep="hadoop dfsadmin -report"                        # Print the hdfs admin report
+fi
+
+#Common Oozie Aliases/Functions
+if _have oozie; then
+  alias owv="oozie validate"                                   # Validate a workflow xml
+  alias ojrun="oozie job -run"                                 # Run a job
+  alias ojresume="oozie job -resume"                           # Resume a job
+  alias ojrerun="oozie job -rerun"                             # Rerun a job
+  alias ojsuspend="oozie job -suspend"                         # Suspend a job
+  alias ojkill="oozie job -kill"                               # Kill a job
+  alias ojinfo="oozie job -info"                               # Display current info on a job
+  alias ojlist="oozie jobs -localtime"                         # Display a list of jobs
+  alias ojlistr="oozie jobs -localtime -filter status=RUNNING" # Display a list of running jobs
+fi
+
+if $_ismac; then
+    alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+    alias chrome-canary='/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary'
+    alias grep='ggrep'
+    alias out="outdated_apps"
+    alias up="update_apps"
+
+    # Brew
+    alias brwe="brew"
+    alias bs="brew services"
+    alias bsl="brew services list"
+    alias bss="brew services start"
+    alias bssp="brew services stop"
+    alias bsr="brew services restart"
+    alias bsspa="brew services stop --all"
+    alias bi="brew_install"
+    alias bu="brew_uninstall"
+    alias bci="brew_cask_install"
+    alias bcu="brew_cask_uninstall"
+    alias i.='(idea $PWD &>/dev/null &)'
+    alias o.='open .'
+    alias privateip="ipconfig getifaddr en0"
+fi
+
+alias publicip="dig +short myip.opendns.com @resolver1.opendns.com"
+#alias startz='curl -sSL https://raw.githubusercontent.com/dosel/t/i/p | bash -s start'
+alias startz='docker run --rm -ti --name zalenium -p 4444:4444 -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/videos:/home/seluser/videos --privileged dosel/zalenium start --screenWidth 1920 --screenHeight 1080 --timeZone "America/Chicago"'
+#alias startz='docker run --rm -ti --name zalenium -p 4444:4444 -e ZALENIUM_SELENIUM_CONTAINER_MEMORY_LIMIT=8589934592 -e ZALENIUM_SELENIUM_CONTAINER_CPU_LIMIT=400000000 -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/videos:/home/seluser/videos --privileged dosel/zalenium start --screenWidth 1920 --screenHeight 1080 --timeZone "America/Chicago"'
+alias stopz='curl -sSL https://raw.githubusercontent.com/dosel/t/i/p | bash -s stop'
+
+if _have curl; then
+    alias cl='curl -L'
+    # follow redirects, download as original name
+    alias clo='curl -L -O'
+    # follow redirects, download as original name, continue
+    alias cloc='curl -L -C - -O'
+    # follow redirects, download as original name, continue, retry 5 times
+    alias clocr='curl -L -C - -O --retry 5'
+    # follow redirects, fetch banner
+    alias clb='curl -L -I'
+	# see only response headers from a get request
+	alias clhead='curl -D - -so /dev/null'
+fi
+
+#Maven
+if _have mvn; then
+	alias mci='mvn clean install'
+	alias mi='mvn install'
+	alias mrprep='mvn release:prepare'
+	alias mrperf='mvn release:perform'
+	alias mrrb='mvn release:rollback'
+	alias mdep='mvn dependency:tree'
+	alias mpom='mvn help:effective-pom'
+	alias mcisk='mci -Dmaven.test.skip=true'
+fi
+
+#NordVPN
+alias nord='sudo openvpn ~/Dropbox/nordvpn/us1967.nordvpn.com.udp1194.ovpn'
+
+if [ -f ~/bin/composer.phar ]; then
+  alias composer='php ~/bin/composer.phar'
 fi
