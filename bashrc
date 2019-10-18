@@ -218,8 +218,10 @@ else
 fi
 
 [[ -r "$HOME/.local/bin" ]] && _add_to_path "$HOME/.local/bin"
-_add_to_path "/usr/sbin"
-_add_to_path "/sbin"
+[[ -r "/urs/sbin" ]] && _add_to_path "/usr/sbin"
+[[ -r "/sbin" ]] && _add_to_path "/sbin"
+[[ -r "/usr/local/sbin" ]] && _add_to_path "/usr/local/sbin"
+
 C_INCLUDE_PATH=$(add ~/.local/include "$C_INCLUDE_PATH")
 CPLUS_INCLUDE_PATH=$(add ~/.local/include "$CPLUS_INCLUDE_PATH")
 LIBRARY_PATH=$(add ~/.local/lib "$LIBRARY_PATH")
