@@ -166,6 +166,13 @@ export MANPAGER="less -X";
 export GTAGSCONF=/usr/local/share/gtags/gtags.conf
 export GTAGSLABEL=ctags
 
+if $_ismac; then
+  export HOMEBREW_AUTO_UPDATE_SECS=86400
+  export HOMEBREW_NO_ANALYTICS=true
+  export HOMEBREW_INSTALL_BADGE="(ʘ‿ʘ)"
+  export HOMEBREW_BUNDLE_FILE_PATH=~/.extra/homebrew/Brewfile
+fi
+
 # Let's keep a virtualenv workon directory
 [[ -d "$HOME/.venvs/" ]] && export WORKON_HOME="$HOME/.venvs/"
 
