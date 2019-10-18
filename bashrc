@@ -131,7 +131,8 @@ export SUDO_ASKPASS="$HOME/bin/tools/dmenupass"
 export DOTFILES_PATH="$HOME/.dotfiles"
 export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd*";
 export HISTCONTROL="ignoreboth:erasedups";
-export HISTSIZE= HISTFILESIZE=
+export HISTSIZE=9999
+export HISTFILESIZE=9999
 export HISTTIMEFORMAT="%c "
 # For the fuzzy finder
 if _have fzf; then
