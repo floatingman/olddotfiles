@@ -230,27 +230,31 @@ fi
 [[ -r "/sbin" ]] && _add_to_path "/sbin"
 [[ -r "/usr/local/sbin" ]] && _add_to_path "/usr/local/sbin"
 
-C_INCLUDE_PATH=$(add ~/.local/include "$C_INCLUDE_PATH")
-CPLUS_INCLUDE_PATH=$(add ~/.local/include "$CPLUS_INCLUDE_PATH")
-LIBRARY_PATH=$(add ~/.local/lib "$LIBRARY_PATH")
-LD_LIBRARY_PATH=$(add ~/.local/lib "$LD_LIBRARY_PATH")
-LD_RUN_PATH=$(add ~/.local/lib "$LD_RUN_PATH")
-if [[ "$(uname -m)" == *64* ]]; then
-  LIBRARY_PATH=$(add ~/.local/lib64 "$LIBRARY_PATH")
-  LD_LIBRARY_PATH=$(add ~/.local/lib64 "$LD_LIBRARY_PATH")
-  LD_RUN_PATH=$(add ~/.local/lib64 "$LD_RUN_PATH")
-else
-  LIBRARY_PATH=$(add ~/.local/lib32 "$LIBRARY_PATH")
-  LD_LIBRARY_PATH=$(add ~/.local/lib32 "$LD_LIBRARY_PATH")
-  LD_RUN_PATH=$(add ~/.local/lib32 "$LD_RUN_PATH")
+
+# Check this if Make fails
+if $_islinux; then
+  C_INCLUDE_PATH=$(add ~/.local/include "$C_INCLUDE_PATH")
+  CPLUS_INCLUDE_PATH=$(add ~/.local/include "$CPLUS_INCLUDE_PATH")
+  LIBRARY_PATH=$(add ~/.local/lib "$LIBRARY_PATH")
+  LD_LIBRARY_PATH=$(add ~/.local/lib "$LD_LIBRARY_PATH")
+  LD_RUN_PATH=$(add ~/.local/lib "$LD_RUN_PATH")
+  if [[ "$(uname -m)" == *64* ]]; then
+    LIBRARY_PATH=$(add ~/.local/lib64 "$LIBRARY_PATH")
+    LD_LIBRARY_PATH=$(add ~/.local/lib64 "$LD_LIBRARY_PATH")
+    LD_RUN_PATH=$(add ~/.local/lib64 "$LD_RUN_PATH")
+  else
+    LIBRARY_PATH=$(add ~/.local/lib32 "$LIBRARY_PATH")
+    LD_LIBRARY_PATH=$(add ~/.local/lib32 "$LD_LIBRARY_PATH")
+    LD_RUN_PATH=$(add ~/.local/lib32 "$LD_RUN_PATH")
+  fi
+  PKG_CONFIG_PATH=$(add ~/.local/lib/pkgconfig "$PKG_CONFIG_PATH")
+  export C_INCLUDE_PATH
+  export CPLUS_INCLUDE_PATH
+  export LIBRARY_PATH
+  export LD_LIBRARY_PATH
+  export LD_RUN_PATH
+  export PKG_CONFIG_PATH
 fi
-PKG_CONFIG_PATH=$(add ~/.local/lib/pkgconfig "$PKG_CONFIG_PATH")
-export C_INCLUDE_PATH
-export CPLUS_INCLUDE_PATH
-export LIBRARY_PATH
-export LD_LIBRARY_PATH
-export LD_RUN_PATH
-export PKG_CONFIG_PATH
 
 ## Agents
 if command -v keychain > /dev/null 2>&1; then
