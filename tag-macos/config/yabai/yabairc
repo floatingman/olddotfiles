@@ -67,7 +67,6 @@ yabai -m rule --add label="Dictionary" app="^Dictionary$" manage=off
 yabai -m rule --add label="mpv" app="^mpv$" manage=off
 yabai -m rule --add label="The Unarchiver" app="^The Unarchiver$" manage=off
 yabai -m rule --add label="VirtualBox" app="^VirtualBox$" manage=off
-yabai -m rule --add app=Newton space=6
 yabai -m rule --add app="Firefox" manage=off
 yabai -m rule --add app="RubyMine" manage=off
 yabai -m rule --add app=Preview manage=off border=off
