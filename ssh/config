@@ -12,16 +12,6 @@ Host shockwave
   LocalForward 3389 192.168.0.3:3389
   User dnewman
 
-Host github.com
-     User git
-     HostName ssh.github.com
-     Port 443
-
-Host gist.github.com
-     User git
-     HostName ssh.github.com
-     Port 443
-     
 Host thatsmyproblem.com
   IdentityFile ~/.ssh/id_ed25519
 
