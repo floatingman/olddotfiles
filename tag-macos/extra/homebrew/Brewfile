@@ -74,6 +74,7 @@ brew "neofetch", args: ["HEAD"]
 brew "neovim"
 brew "nmap"
 brew "nnn"
+brew "nspr"
 brew "nss"
 brew "postgresql", restart_service: true
 brew "prettyping"
