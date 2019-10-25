@@ -32,9 +32,12 @@ if _have docker; then
     alias dockerclean='dockercleanc || true && dockercleani'
 fi
 
+# Set some linux only commands
 if $_islinux; then
   alias um='udiskie-mount -r'
   alias uu='udiskie-umount'
+  alias pbcopy='xclip -selection clipboard'
+  alias pbpaste='xclip -selection clipboard -o'
 fi
 
 if _have rtorrent; then
