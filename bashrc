@@ -2,7 +2,7 @@
 
 ## Options
 shopt -s checkwinsize
-set +o histexpand
+# set +o histexpand
 # Append to the Bash history file, rather than overwriting it
 shopt -s histappend
 # Autocorrect typos in path names when using `cd`
@@ -95,19 +95,8 @@ complete -F _systemctl d
 complete -d cd
 
 ## Environment
-unset PS1
-_PS1() {
-  local PRE= NAME="$1" LENGTH="$2";
-  [[ "$NAME" != "${NAME#$HOME/}" || -z "${NAME#$HOME}" ]] &&
-    PRE=$PRE'~' NAME="${NAME#$HOME}" LENGTH=$[LENGTH-1];
-  ((${#NAME}>$LENGTH)) && NAME="/...${NAME:$[${#NAME}-LENGTH+4]}";
-  echo "$PRE$NAME"
-}
-PS1='\[\e[1;32m\]\h\[\e[m\]\
-\[\e[1;35m\]$(_PS1 "$PWD" 30)\[\e[m\] '
-if [ "$TERM" = "dumb" ]; then
-  PS1="> "
-fi
+source ~/.bash_prompt
+
 export WINEDEBUG=-all
 
 if [ -e ~/.dpi ]; then
