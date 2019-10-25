@@ -321,7 +321,7 @@ alias psref="gpg-connect-agent RELOADAGENT /bye" # Refresh gpg
 
 #update dotfiles
 if [ -d "$HOME/.dotfiles" ]; then
-    alias ud='cd $HOME/.dotfiles && git pull origin master && rcup -v -x README.md && cd -'
+    alias ud='cd $HOME/.dotfiles && git pull origin master && rcup -v -x README.md && reload && cd -'
 fi
 
 # Common Hadoop File System Aliases
