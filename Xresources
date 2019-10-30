@@ -1,10 +1,12 @@
 #include ".Xresources.h"
 ! font settings
 Xft.dpi:        $DPI
-Xft.antialias:  true
-Xft.hinting:    true
+Xft.rgba:       rgb
+Xft.antialias:  1
+Xft.hinting:    1
+Xft.lcdfilter: lcddefault
 Xft.hintstyle:  hintfull
-Xft.autohint:   false
+Xft.autohint:   0
 
 
 XTerm.termName: xterm-256color
@@ -19,11 +21,24 @@ XTerm*jumpScroll: true
 XTerm*multiScroll: true
 XTerm*scrollBar: false
 
-!Iosevka
-!URxvt.font: xft:Noto Sans:size=FONT_SIZE
-URxvt.font: xft:Fira Code:style=Retina:pixelsize=FONT_SIZE:antialias=true:hinting=true
-URxvt.linespace: 1
+! -- Fonts -- !
+URxvt.font: xft:Consolas:style=Regular:pixelsize=FONT_SIZE:antialias=true:hinting=full,\
+            xft:Noto Color Emoji,\
+            xft:Symbola:pixelsize=FONT_SIZE:antialias=true:hinting=full
+URxvt.boldFont: xft:Consolas:style=Bold:pixelsize=FONT_SIZE:antialias=true:hinting=full,\
+                xft:Noto Color Emoji,\
+                xft:Symbola:pixelsize=FONT_SIZE:antialias=true:hinting=full
+URxvt.italicFont: xft:Consolas:style=Italic:pixelsize=FONT_SIZE:antialias=true:hinting=full,\
+                xft:Noto Color Emoji,\
+                xft:Symbola:pixelsize=FONT_SIZE:antialias=true:hinting=full
+URxvt.boldItalicFont: xft:Consolas:style=Bold Italic:pixelsize=FONT_SIZE:antialias=true:hinting=full,\
+                xft:Noto Color Emoji,\
+                xft:Symbola:pixelsize=FONT_SIZE:antialias=true:hinting=full
 URxvt.letterSpace: 0
+!URxvt.font: xft:Noto Sans:size=FONT_SIZE
+!URxvt.font: xft:Fira Code:style=Retina:pixelsize=FONT_SIZE:antialias=true:hinting=true
+!URxvt.linespace: 1
+!URxvt.letterSpace: 0
 
 #include ".Xresources.d/urxvt.xresources"
 !#include ".Xresources.d/themes/grubox-dark.xresources"
