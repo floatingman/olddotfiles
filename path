@@ -62,3 +62,12 @@ fi
 if $_ismac; then
   _add_to_path "/usr/local/sbin"
 fi
+
+if [ -d "$HOME/.asdf" ]; then
+   . $HOME/.asdf/asdf.sh
+   . $HOME/.asdf/completions/asdf.bash
+fi
+
+export SDKMAN_DIR="${HOME}/.sdkman"
+[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"

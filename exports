@@ -3,57 +3,55 @@
 export EDITOR="nvim";
 export TERMINAL="urxvt";
 export BROWSER="firefox";
-export READER="zathura"
-export FILE="ranger"
-export BIB="$HOME/Documents/LaTeX/uni.bib"
-export REFER="$HOME/.referbib"
-export SUDO_ASKPASS="$HOME/bin/tools/dmenupass"
-export PIX="$HOME/.pix/"
-export DOTFILES_PATH="$HOME/.dotfiles"
+export READER="zathura";
+export FILE="ranger";
+export SUDO_ASKPASS="$HOME/bin/tools/dmenupass";
+export PIX="$HOME/.pix/";
+export DOTFILES_PATH="$HOME/.dotfiles";
 
-export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd*";
-export HISTCONTROL="ignoreboth:erasedups";
-export HISTSIZE= HISTFILESIZE=
-export HISTTIMEFORMAT="%c "
-
+# History is in the past
+export HISTSIZE=50000000;
+export HISTFILESIZE=$HISTSIZE;
+export HISTCONTROL=ignoredups;
+export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd*:date:* --help";
 
 # mac exports
 if $_ismac; then
-  export HOMEBREW_AUTO_UPDATE_SECS=86400
-  export HOMEBREW_NO_ANALYTICS=true
-  export HOMEBREW_INSTALL_BADGE="(ʘ‿ʘ)"
-  export HOMEBREW_BUNDLE_FILE_PATH=~/.extra/homebrew/Brewfile
+  export HOMEBREW_AUTO_UPDATE_SECS=86400;
+  export HOMEBREW_NO_ANALYTICS=true;
+  export HOMEBREW_INSTALL_BADGE="(ʘ‿ʘ)";
+  export HOMEBREW_BUNDLE_FILE_PATH=~/.homebrew/Brewfile;
 fi
-
 
 # For the fuzzy finder
 if _have fzf; then
-  export FZF_DEFAULT_OPTS='--color=bg+:24 --reverse'
+  export FZF_DEFAULT_OPTS='--color=bg+:24 --reverse';
 fi
 
-# standard in linux
-if $_islinux; then
-    export LANG=en_US.UTF-8
-    export LC_ALL=en_US.utf8
-fi
-
-# less
-if _have less; then
-    export PAGER=less
-
-    LESS=-R # use -X to avoid sending terminal initialization
-    LESS_TERMCAP_mb=$'\e[01;31m'
-    LESS_TERMCAP_md=$'\e[01;36m'
-    LESS_TERMCAP_me=$'\e[0m'
-    LESS_TERMCAP_se=$'\e[0m'
-    LESS_TERMCAP_so=$'\e[01;44;33m'
-    LESS_TERMCAP_ue=$'\e[0m'
-    LESS_TERMCAP_us=$'\e[01;32m'
-    export ${!LESS@}
-fi
+export LANG="en_US.UTF-8";
+export LC_ALL="en_US.UTF-8";
 
 # Don’t clear the screen after quitting a manual page
 export MANPAGER="less -X";
+
+export DBUS_SESSION_BUS_ADDRESS
+DBUS_SESSION_BUS_ADDRESS=unix:path=/var/run/user/$(id -u)/bus;
+
+# hidpi for gtk apps
+export GDK_SCALE=2
+export GDK_DPI_SCALE=0.5
+export QT_DEVICE_PIXEL_RATIO=2
+
+export DOCKER_CONTENT_TRUST=1
+
+# if it's an ssh session export GPG_TTY
+if [[ -n "$SSH_CLIENT" ]] || [[ -n "$SSH_TTY" ]]; then
+    GPG_TTY=$(tty)
+    export GPG_TTY
+fi
+
+# set xdg data dirs for dmenu to source
+export XDG_DATA_DIRS=/usr/share/
 
 # custom ip var
 [[ -f "$HOME/.myip" ]] && export MYIP=$(cat "$HOME/.myip")
@@ -64,7 +62,6 @@ _source "$HOME/.aws_keys"
 export GTAGSCONF=/usr/local/share/gtags/gtags.conf
 export GTAGSLABEL=ctags
 
-# Let's keep a virtualenv workon directory
-[[ -d "$HOME/.venvs/" ]] && export WORKON_HOME="$HOME/.venvs/"
-
-_source /usr/bin/virtualenvwrapper_lazy.sh
+if [ -e ~/.dpi ]; then
+  source ~/.dpi
+fi
