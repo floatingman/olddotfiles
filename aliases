@@ -75,7 +75,7 @@ alias ec='emacsclient -c -a emacs'
 function ekill() { emacsclient -e '(kill-emacs)';}
 
 # vim
-alias e='/usr/bin/nvim'
+alias e='nvim'
 alias E='sudo e'
 alias f="vifm"
 if _have nvim; then
@@ -84,46 +84,6 @@ fi
 
 if _have git; then
     alias gc=". /usr/local/bin/gitdate && git commit -v "
-    alias gaa='git add -A'
-    alias gf='git fetch --all --prune'
-    alias gft='git fetch --all --prune --tags'
-    alias gfv='git fetch --all --prune --verbose'
-    alias gftv='git fetch --all --prune --tags --verbose'
-    alias gus='git reset HEAD'
-    alias gpristine='git reset --hard && git clean -dfx'
-    alias gclean='git clean -fd'
-    alias gs='git status'
-    alias gss='git status -s'
-    alias gsu='git submodule update --init --recursive'
-    alias gpr='git pull --rebase'
-    alias gpp='git pull && git push'
-    alias gup='git fetch && git rebase'
-    alias gps='git push'
-    alias gpo='git push origin'
-    alias gpsf='git push --force'
-    alias gd='git diff --color'
-    alias gb='git branch'
-    alias gcount='git shortlog -sn'
-    alias gcp='git cherry-pick'
-    alias gco='git checkout'
-    alias gcom='git checkout master'
-    alias gcob='git checkout -b'
-    alias gexport='git archive --format zip --output'
-    alias gll='git log --graph --pretty=oneline --abbrev-commit'
-    alias gg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
-    alias ggs="gg --stat"
-    alias gwc="git whatchanged"
-    # From http://blogs.atlassian.com/2014/10/advanced-git-aliases/
-    # Show commits since last pull
-    alias gnew="git log HEAD@{1}..HEAD@{0}"
-    # Add uncommitted and unstaged changes to the last commit
-    alias gstd="git stash drop"
-    alias gstl="git stash list"
-    alias gpl="git pull --rebase --autostash"
-    grn() { git rebase -i HEAD~"$1"; }
-    alias gh='cd "$(git rev-parse --show-toplevel)"'
-    alias cara='git commit --amend --reset-author'
-    alias gca='git add --all && git commit --amend --no-edit'
     alias g="git"
 fi
 
@@ -222,8 +182,7 @@ alias ccat="highlight --out-format=ansi" # Color cat - print file
 alias c='clear'
 alias h='history'
 alias j='jobs -l'
-alias now='date +"%T"'
-alias nowtime=now
+alias nowtime='date +"%T"'
 alias nowdate='date +"%d-%m-%Y"'
 alias week='date +%V'
 alias fastping='ping -c 100 -s .2'
