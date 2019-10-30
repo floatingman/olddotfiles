@@ -31,3 +31,5 @@ udiskie &
 blueman-applet &
 
 dropbox &
+
+xcompmgr -c &
