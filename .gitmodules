@@ -13,12 +13,6 @@
 [submodule "weechat/vimode"]
 	path = weechat/vimode
 	url = https://github.com/GermainZ/weechat-vimode
-[submodule "zprezto"]
-	path = zprezto
-	url = git@github.com:floatingman/prezto.git
 [submodule "dircolors-solarized"]
 	path = dircolors-solarized
 	url = https://github.com/seebi/dircolors-solarized.git
-[submodule "bash-git-prompt"]
-	path = bash-git-prompt
-	url = https://github.com/magicmonty/bash-git-prompt.git
