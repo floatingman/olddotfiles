@@ -8,7 +8,7 @@ ERRORS=()
 for f in $(find . -type f -not -path '*.git*' -not -name "yubitouch.sh" | sort -u); do
 	if file "$f" | grep --quiet shell; then
 		{
-			shellcheck "$f" && echo "[OK]: successfully linted $f"
+			shellcheck -e SC1090 -e SC2034 "$f" && echo "[OK]: successfully linted $f"
 		} || {
 			# add to errors
 			ERRORS+=("$f")
