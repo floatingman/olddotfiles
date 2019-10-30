@@ -1,2 +1,6 @@
 ansible
 pipenv
+ipython
+jupyter
+neovim
+autopep8
