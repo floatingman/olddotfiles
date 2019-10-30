@@ -41,7 +41,7 @@ _load_bash_completion_files() {
     for config_file in $FILES
     do
         if [[ -e ${config_file} ]]; then
-            source $config_file
+            source "$config_file"
         fi
     done
 }
