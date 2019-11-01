@@ -70,7 +70,7 @@ yabai -m rule --add label="VirtualBox" app="^VirtualBox$" manage=off
 yabai -m rule --add app="Firefox" manage=off
 yabai -m rule --add app="RubyMine" manage=off
 yabai -m rule --add app=Preview manage=off border=off
-yabai -m rule --add label="Slack" app="^Slack$" manage=on display=2
+yabai -m rule --add label="Franz" app="^Franz$" manage=on display=2
 yabai -m rule --add label="YakYak" app"^YakYak$" manage=on display=2
 
 yabai -m signal --add event=space_changed \
