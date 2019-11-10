@@ -28,13 +28,13 @@ URxvt.resize-font.bigger: C-Up
 
 ! set copy/paste shortcuts
 ! Clipboard
-URxvt.clipboard.autocopy: true
-URxvt.clipboard.autocopy: xclip -i -selection clipboard
-URxvt.clipboard.autocopy: xclip -o -selection clipboard
+!URxvt.clipboard.autocopy: true
+!URxvt.clipboard.autocopy: xclip -i -selection clipboard
+!URxvt.clipboard.autocopy: xclip -o -selection clipboard
 
 !! Control-Shift-C for copy
-URxvt.keysym.C-C: perl:clipboard:copy
-URxvt.keysym.C-V: perl:clipboard:paste
+URxvt.keysym.M+C-C: perl:clipboard:copy
+URxvt.keysym.M+C-V: perl:clipboard:paste
 URxvt.keysym.Control-v: perl:clipboard:paste
 
 ! configure selectable URLs

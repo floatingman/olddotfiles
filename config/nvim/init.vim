@@ -21,6 +21,19 @@ endif
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
 
+  "" Plugins used by pigmonkey (https://github.com/pigmonkey)
+  Plug 'jamessan/vim-gnupg'
+  Plug 'roman/golden-ratio'
+  Plug 'jnurmine/Zenburn'
+  Plug 'altercation/vim-colors-solarized'
+  Plug 'hynek/vim-python-pep8-indent'
+  Plug 'chriskempson/base16-vim'
+  Plug 'dhruvasagar/vim-table-mode'
+  Plug 'ledger/vim-ledger'
+  Plug 'othree/html5.vim'
+  Plug 'hail2u/vim-css3-syntax'
+
+
   Plug 'scrooloose/nerdtree'
 	Plug 'airblade/vim-gitgutter'
 	Plug 'benizi/vim-automkdir'
@@ -29,7 +42,6 @@ endif
 	Plug 'haya14busa/incsearch-easymotion.vim'
 	Plug 'haya14busa/incsearch.vim'
 	Plug 'justinmk/vim-dirvish'
-	Plug 'matze/vim-move'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-eunuch'
   Plug 'tpope/vim-fugitive'
@@ -90,21 +102,26 @@ endif
 " common vim settings
 	set nocompatible
 	set encoding=utf-8
-	set backupdir=~/.vim/backups
-	set directory=~/.vim/swaps
 	set undofile
-	set undodir=~/.vim/undos
 	set visualbell
 	set splitbelow
 	set splitright
   set autoread
+  " Automatically save before commands like :next and :make
+  set autowrite
+  " Show the editor mode
+  set showmode
+  " Show state of keyboard input
+  set showcmd
 	set exrc
 	set secure
 	set nojoinspaces
 	set clipboard+=unnamed
 	set completeopt=preview
-	set number
+	set nu
 	set ruler
+  " Show the status line
+  set laststatus=2
 	set infercase
 	set diffopt+=filler,vertical
 	set breakindent
@@ -115,28 +132,103 @@ endif
 	set shiftwidth=2
   set nowrap
   set linebreak
-
-" Some basics:
+  " Allow mouse (is this sacrilege?)
+  set mouse=a
+  " Some basics:
 	filetype plugin indent on
 	syntax on
+  set ttyfast
+
+  "Show whitespace characters
+  set list
+
+  " Follow line indentation
+  set autoindent
+
+  " Use wildmenu for command line tab completion
+  set wildmenu
+  set wildmode=list:longest,full
+
+  " Underline the current line
+  set cursorline
+
+  " Set the minimum number of lines to keep above and below cursor
+  set scrolloff=5
 
   " buffers & tabs
   set hidden
+  map [b :bprevious<cr>
+  map ]b :bnext<cr>
+  map <leader>b :buffers<cr>
 
-  nnoremap <Tab> :tabnext<cr>
-  nnoremap <S-Tab> :tabprev<cr>
 
-  set switchbuf=usetab
-  nnoremap <C-Right> :sbnext<cr>
-  nnoremap <C-Left> :sbprevious<cr>
+  """""""""""""""""""
+  " Temporary Files "
+  """""""""""""""""""
+  " https://gist.github.com/tejr/5890634
 
-  nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<cr>
-  nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . (tabpagenr()+1)<cr>
+  " Don't backup files in temp directories or shm
+  if exists('&backupskip')
+    set backupskip+=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*
+  endif
 
-  nmap <leader>bn :enew<cr>
-  nmap <leader>bq :bp <bar> bd #<cr>
-  nmap <leader>bl :ls<cr>
+  " Don't keep swap files in temp directories or shm
+  if has('autocmd')
+    augroup swapskip
+      autocmd!
+      silent! autocmd BufNewFile,BufReadPre
+            \ /tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*
+            \ setlocal noswapfile
+    augroup END
+  endif
 
+  " Don't keep undo files in temp directories or shm
+  if has('persistent_undo') && has('autocmd')
+    augroup undoskip
+      autocmd!
+      silent! autocmd BufWritePre
+            \ /tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*
+            \ setlocal noundofile
+    augroup END
+  endif
+
+  " Don't keep viminfo for files in temp directories or shm
+  if has('viminfo')
+    if has('autocmd')
+      augroup viminfoskip
+        autocmd!
+        silent! autocmd BufNewFile,BufReadPre
+              \ /tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*
+              \ setlocal viminfo=
+      augroup END
+    endif
+  endif
+
+
+  """"""""
+  " Pass "
+  """"""""
+
+  augroup passconceal
+    autocmd!
+
+    " Create the second line if it does not already exist
+    autocmd BufNewFile,BufRead */pass.*/* if line('$') == 1 | $put _ | endif
+
+    " Jump to the second line
+    autocmd BufNewFile,BufRead */pass.*/* 2
+
+    " Conceal the first line with an asterisk
+    autocmd BufNewFile,BufRead */pass.*/* syntax match Concealed '\%1l.*' conceal cchar=*
+    autocmd BufNewFile,BufRead */pass.*/* set conceallevel=1
+
+  augroup END
+
+
+  " Insert timestamp
+  map <leader>n :r!date<cr>
+
+  set background=dark
 	colorscheme gruvbox
 
 " deoplete
@@ -257,9 +349,7 @@ EOF
 
 " Markdown
 	au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
-	au FileType markdown set autoindent
 	au FileType markdown set smartindent
-	au FileType markdown set list
 	au FileType markdown set textwidth=115
 
 	"" Markdown.vim
@@ -337,16 +427,95 @@ EOF
   nnoremap p p=`]<C-o>
   nnoremap P P=`]<C-o>
 
+" Toggle paste mode (F2)
+  set pastetoggle=<F2>
+
+" Write a file with sudo (w!!)
+  cmap w!! W !sudo tee % >/dev/null
+
+" Use kj for escape
+  inoremap kj <Esc>
+
 " Folds
   set foldmethod=indent   "fold based on indent
   set foldnestmax=3       "deepest fold is 3 levels
   set nofoldenable        "don't fold by default
+  "" Toggle folds with space.
+  nnoremap <Space> za
+  vnoremap <Space> za
+
+
+" Redraw syntax highlighting from start of file.
+  nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
 
 " Search
+  "" Start searching as characters are typed
   set incsearch
+
+  "" Highlight search results
   set hlsearch
+  set showmatch
+
+  "" Ignore case in searches, but smartly
   set ignorecase
   set smartcase
 
-" Vim-move
-  let g:move_key_modifier = 'C'
+  "" Disable search highlighting (<leader><space>)
+  nnoremap <leader><space> :noh<cr>
+
+" Window switching
+  "" Switch between windows with <Leader><number>
+  let i = 1
+  while i <= 9
+    execute 'nnoremap <Leader>' . i . ' :' . i . 'wincmd W<CR>'
+    let i = i + 1
+  endwhile
+
+" Toggle relative line numbers (Ctrl+n)
+  function! g:ToggleNuMode()
+    if &nu == 1
+      set rnu
+    else
+      set nu
+    endif
+  endfunction
+  nnoremap <silent><C-n> :call g:ToggleNuMode()<cr>
+
+" Paste from system clipboard in insert mode (Ctrl+v)
+  imap <C-V> <ESC>"+gpa
+
+
+" GnuPG Extensions
+" Tell the GnuPG plugin to armor new files
+let g:GPGPreferArmor=1
+
+" Tell the GnuPG plugin to sign new files
+let g:GPGPreferSign=1
+
+augroup GnuPGExtra
+  " Set extra file options.
+  autocmd BufReadCmd,FileReadCmd *.\(gpg\|asc\|pgp\) call SetGPGOptions()
+  " Automatically close unmodified files after inactivity.
+  autocmd CursorHold *.\(gpg\|asc\|pgp\) quit
+augroup END
+
+function SetGPGOptions()
+  " set updatetime to 1 minute.
+  set updatetime=60000
+  " Fold at markers.
+  set foldmethod=marker
+  " Automatically close all folds.
+  set foldclose=all
+  " Only open folds with insert commands.
+  set foldopen=insert
+endfunction
+
+""""""""
+" Mutt "
+""""""""
+
+" Set the filetype on neomutt buffers
+au BufRead /tmp/*mutt* setfiletype mail
+
+" Delete quoted signatures.
+au BufRead /tmp/*mutt* normal :g/^\(> \)--\s*$/,/^$/-1d/^$
