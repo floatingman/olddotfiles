@@ -1,30 +1,10 @@
 #!/bin/sh
-#
-## ~/.xsessionrc
-#
-## Executed by startx (run your window manager from here)
-
-if [ -d /etc/X11/xinit/xinitrc.d ]; then
-	for f in /etc/X11/xinit/xinitrc.d/*; do
-		if [ -x "$f" ]; then
-			# shellcheck source=/dev/null
-			. "$f"
-		fi
-	done
-	unset f
-fi
 
 # run Xprofile
-if [ -f ~/.Xprofile ]; then
+if [ -f ~/.xprofile ]; then
 	# shellcheck source=/dev/null
-	. ~/.Xprofile
+	. ~/.xprofile
 fi
-
-# run Xmodmap
-[ -f ~/.Xmodmap ] && xmodmap ~/.Xmodmap
-
-# run local xhost
-xhost local:root
 
 # uncomment this if not using a login manager
 # so i3 will start correctly
