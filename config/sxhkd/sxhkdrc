@@ -31,7 +31,7 @@ super + {comma, period}
 
 # Display current mpd track
 super + slash
-    notify-send -u low "$(mpc -f "%artist%" current)" "$(mpc -f "%title%" current)"
+	notify-send -u low "$(mpc -f "%title%" current)" "by $(mpc -f "%artist%" current)\non $(mpc -f "%album%" current) (#$(mpc -f "%track%" current))\n$(mpc -f "%originaldate%" current)"
 
 # Play the video URL in the clipboard
 super + m
@@ -66,8 +66,24 @@ alt + Tab
 
 # Launch password manager
 super + p
-    menu=$(echo -e "$HOME/.password-store\n$ALTPASSDIR" | rofi -dmenu); rofi-pass --root "${menu}"
+	menu=$(echo -e "$HOME/.password-store\n$ALTPASSDIR" | rofi -dmenu); rofi-pass --root "${menu}"
 
+
+# Bookmark via pinboard
+super + d
+	termite --title pinit -e ~/bin/pinit
+
+# Launch rofi surfraw
+super + shift + f
+	surfraw-rofi
+
+# Launch rofi surfraw
+super + f
+	surfraw duckduckgo -j $(xclip -o -selection clipboard)
+
+# Launch qalculator
+super + c
+	qalculate-gtk
 
 ########
 # Misc #
@@ -84,6 +100,7 @@ XF86ScreenSaver
 # Toggle trackpad
 XF86TouchpadToggle
     toggle-touchpad.sh
+
 XF86Launch1
     toggle-touchpad.sh
 
@@ -93,4 +110,23 @@ XF86MonBrightness{Up,Down}
 
 # Take a screenshot
 Print
-    scrot 'screenshot_%Y-%m-%d-%H%M%S.png' -e 'mv $f ~/tmp'
+	flameshot full -p ~/www
+super + s
+	flameshot gui
+
+# Generate a QR code from the clipboard
+super + q
+	qcode
+
+# Suspend (F12)
+super + XF86Explorer
+	systemctl suspend
+
+#########
+# Mouse #
+#########
+button9
+	xte 'key Page_Up'
+
+button8
+	xte 'key Page_Down'
