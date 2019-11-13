@@ -4,7 +4,6 @@
 gaps_top="20"
 gaps_bottom="24"
 gap_left="4"
-yabai -m rule --add app="PyCharm" manage=off
 gaps_right="4"
 gaps_inner="4"
 
