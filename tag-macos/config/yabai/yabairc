@@ -4,6 +4,7 @@
 gaps_top="20"
 gaps_bottom="24"
 gap_left="4"
+yabai -m rule --add app="PyCharm" manage=off
 gaps_right="4"
 gaps_inner="4"
 
@@ -70,6 +71,7 @@ yabai -m rule --add label="VirtualBox" app="^VirtualBox$" manage=off
 yabai -m rule --add app="Firefox" manage=off
 yabai -m rule --add app="RubyMine" manage=off
 yabai -m rule --add app="PyCharm" manage=off
+yabai -m rule --add app="DataGrip" manage=off
 yabai -m rule --add app=Preview manage=off border=off
 yabai -m rule --add label="Franz" app="^Franz$" manage=on display=2
 yabai -m rule --add label="YakYak" app"^YakYak$" manage=on display=2
