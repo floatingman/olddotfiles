@@ -66,3 +66,7 @@ export GTAGSLABEL=ctags
 if [ -e ~/.dpi ]; then
   source ~/.dpi
 fi
+
+if [ -d ~/.pyenv ]; then
+  export PYENV_ROOT="$HOME/.pyenv"
+fi
