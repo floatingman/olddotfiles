@@ -71,3 +71,10 @@ fi
 export SDKMAN_DIR="${HOME}/.sdkman"
 [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+# PyENV
+if [[ -r "$HOME/.pyenv" ]]; then
+  _add_to_path "$PYENV_ROOT/bin"
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+fi
