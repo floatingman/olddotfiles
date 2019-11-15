@@ -5,16 +5,21 @@
 [push]
         default = simple
 [diff]
-        tool = vimdiff
+        tool = nvimdiff2
         compactionHeuristic = true
         indentHeuristic = true
         renames = copies
-[difftool]
-        prompt = false
+
+[difftool "nvimdiff2"]
+  cmd = nvim -d $LOCAL $REMOTE
+  prompt = false
+
 [diff "json"]
         textconv = python -m json.tool
+
 [diff "word"]
         textconv = docx2txt
+
 [alias]
         aa = add --all
         # Amend the currently staged files to the latest commit
