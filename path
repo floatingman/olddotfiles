@@ -76,4 +76,5 @@ test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shel
 if [[ -r "$HOME/.pyenv" ]]; then
   _add_to_path "$PYENV_ROOT/bin"
   eval "$(pyenv init -)"
+  eval "$(register-python-argcomplete pipx)"
 fi

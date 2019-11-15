@@ -12,9 +12,9 @@
 [difftool]
         prompt = false
 [diff "json"]
-      textconv = python -m json.tool
+        textconv = python -m json.tool
 [diff "word"]
-      textconv = docx2txt
+        textconv = docx2txt
 [alias]
         aa = add --all
         # Amend the currently staged files to the latest commit
@@ -114,7 +114,7 @@
 	# [default] trailing-space: looks for spaces at the end of a line
 	# [default] space-before-tab: looks for spaces before tabs at the beginning of a line
 	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
-        
+
 [color "branch"]
        current = yellow reverse
        local = yellow
@@ -123,7 +123,7 @@
        meta = yellow bold
        frag = magenta bold
        old = red
-       new = green 
+       new = green
 [color "status"]
        added = yellow
        changed = green
@@ -135,13 +135,21 @@
 [pager]
         diff = diff-so-fancy | less --tabs=4 -RFX
         show = diff-so-fancy | less --tabs=4 -RFX
+
 [merge]
-        # Include summaries of merged commits in newly created merge commit messages
-        log = true
+    tool = nvimdiff4
+		# Include summaries of merged commits in newly created merge commit messages
+		log = true
+
+[mergetool "nvimdiff4"]
+    cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+
 [commit]
 	gpgsign = true
+
 [user]
 	name = Daniel Newman
 	email = dwnewman78@gmail.com
+
 [github]
 	user = floatingman
