@@ -38,6 +38,8 @@ endif
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-eunuch'
   Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-rhubarb'
+  Plug 'sodapopcan/vim-twiggy'
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-commentary'
 	Plug 'ntpeters/vim-better-whitespace'
