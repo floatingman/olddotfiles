@@ -182,3 +182,9 @@ for file in ~/.{utils,bash_prompt,aliases,exports,functions,path,dockerfunc,extr
 	fi
 done
 unset file
+
+###-tns-completion-start-###
+if [ -f /home/dnewman/.tnsrc ]; then 
+    source /home/dnewman/.tnsrc 
+fi
+###-tns-completion-end-###
