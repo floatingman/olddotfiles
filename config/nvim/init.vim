@@ -15,12 +15,11 @@ endif
 
   "" Completion
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
   "" Plugins used by pigmonkey (https://github.com/pigmonkey)
   Plug 'jamessan/vim-gnupg'
   Plug 'roman/golden-ratio'
-  Plug 'jnurmine/Zenburn'
   Plug 'hynek/vim-python-pep8-indent'
-  Plug 'chriskempson/base16-vim'
   Plug 'dhruvasagar/vim-table-mode'
   Plug 'ledger/vim-ledger'
   Plug 'othree/html5.vim'
@@ -28,10 +27,15 @@ endif
 
 
   Plug 'scrooloose/nerdtree'
+  Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+  Plug 'scrooloose/nerdcommenter'
+  Plug 'christoomey/vim-tmux-navigator'
+  Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
+  Plug 'ryanoasis/vim-devicons'
   Plug 'airblade/vim-gitgutter'
-  Plug 'benizi/vim-automkdir'
-  Plug 'easymotion/vim-easymotion'
   Plug 'editorconfig/editorconfig-vim'
+  Plug 'easymotion/vim-easymotion'
   Plug 'haya14busa/incsearch-easymotion.vim'
   Plug 'haya14busa/incsearch.vim'
   Plug 'justinmk/vim-dirvish'
@@ -41,7 +45,7 @@ endif
   Plug 'tpope/vim-rhubarb'
   Plug 'sodapopcan/vim-twiggy'
   Plug 'tpope/vim-repeat'
-  Plug 'tpope/vim-commentary'
+  "Plug 'tpope/vim-commentary'
   Plug 'ntpeters/vim-better-whitespace'
   Plug 'rhysd/conflict-marker.vim'
   Plug 'sbdchd/neoformat'
@@ -76,7 +80,7 @@ endif
   Plug 'vim-scripts/Pydiction'
   Plug 'klen/rope-vim'
 
-  Plug 'kien/ctrlp.vim'
+  Plug 'ctrlpvim/ctrlp'
   Plug 'vifm/vifm.vim'
   Plug 'kovetskiy/sxhkd-vim'
   Plug 'pearofducks/ansible-vim'
@@ -93,7 +97,7 @@ endif
   call plug#end()
   "
 
-" common vim settings
+  " common vim settings
   set nocompatible
   set encoding=utf-8
   set undofile
@@ -141,8 +145,8 @@ endif
   set autoindent
 
   " Use wildmenu for command line tab completion
-  set wildmenu
-  set wildmode=list:longest,full
+  " set wildmenu
+  " set wildmode=list:longest,full
 
   " Underline the current line
   set cursorline
@@ -229,13 +233,13 @@ endif
 " gutentags
   let g:gutentags_cache_dir = $HOME . '/.cache/ctags'
 
+
 " ctrlp
   let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
   if executable('ag')
     let g:ctrlp_user_command = 'ag %s -l --nocolor --path-to-ignore ~/.ignore -g ""'
   endif
-  nmap <C-N> :CtrlPTag<cr>
-  nmap <C-K> :CtrlPBuffer<cr>
+  let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 " better-whitespace
   map <leader>W :ToggleWhitespace<CR>
@@ -246,8 +250,28 @@ endif
   let g:lengthmatters_on_by_default = 0
   let g:lengthmatters_start_at_column = 130
 
-" Nerdtree
-  nnoremap <F11> :NERDTreeToggle<cr>
+" Nerdtree {{{
+  nmap <C-n> :NERDTreeToggle<CR>
+  vmap ++ <plug>NERDCommenterToggle
+  nmap ++ <plug>NERDCommenterToggle
+  let g:NERDTreeGitStatusWithFlags = 1
+  let g:NERDTreeIgnore = ['^node_modules$']
+
+  " sync open file with NERDTree
+  " " Check if NERDTree is open or active
+  function! IsNERDTreeOpen()
+    return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+  endfunction
+
+  " Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
+  " file, and we're not in vimdiff
+  function! SyncTree()
+    if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+      NERDTreeFind
+      wincmd p
+    endif
+  endfunction
+  "}}}
 
 " tagbar
   let g:tagbar_autoclose = 1
@@ -277,10 +301,6 @@ endif
 
 " Splits open at the bottom and right
   set splitbelow splitright
-
-" Nerd tree
-  nnoremap <C-[> :NERDTreeToggle<cr>
-  nnoremap <C-]> :NERDTreeVCS
 
 
 " Check file in shellcheck:
@@ -463,19 +483,8 @@ EOF
     let i = i + 1
   endwhile
 
-" Toggle relative line numbers (Ctrl+n)
-  function! g:ToggleNuMode()
-    if &nu == 1
-      set rnu
-    else
-      set nu
-    endif
-  endfunction
-  nnoremap <silent><C-n> :call g:ToggleNuMode()<cr>
-
 " Paste from system clipboard in insert mode (Ctrl+v)
-  imap <C-V> <ESC>"+gpa
-
+  imap <C-v> <ESC>"+gpa
 
 " GnuPG Extensions
 " Tell the GnuPG plugin to armor new files
@@ -513,6 +522,16 @@ au BufRead /tmp/*mutt* setfiletype mail
 au BufRead /tmp/*mutt* normal :g/^\(> \)--\s*$/,/^$/-1d/^$
 
 "" COC settings
+" coc config
+let g:coc_global_extensions = [
+      \ 'coc-snippets',
+      \ 'coc-pairs',
+      \ 'coc-tsserver',
+      \ 'coc-eslint',
+      \ 'coc-prettier',
+      \ 'coc-json',
+      \ 'coc-python',
+      \ ]
 
 " Some servers have issues with backup files, see #649
 set nobackup
