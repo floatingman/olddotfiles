@@ -78,3 +78,9 @@ if [[ -r "$HOME/.pyenv" ]]; then
   eval "$(pyenv init -)"
   eval "$(register-python-argcomplete pipx)"
 fi
+
+###-tns-completion-start-###
+if [ -f /home/dnewman/.tnsrc ]; then
+  source /home/dnewman/.tnsrc
+fi
+###-tns-completion-end-###
