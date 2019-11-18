@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # ===== Variables ========================
-gaps_top="24"
+gaps_top="20"
 gaps_bottom="24"
 gap_left="20"
 gaps_right="20"
