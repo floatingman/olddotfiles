@@ -2,6 +2,9 @@
 # alt - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
 cmd - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
 
+# Tips
+shift + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+
 # focus window
 cmd - h : yabai -m window --focus west
 cmd - j : yabai -m window --focus south
@@ -172,8 +175,6 @@ cmd - p :         kitty --single-instance -d ~ --execute ranger && \
 
 cmd - b :         ./Applications/Firefox.app/Contents/MacOS/firefox && \
                   yabai -m window --space 2; yabai -m space --focus 2
-
-ctrl + cmd - l : logout osiris
 
 # Float / Unfloat window
 shift + alt - space : yabai -m window --toggle float
