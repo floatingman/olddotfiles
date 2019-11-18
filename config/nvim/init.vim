@@ -80,7 +80,7 @@ endif
   Plug 'vim-scripts/Pydiction'
   Plug 'klen/rope-vim'
 
-  Plug 'ctrlpvim/ctrlp'
+  Plug 'ctrlpvim/ctrlp.vim'
   Plug 'vifm/vifm.vim'
   Plug 'kovetskiy/sxhkd-vim'
   Plug 'pearofducks/ansible-vim'
