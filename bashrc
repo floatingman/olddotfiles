@@ -114,6 +114,10 @@ if [[ -d /etc/bash_completion.d/ ]]; then
 	done
 fi
 
+if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ]; then
+. `brew --prefix`/etc/bash_completion.d/git-completion.bash
+fi
+
 ## Completions
 _systemctl() {
   _completion_loader systemctl
