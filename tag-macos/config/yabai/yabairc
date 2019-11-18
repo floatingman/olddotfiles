@@ -73,8 +73,8 @@ yabai -m rule --add app="PyCharm" manage=off
 yabai -m rule --add app="DataGrip" manage=off
 yabai -m rule --add app=Preview manage=off border=off
 yabai -m rule --add label="Franz" app="^Franz$" manage=on display=2
-yabai -m rule --add label="YakYak" app"^YakYak$" manage=on display=2
-
+yabai -m rule --add label="YakYak" app="^YakYak$" manage=on display=2
+yabai -m rule --add labal="Charles" app="^Charles" manage=off
 yabai -m signal --add event=space_changed \
     action="osascript -e 'tell application \"Übersicht\" to refresh widget id \"nibar-spaces-primary-jsx\"'"
 yabai -m signal --add event=space_changed \
