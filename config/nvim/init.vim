@@ -79,14 +79,10 @@ endif
   Plug 'nvie/vim-flake8'
   Plug 'vim-scripts/Pydiction'
   Plug 'klen/rope-vim'
-
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'vifm/vifm.vim'
   Plug 'kovetskiy/sxhkd-vim'
   Plug 'pearofducks/ansible-vim'
-
-  "" Theme related
-  Plug 'luochen1990/rainbow'
 
   "" Coffeescript
   Plug 'kchmck/vim-coffee-script'
@@ -222,7 +218,6 @@ endif
     autocmd BufNewFile,BufRead */pass.*/* set conceallevel=1
 
   augroup END
-
 
   " Insert timestamp
   map <leader>n :r!date<cr>
