@@ -70,3 +70,10 @@ fi
 if [ -d ~/.pyenv ]; then
   export PYENV_ROOT="$HOME/.pyenv"
 fi
+
+#Mac git completion
+if $_ismac; then
+  if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ]; then
+    . `brew --prefix`/etc/bash_completion.d/git-completion.bash
+  fi
+fi
