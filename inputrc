@@ -60,5 +60,5 @@ set keymap vi-insert
 # these are for vi-insert mode
 Control-l: clear-screen
 Control-a: beginning-of-line
-
+"kj": vi-movement-mode
 $endif
