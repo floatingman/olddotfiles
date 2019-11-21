@@ -24,13 +24,13 @@ shift + alt - k : yabai -m window --warp north
 shift + alt - l : yabai -m window --warp east
 
 # make floating window fill screen
- shift + alt - up     : yabai -m window --grid 1:1:0:0:1:1
+shift + alt - up     : yabai -m window --grid 1:1:0:0:1:1
 
 # make floating window fill left-half of screen
- shift + alt - left   : yabai -m window --grid 1:2:0:0:1:1
+shift + alt - left   : yabai -m window --grid 1:2:0:0:1:1
 
 # make floating window fill right-half of screen
- shift + alt - right  : yabai -m window --grid 1:2:1:0:1:1
+shift + alt - right  : yabai -m window --grid 1:2:1:0:1:1
 
 # balance size of windows
 shift + alt - 0 : yabai -m space --balance
@@ -51,8 +51,8 @@ cmd + alt - n : yabai -m space --create && \
 cmd + alt - w : yabai -m space --destroy
 
 # fast focus desktop
-cmd - left   : yabai -m space --focus prev
-cmd - right  : yabai -m space --focus next
+alt - left   : yabai -m space --focus prev
+alt - right  : yabai -m space --focus next
 cmd - 1      : yabai -m space --focus 1
 cmd - 2      : yabai -m space --focus 2
 cmd - 3      : yabai -m space --focus 3
@@ -136,10 +136,10 @@ alt - a : yabai -m space --toggle padding; yabai -m space --toggle gap
 alt - d : yabai -m window --toggle zoom-parent
 
 # toggle window fullscreen zoom
-cmd - f : yabai -m window --toggle zoom-fullscreen
+#cmd - f : yabai -m window --toggle zoom-fullscreen
 
 # toggle window native fullscreen
-shift + cmd - f : yabai -m window --toggle native-fullscreen
+#shift + cmd - f : yabai -m window --toggle native-fullscreen
 
 # toggle window border
 shift + alt - b : yabai -m window --toggle border
