@@ -3,8 +3,8 @@
 # ===== Variables ========================
 gaps_top="20"
 gaps_bottom="24"
-gap_left="20"
-gaps_right="20"
+gap_left="10"
+gaps_right="0"
 gaps_inner="10"
 
 normal_border_color="010101"
