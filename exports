@@ -79,3 +79,11 @@ if $_ismac; then
     . `brew --prefix`/etc/bash_completion.d/git-completion.bash
   fi
 fi
+
+# Andriod SDK
+if $_ismac; then
+  if [ -d ~/Library/Android/sdk ]; then
+    export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
+  fi
+fi
+
