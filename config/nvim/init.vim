@@ -57,7 +57,7 @@ endif
   Plug 'skywind3000/asyncrun.vim'
   Plug 'majutsushi/tagbar'
   Plug 'ludovicchabant/vim-gutentags'
-
+  Plug 'will133/vim-dirdiff'
   "" Markdown editing
   Plug 'junegunn/goyo.vim'
   Plug 'junegunn/limelight.vim'
