@@ -159,7 +159,7 @@ alias total="du -ch | grep total" #find total size of directory and subdirectori
 alias lsDir='ls -d */' #lisitng directories only
 alias again="vim `ls -t | head -1`"
 alias fixdirs="find . -type d -exec chmod o-rwx {} \;"
-alias fixvideo="sudo chown -R dnewman /mnt/SuperBig/Media/Video/Movies/ && sudo chown -R dnewman /mnt/SuperBig/Media/Video/TV/"
+alias fixvideo="sudo chown -R dnewman:sambashare /mnt/SuperBig/Media/"
 alias prev='ls -t | head -l'
 alias findbig="find . -type f -exec ls -s {} \; | sort -n -r | head -5"
 # safety features
