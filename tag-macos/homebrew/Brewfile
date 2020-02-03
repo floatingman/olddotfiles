@@ -1,6 +1,5 @@
-tap "caskroom/cask"
-tap "caskroom/fonts"
-tap "caskroom/versions"
+tap "homebrew/cask-fonts"
+tap "homebrew/cask-versions"
 tap "heroku/brew"
 tap "homebrew/bundle"
 tap "homebrew/cask"
@@ -140,7 +139,6 @@ cask "sketch"
 cask "suspicious-package"
 cask "vlc"
 mas "Amphetamine", id: 937984704
-mas "Drafts", id: 1435957248
 mas "Evernote", id: 406056744
 mas "GarageBand", id: 682658836
 mas "iMovie", id: 408981434
@@ -148,8 +146,6 @@ mas "Keynote", id: 409183694
 mas "LastPass", id: 926036361
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Monosnap", id: 540348655
-mas "Newton", id: 1059655371
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
-mas "Spark", id: 1176895641
 mas "Xcode", id: 497799835
