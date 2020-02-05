@@ -125,6 +125,7 @@ cask "firefox"
 cask "font-iosevka"
 cask "font-iosevka-nerd-font"
 cask "franz"
+cask "google-chrome"
 cask "gpg-suite"
 cask "insomnia"
 cask "iterm2-nightly"
@@ -145,6 +146,7 @@ cask "sketch"
 cask "suspicious-package"
 cask "vlc"
 cask "vscodium"
+cask "witch"
 mas "Alfred", id: 405843582
 mas "Amphetamine", id: 937984704
 mas "Evernote", id: 406056744
