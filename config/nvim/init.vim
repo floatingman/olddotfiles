@@ -79,16 +79,22 @@ endif
   Plug 'nvie/vim-flake8'
   Plug 'vim-scripts/Pydiction'
   Plug 'klen/rope-vim'
-  Plug 'ctrlpvim/ctrlp.vim'
   Plug 'vifm/vifm.vim'
   Plug 'kovetskiy/sxhkd-vim'
   Plug 'pearofducks/ansible-vim'
+
+  "" Jenkins
+  Plug 'martinda/Jenkinsfile-vim-syntax'
 
   "" Coffeescript
   Plug 'kchmck/vim-coffee-script'
 
   "" Colorscheme
   Plug 'morhetz/gruvbox'
+
+  "" Searching
+  Plug 'gabesoft/vim-ags'
+  Plug 'ctrlpvim/ctrlp.vim'
 
   call plug#end()
   "
@@ -236,6 +242,16 @@ endif
   endif
   let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
+" vim-ags
+  " Search for the word under cursor
+  nnoremap <Leader>s :Ags<Space><C-R>=expand('<cword>')<CR><CR>
+  " Search for the visually selected text
+  vnoremap <Leader>s y:Ags<Space><C-R>='"' . escape(@", '"*?()[]{}.') . '"'<CR><CR>
+  " Run Ags
+  nnoremap <Leader>ag :Ags<Space>
+  " Quit Ags
+  nnoremap <Leader><Leader>a :AgsQuit<CR>
+
 " better-whitespace
   map <leader>W :ToggleWhitespace<CR>
   let g:better_whitespace_enabled = 0
@@ -297,9 +313,8 @@ endif
 " Splits open at the bottom and right
   set splitbelow splitright
 
-
 " Check file in shellcheck:
-  map <leader>s :!clear && shellcheck %<CR>
+  map <leader>c :!clear && shellcheck %<CR>
 
 " Copy selected text to system clipboard (requires gvim/nvim/vim-xll installed):
   vnoremap <C-c> "+y
@@ -321,6 +336,13 @@ endif
 
 " Run xrdb whenever Xdefaults or Xresources are updated.
   autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb %
+
+" Restart yabai everytime config is updated
+  autocmd BufWritePost ~/.confg/yabai/yabairc !brew services restart yabai
+
+" Restart skhd everytime config is updated
+  autocmd BufWritePost ~/.skhdrc !brew services restart skhd
+
 
 " Use the below highlight group when displaying bad whitespace is desired
   highlight BadWhitespace ctermbg=red guibg=red
@@ -419,8 +441,8 @@ endif
   let g:rainbow_active = 1
 
 " Auto indent pasted text
-  nnoremap p p=`]<C-o>
-  nnoremap P P=`]<C-o>
+  "nnoremap p p=`]<C-o>
+  "nnoremap P P=`]<C-o>
 
 " Toggle paste mode (F2)
   set pastetoggle=<F2>
