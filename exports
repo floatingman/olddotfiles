@@ -5,6 +5,12 @@ export TERMINAL="kitty";
 export BROWSER="firefox";
 export READER="zathura";
 export FILE="ranger";
+
+case $TERMINAL in
+  kitty )
+     source <(kitty + complete setup bash);;
+esac
+
 if $_islinux; then
   export SUDO_ASKPASS="$HOME/bin/tools/dmenupass";
 fi
