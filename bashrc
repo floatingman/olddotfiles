@@ -175,7 +175,7 @@ if [ -f "/mnt/keytabs/${USER}.keytab" ]; then
     kinit -kt "/mnt/keytabs/${USER}.keytab ${USER}/$(hostname -f)"
 fi
 
-for file in ~/.{utils,bash_prompt,aliases,exports,functions,path,dockerfunc,extra}; do
+for file in ~/.{utils,functions,dockerfunc,bash_prompt,aliases,exports,path,extra}; do
 	if [[ -r "$file" ]] && [[ -f "$file" ]]; then
 		# shellcheck source=/dev/null
 		source "$file"
