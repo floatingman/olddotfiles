@@ -11,9 +11,6 @@ fi
 
 [[ -r "$HOME/.local/bin" ]] && _add_to_path "$HOME/.local/bin"
 
-# Node
-[[ -r "$HOME/node_modules" ]] && _add_to_path "$HOME/node_modules/.bin"
-
 # Haskell
 [[ -r "$HOME/.cabal" ]] && _add_to_path "$HOME/.cabal/bin"
 
@@ -26,18 +23,7 @@ fi
 # if intellij is installed
 [[ -f "$HOME/apps/intellij/bin/idea.sh" ]] && _add_to_path "$HOME/apps/intellij/bin"
 
-#GO Language
-if [[ -r "$HOME/golang" ]]; then
-    export GOPATH=$HOME/golang
-    _add_to_path ${GOPATH//://bin:}/bin
-fi
-
-if [[ -r "$HOME/go" ]]; then
-    export GOPATH=$HOME/go
-    _add_to_path ${GOPATH//://bin:}/bin
-    _add_to_path /usr/local/go/bin
-fi
-
+# Ruby
 if [[ -r "$HOME/.rbenv" ]]; then
     export PATH="$HOME/.rbenv/bin:$PATH"
     eval "$(rbenv init -)"
@@ -74,8 +60,11 @@ test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shel
 
 # PyENV
 if [[ -r "$HOME/.pyenv" ]]; then
+  export PYENV_ROOT="$HOME/.pyenv"
   _add_to_path "$PYENV_ROOT/bin"
-  eval "$(pyenv init -)"
+  if command -v pyenv 1>/dev/null 2>&1; then
+    eval "$(pyenv init -)"
+  fi
   eval "$(register-python-argcomplete pipx)"
 fi
 
