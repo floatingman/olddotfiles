@@ -21,6 +21,9 @@ fi
 
 alias utc='env TZ="UTC" date'
 
+# NVM special cd command
+alias cd='cdnvm'
+
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
 alias ...="cd ../.."
