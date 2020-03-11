@@ -65,6 +65,7 @@ if [[ -r "$HOME/.pyenv" ]]; then
   if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
   fi
+  eval "$(pyenv virtualenv-init -)"
   eval "$(register-python-argcomplete pipx)"
 fi
 
