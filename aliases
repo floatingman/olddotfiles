@@ -78,9 +78,6 @@ function ekill() { emacsclient -e '(kill-emacs)';}
 alias e='nvim'
 alias E='sudo e'
 alias f="vifm"
-if _have nvim; then
-    alias vim='nvim'
-fi
 
 if _have git; then
     alias gc=". ${HOME}/.local/bin/gitdate && git commit -v "
@@ -131,7 +128,7 @@ fi
 
 # List all files colorized in long format
 # shellcheck disable=SC2139
-alias l="ls -lhF ${colorflag}"
+#alias l="ls -lhF ${colorflag}"
 
 # List all files colorized in long format, including dot files
 # shellcheck disable=SC2139
@@ -187,7 +184,6 @@ alias h='history'
 alias j='jobs -l'
 alias nowtime='date +"%T"'
 alias nowdate='date +"%d-%m-%Y"'
-alias week='date +%V'
 alias fastping='ping -c 100 -s .2'
 if _have prettyping; then
     alias ping='prettyping --nolegend'

@@ -237,3 +237,5 @@ hide_edge_borders both
 # Assign MPV to workspace 4 and focus
 assign [class="mpv"] 4
 for_window [class="mpv"] focus
+
+exec --no-startup-id dockd --daemon
