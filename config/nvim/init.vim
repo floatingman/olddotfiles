@@ -1,3 +1,6 @@
+" designed for vim 8+
+let skip_defaults_vim=1
+
 let mapleader =","
 
 if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
@@ -8,89 +11,82 @@ endif
 
 " Plugins installed
   call plug#begin('~/.config/nvim/plugged')
-  Plug 'autozimu/LanguageClient-neovim', {
-        \ 'branch': 'next',
-        \ 'do': 'bash install.sh',
-        \}
+" Plug 'autozimu/LanguageClient-neovim', {
+"       \ 'branch': 'next',
+"       \ 'do': 'bash install.sh',
+"       \}
 
   "" Completion
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
   "" Plugins used by pigmonkey (https://github.com/pigmonkey)
-  Plug 'jamessan/vim-gnupg'
-  Plug 'roman/golden-ratio'
-  Plug 'hynek/vim-python-pep8-indent'
-  Plug 'dhruvasagar/vim-table-mode'
-  Plug 'ledger/vim-ledger'
-  Plug 'othree/html5.vim'
-  Plug 'hail2u/vim-css3-syntax'
+" Plug 'jamessan/vim-gnupg'
+" Plug 'roman/golden-ratio'
+" Plug 'hynek/vim-python-pep8-indent'
+" Plug 'dhruvasagar/vim-table-mode'
+" Plug 'ledger/vim-ledger'
+" Plug 'othree/html5.vim'
+" Plug 'hail2u/vim-css3-syntax'
 
 
   Plug 'scrooloose/nerdtree'
-  Plug 'Xuyuanp/nerdtree-git-plugin'
-  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-  Plug 'scrooloose/nerdcommenter'
-  Plug 'christoomey/vim-tmux-navigator'
-  Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
-  Plug 'ryanoasis/vim-devicons'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Plug 'scrooloose/nerdcommenter'
+" Plug 'christoomey/vim-tmux-navigator'
+" Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
+" Plug 'ryanoasis/vim-devicons'
   Plug 'airblade/vim-gitgutter'
-  Plug 'editorconfig/editorconfig-vim'
-  Plug 'easymotion/vim-easymotion'
-  Plug 'haya14busa/incsearch-easymotion.vim'
-  Plug 'haya14busa/incsearch.vim'
-  Plug 'justinmk/vim-dirvish'
-  Plug 'tpope/vim-surround'
-  Plug 'tpope/vim-eunuch'
-  Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-rhubarb'
-  Plug 'sodapopcan/vim-twiggy'
-  Plug 'tpope/vim-repeat'
-  "Plug 'tpope/vim-commentary'
-  Plug 'ntpeters/vim-better-whitespace'
-  Plug 'rhysd/conflict-marker.vim'
-  Plug 'sbdchd/neoformat'
-  Plug 'sheerun/vim-polyglot'
-  Plug 'trevordmiller/nova-vim'
-  Plug 'whatyouhide/vim-lengthmatters'
-  Plug 'edkolev/promptline.vim'
-  Plug 'xolox/vim-misc'
-  Plug 'skywind3000/asyncrun.vim'
-  Plug 'majutsushi/tagbar'
-  Plug 'ludovicchabant/vim-gutentags'
-  Plug 'will133/vim-dirdiff'
+" Plug 'editorconfig/editorconfig-vim'
+" Plug 'easymotion/vim-easymotion'
+" Plug 'haya14busa/incsearch-easymotion.vim'
+" Plug 'haya14busa/incsearch.vim'
+" Plug 'justinmk/vim-dirvish'
+" Plug 'tpope/vim-surround'
+" Plug 'tpope/vim-eunuch'
+" Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-rhubarb'
+" Plug 'sodapopcan/vim-twiggy'
+" Plug 'tpope/vim-repeat'
+" Plug 'tpope/vim-commentary'
+" Plug 'ntpeters/vim-better-whitespace'
+" Plug 'rhysd/conflict-marker.vim'
+" Plug 'sbdchd/neoformat'
+" Plug 'sheerun/vim-polyglot'
+" Plug 'trevordmiller/nova-vim'
+" Plug 'whatyouhide/vim-lengthmatters'
+" Plug 'edkolev/promptline.vim'
+" Plug 'xolox/vim-misc'
+" Plug 'skywind3000/asyncrun.vim'
+" Plug 'majutsushi/tagbar'
+" Plug 'ludovicchabant/vim-gutentags'
+" Plug 'will133/vim-dirdiff'
   "" Markdown editing
-  Plug 'junegunn/goyo.vim'
-  Plug 'junegunn/limelight.vim'
-  Plug 'PotatoesMaster/i3-vim-syntax'
-  Plug 'vimwiki/vimwiki'
-  Plug 'plasticboy/vim-markdown'
-  Plug 'honza/vim-snippets'
-  Plug 'elzr/vim-json'
-  Plug 'godlygeek/tabular'
+" Plug 'junegunn/goyo.vim'
+" Plug 'junegunn/limelight.vim'
+" Plug 'PotatoesMaster/i3-vim-syntax'
+" Plug 'vimwiki/vimwiki'
+" Plug 'plasticboy/vim-markdown'
+" Plug 'honza/vim-snippets'
+" Plug 'elzr/vim-json'
+" Plug 'godlygeek/tabular'
   Plug 'vim-pandoc/vim-pandoc-syntax'
-  Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
+" Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 
   "" Mode Line config
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
 
   "" Python coding
-  Plug 'vim-scripts/indentpython.vim'
-  Plug 'nvie/vim-flake8'
-  Plug 'vim-scripts/Pydiction'
-  Plug 'klen/rope-vim'
-  Plug 'vifm/vifm.vim'
-  Plug 'kovetskiy/sxhkd-vim'
-  Plug 'pearofducks/ansible-vim'
+" Plug 'vim-scripts/indentpython.vim'
+" Plug 'nvie/vim-flake8'
+" Plug 'vim-scripts/Pydiction'
+" Plug 'klen/rope-vim'
+" Plug 'vifm/vifm.vim'
+" Plug 'kovetskiy/sxhkd-vim'
+" Plug 'pearofducks/ansible-vim'
 
   "" Jenkins
-  Plug 'martinda/Jenkinsfile-vim-syntax'
-
-  "" Coffeescript
-  Plug 'kchmck/vim-coffee-script'
-
-  "" Colorscheme
-  Plug 'morhetz/gruvbox'
+" Plug 'martinda/Jenkinsfile-vim-syntax'
 
   "" Searching
   Plug 'gabesoft/vim-ags'
@@ -121,7 +117,8 @@ endif
   set nu
   set ruler
   " Show the status line
-  set laststatus=2
+  set laststatus=0
+  set icon
   set infercase
   set diffopt+=filler,vertical
   set breakindent
@@ -133,9 +130,23 @@ endif
   set shiftwidth=2
   set nowrap
   set linebreak
-  " Allow mouse (is this sacrilege?)
-  set mouse=a
-  " Some basics:
+  set number
+  "set relativenumber
+
+  " FIXME turn wrapping off for everything but text files
+  set formatoptions=tcqrn12
+
+" Avoid most of the 'Hit Enter ...' messages
+  set shortmess=aoOtI
+
+" more reasonable characters to list with `:set list`
+  set listchars=tab:→\ ,eol:↲,nbsp:␣,space:·,trail:·,extends:⟩,precedes:⟨
+
+" prevents truncated yanks, deletes, etc.
+" 20 registers, 1000 lines max, up to 10kb in each
+set viminfo='20,<1000,s1000
+set textwidth=74
+" Some basics:
   filetype plugin indent on
   syntax on
   set ttyfast
@@ -150,9 +161,6 @@ endif
   " set wildmenu
   " set wildmode=list:longest,full
 
-  " Underline the current line
-  set cursorline
-
   " Set the minimum number of lines to keep above and below cursor
   set scrolloff=5
 
@@ -161,27 +169,6 @@ endif
   map [b :bprevious<cr>
   map ]b :bnext<cr>
   map <leader>b :buffers<cr>
-
-
-  """""""""""""""""""
-  " Temporary Files "
-  """""""""""""""""""
-  " https://gist.github.com/tejr/5890634
-
-  " Don't backup files in temp directories or shm
-  if exists('&backupskip')
-    set backupskip+=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*
-  endif
-
-  " Don't keep swap files in temp directories or shm
-  if has('autocmd')
-    augroup swapskip
-      autocmd!
-      silent! autocmd BufNewFile,BufReadPre
-            \ /tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*
-            \ setlocal noswapfile
-    augroup END
-  endif
 
   " Don't keep undo files in temp directories or shm
   if has('persistent_undo') && has('autocmd')
@@ -206,30 +193,25 @@ endif
   endif
 
 
-  """"""""
-  " Pass "
-  """"""""
+" displays all the syntax rules for current position, useful
+" when writing vimscript syntax plugins
 
-  augroup passconceal
-    autocmd!
+function! <SID>SynStack()
+	if !exists("*synstack")
+		return
+	endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
 
-    " Create the second line if it does not already exist
-    autocmd BufNewFile,BufRead */pass.*/* if line('$') == 1 | $put _ | endif
+" start at last place you were editing
 
-    " Jump to the second line
-    autocmd BufNewFile,BufRead */pass.*/* 2
-
-    " Conceal the first line with an asterisk
-    autocmd BufNewFile,BufRead */pass.*/* syntax match Concealed '\%1l.*' conceal cchar=*
-    autocmd BufNewFile,BufRead */pass.*/* set conceallevel=1
-
-  augroup END
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
   " Insert timestamp
   map <leader>n :r!date<cr>
 
   set background=dark
-  colorscheme gruvbox
+  colorscheme delek
 
 " gutentags
   let g:gutentags_cache_dir = $HOME . '/.cache/ctags'
@@ -285,30 +267,27 @@ endif
   "}}}
 
 " tagbar
-  let g:tagbar_autoclose = 1
-  nnoremap <F12> :TagbarToggle<cr>
+" let g:tagbar_autoclose = 1
+" nnoremap <F12> :TagbarToggle<cr>
 
 " Disables automatic commenting on newline:
   autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Goyo plugin makes text more readable when writing prose:
-  map <leader>f :Goyo \| set linebreak<CR>
+" map <leader>f :Goyo \| set linebreak<CR>
 
 "" Limelight helps with editing
-  let g:limelight_conceal_ctermfg = 'gray'
-  let g:limelight_conceal_ctermfg = 240
-  let g:limelight_conceal_guifg = 'DarkGray'
-  let g:limelight_conceal_guifg = '#777777'
-  let g:limelight_deafault_coeffiecient = 0.7
-  let g:limelight_paragraph_span = 1
-  let g:limelight_bob = '^\s'
-  let g:limelight_eop = '\ze\n^\s'
-  let g:limelight_priority = -1
-  autocmd! User GoyoEnter Limelight
-  autocmd! User GoyoLeave Limelight!
-
-" Spell-check set to <leader>o, 'o' for 'orthography':
-  map <leader>o :setlocal spell! spelllang=en_us<CR>
+" let g:limelight_conceal_ctermfg = 'gray'
+" let g:limelight_conceal_ctermfg = 240
+" let g:limelight_conceal_guifg = 'DarkGray'
+" let g:limelight_conceal_guifg = '#777777'
+" let g:limelight_deafault_coeffiecient = 0.7
+" let g:limelight_paragraph_span = 1
+" let g:limelight_bob = '^\s'
+" let g:limelight_eop = '\ze\n^\s'
+" let g:limelight_priority = -1
+" autocmd! User GoyoEnter Limelight
+" autocmd! User GoyoLeave Limelight!
 
 " Splits open at the bottom and right
   set splitbelow splitright
@@ -317,13 +296,13 @@ endif
   map <leader>c :!clear && shellcheck %<CR>
 
 " Copy selected text to system clipboard (requires gvim/nvim/vim-xll installed):
-  vnoremap <C-c> "+y
-  map <C-p> "+P
+"  vnoremap <C-c> "+y
+" map <C-p> "+P
 
 " Enable Goyo by default for mutt writing
 " Goyo's width will be the line limit in mutt.
-  autocmd BufRead,BufNewFile /tmp/neomutt* let g:goyo_width=80
-  autocmd BufRead,BufNewFile /tmp/neomutt* :Goyo
+" autocmd BufRead,BufNewFile /tmp/neomutt* let g:goyo_width=80
+" autocmd BufRead,BufNewFile /tmp/neomutt* :Goyo
 
 " Automatically deletes all trailing whitespace on save
   autocmd BufWritePre * %s/\s\+$//e
@@ -333,6 +312,19 @@ endif
 
 " Update binds when sxhkdrc is updated.
   autocmd BufWritePost *sxhkdrc !pkill -USR1 sxhkd
+
+" syntax helpers
+
+au bufnewfile,bufRead *.bash* set ft=sh
+au bufnewfile,bufRead *.profile set filetype=sh
+au bufnewfile,bufRead *.crontab set filetype=crontab
+au bufnewfile,bufRead *ssh/config set filetype=sshconfig
+au bufnewfile,bufRead *gitconfig set filetype=gitconfig
+au bufnewfile,bufread /tmp/psql.edit.* set syntax=sql
+
+" let status and other commands see the type of the current file
+  au bufnewfile,bufread * call system("echo " . &filetype . " > $HOME/.vim/curfiletype")
+  au vimleavepre * call system("echo > $HOME/.vim/curfiletype" )
 
 " Run xrdb whenever Xdefaults or Xresources are updated.
   autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb %
@@ -356,7 +348,10 @@ endif
 " Make backspaces more powerfull
   set backspace=indent,eol,start
 
-  autocmd FileType python set omnifunc=pythoncomplete#Complete
+" enable omni-completion
+set omnifunc=syntaxcomplete#Complete
+
+" autocmd FileType python set omnifunc=pythoncomplete#Complete
 
 " Set syntax highlighting
   let python_highlight_all=1
@@ -370,24 +365,24 @@ endif
   au FileType markdown set textwidth=115
 
   "" Markdown.vim
-  let g:vim_markdown_folding_disabled = 1
-  let g:vim_markdown_conceal = 0
-  let g:tex_concearl = ""
-  let g:vim_markdown_math = 1
+" let g:vim_markdown_folding_disabled = 1
+" let g:vim_markdown_conceal = 0
+" let g:tex_concearl = ""
+" let g:vim_markdown_math = 1
 
-  let g:vim_markdown_frontmatter = 1 " for YAML format
-  let g:vim_markdown_toml_frontmatter = 1 " for TOML format
-  let g:vim_markdown_json_frontmatter = 1 " for JSON format
+" let g:vim_markdown_frontmatter = 1 " for YAML format
+" let g:vim_markdown_toml_frontmatter = 1 " for TOML format
+" let g:vim_markdown_json_frontmatter = 1 " for JSON format
 
 "" Markdown Preview
-  let g:mkdp_auto_close = 0
-  nnoremap <M-m> :MarkdownPreview<CR>
+" let g:mkdp_auto_close = 0
+" nnoremap <M-m> :MarkdownPreview<CR>
 
 " vim-airline
-  let g:airline_theme = 'kolor'
-  let g:airline_powerline_fonts = 1
-  let g:airline#extensions#tabline#enabled = 1
-  let g:airline#extensions#tabline#fnamemod = ':t'
+" let g:airline_theme = 'kolor'
+" let g:airline_powerline_fonts = 1
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#fnamemod = ':t'
 
 " gitgutter
   if exists('&signcolumn')
@@ -399,43 +394,24 @@ endif
   let g:gitgutter_max_signs = 250
 
 " LanguageClient-neovim
-  let g:LanguageClient_serverCommands = {
-        \ 'cpp': ['/usr/local/Cellar/cquery/20180718/bin/cquery',
-        \ '--log-file=/tmp/cq.log',
-        \ '--init={"cacheDirectory":"/tmp/cquery/",
-        \                 "blacklist": ["./build", "./ext"]}'],
-        \ 'ruby': ['~/.asdf/shims/solargraph', 'stdio'],
-        \ 'python': ['~/.asdf/shims/pyls'],
-        \ }
-  let g:LanguageClient_autoStart = 1
-
-" cscope
-  if has("cscope")
-    set csprg=/usr/local/bin/cscope
-    set csto=0
-    set cst
-    set nocsverb
-    if filereadable("cscope.out")
-      cs add cscope.out
-    elseif $CSOPE_DB != ""
-      cs add $CSCOPE_DB
-    endif
-  endif
+" let g:LanguageClient_serverCommands = {
+"       \ 'cpp': ['/usr/local/Cellar/cquery/20180718/bin/cquery',
+"       \ '--log-file=/tmp/cq.log',
+"       \ '--init={"cacheDirectory":"/tmp/cquery/",
+"       \                 "blacklist": ["./build", "./ext"]}'],
+"       \ 'ruby': ['~/.asdf/shims/solargraph', 'stdio'],
+"       \ 'python': ['~/.asdf/shims/pyls'],
+"       \ }
+" let g:LanguageClient_autoStart = 1
 
 " vim-fugitive
-  map <leader>gs :Gstatus<cr>
-  map <leader>gc :Gcommit<cr>
-  map <leader>gl :Glog<cr>
+" map <leader>gs :Gstatus<cr>
+" map <leader>gc :Gcommit<cr>
+" map <leader>gl :Glog<cr>
 
 " config helpers
   command! InitEdit :e ~/.config/nvim/init.vim
   command! InitSource :source ~/.config/nvim/init.vim
-
-" project level customization
-  let g:project_file_name = 'project.vim'
-  if !empty(glob(expand(g:project_file_name)))
-    exec 'source' fnameescape(g:project_file_name)
-  endif
 
 " Rainbows!
   let g:rainbow_active = 1
@@ -444,8 +420,14 @@ endif
   "nnoremap p p=`]<C-o>
   "nnoremap P P=`]<C-o>
 
-" Toggle paste mode (F2)
-  set pastetoggle=<F2>
+" function keys
+map <F1> :set number!<CR> :set relativenumber!<CR>
+nmap <F2> :call <SID>SynStack()<CR>
+set pastetoggle=<F3>
+map <F4> :set list!<CR>
+map <F5> :set cursorline!<CR>
+map <F7> :set spell!<CR>
+
 
 " Write a file with sudo (w!!)
   cmap w!! W !sudo tee % >/dev/null
@@ -454,13 +436,12 @@ endif
   inoremap kj <Esc>
 
 " Folds
-  set foldmethod=indent   "fold based on indent
-  set foldnestmax=3       "deepest fold is 3 levels
-  set nofoldenable        "don't fold by default
+" manual folding by default (zf/zd)
+  set foldmethod=manual   "fold based on indent
+
   "" Toggle folds with space.
   nnoremap <Space> za
   vnoremap <Space> za
-
 
 " Redraw syntax highlighting from start of file.
   nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
@@ -487,6 +468,12 @@ endif
     execute 'nnoremap <Leader>' . i . ' :' . i . 'wincmd W<CR>'
     let i = i + 1
   endwhile
+
+" Window switching
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
 
 " Paste from system clipboard in insert mode (Ctrl+v)
   imap <C-v> <ESC>"+gpa
@@ -526,20 +513,9 @@ au BufRead /tmp/*mutt* setfiletype mail
 " Delete quoted signatures.
 au BufRead /tmp/*mutt* normal :g/^\(> \)--\s*$/,/^$/-1d/^$
 
-"" COC settings
-" coc config
-let g:coc_global_extensions = [
-      \ 'coc-snippets',
-      \ 'coc-pairs',
-      \ 'coc-tsserver',
-      \ 'coc-eslint',
-      \ 'coc-prettier',
-      \ 'coc-json',
-      \ 'coc-python',
-      \ ]
-
 " Some servers have issues with backup files, see #649
 set nobackup
+set noswapfile
 set nowritebackup
 
 " Better display for messages
@@ -554,112 +530,3 @@ set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
 
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" Or use `complete_info` if your vim support it, like:
-" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-
-" Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Create mappings for function text object, requires document symbols feature of languageserver.
-xmap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap if <Plug>(coc-funcobj-i)
-omap af <Plug>(coc-funcobj-a)
-
-" Use <C-d> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-nmap <silent> <C-d> <Plug>(coc-range-select)
-xmap <silent> <C-d> <Plug>(coc-range-select)
-
-" Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format')
-
-" Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" use `:OR` for organize import of current buffer
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-" Add status line support, for integration with other plugin, checkout `:h coc-status`
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-" Using CocList
-" Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
