@@ -50,3 +50,6 @@ dropbox &
 
 # Start compost manager
 xcompmgr -c &
+
+# Start wallpaper changer
+~/bin/wallpaper.sh &
