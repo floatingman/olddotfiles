@@ -5,13 +5,13 @@
 [push]
         default = simple
 [diff]
-        tool = nvimdiff2
+        tool = vimdiff2
         compactionHeuristic = true
         indentHeuristic = true
         renames = copies
 
-[difftool "nvimdiff2"]
-  cmd = nvim -d $LOCAL $REMOTE
+[difftool "vimdiff2"]
+  cmd = vim -d $LOCAL $REMOTE
   prompt = false
 
 [diff "json"]
@@ -142,12 +142,12 @@
         show = diff-so-fancy | less --tabs=4 -RFX
 
 [merge]
-    tool = nvimdiff4
+    tool = vimdiff4
 		# Include summaries of merged commits in newly created merge commit messages
 		log = true
 
-[mergetool "nvimdiff4"]
-    cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[mergetool "vimdiff4"]
+    cmd = vim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 
 [commit]
 	gpgsign = true
