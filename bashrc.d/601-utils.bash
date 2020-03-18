@@ -1,0 +1,59 @@
+# is $1 installed?
+_have() { which "$1" &>/dev/null; }
+
+_islinux=false
+[[ "$(uname -s)" =~ Linux|GNU|GNU/* ]] && _islinux=true
+
+_ismac=false
+[[ "$(uname -s)" =~ Darwin ]] && _ismac=true
+
+_isubuntu=false
+[[ "$(uname -v)" =~ Ubuntu ]] && _isubuntu=true
+_isarch=false
+[[ -f /etc/arch-release ]] && _isarch=true
+
+_isxrunning=false
+[[ -n "$DISPLAY" ]] && _isxrunning=true
+
+_isroot=false
+[[ $UID -eq 0 ]] && _isroot=true
+
+# add directories to $PATH
+_add_to_path() {
+    local path
+
+    for path; do
+        [[ -d "$path" ]] && [[ ! ":${PATH}:" =~ :${path}: ]] && export PATH=${path}:$PATH
+    done
+}
+
+# source a file if readable
+_source () {
+    local file="$1"
+    [[ -r "$file" ]] || return 1
+    . "$file"
+}
+
+_load_bash_completion_files() {
+    FILES="$HOME/.bash_completion/*.bash"
+    for config_file in $FILES
+    do
+        if [[ -e ${config_file} ]]; then
+            source "$config_file"
+        fi
+    done
+}
+
+get_dpi() {
+    r=$( (xrandr | \
+             grep '\<connected\>' | \
+             head -n 1 | \
+             sed 's/[^0-9]/ /g' | \
+             awk '{printf "%.0f\n", $2 / ($6 * 0.0394)}') \
+           2>/dev/null)
+    if [ -z "$r" ]; then
+        echo 96  # fake it
+    else
+        echo "$r"
+    fi
+}

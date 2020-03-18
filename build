@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# yeah really ;)
+
+cat bashrc.d/*.bash > bashrc
