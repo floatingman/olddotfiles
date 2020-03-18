@@ -41,3 +41,7 @@ vim/undos/*
 !vim/undos/.keep
 vim/swaps/*
 !vim/swaps/.keep
+
+# Ignore generated files #
+# ########################
+bashrc
