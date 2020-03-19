@@ -1,6 +1,5 @@
 
 export PATH=\
-$HOME/bin:\
 $HOME/go/bin:\
 $HOME/.cargo/bin:\
 /usr/local/opt/coreutils/libexec/gnubin:\
@@ -15,5 +14,16 @@ $HOME/.cargo/bin:\
 /sbin:\
 /bin
 
-alias path='echo -e ${PATH//:/\\n}' # human readable path
+case "$PLATFORM" in
+  mac)
+  [[ -r "$HOME/bin" ]] && export PATH="$PATH:$(du -I .git "$HOME/bin" | cut -f2 | tr '\n' ':')"
+  [[ -r "$HOME/.bin" ]] && export PATH="$PATH:$(du -I .git "$HOME/.bin" | cut -f2 | tr '\n' ':')"
+  ;;
+  linux)
+  [[ -r "$HOME/bin" ]] && export PATH="$PATH:$(du --exclude=.git "$HOME/bin" | cut -f2 | tr '\n' ':')"
+  [[ -r "$HOME/.bin" ]] && export PATH="$PATH:$(du --exclude=.git "$HOME/.bin" | cut -f2 | tr '\n' ':')"
+  ;;
+  esac
+
+alias path='echo $PATH | tr ":" "\n" | nl' # human readable path
 
