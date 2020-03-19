@@ -61,7 +61,7 @@ function ekill() { emacsclient -e '(kill-emacs)';}
 # vim
 alias e='nvim'
 alias E='sudo e'
-alias f="vifm"
+alias f='e `fzf -i`'
 
 if _have git; then
     alias gc=". ${HOME}/.local/bin/gitdate && git commit -v "
