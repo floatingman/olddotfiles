@@ -11,15 +11,15 @@ endif
 
 " Plugins installed
   call plug#begin('~/.config/nvim/plugged')
-" Plug 'autozimu/LanguageClient-neovim', {
-"       \ 'branch': 'next',
-"       \ 'do': 'bash install.sh',
-"       \}
+ Plug 'autozimu/LanguageClient-neovim', {
+       \ 'branch': 'next',
+       \ 'do': 'bash install.sh',
+       \}
 
   "" Completion
 
   "" Plugins used by pigmonkey (https://github.com/pigmonkey)
-" Plug 'jamessan/vim-gnupg'
+ Plug 'jamessan/vim-gnupg'
 " Plug 'roman/golden-ratio'
 " Plug 'hynek/vim-python-pep8-indent'
 " Plug 'dhruvasagar/vim-table-mode'
@@ -29,21 +29,21 @@ endif
 
 
   Plug 'scrooloose/nerdtree'
-" Plug 'Xuyuanp/nerdtree-git-plugin'
-" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-" Plug 'scrooloose/nerdcommenter'
+ Plug 'Xuyuanp/nerdtree-git-plugin'
+ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+ Plug 'scrooloose/nerdcommenter'
 " Plug 'christoomey/vim-tmux-navigator'
 " Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
 " Plug 'ryanoasis/vim-devicons'
   Plug 'airblade/vim-gitgutter'
-" Plug 'editorconfig/editorconfig-vim'
+ Plug 'editorconfig/editorconfig-vim'
 " Plug 'easymotion/vim-easymotion'
 " Plug 'haya14busa/incsearch-easymotion.vim'
 " Plug 'haya14busa/incsearch.vim'
 " Plug 'justinmk/vim-dirvish'
-" Plug 'tpope/vim-surround'
+ Plug 'tpope/vim-surround'
 " Plug 'tpope/vim-eunuch'
-" Plug 'tpope/vim-fugitive'
+ Plug 'tpope/vim-fugitive'
 " Plug 'tpope/vim-rhubarb'
 " Plug 'sodapopcan/vim-twiggy'
 " Plug 'tpope/vim-repeat'
@@ -57,14 +57,14 @@ endif
 " Plug 'edkolev/promptline.vim'
 " Plug 'xolox/vim-misc'
 " Plug 'skywind3000/asyncrun.vim'
-" Plug 'majutsushi/tagbar'
-" Plug 'ludovicchabant/vim-gutentags'
+ Plug 'majutsushi/tagbar'
+ Plug 'ludovicchabant/vim-gutentags'
 " Plug 'will133/vim-dirdiff'
   "" Markdown editing
 " Plug 'junegunn/goyo.vim'
 " Plug 'junegunn/limelight.vim'
-" Plug 'PotatoesMaster/i3-vim-syntax'
-" Plug 'vimwiki/vimwiki'
+ Plug 'PotatoesMaster/i3-vim-syntax'
+ Plug 'vimwiki/vimwiki'
 " Plug 'plasticboy/vim-markdown'
 " Plug 'honza/vim-snippets'
 " Plug 'elzr/vim-json'
@@ -73,8 +73,8 @@ endif
 " Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 
   "" Mode Line config
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
+ Plug 'vim-airline/vim-airline'
+ Plug 'vim-airline/vim-airline-themes'
 
   "" Python coding
 " Plug 'vim-scripts/indentpython.vim'
@@ -86,7 +86,7 @@ endif
 " Plug 'pearofducks/ansible-vim'
 
   "" Jenkins
-" Plug 'martinda/Jenkinsfile-vim-syntax'
+ Plug 'martinda/Jenkinsfile-vim-syntax'
 
   "" Searching
   Plug 'gabesoft/vim-ags'
@@ -267,8 +267,8 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
   "}}}
 
 " tagbar
-" let g:tagbar_autoclose = 1
-" nnoremap <F12> :TagbarToggle<cr>
+ let g:tagbar_autoclose = 1
+ nnoremap <F12> :TagbarToggle<cr>
 
 " Disables automatic commenting on newline:
   autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -379,10 +379,10 @@ set omnifunc=syntaxcomplete#Complete
 " nnoremap <M-m> :MarkdownPreview<CR>
 
 " vim-airline
-" let g:airline_theme = 'kolor'
-" let g:airline_powerline_fonts = 1
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#fnamemod = ':t'
+ let g:airline_theme = 'kolor'
+ let g:airline_powerline_fonts = 1
+ let g:airline#extensions#tabline#enabled = 1
+ let g:airline#extensions#tabline#fnamemod = ':t'
 
 " gitgutter
   if exists('&signcolumn')
@@ -394,20 +394,20 @@ set omnifunc=syntaxcomplete#Complete
   let g:gitgutter_max_signs = 250
 
 " LanguageClient-neovim
-" let g:LanguageClient_serverCommands = {
-"       \ 'cpp': ['/usr/local/Cellar/cquery/20180718/bin/cquery',
-"       \ '--log-file=/tmp/cq.log',
-"       \ '--init={"cacheDirectory":"/tmp/cquery/",
-"       \                 "blacklist": ["./build", "./ext"]}'],
-"       \ 'ruby': ['~/.asdf/shims/solargraph', 'stdio'],
-"       \ 'python': ['~/.asdf/shims/pyls'],
-"       \ }
-" let g:LanguageClient_autoStart = 1
+ let g:LanguageClient_serverCommands = {
+       \ 'cpp': ['/usr/local/Cellar/cquery/20180718/bin/cquery',
+       \ '--log-file=/tmp/cq.log',
+       \ '--init={"cacheDirectory":"/tmp/cquery/",
+       \                 "blacklist": ["./build", "./ext"]}'],
+       \ 'ruby': ['~/.asdf/shims/solargraph', 'stdio'],
+       \ 'python': ['~/.asdf/shims/pyls'],
+       \ }
+ let g:LanguageClient_autoStart = 1
 
 " vim-fugitive
-" map <leader>gs :Gstatus<cr>
-" map <leader>gc :Gcommit<cr>
-" map <leader>gl :Glog<cr>
+ map <leader>gs :Gstatus<cr>
+ map <leader>gc :Gcommit<cr>
+ map <leader>gl :Glog<cr>
 
 " config helpers
   command! InitEdit :e ~/.config/nvim/init.vim
