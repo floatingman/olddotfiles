@@ -77,11 +77,11 @@ tabspaces: 2
 # Font configuration (changes require restart)
 font:
   normal:
-    family: "Fira Code"
+    family: "Iosevka"
   bold:
-    family: "Fira Code"
+    family: "Iosevka"
   italic:
-    family: "Fira Code"
+    family: "Iosevka"
 
   # Point size of the font
   size: 12.0
