@@ -2,4 +2,4 @@
 
 # yeah really ;)
 
-cat bashrc.d/*.bash > bashrc
+cat ${PWD}/bashrc.d/*.bash > bashrc
