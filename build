@@ -2,4 +2,4 @@
 
 # yeah really ;)
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-cat $SCRIPT_DIR/bashrc.d/*.bash > bashrc
+cat $SCRIPT_DIR/bashrc.d/*.bash > $SCRIPT_DIR/bashrc
