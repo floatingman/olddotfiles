@@ -20,7 +20,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'scrooloose/syntastic'
 
 "" Completion
-Plug 'valloric/youcompleteme'
+Plug 'ycm-core/YouCompleteMe', { 'do': './install.py'}
 "" Plugins used by pigmonkey (https://github.com/pigmonkey)
 Plug 'jamessan/vim-gnupg'
 " Plug 'roman/golden-ratio'
@@ -50,13 +50,12 @@ Plug 'tpope/vim-fugitive'
 " Plug 'tpope/vim-rhubarb'
 " Plug 'sodapopcan/vim-twiggy'
 " Plug 'tpope/vim-repeat'
-" Plug 'tpope/vim-commentary'
-" Plug 'ntpeters/vim-better-whitespace'
-" Plug 'rhysd/conflict-marker.vim'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'rhysd/conflict-marker.vim'
 " Plug 'sbdchd/neoformat'
 " Plug 'sheerun/vim-polyglot'
 " Plug 'trevordmiller/nova-vim'
-" Plug 'whatyouhide/vim-lengthmatters'
+Plug 'whatyouhide/vim-lengthmatters'
 " Plug 'edkolev/promptline.vim'
 " Plug 'xolox/vim-misc'
 " Plug 'skywind3000/asyncrun.vim'
@@ -64,13 +63,13 @@ Plug 'majutsushi/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
 " Plug 'will133/vim-dirdiff'
 "" Markdown editing
-" Plug 'junegunn/goyo.vim'
-" Plug 'junegunn/limelight.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'vimwiki/vimwiki'
 " Plug 'plasticboy/vim-markdown'
 " Plug 'honza/vim-snippets'
-" Plug 'elzr/vim-json'
+Plug 'elzr/vim-json'
 " Plug 'godlygeek/tabular'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 " Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
@@ -86,15 +85,28 @@ Plug 'vim-airline/vim-airline-themes'
 " Plug 'klen/rope-vim'
 " Plug 'vifm/vifm.vim'
 " Plug 'kovetskiy/sxhkd-vim'
-" Plug 'pearofducks/ansible-vim'
+Plug 'pearofducks/ansible-vim'
 
 "" Jenkins
 Plug 'martinda/Jenkinsfile-vim-syntax'
 
 "" Searching
+Plug 'rking/ag.vim'
 Plug 'gabesoft/vim-ags'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tacahiroy/ctrlp-funky'
+Plug 'junegunn/fzf'
 
+"" Code Formating
+Plug 'vim-scripts/Align'
+Plug 'Raimondi/delimitMate'
+
+"" Color Schemes
+Plug 'flazz/vim-colorschemes'
+Plug '29decibel/codeschool-vim-theme'
+
+"" Buffer Navigation
+Plug 'sjbach/lusty'
 call plug#end()
 "
 
@@ -116,7 +128,7 @@ set exrc
 set secure
 set nojoinspaces
 set clipboard+=unnamed
-set completeopt=preview
+set completeopt-=preview
 set nu
 set ruler
 " Show the status line
@@ -135,9 +147,6 @@ set nowrap
 set linebreak
 set number
 "set relativenumber
-
-" FIXME turn wrapping off for everything but text files
-set formatoptions=tcqrn12
 
 " Avoid most of the 'Hit Enter ...' messages
 set shortmess=aoOtI
@@ -160,8 +169,11 @@ set list
 " Follow line indentation
 set autoindent
 
+" Set copy indentation
+set copyindent
+
 " Use wildmenu for command line tab completion
-" set wildmenu
+set wildmenu
 " set wildmode=list:longest,full
 
 " Set the minimum number of lines to keep above and below cursor
@@ -214,11 +226,15 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 map <leader>n :r!date<cr>
 
 set background=dark
-colorscheme delek
+colorscheme chance-of-storm
 
 " gutentags
 let g:gutentags_cache_dir = $HOME . '/.cache/ctags'
 
+" ycm completion
+let g:ycm_add_preview_to_completeopt=1
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_autoclose_preview_window_after_insertion=1
 
 " ctrlp
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
@@ -226,6 +242,15 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor --path-to-ignore ~/.ignore -g ""'
 endif
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:ctrlp_follow_symlinks = 1
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|node_modules\|bin\|dist\|bower_components',
+  \ 'file': '\.exe$\|\.so$\|\.dat$'
+  \ }
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_extensions = ['funky']
 
 " vim-ags
 " Search for the word under cursor
@@ -277,20 +302,20 @@ nnoremap <F12> :TagbarToggle<cr>
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Goyo plugin makes text more readable when writing prose:
-" map <leader>f :Goyo \| set linebreak<CR>
+map <leader>f :Goyo \| set linebreak<CR>
 
 "" Limelight helps with editing
-" let g:limelight_conceal_ctermfg = 'gray'
-" let g:limelight_conceal_ctermfg = 240
-" let g:limelight_conceal_guifg = 'DarkGray'
-" let g:limelight_conceal_guifg = '#777777'
-" let g:limelight_deafault_coeffiecient = 0.7
-" let g:limelight_paragraph_span = 1
-" let g:limelight_bob = '^\s'
-" let g:limelight_eop = '\ze\n^\s'
-" let g:limelight_priority = -1
-" autocmd! User GoyoEnter Limelight
-" autocmd! User GoyoLeave Limelight!
+ let g:limelight_conceal_ctermfg = 'gray'
+ let g:limelight_conceal_ctermfg = 240
+ let g:limelight_conceal_guifg = 'DarkGray'
+ let g:limelight_conceal_guifg = '#777777'
+ let g:limelight_deafault_coeffiecient = 0.7
+ let g:limelight_paragraph_span = 1
+ let g:limelight_bob = '^\s'
+ let g:limelight_eop = '\ze\n^\s'
+ let g:limelight_priority = -1
+ autocmd! User GoyoEnter Limelight
+ autocmd! User GoyoLeave Limelight!
 
 " Splits open at the bottom and right
 set splitbelow splitright
@@ -382,10 +407,11 @@ au FileType markdown set textwidth=115
 " nnoremap <M-m> :MarkdownPreview<CR>
 
 " vim-airline
-let g:airline_theme = 'kolor'
+"let g:airline_theme = 'kolor'
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline_theme = 'powerlineish'
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#fnamemod = ':t'
 
 " gitgutter
 if exists('&signcolumn')
@@ -465,21 +491,13 @@ set smartcase
 nnoremap <leader><space> :noh<cr>
 
 " Window switching
-"" Switch between windows with <Leader><number>
-let i = 1
-while i <= 9
-  execute 'nnoremap <Leader>' . i . ' :' . i . 'wincmd W<CR>'
-  let i = i + 1
-endwhile
-
-" Window switching
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 " Paste from system clipboard in insert mode (Ctrl+v)
-imap <C-v> <ESC>"+gpa
+"imap <C-v> <ESC>"+gpa
 
 " GnuPG Extensions
 " Tell the GnuPG plugin to armor new files
@@ -542,3 +560,62 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+" FZF
+" An action can be a reference to a function that processes selected lines
+function! s:build_quickfix_list(lines)
+  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+  copen
+  cc
+endfunction
+
+let g:fzf_action = {
+  \ 'ctrl-q': function('s:build_quickfix_list'),
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+" Default fzf layout
+" - down / up / left / right
+"let g:fzf_layout = { 'down': '~40%' }
+
+" You can set up fzf window using a Vim command (Neovim or latest Vim 8 required)
+"let g:fzf_layout = { 'window': 'enew' }
+let g:fzf_layout = { 'window': '-tabnew' }
+"let g:fzf_layout = { 'window': '10new' }
+
+" Customize fzf colors to match your color scheme
+" - fzf#wrap translates this to a set of `--color` options
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+" Enable per-command history
+" - History files will be stored in the specified directory
+" - When set, CTRL-N and CTRL-P will be bound to 'next-history' and
+"   'previous-history' instead of 'down' and 'up'.
+let g:fzf_history_dir = '~/.local/share/fzf-history'
+
+" delimit
+let g:delimitMate_expand_space = 1
+let g:delimitMate_expand_cr = 1
+
+" Align stuff
+vmap AA :Align =<CR>
+vmap Ap :Align =><CR>
+vmap Aa :Align :<CR>
+vmap A, :Align ,<CR>
+
+" Lusty juggler
+nmap <silent> <leader>d :LustyJuggler<CR>
