@@ -1,2 +1,2 @@
-EXCLUDES="Makefile README.md test.sh install.sh mac-os.sh tags build
-hooks"
+EXCLUDES="Makefile README.md test.sh install.sh mac-os.sh tags build hooks
+bashrc.d"
