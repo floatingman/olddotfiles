@@ -302,7 +302,10 @@ nnoremap <F12> :TagbarToggle<cr>
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Goyo plugin makes text more readable when writing prose:
-map <leader>f :Goyo \| set linebreak<CR>
+map <leader>g :Goyo \| set linebreak<CR>
+
+" CtrlP funky ya ass
+nmap <silent> <leader>f :CtrlPFunky<CR>
 
 "" Limelight helps with editing
  let g:limelight_conceal_ctermfg = 'gray'
@@ -619,3 +622,13 @@ vmap A, :Align ,<CR>
 
 " Lusty juggler
 nmap <silent> <leader>d :LustyJuggler<CR>
+
+" remove training wheels
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
