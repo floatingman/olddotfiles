@@ -8,7 +8,10 @@ xmodmap ~/.Xmodmap
 sxhkd &
 
 # Launch the screen locker
-xautolock -time 09 -locker "betterlockscreen -l" -detectsleep -secure -corners 0-00 -cornerdelay 3 -cornerredelay 20 &
+#xautolock -time 09 -locker "betterlockscreen -l" -detectsleep -secure -corners 0-00 -cornerdelay 3 -cornerredelay 20 &
+
+# For xscreensaver to run as part of the x session
+/usr/bin/xscreensaver -nosplash &
 
 # Restore the desktop background
 if [ -f ~/.fehbg ]; then
