@@ -2,6 +2,7 @@
 export PATH=\
 $HOME/go/bin:\
 $HOME/.cargo/bin:\
+$HOME/.local/bin:\
 /usr/local/opt/coreutils/libexec/gnubin:\
 /usr/local/go/bin:\
 /usr/local/tinygo/bin:\
