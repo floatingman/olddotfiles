@@ -54,5 +54,7 @@ dropbox &
 # Start compost manager
 xcompmgr -c &
 
+~/bin/lightson+ -d 2 &
+
 # Start wallpaper changer
 ~/bin/wallpaper.sh &
