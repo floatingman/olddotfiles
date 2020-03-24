@@ -11,14 +11,12 @@ endif
 
 " Plugins installed
 call plug#begin('~/.config/nvim/plugged')
-Plug 'autozimu/LanguageClient-neovim', {
-      \ 'branch': 'next',
-      \ 'do': 'bash install.sh',
-      \}
+"" lets be sensible
+Plug 'tpope/vim-sensible'
 
 "" Syntax
-Plug 'scrooloose/syntastic'
-
+Plug 'w0rp/ale'
+Plug 'pangloss/vim-javascript'
 "" Completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "" Plugins used by pigmonkey (https://github.com/pigmonkey)
@@ -45,7 +43,7 @@ Plug 'editorconfig/editorconfig-vim'
 " Plug 'haya14busa/incsearch.vim'
 " Plug 'justinmk/vim-dirvish'
 Plug 'tpope/vim-surround'
-" Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 " Plug 'tpope/vim-rhubarb'
 " Plug 'sodapopcan/vim-twiggy'
@@ -75,8 +73,9 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 " Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 
 "" Mode Line config
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 
 "" Python coding
 " Plug 'vim-scripts/indentpython.vim'
@@ -94,7 +93,6 @@ Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'rking/ag.vim'
 Plug 'gabesoft/vim-ags'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'tacahiroy/ctrlp-funky'
 Plug 'junegunn/fzf'
 
 "" Code Formating
@@ -103,8 +101,6 @@ Plug 'Raimondi/delimitMate'
 
 "" Color Schemes
 Plug 'flazz/vim-colorschemes'
-Plug '29decibel/codeschool-vim-theme'
-
 "" Buffer Navigation
 Plug 'sjbach/lusty'
 call plug#end()
@@ -112,16 +108,14 @@ call plug#end()
 
 " common vim settings
 set nocompatible
-set encoding=utf-8
 set undofile
 set visualbell
 set splitbelow
 set splitright
-set autoread
 " Automatically save before commands like :next and :make
 set autowrite
 " Show the editor mode
-set showmode
+set noshowmode
 " Show state of keyboard input
 set showcmd
 set exrc
@@ -130,16 +124,12 @@ set nojoinspaces
 set clipboard+=unnamed
 set completeopt-=preview
 set nu
-set ruler
 " Show the status line
-set laststatus=0
 set icon
 set infercase
 set diffopt+=filler,vertical
 set breakindent
-set t_Co=256
 set expandtab
-set smarttab
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
@@ -151,62 +141,18 @@ set number
 " Avoid most of the 'Hit Enter ...' messages
 set shortmess=aoOtI
 
-" more reasonable characters to list with `:set list`
-set listchars=tab:→\ ,eol:↲,nbsp:␣,space:·,trail:·,extends:⟩,precedes:⟨
-
-" prevents truncated yanks, deletes, etc.
-" 20 registers, 1000 lines max, up to 10kb in each
-set viminfo='20,<1000,s1000
 set textwidth=74
 " Some basics:
-filetype plugin indent on
-syntax on
 set ttyfast
 
 "Show whitespace characters
 set list
 
-" Follow line indentation
-set autoindent
-
 " Set copy indentation
 set copyindent
 
-" Use wildmenu for command line tab completion
-set wildmenu
-" set wildmode=list:longest,full
-
-" Set the minimum number of lines to keep above and below cursor
-set scrolloff=5
-
 " buffers & tabs
 set hidden
-map [b :bprevious<cr>
-map ]b :bnext<cr>
-map <leader>b :buffers<cr>
-
-" Don't keep undo files in temp directories or shm
-if has('persistent_undo') && has('autocmd')
-  augroup undoskip
-    autocmd!
-    silent! autocmd BufWritePre
-          \ /tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*
-          \ setlocal noundofile
-  augroup END
-endif
-
-" Don't keep viminfo for files in temp directories or shm
-if has('viminfo')
-  if has('autocmd')
-    augroup viminfoskip
-      autocmd!
-      silent! autocmd BufNewFile,BufReadPre
-            \ /tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*
-            \ setlocal viminfo=
-    augroup END
-  endif
-endif
-
 
 " displays all the syntax rules for current position, useful
 " when writing vimscript syntax plugins
@@ -225,33 +171,22 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 " Insert timestamp
 map <leader>n :r!date<cr>
 
+if !has('gui_running')
+  set t_Co=256
+endif
 set background=dark
-colorscheme delek
+colorscheme molokai
 
 " gutentags
 let g:gutentags_cache_dir = $HOME . '/.cache/ctags'
 
-" ycm completion
-let g:ycm_add_preview_to_completeopt=1
-let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_autoclose_preview_window_after_insertion=1
-
 " ctrlp
-let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-if executable('ag')
-  let g:ctrlp_user_command = 'ag %s -l --nocolor --path-to-ignore ~/.ignore -g ""'
-endif
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_working_path_mode = 0
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|node_modules\|bin\|dist\|bower_components',
-  \ 'file': '\.exe$\|\.so$\|\.dat$'
-  \ }
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_extensions = ['funky']
-
+let g:ctrlp_map = '<c-f>'
+map <leader>j :CtrlP<cr>
+map <c-b> :CtrlPBuffer<cr>
+let g:ctrlp_max_height = 20
+let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git'
 " vim-ags
 " Search for the word under cursor
 nnoremap <Leader>s :Ags<Space><C-R>=expand('<cword>')<CR><CR>
@@ -277,6 +212,21 @@ vmap ++ <plug>NERDCommenterToggle
 nmap ++ <plug>NERDCommenterToggle
 let g:NERDTreeGitStatusWithFlags = 1
 let g:NERDTreeIgnore = ['^node_modules$']
+
+let g:NERDTreeShowGitStatus = 1
+
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
 
 " Nerd tree and tag list
 nmap <silent> <leader>t :NERDTreeToggle<CR>
@@ -305,10 +255,7 @@ nnoremap <F12> :TagbarToggle<cr>
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Goyo plugin makes text more readable when writing prose:
-map <leader>g :Goyo \| set linebreak<CR>
-
-" CtrlP funky ya ass
-nmap <silent> <leader>f :CtrlPFunky<CR>
+map <leader>go :Goyo \| set linebreak<CR>
 
 "" Limelight helps with editing
  let g:limelight_conceal_ctermfg = 'gray'
@@ -379,9 +326,6 @@ au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
 " Flag Unnecessary Whitespace
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
-" Make backspaces more powerfull
-set backspace=indent,eol,start
-
 " enable omni-completion
 set omnifunc=syntaxcomplete#Complete
 
@@ -414,10 +358,32 @@ au FileType markdown set textwidth=115
 
 " vim-airline
 "let g:airline_theme = 'kolor'
-let g:airline_powerline_fonts = 1
-let g:airline_theme = 'powerlineish'
+"let g:airline_powerline_fonts = 1
+"let g:airline_theme = 'powerlineish'
 "let g:airline#extensions#tabline#enabled = 1
 "let g:airline#extensions#tabline#fnamemod = ':t'
+
+" lightline config
+let g:lightline = {
+      \ 'colorscheme': 'molokai',
+      \ 'active': {
+      \   'left': [ ['mode', 'paste'],
+      \             ['fugitive', 'readonly', 'filename', 'modified'] ],
+      \   'right': [ [ 'lineinfo' ], ['percent'] ]
+      \ },
+      \ 'component': {
+      \   'readonly': '%{&filetype=="help"?"":&readonly?"🔒":""}',
+      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
+      \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
+      \ },
+      \ 'component_visible_condition': {
+      \   'readonly': '(&filetype!="help"&& &readonly)',
+      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
+      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+      \ },
+      \ 'separator': { 'left': ' ', 'right': ' ' },
+      \ 'subseparator': { 'left': ' ', 'right': ' ' }
+      \ }
 
 " gitgutter
 if exists('&signcolumn')
@@ -427,17 +393,6 @@ else
 endif
 
 let g:gitgutter_max_signs = 250
-
-" LanguageClient-neovim
-let g:LanguageClient_serverCommands = {
-      \ 'cpp': ['/usr/local/Cellar/cquery/20180718/bin/cquery',
-      \ '--log-file=/tmp/cq.log',
-      \ '--init={"cacheDirectory":"/tmp/cquery/",
-      \                 "blacklist": ["./build", "./ext"]}'],
-      \ 'ruby': ['~/.asdf/shims/solargraph', 'stdio'],
-      \ 'python': ['~/.asdf/shims/pyls'],
-      \ }
-let g:LanguageClient_autoStart = 1
 
 " vim-fugitive
 map <leader>gs :Gstatus<cr>
@@ -482,8 +437,6 @@ vnoremap <Space> za
 nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
 
 " Search
-"" Start searching as characters are typed
-set incsearch
 
 "" Highlight search results
 set hlsearch
@@ -492,9 +445,6 @@ set showmatch
 "" Ignore case in searches, but smartly
 set ignorecase
 set smartcase
-
-"" Disable search highlighting (<leader><space>)
-nnoremap <leader><space> :noh<cr>
 
 " Window switching
 map <C-j> <C-W>j
@@ -552,14 +502,10 @@ set cmdheight=2
 set updatetime=300
 
 " Syntax
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+"ale
+set completeopt-=preview
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
 
 " FZF
 " An action can be a reference to a function that processes selected lines
@@ -740,7 +686,7 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+"set statusline=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Mappings using CoCList:
 " Show all diagnostics.
