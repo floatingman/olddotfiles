@@ -45,3 +45,4 @@ vim/swaps/*
 # Ignore generated files #
 # ########################
 bashrc
+vim/plugged
