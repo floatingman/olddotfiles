@@ -11,10 +11,21 @@ Plug 'tpope/vim-sensible'
 
 " Syntax
 Plug 'w0rp/ale'
+
+" Vim Javascript
 Plug 'pangloss/vim-javascript'
+
+" Language Packs
+Plug 'sheerun/vim-polyglot'
+
+" Comfy scroll
+Plug 'yuttie/comfortable-motion.vim'
 
 " Completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Smart completion (to work with CoC)
+Plug 'zxqfl/tabnine-vim'
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -76,12 +87,17 @@ Plug 'vimwiki/vimwiki'
 " Plug 'plasticboy/vim-markdown'
 " Plug 'honza/vim-snippets'
 Plug 'elzr/vim-json'
-" Plug 'godlygeek/tabular'
+Plug 'godlygeek/tabular'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 " Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 
 " Statusbar
-Plug 'itchyny/lightline.vim'
+"Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" Custom start page
+Plug 'mhinz/vim-startify'
 
 "" Python coding
 " Plug 'vim-scripts/indentpython.vim'
@@ -107,6 +123,19 @@ Plug 'Raimondi/delimitMate'
 
 "" Color Schemes
 Plug 'flazz/vim-colorschemes'
+
 "" Buffer Navigation
 Plug 'sjbach/lusty'
+
+" Add DevIcons
+Plug 'ryanoasis/vim-devicons'
+
+" Emoji support
+Plug 'junegunn/vim-emoji'
+
+"" Indent guides
+Plug 'Yggdroot/indentLine'
+
+" Auto pairs
+Plug 'jiangmiao/auto-pairs'
 call plug#end()
