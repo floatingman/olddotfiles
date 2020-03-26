@@ -39,11 +39,9 @@ autocmd BufRead,BufNewFile /tmp/neomutt* :Goyo
 """""""""""
 " Vista   "
 """""""""""
-nmap <F8> :Vista!!<CR>
 let g:vista_executive_for = {
       \ 'c': 'coc',
       \ }
-nnoremap <silent><leader>vf :Vista finder coc<CR>
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 let g:vista#renderer#enable_icon = 1
 let g:vista_sidebar_width = 50
@@ -137,6 +135,7 @@ let g:coc_snippet_next = '<TAB>'
 let g:coc_snippet_prev = '<S-TAB>'
 
 " Extensions. Some need configuration.
+" coc-java needs a valid JVM filepath defined in coc-settings
 " coc-ccls needs ccls (available on aur)
 " coc-eslint needs eslint npm package installed globally
 let g:coc_global_extensions = [
@@ -178,22 +177,6 @@ let g:coc_global_extensions = [
       \'coc-utils'
       \]
 
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-
-" Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
-
 augroup MyAutoCmd
   autocmd!
   " Setup formatexpr specified filetype(s).
@@ -204,19 +187,6 @@ augroup end
 
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" map <tab> to trigger completion and navigate to the next item
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
 
 """""""""""""
 "Devicons   "
@@ -323,7 +293,8 @@ let g:indentLine_fileTypeExclude = [
 """""""""""""
 "Autopairs  "
 """""""""""""
-let g:AutoPairsFlyMode = 1
+let g:AutoPairsFlyMode = 0
+let g:AutoPairsMultilineClose = 0
 
 """""""""""""""""
 "Comfy-Scroll   "
