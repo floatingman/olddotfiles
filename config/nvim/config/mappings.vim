@@ -87,7 +87,7 @@ nnoremap  <Leader>cc  :<C-u>CocList commands<cr>
 " Find symbol of current document
 nnoremap <Leader>co  :<C-u>CocList outline<cr>
 " Completion keybinds
-nnoremap
+
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -103,7 +103,6 @@ endfunction
 
 " Enter to confirm completion
 inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-
 
 " Git keybinds
 " Git status

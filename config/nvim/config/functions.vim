@@ -46,3 +46,29 @@ function! ToggleTerm(cmd)
         bwipeout!
     endif
 endfunction
+
+" Open Project
+function! ToggleProject()
+    call ToggleTerm('tmuxinator-fzf-start.sh')
+endfunction
+
+function! ToggleScratchTerm()
+    call ToggleTerm('bash')
+endfunction
+
+function! ToggleLazyGit()
+    call ToggleTerm('lazygit')
+endfunction
+
+function! ToggleLazyDocker()
+    call ToggleTerm('lazydocker')
+endfunction
+
+
+function! OnTermExit(job_id, code, event) dict
+    if a:code == 0
+        bwipeout!
+    endif
+endfunction
+
+" REQUIRED FOR LAZYGIT
