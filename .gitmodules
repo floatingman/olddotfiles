@@ -19,3 +19,6 @@
 [submodule "config/mpv/shaders/mpv-prescalers"]
 	path = config/mpv/shaders/mpv-prescalers
 	url = https://github.com/bjin/mpv-prescalers
+[submodule "tmux/plugins/tpm"]
+	path = tmux/plugins/tpm
+	url = git@github.com:tmux-plugins/tpm.git
