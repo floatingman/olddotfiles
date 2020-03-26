@@ -1,3 +1,12 @@
+"#####################################################################################################
+"                           ____     __                     _
+"                          / __ \   / /  __  __   ____ _   (_)   ____    _____
+"                         / /_/ /  / /  / / / /  / __ `/  / /   / __ \  / ___/
+"                        / ____/  / /  / /_/ /  / /_/ /  / /   / / / / (__  )
+"                       /_/      /_/   \__,_/   \__, /  /_/   /_/ /_/ /____/
+"                                              /____/
+"######################################################################################################
+
 " Install vim-plugged if not already installed
 if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
   echo "Downloading junegunn/vim-plug to manage plugins..."
@@ -33,13 +42,14 @@ Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
 
 " Comments
-Plug 'scrooloose/nerdcommenter'
+Plug 'preservim/nerdcommenter'
 
 " Auto Save
 Plug '907th/vim-auto-save'
 
 " NerdTree
-Plug 'scrooloose/nerdtree'
+" NERDTree
+Plug 'preservim/nerdtree', { 'on': [ 'NERDTreeToggle', 'NERDTreeFind' ] }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
@@ -48,48 +58,32 @@ Plug 'liuchengxu/vista.vim'
 
 "" Plugins used by pigmonkey (https://github.com/pigmonkey)
 Plug 'jamessan/vim-gnupg'
-" Plug 'roman/golden-ratio'
-" Plug 'hynek/vim-python-pep8-indent'
-" Plug 'dhruvasagar/vim-table-mode'
-" Plug 'ledger/vim-ledger'
-" Plug 'othree/html5.vim'
-" Plug 'hail2u/vim-css3-syntax'
 
-Plug 'rbgrouleff/bclose.vim'
-" Plug 'christoomey/vim-tmux-navigator'
-" Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
-" Plug 'ryanoasis/vim-devicons'
+"Plug 'rbgrouleff/bclose.vim'
 Plug 'editorconfig/editorconfig-vim'
-" Plug 'easymotion/vim-easymotion'
-" Plug 'haya14busa/incsearch-easymotion.vim'
-" Plug 'haya14busa/incsearch.vim'
-" Plug 'justinmk/vim-dirvish'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
-" Plug 'sodapopcan/vim-twiggy'
-" Plug 'tpope/vim-repeat'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'rhysd/conflict-marker.vim'
-" Plug 'sbdchd/neoformat'
-" Plug 'sheerun/vim-polyglot'
-" Plug 'trevordmiller/nova-vim'
 Plug 'whatyouhide/vim-lengthmatters'
-" Plug 'edkolev/promptline.vim'
-" Plug 'xolox/vim-misc'
-" Plug 'skywind3000/asyncrun.vim'
 Plug 'ludovicchabant/vim-gutentags'
-" Plug 'will133/vim-dirdiff'
+
 "" Markdown editing
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'vimwiki/vimwiki'
 " Plug 'plasticboy/vim-markdown'
-" Plug 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
 Plug 'elzr/vim-json'
 Plug 'godlygeek/tabular'
 Plug 'vim-pandoc/vim-pandoc-syntax'
-" Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
+
+" Markdown Preview
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+
+" vim-hexcolor
+Plug 'etdev/vim-hexcolor'
 
 " Statusbar
 "Plug 'itchyny/lightline.vim'
@@ -99,13 +93,7 @@ Plug 'vim-airline/vim-airline-themes'
 " Custom start page
 Plug 'mhinz/vim-startify'
 
-"" Python coding
-" Plug 'vim-scripts/indentpython.vim'
-" Plug 'nvie/vim-flake8'
-" Plug 'vim-scripts/Pydiction'
-" Plug 'klen/rope-vim'
-" Plug 'vifm/vifm.vim'
-" Plug 'kovetskiy/sxhkd-vim'
+"" ansible
 Plug 'pearofducks/ansible-vim'
 
 "" Jenkins
@@ -123,9 +111,12 @@ Plug 'Raimondi/delimitMate'
 
 "" Color Schemes
 Plug 'flazz/vim-colorschemes'
+" Wal theme
+Plug 'dylanaraps/wal.vim'
+Plug 'deviantfero/wpgtk.vim'
 
 "" Buffer Navigation
-Plug 'sjbach/lusty'
+"Plug 'sjbach/lusty'
 
 " Add DevIcons
 Plug 'ryanoasis/vim-devicons'

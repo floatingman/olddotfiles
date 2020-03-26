@@ -8,11 +8,11 @@
 "***********************************************************************************
 
 " Colorscheme
-if !has('gui_running')
-  set t_Co=256
-endif
-set termguicolors
-colorscheme molokai
+" if !has('gui_running')
+  " set t_Co=256
+" endif
+" set termguicolors
+colorscheme wal
 
 " Longer leader key timout
 set timeout timeoutlen=1500
@@ -137,11 +137,6 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " Check file in shellcheck:
 map <leader>c :!clear && shellcheck %<CR>
 
-" Copy selected text to system clipboard (requires gvim/nvim/vim-xll installed):
-"  vnoremap <C-c> "+y
-" map <C-p> "+P
-
-" Enable Goyo by default for mutt writing
 
 " Automatically deletes all trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
@@ -265,34 +260,4 @@ au BufRead /tmp/*mutt* setfiletype mail
 
 " Delete quoted signatures.
 au BufRead /tmp/*mutt* normal :g/^\(> \)--\s*$/,/^$/-1d/^$
-
-
-" Align stuff
-vmap AA :Align =<CR>
-vmap Ap :Align =><CR>
-vmap Aa :Align :<CR>
-vmap A, :Align ,<CR>
-
-" Lusty juggler
-nmap <silent> <leader>d :LustyJuggler<CR>
-
-" Buffer
-nmap <silent> <leader>q :Bclose<CR>
-
-" remove training wheels
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
-imap <up> <nop>
-imap <down> <nop>
-imap <left> <nop>
-imap <right> <nop>
-
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-set signcolumn=yes
 
