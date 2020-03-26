@@ -1,3 +1,12 @@
+"*****************************************************************************************
+"   ___    __                _               ____       __   __    _
+"  / _ \  / / __ __  ___ _  (_)  ___        / __/ ___  / /_ / /_  (_)  ___   ___ _  ___
+" / ___/ / / / // / / _ `/ / /  / _ \      _\ \  / -_)/ __// __/ / /  / _ \ / _ `/ (_-<
+"/_/    /_/  \_,_/  \_, / /_/  /_//_/     /___/  \__/ \__/ \__/ /_/  /_//_/ \_, / /___/
+"                  /___/                                                   /___/
+"
+"*****************************************************************************************
+
 """"""""""""""
 " Git Gutter "
 """"""""""""""
@@ -232,7 +241,7 @@ let g:DevIconsDefaultFolderOpenSymbol = ''
 "Airline   "
 """"""""""""
 "main settings
-let g:airline_theme='molokai'
+let g:airline_theme='wpgtk'
 let g:airline_powerline_fonts = 1
 let g:airline_symbols = {}
 let g:airline_skip_empty_sections = 1
@@ -424,11 +433,15 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
-" Enable per-command history
-" - History files will be stored in the specified directory
-" - When set, CTRL-N and CTRL-P will be bound to 'next-history' and
-"   'previous-history' instead of 'down' and 'up'.
-let g:fzf_history_dir = '~/.local/share/fzf-history'
+" Hide status bar while using fzf commands
+if has('nvim') || has('gui_running')
+  autocmd! FileType fzf
+  autocmd  FileType fzf set laststatus=0 | autocmd WinLeave <buffer> set laststatus=2
+endif
+
+" Centered floating window for fzf
+let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
+
 
 " delimit
 let g:delimitMate_expand_space = 1

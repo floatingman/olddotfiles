@@ -45,5 +45,21 @@ inoremap kj <ESC>
 map <F1> :set number!<CR> :set relativenumber!<CR>
 nmap <F2> :call <SID>SynStack()<CR>
 set pastetoggle=<F3>
-map <F4> :set list!<CR>
 map <F5> :set cursorline!<CR>
+
+" Indent controls
+" Reselect text ater indent/unindent.
+vnoremap < <gv
+vnoremap > >gv
+" Tab to indent in visual mode.
+vnoremap <Tab> >gv
+" Shift+Tab to unindent in visual mode.
+vnoremap <S-Tab> <gv
+
+" Text alignment
+nnoremap <Leader>Al :left<CR>
+nnoremap <Leader>Ac :center<CR>
+nnoremap <Leader>Ar :right<CR>
+vnoremap <Leader>Al :left<CR>
+vnoremap <Leader>Ac :center<CR>
+vnoremap <Leader>Ar :right<CR>
