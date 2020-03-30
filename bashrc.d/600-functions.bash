@@ -613,3 +613,7 @@ nproc() {
     sysctl -n hw.ncpu
   fi
 }
+
+function yta() {
+    mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*"
+}
