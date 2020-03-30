@@ -24,6 +24,9 @@ Plug 'w0rp/ale'
 " Vim Javascript
 Plug 'pangloss/vim-javascript'
 
+" Improved Javacript goto file
+Plug 'hotoo/jsgf.vim'
+
 " Language Packs
 Plug 'sheerun/vim-polyglot'
 
