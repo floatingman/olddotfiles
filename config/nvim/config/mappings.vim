@@ -15,8 +15,7 @@
 "***********************************************************************************
 
 " Set leader to space bar
-let mapleader = " "
-let maplocalleader = " "
+let mapleader= " "
 
 " Window Navigation
 " Navigate to left window.
@@ -36,6 +35,11 @@ nnoremap<silent> <Tab> :bnext<CR>
 nnoremap<silent> <S-Tab> :bprevious<CR>
 " Kill buffer with Space+bk
 nnoremap<silent> <Space>bk :bdelete<CR>
+
+" For simple sizing of splits.
+map - <C-W>-
+map + <C-W>+
+
 
 " Faster ESC
 inoremap jk <ESC>
