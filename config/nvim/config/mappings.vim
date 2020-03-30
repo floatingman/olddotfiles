@@ -14,9 +14,6 @@
 
 "***********************************************************************************
 
-" Set leader to space bar
-let mapleader= " "
-
 " Window Navigation
 " Navigate to left window.
 nnoremap <C-h> <C-w>h
