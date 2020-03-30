@@ -33,6 +33,10 @@ nnoremap<silent> <S-Tab> :bprevious<CR>
 " Kill buffer with Space+bk
 nnoremap<silent> <Space>bk :bdelete<CR>
 
+" Copying
+nmap <leader><leader> V
+nmap <leader>y "+y
+
 " For simple sizing of splits.
 map - <C-W>-
 map + <C-W>+
@@ -162,6 +166,8 @@ nnoremap  <Leader>ft  :Vista finder coc<cr>
 " Opens tagbar on right side of screen
 nmap <F8> :Vista!!<CR>
 
+" Undotree
+nmap <leader>u :UndotreeShow<CR>
 
 " Lazydocker
 nnoremap <silent> <Leader>ld :call ToggleLazyDocker()<CR>

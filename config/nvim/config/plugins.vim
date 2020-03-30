@@ -21,11 +21,13 @@ Plug 'tpope/vim-sensible'
 " Syntax
 Plug 'w0rp/ale'
 
-" Vim Javascript
+" Vim Javascript and node
 Plug 'pangloss/vim-javascript'
-
+Plug 'moll/vim-node'
 " Improved Javacript goto file
 Plug 'hotoo/jsgf.vim'
+" Typescript
+Plug 'leafgarland/typescript-vim'
 
 " Language Packs
 Plug 'sheerun/vim-polyglot'
@@ -35,9 +37,6 @@ Plug 'yuttie/comfortable-motion.vim'
 
 " Completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-" Smart completion (to work with CoC)
-"Plug 'zxqfl/tabnine-vim'
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -50,7 +49,6 @@ Plug 'preservim/nerdcommenter'
 " Auto Save
 Plug '907th/vim-auto-save'
 
-" NerdTree
 " NERDTree
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -61,8 +59,6 @@ Plug 'liuchengxu/vista.vim'
 
 "" Plugins used by pigmonkey (https://github.com/pigmonkey)
 Plug 'jamessan/vim-gnupg'
-
-"Plug 'rbgrouleff/bclose.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
@@ -70,6 +66,8 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'rhysd/conflict-marker.vim'
 Plug 'whatyouhide/vim-lengthmatters'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'vim-utils/vim-man'
+
 
 "" Markdown editing
 Plug 'junegunn/goyo.vim'
@@ -110,7 +108,6 @@ Plug 'junegunn/fzf'
 Plug 'jremmen/vim-ripgrep'
 
 "" Color Schemes
-Plug 'flazz/vim-colorschemes'
 Plug 'dylanaraps/wal.vim'
 Plug 'deviantfero/wpgtk.vim'
 Plug 'jacoborus/tender.vim'
