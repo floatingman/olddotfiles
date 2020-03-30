@@ -6,7 +6,7 @@
 "                  /___/                                                   /___/
 "
 "*****************************************************************************************
-
+let mapleader= " "
 """"""""""""""
 " Git Gutter "
 """"""""""""""
@@ -76,21 +76,9 @@ let g:NERDTreeIndicatorMapCustom = {
     \ 'Ignored'   : '☒',
     \ "Unknown"   : "?"
     \ }
-" Nerd tree and tag list
-nmap <silent> <leader>t :NERDTreeToggle<CR>
-" sync open file with NERDTree
-" " Check if NERDTree is open or active
-function! IsNERDTreeOpen()
-  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-endfunction
-" Call NERDTreeFind if NERDTree is active, current window contains a modifiable
-" file, and we're not in vimdiff
-function! SyncTree()
-  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-    NERDTreeFind
-    wincmd p
-  endif
-endfunction
+" Nerd tree
+nmap <leader>pt :NERDTreeToggle<CR>
+nmap <leader>pv :NERDTreeFind<CR>
 
 """"""""""""""""""
 " Nerd Commenter "
@@ -328,12 +316,9 @@ let g:startify_custom_header = s:center(s:header)
 let g:gutentags_cache_dir = $HOME . '/.cache/ctags'
 
 " ctrlp
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_map = '<c-f>'
-map <leader>j :CtrlP<cr>
+map <leader>pf :CtrlP<cr>
 map <c-b> :CtrlPBuffer<cr>
-let g:ctrlp_max_height = 20
-let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git'
+
 " vim-ags
 " Search for the word under cursor
 nnoremap <Leader>s :Ags<Space><C-R>=expand('<cword>')<CR><CR>
