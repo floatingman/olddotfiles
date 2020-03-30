@@ -38,7 +38,7 @@ if _have mpc; then
 fi
 
 if _have youtube-dl; then
-    alias ytwlexp='youtube-dl --download-archive /mnt/SuperBig/Media/Video/YouTube/archive.txt --no-mtime --write-sub --sub-lang en_US --mark-watched --embed-subs -o "/mnt/SuperBig/Media/Video/YouTube/%(uploader)s-%(title)s.%(ext)s" https://www.youtube.com/playlist?list=PL5D8rBmak6B01Db6kNoGC7oNwL-nRoOFk'
+    alias ytwlexp='youtube-dl --download-archive /mnt/SuperBig/Media/Video/YouTube/archive.txt --no-mtime --write-sub --sub-lang en_US --mark-watched --embed-subs -o "/mnt/SuperBig/Media/Video/YouTube/%(uploader)s-%(title)s.%(ext)s" "https://www.youtube.com/playlist?list=PL5D8rBmak6B01Db6kNoGC7oNwL-nRoOFk"'
     alias ytwl='youtube-dl --no-mtime --write-sub --sub-lang en_US --mark-watched --embed-subs -o "/mnt/SuperBig/Media/Video/YouTube/%(uploader)s-%(title)s.%(ext)s" :ytwatchlater'
     alias yt="youtube-dl --add-metadata -i"
     alias YT="youtube-viewer"
