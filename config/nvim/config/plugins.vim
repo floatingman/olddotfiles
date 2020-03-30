@@ -107,19 +107,15 @@ Plug 'rking/ag.vim'
 Plug 'gabesoft/vim-ags'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/fzf'
-
-"" Code Formating
-Plug 'vim-scripts/Align'
-Plug 'Raimondi/delimitMate'
+Plug 'jremmen/vim-ripgrep'
 
 "" Color Schemes
 Plug 'flazz/vim-colorschemes'
-" Wal theme
 Plug 'dylanaraps/wal.vim'
 Plug 'deviantfero/wpgtk.vim'
-
-"" Buffer Navigation
-"Plug 'sjbach/lusty'
+Plug 'jacoborus/tender.vim'
+Plug 'morhetz/gruvbox'
+Plug 'tomasr/molokai'
 
 " Add DevIcons
 Plug 'ryanoasis/vim-devicons'
@@ -132,4 +128,7 @@ Plug 'Yggdroot/indentLine'
 
 " Auto pairs
 Plug 'jiangmiao/auto-pairs'
+
+" Undo
+Plug 'mbbill/undotree'
 call plug#end()
