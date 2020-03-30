@@ -44,8 +44,16 @@ set noshowmode
 " Automatically reread the file if it changes outside of vim
 set autoread
 
+" Set the cwd to whatever file is in view. Helps with omnicomplete.
+set autochdir
+
 " Allow a new buffer to be created without saving the current one
 set hidden
+
+" Color the column at line 80 to help with writing clean code
+set colorcolumn=80
+
+set noerrorbells
 
 " Statusline config
 set statusline+=%F

@@ -83,7 +83,7 @@ nmap <silent> <leader>t :NERDTreeToggle<CR>
 function! IsNERDTreeOpen()
   return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
-" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
+" Call NERDTreeFind if NERDTree is active, current window contains a modifiable
 " file, and we're not in vimdiff
 function! SyncTree()
   if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
@@ -130,19 +130,17 @@ hi! LineNr ctermfg=NONE guibg=NONE
 
 " KEY REMAPS ""
 set updatetime=300
-let g:ycm_server_python_interpreter = '/usr/bin/python3'
+let g:ycm_server_python_interpreter = '$HOME/.pyenv/shims/python3'
 let g:coc_snippet_next = '<TAB>'
 let g:coc_snippet_prev = '<S-TAB>'
 
 " Extensions. Some need configuration.
 " coc-java needs a valid JVM filepath defined in coc-settings
-" coc-ccls needs ccls (available on aur)
 " coc-eslint needs eslint npm package installed globally
 let g:coc_global_extensions = [
       \'coc-html',
       \'coc-xml',
       \'coc-java',
-      \'coc-ccls',
       \'coc-powershell',
       \'coc-r-lsp',
       \'coc-vimlsp',
@@ -157,7 +155,6 @@ let g:coc_global_extensions = [
       \'coc-emmet',
       \'coc-tsserver',
       \'coc-translator',
-      \'coc-fish',
       \'coc-docker',
       \'coc-pairs',
       \'coc-json',
@@ -173,7 +170,6 @@ let g:coc_global_extensions = [
       \'coc-stylelint',
       \'coc-yaml',
       \'coc-template',
-      \'coc-tabnine',
       \'coc-utils'
       \]
 
@@ -347,6 +343,18 @@ vnoremap <Leader>s y:Ags<Space><C-R>='"' . escape(@", '"*?()[]{}.') . '"'<CR><CR
 nnoremap <Leader>ag :Ags<Space>
 " Quit Ags
 nnoremap <Leader><Leader>a :AgsQuit<CR>
+
+" ag items.  I need the silent ag.
+if executable('ag')
+  " Use ag over grep "
+  set grepprg=ag\ --nogroup\ --nocolor\ --column
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore "
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache "
+  let g:ctrlp_use_caching = 0
+endif
 
 " better-whitespace
 map <leader>W :ToggleWhitespace<CR>
