@@ -1,4 +1,4 @@
 --restrict-filenames
 --console-title
--r 30M
 --netrc
+--ignore-errors
