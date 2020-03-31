@@ -58,3 +58,6 @@ xcompmgr -c &
 
 # Start wallpaper changer
 ~/bin/wallpaper.sh &
+
+# MPD daemon start (if no other user instance exists)
+[ ! -s ~/.config/mpd/pid ] && mpd
