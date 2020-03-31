@@ -46,3 +46,7 @@ vim/swaps/*
 # ########################
 bashrc
 vim/plugged
+config/mpd/pid
+config/mpd/database
+config/mpd/state
+config/mpd/sticker.sql
