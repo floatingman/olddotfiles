@@ -37,8 +37,8 @@ set conceallevel=0
 " designed for vim 8+
 let skip_defaults_vim=1
 
-" Enable mouse scroll
-set mouse=a
+" Enable mouse scroll for certain modes (see :help mouse)
+set mouse=nicr
 
 " Don't show the mode in the command line
 set noshowmode

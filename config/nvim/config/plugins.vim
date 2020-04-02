@@ -20,6 +20,7 @@ Plug 'tpope/vim-sensible'
 
 " Syntax
 Plug 'w0rp/ale'
+Plug 'ap/vim-css-color'
 
 " Vim Javascript and node
 Plug 'pangloss/vim-javascript'
@@ -70,7 +71,6 @@ Plug 'rhysd/conflict-marker.vim'
 Plug 'whatyouhide/vim-lengthmatters'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'vim-utils/vim-man'
-
 
 "" Markdown editing
 Plug 'junegunn/goyo.vim'
@@ -131,4 +131,7 @@ Plug 'jiangmiao/auto-pairs'
 
 " Undo
 Plug 'mbbill/undotree'
+
+" vimwiki
+Plug 'vimwiki/vimwiki'
 call plug#end()
