@@ -54,6 +54,9 @@ Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
+" VIFM
+Plug 'vifm/vifm.vim'
+
 " Tagbar
 Plug 'liuchengxu/vista.vim'
 
