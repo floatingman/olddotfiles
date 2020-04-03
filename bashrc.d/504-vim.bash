@@ -11,7 +11,7 @@
 # HTML, LaTeX or whatever (which Pandoc focuses on).
 
 alias vimpluginstall="vim +':PlugInstall' +':q!' +':q!'"
-
+alias nvimpluginstall="nvim +':PlugInstall' +':q!' +':q!'"
 # TODO Set the VIMSPELL env variable pointing to the main `add` file so editing
 
 funcsin () {
