@@ -76,8 +76,7 @@ Plug 'vim-utils/vim-man'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'vimwiki/vimwiki'
-" Plug 'plasticboy/vim-markdown'
+Plug 'plasticboy/vim-markdown'
 Plug 'honza/vim-snippets'
 Plug 'elzr/vim-json'
 Plug 'godlygeek/tabular'
@@ -90,9 +89,9 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'etdev/vim-hexcolor'
 
 " Statusbar
-"Plug 'itchyny/lightline.vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
 
 " Custom start page
 Plug 'mhinz/vim-startify'
