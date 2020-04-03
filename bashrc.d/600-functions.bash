@@ -599,8 +599,8 @@ dell_monitor() {
 }
 
 shdl() { curl -O $(curl -s http://sci-hub.tw/"$@" | grep location.href | grep -o http.*pdf) ;}
-se() { du -a ~/bin/* ~/.config/* | awk '{print $2}' | fzf | xargs -r $EDITOR ;}
-sv() { vcopy "$(du -a ~/bin/* ~/.config/* | awk '{print $2}' | fzf)" ;}
+se() { du -a ~/bin/* ~/.dotfiles/* | awk '{print $2}' | fzf | xargs -r $EDITOR ;}
+sv() { vcopy "$(du -a ~/bin/* ~/.dotfiles/* | awk '{print $2}' | fzf)" ;}
 vf() { fzf | xargs -r -I % $EDITOR % ;}
 
 # Return the number of processors available
