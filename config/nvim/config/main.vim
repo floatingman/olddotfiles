@@ -11,11 +11,16 @@ let mapleader= " "
 
 " Colorscheme
 " If you have vim >=8.0 or Neovim >= 0.1.5
+if !has('gui_running')
+  set t_Co=256
+endif
+
 if (has("termguicolors"))
  set termguicolors
 endif
-colorscheme wal
 
+"colorscheme wal
+colo default
 " Longer leader key timout
 set timeout timeoutlen=1500
 
@@ -39,6 +44,15 @@ let skip_defaults_vim=1
 
 " Enable mouse scroll for certain modes (see :help mouse)
 set mouse=nicr
+
+" Disable guioptions
+set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L  "remove left-hand scroll bar
+
+" Removes pipes | that act as seperators on splits
+:set fillchars+=vert:\
 
 " Don't show the mode in the command line
 set noshowmode

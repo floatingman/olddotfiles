@@ -1,9 +1,9 @@
 
 ############################# Edit Shortcuts #############################
 
-export EDITOR=vi
-export VISUAL=vi
-export EDITOR_PREFIX=vi
+export EDITOR=nvim
+export VISUAL=nvim
+export EDITOR_PREFIX=nvim
 
 export VIMSPELL=(~/.vim/spell/*.add)
 declare personalspell=(~/.vimpersonal/spell/*.add)
@@ -21,7 +21,7 @@ declare -A edits=(
   [spell]=$VIMSPELL
 )
 
-for cmd in "${!edits[@]}"; do 
+for cmd in "${!edits[@]}"; do
   path=${edits[$cmd]}
   case $PLATFORM in
     *) alias $EDITOR_PREFIX$cmd="$EDITOR '$path';warnln 'Make sure you git commit your changes (if needed).'" ;;
