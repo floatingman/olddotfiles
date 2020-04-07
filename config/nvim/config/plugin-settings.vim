@@ -237,7 +237,7 @@ let g:DevIconsDefaultFolderOpenSymbol = ''
 
 " lightline config
 let g:lightline = {
-      \ 'colorscheme': 'darcula',
+      \ 'colorscheme': 'solarized',
       \ 'active': {
       \   'left': [ ['mode', 'paste'],
       \             ['fugitive', 'cocstatus', 'readonly', 'filename', 'modified'] ],

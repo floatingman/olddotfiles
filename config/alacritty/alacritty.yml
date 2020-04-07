@@ -97,7 +97,7 @@ font:
     style: Bold Italic
 
   # Point size of the font
-  size: 11.0
+  size: 16.0
 
   # Offset is the extra space around each character. offset.y can be
   # thought of as modifying the linespacing, and offset.x as modifying the
@@ -115,129 +115,53 @@ font:
   #  y: 0
 
 # When true, bold text is drawn using the bright variant of colors.
-# draw_bold_text_with_bright_colors: false
+draw_bold_text_with_bright_colors: true
 
 # Use custom cursor colors. If true, display the cursor in the
 # cursor.foreground and cursor.background colors, otherwise invert the
 # colors of the cursor.
-# custom_cursor_colors: false
+custom_cursor_colors: true
 
-#colors:
-#  primary:
-#    background: '0x1000000'
-#    foreground: '0xfffffff'
-#  cursor:
-#    text: '0xf2f2f2'
-#    cursor: '0x00838f'
-#  normal:
-#    black:   '0x000000'
-#    red:     '0xc62828'
-#    green:   '0x558b2f'
-#    yellow:  '0xf9a825'
-#    blue:    '0x1565c0'
-#    magenta: '0x6a1e9a'
-#    cyan:    '0x00838f'
-#    white:   '0xf2f2f2'
-#  bright:
-#    black:   '0x545454'
-#    red:     '0xef5350'
-#    green:   '0x8bc34a'
-#    yellow:  '0xffeb3b'
-#    blue:    '0x64b5f6'
-#    magenta: '0xba68c8'
-#    cyan:    '0x26c6da'
-#    white:   '0xe0e0e0'
-#  dim:
-#    black:   '0x333333'
-#    red:     '0xf2777a'
-#    green:   '0x99cc99'
-#    yellow:  '0xffcc66'
-#    blue:    '0x6699cc'
-#    magenta: '0xcc99cc'
-#    cyan:    '0x66cccc'
-#    white:   '0xdddddd'
+# color_start
+# solarized_light.yaml
+# Colors (Solarized Light)
+colors:
+  # Default colors
+  primary:
+    background: '0xfdf6e3'
+    foreground: '0x586e75'
 
-schemes:
-  darcula: &darcula
-    primary:
-      background: '0x282a36'
-      foreground: '0xbbc5ff'
-    selection:
-      text: '0x282a36'
-      background: '0xbbc5ff'
-    # Normal colors
-    normal:
-      black:   '0x282a36'
-      red:     '0xf07178'
-      green:   '0xc3e88d'
-      yellow:  '0xffcb6b'
-      blue:    '0x82aaff'
-      magenta: '0xc792ea'
-      cyan:    '0x89ddff'
-      white:   '0xd0d0d0'
-    # Bright colors
-    bright:
-      black:   '0x434758'
-      red:     '0xff8b92'
-      green:   '0xddffa7'
-      yellow:  '0xffe585'
-      blue:    '0x9cc4ff'
-      magenta: '0xe1acff'
-      cyan:    '0xa3f7ff'
-      white:   '0xffffff'
+  # Normal colors
+  normal:
+    black:   '0x073642'
+    red:     '0xdc322f'
+    green:   '0x859900'
+    yellow:  '0xb58900'
+    blue:    '0x268bd2'
+    magenta: '0xd33682'
+    cyan:    '0x2aa198'
+    white:   '0xeee8d5'
 
-  gruvbox: &gruvbox
-    normal:
-      black:   '0x282828'
-      red:     '0xcc241d'
-      green:   '0x98971a'
-      yellow:  '0xd79921'
-      blue:    '0x458588'
-      magenta: '0xb16286'
-      cyan:    '0x689d6a'
-      white:   '0xa89984'
-    bright:
-      black:   '0x928374'
-      red:     '0xfb4934'
-      green:   '0xb8bb26'
-      yellow:  '0xfabd2f'
-      blue:    '0x83a598'
-      magenta: '0xd3869b'
-      cyan:    '0x8ec07c'
-      white:   '0xebdbb2'
-
-  xterm: &xterm
-    normal:
-      black:   '#000000'
-      red:     '#cd0000'
-      green:   '#00cd00'
-      yellow:  '#cdcd00'
-      blue:    '#0000ee'
-      magenta: '#cd00cd'
-      cyan:    '#00cdcd'
-      white:   '#e5e5e5'
-    bright:
-      black:   '#7f7f7f'
-      red:     '#ff0000'
-      green:   '#00ff00'
-      yellow:  '#ffff00'
-      blue:    '#5c5cff'
-      magenta: '#ff00ff'
-      cyan:    '#00ffff'
-      white:   '#ffffff'
-
-colors: *darcula
-
-
-  # Indexed Colors
-  #
-  # The indexed colors include all colors from 16 to 256.
-  # When these are not set, they're filled with sensible defaults.
-  #
-  # Example:
-  #   `- { index: 16, color: '0xff00ff' }`
-  #
-  #indexed_colors: []
+  # Bright colors
+  bright:
+    black:   '0x002b36'
+    red:     '0xcb4b16'
+    green:   '0x586e75'
+    yellow:  '0x657b83'
+    blue:    '0x839496'
+    magenta: '0x6c71c4'
+    cyan:    '0x93a1a1'
+    white:   '0xfdf6e3'
+# color_end
+# Indexed Colors
+#
+# The indexed colors include all colors from 16 to 256.
+# When these are not set, they're filled with sensible defaults.
+#
+# Example:
+#   `- { index: 16, color: '0xff00ff' }`
+#
+#indexed_colors: []
 
 # Visual Bell
 #
