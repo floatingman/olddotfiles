@@ -1,49 +1,132 @@
+# Shell prompt based on the Solarized Dark theme.
+# Screenshot: http://i.imgur.com/EkEtphC.png
+# Heavily inspired by @necolas’s prompt: https://github.com/necolas/dotfiles
+# vim: set filetype=sh :
 
-# Not a fan of ridiculously distracting command prompts. Prompt should
-# fade into background, not demand focus. The printf magic ensures that
-# any output that does not end with a newline will not put a prompt
-# immediately after it. Never forget the \[$color\] brackets that escape
-# the width of the color escapes so they don't affect line wrapping.
+if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
+	export TERM='gnome-256color';
+elif infocmp rxvt-unicode-256color >/dev/null 2>&1; then
+	export TERM='rxvt-unicode-256color';
+elif infocmp xterm-256color >/dev/null 2>&1; then
+	export TERM='xterm-256color';
+fi;
 
-# See https://github.com/ryanoasis/powerline-extra-symbols
+prompt_git() {
+	local s='';
+	local branchName='';
 
-export glypharrow=$'\ue0b0'
-export glyphflames=$'\ue0c0'
-export glyphrounded=$'\ue0b4'
-export glyphbits=$'\ue0c6'
-export glyphhex=$'\ue0cc'
+	# Check if the current directory is in a Git repository.
+	if [ "$(git rev-parse --is-inside-work-tree &>/dev/null; echo "${?}")" == '0' ]; then
 
-export promptglyph=$glypharrow
-export promptbgr=40
-export promptbgg=40
-export promptbgb=40
-export promptuserc=$twrwxrob
-export prompthostc=$twitch
-export promptdirc=$bold$base04
+		# check if the current directory is in .git before running git checks
+		if [ "$(git rev-parse --is-inside-git-dir 2> /dev/null)" == 'false' ]; then
 
-# TODO detect current home system and only show home of main system so
-# that when used on remote systems the name is displayed.
+			if [[ -O "$(git rev-parse --show-toplevel)/.git/index" ]]; then
+				git update-index --really-refresh -q &> /dev/null;
+			fi;
 
-export PROMPT_COMMAND='
-  touch "$HOME/.bash_history"
-  promptbg=$(rgbg $promptbgr $promptbgg $promptbgb)
-  # FIXME 
-  promptglyphc=$(rgb $promptbgr $promptbgg $promptbgb)
-  if [[ $HOME == $PWD ]]; then
-    export PROMPTDIR="🏡"
-  elif [[ $HOME == ${PWD%/*} ]]; then
-    export PROMPTDIR="/${PWD##*/}"
-  elif [[ / == $PWD ]]; then
-    export PROMPTDIR="/"
-  elif [[ "" == ${PWD%/*} ]]; then
-    export PROMPTDIR=$PWD
-  else
-    # TODO fixeme with ascii char
-    export PROMPTDIR=…/${PWD##*/}
-  fi
-  if [[ $EUID == 0 ]]; then
-    PS1="\[$blinkon$promptbg$red\]\u\[$base03$blinkoff\]@\[\$prompthostc\]\h \[$base03\]\[$promptdirc\]"$PROMPTDIR" \[$reset$promptglyphc\]$promptglyph \[$reset\]"
-  else 
-    PS1="\[$base03\]\[$promptdirc\]"$PROMPTDIR" \[$reset$twitch\]$promptglyph \[$reset\]"
- fi
-'
+			# Check for uncommitted changes in the index.
+			if ! git diff --quiet --ignore-submodules --cached; then
+				s+='+';
+			fi;
+
+			# Check for unstaged changes.
+			if ! git diff-files --quiet --ignore-submodules --; then
+				s+='!';
+			fi;
+
+			# Check for untracked files.
+			if [ -n "$(git ls-files --others --exclude-standard)" ]; then
+				s+='?';
+			fi;
+
+			# Check for stashed files.
+			if git rev-parse --verify refs/stash &>/dev/null; then
+				s+='$';
+			fi;
+
+		fi;
+
+		# Get the short symbolic ref.
+		# If HEAD isn’t a symbolic ref, get the short SHA for the latest commit
+		# Otherwise, just give up.
+		branchName="$(git symbolic-ref --quiet --short HEAD 2> /dev/null || \
+			git rev-parse --short HEAD 2> /dev/null || \
+			echo '(unknown)')";
+
+		[ -n "${s}" ] && s=" [${s}]";
+
+		echo -e "${1}${branchName}${blue}${s}";
+	else
+		return;
+	fi;
+}
+
+cloud=""
+if [[ -f /proc/cpuinfo ]] && grep -q "^flags.* hypervisor" /proc/cpuinfo && [[ ! -d "/mnt/c/Windows/" ]]; then
+	cloud="☁️ "
+fi
+
+if tput setaf 1 &> /dev/null; then
+	tput sgr0; # reset colors
+	bold=$(tput bold);
+	reset=$(tput sgr0);
+	# Solarized colors, taken from http://git.io/solarized-colors.
+	black=$(tput setaf 0);
+	blue=$(tput setaf 33);
+	cyan=$(tput setaf 37);
+	green=$(tput setaf 64);
+	orange=$(tput setaf 166);
+	purple=$(tput setaf 125);
+	red=$(tput setaf 124);
+	violet=$(tput setaf 61);
+	white=$(tput setaf 15);
+	yellow=$(tput setaf 136);
+else
+	bold='';
+	reset="\\e[0m";
+	# shellcheck disable=SC2034
+	black="\\e[1;30m";
+	blue="\\e[1;34m";
+	cyan="\\e[1;36m";
+	green="\\e[1;32m";
+	# shellcheck disable=SC2034
+	orange="\\e[1;33m";
+	# shellcheck disable=SC2034
+	purple="\\e[1;35m";
+	red="\\e[1;31m";
+	violet="\\e[1;35m";
+	white="\\e[1;37m";
+	yellow="\\e[1;33m";
+fi;
+
+# Highlight the user name when logged in as root.
+if [[ "${USER}" == "root" ]]; then
+	userStyle="${red}";
+else
+	userStyle="${blue}";
+fi;
+
+# Highlight the hostname when connected via SSH.
+if [[ "${SSH_TTY}" ]]; then
+	hostStyle="${bold}${cyan}";
+else
+	hostStyle="${cyan}";
+fi;
+
+# Set the terminal title to the current working directory.
+PS1="\\[\\033]0;\\w\\007\\]";
+PS1+="\\[${bold}\\]\\n"; # newline
+PS1+="\\[${userStyle}\\]\\u"; # username
+PS1+="\\[${white}\\] at ";
+PS1+="\\[${hostStyle}\\]${cloud}\\h"; # host
+PS1+="\\[${white}\\] in ";
+PS1+="\\[${green}\\]\\w"; # working directory
+PS1+="\$(prompt_git \"${white} on ${violet}\")"; # Git repository details
+PS1+="\\n";
+PS1+="\\[${white}\\]\$ \\[${reset}\\]"; # `$` (and reset color)
+export PS1;
+
+
+PS2="\\[${yellow}\\]→ \\[${reset}\\]";
+export PS2;

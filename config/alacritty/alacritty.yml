@@ -123,13 +123,13 @@ draw_bold_text_with_bright_colors: true
 custom_cursor_colors: true
 
 # color_start
-# solarized_light.yaml
-# Colors (Solarized Light)
+# solarized_dark.yaml
+# Colors (Solarized Dark)
 colors:
   # Default colors
   primary:
-    background: '0xfdf6e3'
-    foreground: '0x586e75'
+    background: '0x002b36'
+    foreground: '0x839496'
 
   # Normal colors
   normal:
@@ -190,7 +190,7 @@ colors:
 #  color: '0xffffff'
 #  duration: 0
 
-background_opacity: .8
+background_opacity: 1
 
 # Key bindings
 #
