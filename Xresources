@@ -43,4 +43,5 @@ URxvt.font: xft:Fira Code:style=Retina:pixelsize=FONT_SIZE:antialias=true:hintin
 #include ".Xresources.d/urxvt.xresources"
 !#include ".Xresources.d/themes/grubox-dark.xresources"
 !#include ".Xresources.d/themes/grubox-urxvt256.xresources"
-#include ".Xresources.d/themes/isotope.dark.xresource"
+!#include ".Xresources.d/themes/isotope.dark.xresource"
+#include ".Xresources.d/themes/solarized.xresources"
