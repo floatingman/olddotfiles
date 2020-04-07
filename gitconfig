@@ -149,9 +149,6 @@
 [mergetool "nvimdiff4"]
     cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 
-[commit]
-	gpgsign = true
-
 [user]
 	name = Daniel Newman
 	email = dwnewman78@gmail.com
