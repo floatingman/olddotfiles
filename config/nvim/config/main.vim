@@ -19,8 +19,11 @@ if (has("termguicolors"))
  set termguicolors
 endif
 
-"colorscheme wal
-colo default
+" Enable syntax hightlighting
+syntax on
+set background=dark
+colorscheme solarized
+
 " Longer leader key timout
 set timeout timeoutlen=1500
 
@@ -85,8 +88,6 @@ set autoindent
 set smartindent
 set shiftround
 
-" Enable syntax hightlighting
-syntax on
 
 " Print syntax highlighting.
 set printoptions+=syntax:y

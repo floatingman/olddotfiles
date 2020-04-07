@@ -115,7 +115,8 @@ Plug 'deviantfero/wpgtk.vim'
 Plug 'jacoborus/tender.vim'
 Plug 'morhetz/gruvbox'
 Plug 'tomasr/molokai'
-
+Plug 'itchyny/landscape.vim'
+Plug 'altercation/vim-colors-solarized'
 " Add DevIcons
 Plug 'ryanoasis/vim-devicons'
 
