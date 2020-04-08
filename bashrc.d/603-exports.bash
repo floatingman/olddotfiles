@@ -57,12 +57,8 @@ fi
 
 
 # PyENV
-if [[ -r "$HOME/.pyenv" ]]; then
-  export PYENV_ROOT="$HOME/.pyenv"
-  _add_to_path "$PYENV_ROOT/bin"
-  if command -v pyenv 1>/dev/null 2>&1; then
-    eval "$(pyenv init -)"
-  fi
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
   eval "$(register-python-argcomplete pipx)"
 fi
