@@ -117,6 +117,10 @@ Plug 'morhetz/gruvbox'
 Plug 'tomasr/molokai'
 Plug 'itchyny/landscape.vim'
 Plug 'altercation/vim-colors-solarized'
+Plug 'nice/sweater'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'jonathanfilip/vim-lucius'
+
 " Add DevIcons
 Plug 'ryanoasis/vim-devicons'
 
