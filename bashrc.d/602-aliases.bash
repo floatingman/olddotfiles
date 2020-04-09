@@ -474,3 +474,11 @@ alias nord='sudo openvpn ~/Dropbox/nordvpn/us1967.nordvpn.com.udp1194.ovpn'
 if [ -f ~/bin/composer.phar ]; then
     alias composer='php ~/bin/composer.phar'
 fi
+
+# broot
+alias br='br -dhp'
+alias bs='br --sizes'
+
+# the terminal rickroll
+alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash'
+
