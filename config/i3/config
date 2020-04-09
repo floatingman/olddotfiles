@@ -237,3 +237,14 @@ hide_edge_borders both
 # Assign MPV to workspace 4 and focus
 assign [class="mpv"] 4
 for_window [class="mpv"] focus
+
+# Switch alacritty color themes
+
+# Set program location
+set $alacritty_colorscheme /usr/sbin/alacritty-colorscheme
+
+# Toggle between light and dark colorscheme
+bindsym $mod+Shift+n exec $alacritty_colorscheme -t solarized-light.yml solarized-dark.yml
+
+# Get notification with current colorscheme
+bindsym $mod+Shift+b exec notify-send "Alacritty Colorscheme" `$alacritty_colorscheme -s

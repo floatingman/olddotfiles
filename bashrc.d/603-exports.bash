@@ -78,3 +78,5 @@ if [ -f /home/dnewman/.tnsrc ]; then
   source /home/dnewman/.tnsrc
 fi
 ###-tns-completion-end-###
+
+source ~/.config/broot/launcher/bash/br
