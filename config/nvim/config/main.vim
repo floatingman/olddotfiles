@@ -21,8 +21,8 @@ endif
 
 " Enable syntax hightlighting
 syntax on
-set background=dark
-colorscheme solarized
+set background=light
+colorscheme lucius
 
 " Longer leader key timout
 set timeout timeoutlen=1500
