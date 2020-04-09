@@ -21,7 +21,7 @@ endif
 
 " Enable syntax hightlighting
 syntax on
-set background=light
+set background=dark
 colorscheme lucius
 
 " Longer leader key timout
