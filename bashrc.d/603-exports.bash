@@ -78,5 +78,8 @@ if [ -f /home/dnewman/.tnsrc ]; then
   source /home/dnewman/.tnsrc
 fi
 ###-tns-completion-end-###
-
-source ~/.config/broot/launcher/bash/br
+if $_ismac; then
+  source "${HOME}/Library/Preferences/org.dystroy.broot/launcher/bash/br/"
+else
+  source "${HOME}/.config/broot/launcher/bash/br"
+fi
