@@ -28,7 +28,7 @@ nm-applet &
 unclutter &
 
 # Notifications with dunst
-dunst &
+#dunst &
 
 # Start geoclue
 /usr/lib/geoclue-2.0/demos/agent &

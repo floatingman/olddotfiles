@@ -482,3 +482,6 @@ alias bs='br --sizes'
 # the terminal rickroll
 alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash'
 
+# termbin
+alias tb="nc termbin.com 9999"
+
