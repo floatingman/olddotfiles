@@ -48,7 +48,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'preservim/nerdcommenter'
 
 " Auto Save
-Plug '907th/vim-auto-save'
+"Plug '907th/vim-auto-save'
 
 " NERDTree
 Plug 'preservim/nerdtree'
