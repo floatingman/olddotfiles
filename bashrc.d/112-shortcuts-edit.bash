@@ -19,6 +19,7 @@ declare -A edits=(
   [private]=~/.bash_private
   [profile]=~/.profile
   [spell]=$VIMSPELL
+  [dotfiles]=~/.dotfiles/
 )
 
 for cmd in "${!edits[@]}"; do
