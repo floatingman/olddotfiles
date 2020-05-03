@@ -603,6 +603,8 @@ se() { du -a ~/bin/* ~/.dotfiles/* | awk '{print $2}' | fzf | xargs -r $EDITOR ;
 sv() { vcopy "$(du -a ~/bin/* ~/.dotfiles/* | awk '{print $2}' | fzf)" ;}
 vf() { fzf | xargs -r -I % $EDITOR % ;}
 
+playvideo() { fzf | xargs -r -I % mpv % ; }
+
 # Return the number of processors available
 nproc() {
   if $(which nproc >/dev/null 2>&1); then
