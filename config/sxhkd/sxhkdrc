@@ -64,15 +64,6 @@ super + space
 alt + Tab
     rofi -show window
 
-# Launch password manager
-super + p
-	menu=$(echo -e "$HOME/.password-store\n$ALTPASSDIR" | rofi -dmenu); rofi-pass --root "${menu}"
-
-
-# Bookmark via pinboard
-super + d
-	termite --title pinit -e ~/bin/pinit.sh
-
 # Launch rofi surfraw
 super + shift + f
 	surfraw-rofi
