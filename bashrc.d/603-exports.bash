@@ -7,6 +7,11 @@ if $_ismac; then
   export BASH_SILENCE_DEPRECATION_WARNING=1
 fi
 
+# Set alacritty as the default terminal
+if _have alacritty; then
+  export TERMINAL='alacritty';
+fi
+
 # For the fuzzy finder
 if _have fzf; then
   export FZF_DEFAULT_OPTS='--color=bg+:24 --reverse';
