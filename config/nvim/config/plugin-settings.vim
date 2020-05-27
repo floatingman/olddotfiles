@@ -88,13 +88,6 @@ let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
 " Allow commenting and inverting empty lines (useful when commenting a region)
 
-""""""""""""""
-" Autosaving "
-""""""""""""""
-"let g:auto_save = 1
-"let g:auto_save_silent = 1
-"let g:auto_save_events = ["InsertLeave", "TextChanged", "FocusLost"]
-
 """""""
 "COC  "
 """""""
