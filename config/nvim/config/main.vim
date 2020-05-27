@@ -7,7 +7,7 @@
 "
 "***********************************************************************************
 " Set leader to space bar
-let mapleader= " "
+let mapleader= "\\"
 
 " Colorscheme
 " If you have vim >=8.0 or Neovim >= 0.1.5
@@ -26,6 +26,9 @@ colorscheme lucius
 
 " Longer leader key timout
 set timeout timeoutlen=1500
+
+" Keep the cursor in the same column when moving
+set nostartofline
 
 augroup specify_filetype
   autocmd!
