@@ -1,4 +1,3 @@
-
 if havecmd dircolors; then
   if [ -r ~/.dircolors ]; then
     eval "$(dircolors -b ~/.dircolors)"
@@ -24,4 +23,3 @@ alias llr='ls -ARlhv'  #  Recursive long listing.
 alias lr='ll -AR'      #  Recursive simple ls.
 alias lm='ls |more'    #  Pipe through 'more'
 alias lmr='lr |more'   #  Pipe through 'more'
-
