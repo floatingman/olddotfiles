@@ -69,7 +69,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'rhysd/conflict-marker.vim'
 Plug 'whatyouhide/vim-lengthmatters'
-Plug 'ludovicchabant/vim-gutentags'
+"Plug 'ludovicchabant/vim-gutentags'
 Plug 'vim-utils/vim-man'
 
 "" Markdown editing
