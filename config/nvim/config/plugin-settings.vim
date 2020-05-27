@@ -319,7 +319,7 @@ let g:startify_custom_header = s:center(s:header)
 "let g:startify_custom_footer = s:center(s:footer)
 
 " gutentags
-let g:gutentags_cache_dir = $HOME . '/.cache/ctags'
+"let g:gutentags_cache_dir = $HOME . '/.cache/ctags'
 
 " ctrlp
 map <leader>pf :CtrlP<cr>
