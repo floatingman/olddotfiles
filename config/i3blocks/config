@@ -1,0 +1,4 @@
+[motivation]
+command=$HOME/bin/motivation
+interval=900
+
