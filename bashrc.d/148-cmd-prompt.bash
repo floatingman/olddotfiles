@@ -118,13 +118,13 @@ fi;
 PS1="\\[\\033]0;\\w\\007\\]";
 PS1+="\\[${bold}\\]\\n"; # newline
 PS1+="\\[${userStyle}\\]\\u"; # username
-PS1+="\\[${white}\\] at ";
+PS1+="\\[${blue}\\] at ";
 PS1+="\\[${hostStyle}\\]${cloud}\\h"; # host
-PS1+="\\[${white}\\] in ";
+PS1+="\\[${blue}\\] in ";
 PS1+="\\[${green}\\]\\w"; # working directory
-PS1+="\$(prompt_git \"${white} on ${violet}\")"; # Git repository details
+PS1+="\$(prompt_git \"${blue} on ${violet}\")"; # Git repository details
 PS1+="\\n";
-PS1+="\\[${white}\\]\$ \\[${reset}\\]"; # `$` (and reset color)
+PS1+="\\[${blue}\\]\$ \\[${reset}\\]"; # `$` (and reset color)
 export PS1;
 
 
