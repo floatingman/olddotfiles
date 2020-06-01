@@ -16,7 +16,7 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 " lets be sensible
-Plug 'tpope/vim-sensible'
+"Plug 'tpope/vim-sensible'
 
 " Syntax
 Plug 'w0rp/ale'
@@ -51,6 +51,10 @@ Plug 'preservim/nerdcommenter'
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+"" BufExplorer
+"
+Plug 'jlanzarotta/bufexplorer'
 
 " VIFM
 Plug 'vifm/vifm.vim'
@@ -103,7 +107,7 @@ Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'rking/ag.vim'
 Plug 'gabesoft/vim-ags'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
 Plug 'jremmen/vim-ripgrep'
 
 "" Color Schemes
