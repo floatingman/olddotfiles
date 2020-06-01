@@ -21,11 +21,32 @@ endif
 
 " Enable syntax hightlighting
 syntax on
-set background=dark
+set background=light
 colorscheme lucius
 
+" increase undo levels to 10,000
+"
+set undolevels=10000
+
+" increase history to 10,000
+"
+set history=10000
+
 " Longer leader key timout
-set timeout timeoutlen=1500
+set ttimeout
+set ttimeoutlen=120
+
+" make backspace delete everywhere
+"
+set backspace=indent,eol,start
+
+" enhance completion menu
+"
+set wildmenu
+
+" make vim search all subdirectories
+"
+set path+=**
 
 " Keep the cursor in the same column when moving
 set nostartofline
@@ -83,9 +104,9 @@ set cmdheight=1
 
 " Tab Settings
 set expandtab
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 set smarttab
 set autoindent
 set smartindent
@@ -127,6 +148,14 @@ set splitright
 
 " Make sure compatible mode is disabled
 set nocompatible
+
+" always use utf-8
+"
+set encoding=utf-8
+
+" use correct new line symbols on unix and windows
+"
+set fileformats=unix,dos
 
 " Share yank buffer with system clipboard
 set clipboard=unnamedplus
@@ -243,6 +272,10 @@ nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
 set hlsearch
 set showmatch
 
+" enable incremental searching
+"
+set incsearch
+
 "" Ignore case in searches, but smartly
 set ignorecase
 set smartcase
@@ -282,12 +315,12 @@ au BufRead /tmp/*mutt* setfiletype mail
 " Delete quoted signatures.
 au BufRead /tmp/*mutt* normal :g/^\(> \)--\s*$/,/^$/-1d/^$
 
-" RG
+" RG"
 " bind K to grep word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-nnoremap \ :Ag<SPACE>
-nnoremap <Leader>ps :Ag<SPACE>
+"nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+"command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+"nnoremap \ :Ag<SPACE>
+"nnoremap <Leader>ps :Ag<SPACE>
 
 " Autocompletion
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS

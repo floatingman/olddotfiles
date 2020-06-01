@@ -48,21 +48,17 @@ let g:vista_sidebar_width = 50
 """"""""""""
 " Nerdtree "
 """"""""""""
-" if nerdtree is the only window, kill nerdtree so buffer can die
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | :bdelete | endif
-map <F7> :NERDTreeToggle<CR>
-let nerdtreequitonopen = 0
-let NERDTreeShowHidden=1
-let nerdchristmastree=1
-let g:NERDTreeMinimalUI = 1
-let g:nerdtreewinsize = 25
-let g:NERDTreeDirArrowExpandable = ''
-let g:NERDTreeDirArrowExpandable = '▷'
-let g:NERDTreeDirArrowCollapsible = '▼'
-let NERDTreeAutoCenter=1
-let g:NERDTreeGitStatusWithFlags = 1
-let g:NERDTreeIgnore = ['^node_modules$']
-let g:NERDTreeShowGitStatus = 1
+function! NERDTreeToggleCurrentFile()
+    if (exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1)
+        exe ":NERDTreeClose"
+    else
+        exe ":NERDTreeFind"
+    endif
+endfunction
+nnoremap <silent> <Leader>t :call NERDTreeToggleCurrentFile()<CR>
+
+"" NerdTreeGitPlugin Settings
+"
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
@@ -75,9 +71,51 @@ let g:NERDTreeIndicatorMapCustom = {
     \ 'Ignored'   : '☒',
     \ "Unknown"   : "?"
     \ }
-" Nerd tree
-nmap <leader>pt :NERDTreeToggle<CR>
-nmap <leader>pv :NERDTreeFind<CR>
+let g:NERDTreeShowIgnoredStatus = 1
+
+""NerdTree Syntax Plugin
+"
+let s:brown = "905532"
+let s:aqua =  "3AFFDB"
+let s:blue = "689FB6"
+let s:darkBlue = "44788E"
+let s:purple = "834F79"
+let s:lightPurple = "834F79"
+let s:red = "AE403F"
+let s:beige = "F5C06F"
+let s:yellow = "F09F17"
+let s:orange = "D4843E"
+let s:darkOrange = "F16529"
+let s:pink = "CB6F6F"
+let s:salmon = "EE6E73"
+let s:green = "8FAA54"
+let s:lightGreen = "31B53E"
+let s:white = "FFFFFF"
+let s:rspec_red = 'FE405F'
+let s:git_orange = 'F54D27'
+
+let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreeExtensionHighlightColor['css'] = s:blue " sets the color of css files to blue
+
+let g:NERDTreeExactMatchHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange " sets the color for .gitignore files
+
+let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red " sets the color for files ending with _spec.rb
+
+let g:WebDevIconsDefaultFolderSymbolColor = s:beige " sets the color for folders that did not match any rule
+let g:WebDevIconsDefaultFileSymbolColor = s:blue " sets the color for files that did not match any rule
+
+""BufExplorer settings
+"
+nnoremap <silent> <Leader>ee :ToggleBufExplorer<CR>
+nnoremap <silent> <Leader>eh :BufExplorerHorizontalSplit<CR>
+nnoremap <silent> <Leader>ev :BufExplorerVerticalSplit<CR>
+
+"" Leader-f opens fzf files
+"  Leader-b opens fzf buffers
+nnoremap <silent> <Leader>f :Files<CR>
+nnoremap <silent> <Leader>b :Buffers<CR>
 
 """"""""""""""""""
 " Nerd Commenter "
@@ -311,9 +349,6 @@ let g:startify_custom_header = s:center(s:header)
 "let s:header= []
 "let g:startify_custom_footer = s:center(s:footer)
 
-" gutentags
-"let g:gutentags_cache_dir = $HOME . '/.cache/ctags'
-
 " ctrlp
 map <leader>pf :CtrlP<cr>
 map <c-b> :CtrlPBuffer<cr>
@@ -358,6 +393,7 @@ let g:ale_set_quickfix = 1
 let g:ale_fix_on_save = 1
 " Let Ale autoimport modules in typescript
 let g:ale_completion_tsserver_autoimport = 1
+
 " FZF
 " An action can be a reference to a function that processes selected lines
 function! s:build_quickfix_list(lines)
