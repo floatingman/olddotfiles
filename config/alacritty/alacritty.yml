@@ -123,39 +123,39 @@ draw_bold_text_with_bright_colors: true
 custom_cursor_colors: true
 
 # color_start
-# lucius-dark.yaml
-# Colors (Lucius Dark)
+# lucius-light.yaml
+# Colors (Lucius Light)
 colors:
   # Default colors
   primary:
-    background: '0x303030'
-    foreground: '0xd7d7d7'
+    background: '0xeeeeee'
+    foreground: '0x444444'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    cursor: '0x87afd7'
+    cursor: '0x5f87af'
 
   # Normal colors
   normal:
-    black:   '0x303030'
-    red:     '0xff5f5f'
-    green:   '0xafd787'
-    yellow:  '0xd7d7af'
-    blue:    '0x87d7ff'
-    magenta: '0xd7afd7'
-    cyan:    '0x87d7af'
-    white:   '0xd7d7d7'
+    black:   '0x444444'
+    red:     '0xaf0000'
+    green:   '0x008700'
+    yellow:  '0xaf5f00'
+    blue:    '0x005faf'
+    magenta: '0x870087'
+    cyan:    '0x008787'
+    white:   '0xeeeeee'
 
   # Bright colors
   bright:
-    black:   '0x303030'
-    red:     '0xff5f5f'
-    green:   '0xafd787'
-    yellow:  '0xd7d7af'
-    blue:    '0x87d7ff'
-    magenta: '0xd7afd7'
-    cyan:    '0x87d7af'
-    white:   '0xd7d7d7'
+    black:   '0x444444'
+    red:     '0xaf0000'
+    green:   '0x008700'
+    yellow:  '0xaf5f00'
+    blue:    '0x005faf'
+    magenta: '0x870087'
+    cyan:    '0x008787'
+    white:   '0xeeeeee'
 
 # color_end
 # Indexed Colors
