@@ -267,32 +267,59 @@ let g:DevIconsDefaultFolderOpenSymbol = ''
 "let g:airline#extensions#branch#format = 2
 
 " lightline config
-let g:lightline = {
-      \ 'colorscheme': 'solarized',
-      \ 'active': {
-      \   'left': [ ['mode', 'paste'],
-      \             ['fugitive', 'cocstatus', 'readonly', 'filename', 'modified'] ],
-      \   'right': [ [ 'lineinfo' ], ['percent'] ]
-      \ },
-      \ 'component': {
-      \   'readonly': '%{&filetype=="help"?"":&readonly?"🔒":""}',
-      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
-      \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
-      \ },
-      \ 'component_visible_condition': {
-      \   'readonly': '(&filetype!="help"&& &readonly)',
-      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
-      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
-      \ },
-      \ 'component_function': {
-      \   'cocstatus': 'coc#status'
-      \ },
-      \ 'separator': { 'left': ' ', 'right': ' ' },
-      \ 'subseparator': { 'left': ' ', 'right': ' ' }
-      \ }
+" let g:lightline = {
+      " \ 'colorscheme': 'solarized',
+      " \ 'active': {
+      " \   'left': [ ['mode', 'paste'],
+      " \             ['fugitive', 'cocstatus', 'readonly', 'filename', 'modified'] ],
+      " \   'right': [ [ 'lineinfo' ], ['percent'] ]
+      " \ },
+      " \ 'component': {
+      " \   'readonly': '%{&filetype=="help"?"":&readonly?"🔒":""}',
+      " \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
+      " \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
+      " \ },
+      " \ 'component_visible_condition': {
+      " \   'readonly': '(&filetype!="help"&& &readonly)',
+      " \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
+      " \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+      " \ },
+      " \ 'component_function': {
+      " \   'cocstatus': 'coc#status'
+      " \ },
+      " \ 'separator': { 'left': ' ', 'right': ' ' },
+      " \ 'subseparator': { 'left': ' ', 'right': ' ' }
+      " \ }
 
-" Use auocmd to force lightline update.
-autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+" " Use auocmd to force lightline update.
+" autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+
+" configure tabline
+"
+function! Tabline()
+  let s = ''
+  for i in range(tabpagenr('$'))
+    let tab = i + 1
+    let winnr = tabpagewinnr(tab)
+    let buflist = tabpagebuflist(tab)
+    let bufnr = buflist[winnr - 1]
+    let bufname = bufname(bufnr)
+    let bufmodified = getbufvar(bufnr, "&mod")
+
+    let s .= '%' . tab . 'T'
+    let s .= (tab == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
+    let s .= ' ' . tab .':'
+    let s .= (bufname != '' ? '['. fnamemodify(bufname, ':t') . '] ' : '[No Name] ')
+
+    if bufmodified
+      let s .= '[+] '
+    endif
+  endfor
+
+  let s .= '%#TabLineFill#'
+  return s
+endfunction
+set tabline=%!Tabline()
 
 """""""""""""""""
 "Indent Guides  "
@@ -453,3 +480,15 @@ map <Leader>tv :TabVifm<CR>
 " VimWiki
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
+
+" RG"
+" bind K to grep word under cursor
+"nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+"command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+"nnoremap \ :Ag<SPACE>
+"nnoremap <Leader>ps :Ag<SPACE>
+
+" vim-fugitive
+map <leader>gs :Gstatus<cr>
+map <leader>gc :Gcommit<cr>
+map <leader>gl :Glog<cr>

@@ -90,7 +90,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'etdev/vim-hexcolor'
 
 " Statusbar
-Plug 'itchyny/lightline.vim'
+"Plug 'itchyny/lightline.vim'
 "Plug 'vim-airline/vim-airline'
 "Plug 'vim-airline/vim-airline-themes'
 
