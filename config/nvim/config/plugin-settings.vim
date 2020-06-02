@@ -564,3 +564,11 @@ nmap <F8> :Vista!!<CR>
 
 " Undotree
 nmap <leader>u :UndotreeShow<CR>
+
+" configure illuminate plugin
+"
+highlight link illuminatedWord Visual
+
+" configure matchup plugin
+"
+let g:matchup_matchparen_offscreen = {}
