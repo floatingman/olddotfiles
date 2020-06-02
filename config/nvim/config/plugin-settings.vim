@@ -572,3 +572,7 @@ highlight link illuminatedWord Visual
 " configure matchup plugin
 "
 let g:matchup_matchparen_offscreen = {}
+
+" configure undoquit plugin
+"
+nnoremap <c-w>c :call undoquit#SaveWindowQuitHistory()<cr><c-w>c

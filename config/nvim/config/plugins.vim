@@ -155,4 +155,8 @@ Plug 'andymass/vim-matchup'
 " Peekaboo find out what is stored in the registers
 "
 Plug 'junegunn/vim-peekaboo'
+
+" UndoQuit to undo hasty quits
+"
+Plug 'AndrewRadev/undoquit.vim'
 call plug#end()
