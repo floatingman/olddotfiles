@@ -43,6 +43,7 @@ if _have youtube-dl; then
     alias yt="youtube-dl --add-metadata -i"
     alias YT="youtube-viewer"
     alias podcast='youtube-dl --no-mtime --verbose -x --audio-format mp3 --audio-quality 0 -o "/mnt/SuperBig/Media/Audio/podcast/%(uploader)s-%(upload_date)s-%(title)s.%(ext)s" https://www.youtube.com/playlist?list=PL5D8rBmak6B39tevwhz_LMTrEof7MeyQt'
+  alias yta="yt -x -f bestaudio/best"
 fi
 
 if _have rtorrent; then
