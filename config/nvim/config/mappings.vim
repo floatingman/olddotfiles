@@ -171,3 +171,15 @@ nmap <leader>u :UndotreeShow<CR>
 
 " Lazydocker
 nnoremap <silent> <Leader>ld :call ToggleLazyDocker()<CR>
+
+" Write a file with sudo (w!!)
+cmap w!! W !sudo tee % >/dev/null
+
+" Redraw syntax highlighting from start of file.
+nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
+
+" Check file in shellcheck:
+map <leader>c :!clear && shellcheck %<CR>
+
+" Insert timestamp
+map <leader>n :r!date<cr>

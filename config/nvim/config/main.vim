@@ -40,6 +40,14 @@ set ttimeoutlen=120
 "
 set backspace=indent,eol,start
 
+" Show ruler
+"
+set ruler
+
+" Show partial commands
+"
+set showcmd
+
 " enhance completion menu
 "
 set wildmenu
@@ -82,7 +90,7 @@ set guioptions-=L  "remove left-hand scroll bar
 :set fillchars+=vert:\
 
 " Don't show the mode in the command line
-set noshowmode
+"set noshowmode
 
 " Automatically reread the file if it changes outside of vim
 set autoread
@@ -99,8 +107,8 @@ set colorcolumn=80
 set noerrorbells
 
 " Statusline config
-set statusline+=%F
-set cmdheight=1
+"set statusline+=%F
+"set cmdheight=1
 
 " Tab Settings
 set expandtab
@@ -111,7 +119,6 @@ set smarttab
 set autoindent
 set smartindent
 set shiftround
-
 
 " Print syntax highlighting.
 set printoptions+=syntax:y
@@ -184,16 +191,8 @@ augroup numbertoggle
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
 
-
-" Insert timestamp
-map <leader>n :r!date<cr>
-
 " Disables automatic commenting on newline:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
-" Check file in shellcheck:
-map <leader>c :!clear && shellcheck %<CR>
-
 
 " Automatically deletes all trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
@@ -205,7 +204,6 @@ autocmd BufWritePost ~/.bmdirs,~/.bmfiles !shortcuts
 autocmd BufWritePost *sxhkdrc !pkill -USR1 sxhkd
 
 " syntax helpers
-
 au bufnewfile,bufRead *.bash* set ft=sh
 au bufnewfile,bufRead *.profile set filetype=sh
 au bufnewfile,bufRead *.crontab set filetype=crontab
@@ -226,7 +224,6 @@ autocmd BufWritePost ~/.confg/yabai/yabairc !brew services restart yabai
 " Restart skhd everytime config is updated
 autocmd BufWritePost ~/.skhdrc !brew services restart skhd
 
-
 " Use the below highlight group when displaying bad whitespace is desired
 highlight BadWhitespace ctermbg=red guibg=red
 
@@ -239,18 +236,11 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 " enable omni-completion
 set omnifunc=syntaxcomplete#Complete
 
-" autocmd FileType python set omnifunc=pythoncomplete#Complete
-
 " Set syntax highlighting
 let python_highlight_all=1
 
 " Pydiction setup
 let g:pydiction_location = '/home/dnewman/.config/nvim/plugged/Pydiction/complete-dict'
-
-" vim-fugitive
-map <leader>gs :Gstatus<cr>
-map <leader>gc :Gcommit<cr>
-map <leader>gl :Glog<cr>
 
 " config helpers
 command! InitEdit :e ~/.config/nvim/init.vim
@@ -258,13 +248,6 @@ command! InitSource :source ~/.config/nvim/init.vim
 
 " Rainbows!
 let g:rainbow_active = 1
-
-
-" Write a file with sudo (w!!)
-cmap w!! W !sudo tee % >/dev/null
-
-" Redraw syntax highlighting from start of file.
-nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
 
 " Search
 
@@ -314,22 +297,3 @@ au BufRead /tmp/*mutt* setfiletype mail
 
 " Delete quoted signatures.
 au BufRead /tmp/*mutt* normal :g/^\(> \)--\s*$/,/^$/-1d/^$
-
-" RG"
-" bind K to grep word under cursor
-"nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-"command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-"nnoremap \ :Ag<SPACE>
-"nnoremap <Leader>ps :Ag<SPACE>
-
-" Autocompletion
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-au FileType rust nmap gd <Plug>(rust-def)
-au FileType rust nmap gs <Plug>(rust-def-split)
-au FileType rust nmap gx <Plug>(rust-def-vertical)
-au FileType rust nmap <leader>gd <Plug>(rust-doc)
-autocmd BufEnter *.tsx set filetype=typescript
