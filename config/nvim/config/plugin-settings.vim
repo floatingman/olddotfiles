@@ -124,7 +124,25 @@ nnoremap <silent> <Leader>b :Buffers<CR>
 let g:NERDSpaceDelims = 1
 " Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 1
-" Allow commenting and inverting empty lines (useful when commenting a region)
+" Toggle comments in visual or normal mode
+nnoremap <leader>n :call NERDComment(0,"toggle")<cr>
+vnoremap <leader>n :call NERDComment(1,"toggle")<cr>
+" Toggle a sexy comment
+nnoremap <leader>ns :call NERDComment(0,"sexy")<cr>
+vnoremap <leader>ns :call NERDComment(1,"sexy")<cr>
+" append a  comment
+nnoremap <leader>na :call NERDComment(0,"append")<cr>
+vnoremap <leader>na :call NERDComment(1,"append")<cr>
+" uncomment section
+nnoremap <leader>nu :call NERDComment(0,"uncomment")<cr>
+vnoremap <leader>nu :call NERDComment(1,"uncomment")<cr>
+" invert comments
+nnoremap <leader>ni :call NERDComment(0,"invert")<cr>
+vnoremap <leader>ni :call NERDComment(1,"invert")<cr>
+" comment section
+nnoremap <leader>nc :call NERDComment(0,"comment")<cr>
+vnoremap <leader>nc :call NERDComment(1,"comment")<cr>
+"
 
 """""""
 "COC  "
@@ -202,6 +220,46 @@ augroup end
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
+" COC Keybinds
+" Remap keys for gotos
+map <leader>cd <Plug>(coc-definition)
+nmap <leader>ct <Plug>(coc-type-definition)
+nmap <leader>ci <Plug>(coc-implementation)
+map <leader>cr <Plug>(coc-references)
+" Remap for rename current word
+nmap <leader>crn <Plug>(coc-rename)
+" Remap for format selected region
+xmap <leader>cf <Plug>(coc-format-selected)
+nmap <leader>cf <Plug>(coc-format-selected)
+" Fix current line
+nmap <leader>cfl  <Plug>(coc-fix-current)
+" Using CocList
+" Show all diagnostics
+nnoremap  <Leader>cdi  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap  <Leader>ce  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap  <Leader>cc  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <Leader>co  :<C-u>CocList outline<cr>
+" Completion keybinds
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+" shift+tab cycles backwards
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Enter to confirm completion
+inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+
 """""""""""""
 "Devicons   "
 """""""""""""
@@ -220,6 +278,13 @@ let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
 let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
 let g:DevIconsDefaultFolderOpenSymbol = ''
 
+" Text alignment
+nnoremap <Leader>Al :left<CR>
+nnoremap <Leader>Ac :center<CR>
+nnoremap <Leader>Ar :right<CR>
+vnoremap <Leader>Al :left<CR>
+vnoremap <Leader>Ac :center<CR>
+vnoremap <Leader>Ar :right<CR>
 
 """"""""""""
 "Airline   "
@@ -293,33 +358,6 @@ let g:DevIconsDefaultFolderOpenSymbol = ''
 
 " " Use auocmd to force lightline update.
 " autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
-
-" configure tabline
-"
-function! Tabline()
-  let s = ''
-  for i in range(tabpagenr('$'))
-    let tab = i + 1
-    let winnr = tabpagewinnr(tab)
-    let buflist = tabpagebuflist(tab)
-    let bufnr = buflist[winnr - 1]
-    let bufname = bufname(bufnr)
-    let bufmodified = getbufvar(bufnr, "&mod")
-
-    let s .= '%' . tab . 'T'
-    let s .= (tab == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
-    let s .= ' ' . tab .':'
-    let s .= (bufname != '' ? '['. fnamemodify(bufname, ':t') . '] ' : '[No Name] ')
-
-    if bufmodified
-      let s .= '[+] '
-    endif
-  endfor
-
-  let s .= '%#TabLineFill#'
-  return s
-endfunction
-set tabline=%!Tabline()
 
 """""""""""""""""
 "Indent Guides  "
@@ -487,3 +525,42 @@ let g:vimwiki_list = [{'path': '~/vimwiki/',
 "command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 "nnoremap \ :Ag<SPACE>
 "nnoremap <Leader>ps :Ag<SPACE>
+
+" Fugitive keybinds
+" Git status
+nnoremap  <Leader>gs  :Gstatus<cr>
+" Git diff in split window
+nnoremap  <Leader>gd  :Gdiffsplit<cr>
+" Git commit
+nnoremap  <Leader>gc  :Gcommit<cr>
+" Git Log
+nnoremap <Leader>gl   :Glog<cr>
+" Git push
+nnoremap  <Leader>gP  :Gpush<cr>
+" Git pull
+nnoremap  <Leader>gp  :Gpull<cr>
+" Git move
+nnoremap  <Leader>gm  :Gmove<cr>
+" Git merge
+nnoremap  <Leader>gM  :Gmerge<cr>
+" browse current file on web
+nnoremap  <Leader>gb  :Gbrowse<cr>
+" browse current line on web
+nnoremap  <Leader>gbl  :CocCommand git.browserOpen<cr>
+" View chunk information in preview window.
+nnoremap  <Leader>gh  :CocCommand git.chunkInfo<cr>
+" View commit information in preview window.
+nnoremap  <Leader>gsc  :CocCommand git.showCommit<cr>
+" Toggle git gutter sign columns
+nnoremap  <Leader>gg  :CocCommand git.toggleGutters<cr>
+" Lazygit
+nnoremap <silent> <Leader>lg :call ToggleLazyGit()<CR>
+
+" Vista
+" Floating tag finder
+nnoremap  <Leader>ft  :Vista finder coc<cr>
+" Opens tagbar on right side of screen
+nmap <F8> :Vista!!<CR>
+
+" Undotree
+nmap <leader>u :UndotreeShow<CR>

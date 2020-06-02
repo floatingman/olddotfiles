@@ -288,12 +288,29 @@ function SetGPGOptions()
   set foldopen=insert
 endfunction
 
-""""""""
-" Mutt "
-""""""""
+" configure tabline
+"
+function! Tabline()
+  let s = ''
+  for i in range(tabpagenr('$'))
+    let tab = i + 1
+    let winnr = tabpagewinnr(tab)
+    let buflist = tabpagebuflist(tab)
+    let bufnr = buflist[winnr - 1]
+    let bufname = bufname(bufnr)
+    let bufmodified = getbufvar(bufnr, "&mod")
 
-" Set the filetype on neomutt buffers
-au BufRead /tmp/*mutt* setfiletype mail
+    let s .= '%' . tab . 'T'
+    let s .= (tab == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
+    let s .= ' ' . tab .':'
+    let s .= (bufname != '' ? '['. fnamemodify(bufname, ':t') . '] ' : '[No Name] ')
 
-" Delete quoted signatures.
-au BufRead /tmp/*mutt* normal :g/^\(> \)--\s*$/,/^$/-1d/^$
+    if bufmodified
+      let s .= '[+] '
+    endif
+  endfor
+
+  let s .= '%#TabLineFill#'
+  return s
+endfunction
+set tabline=%!Tabline()
