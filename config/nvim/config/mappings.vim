@@ -111,13 +111,15 @@ endfunction
 " Enter to confirm completion
 inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" Git keybinds
+" Fugitive keybinds
 " Git status
 nnoremap  <Leader>gs  :Gstatus<cr>
 " Git diff in split window
 nnoremap  <Leader>gd  :Gdiffsplit<cr>
 " Git commit
 nnoremap  <Leader>gc  :Gcommit<cr>
+" Git Log
+nnoremap <Leader>gl   :Glog<cr>
 " Git push
 nnoremap  <Leader>gP  :Gpush<cr>
 " Git pull

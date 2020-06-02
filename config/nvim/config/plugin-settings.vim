@@ -487,8 +487,3 @@ let g:vimwiki_list = [{'path': '~/vimwiki/',
 "command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 "nnoremap \ :Ag<SPACE>
 "nnoremap <Leader>ps :Ag<SPACE>
-
-" vim-fugitive
-map <leader>gs :Gstatus<cr>
-map <leader>gc :Gcommit<cr>
-map <leader>gl :Glog<cr>
