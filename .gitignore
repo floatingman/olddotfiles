@@ -51,3 +51,4 @@ config/mpd/database
 config/mpd/state
 config/mpd/sticker.sql
 ncmpcpp/error.log
+vim/curfiletype
