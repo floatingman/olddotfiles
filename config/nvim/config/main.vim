@@ -314,3 +314,15 @@ function! Tabline()
   return s
 endfunction
 set tabline=%!Tabline()
+
+" ignore these suffixes in file completion
+"
+set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
+
+" visualize wrapped lines with … characters
+"
+set showbreak=...
+
+" always report the number of changed lines
+"
+set report=0

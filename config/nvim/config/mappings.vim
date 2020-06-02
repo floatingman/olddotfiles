@@ -27,7 +27,7 @@ nnoremap <C-l> <C-w>l
 nnoremap <Leader>- <C-w>s
 " Vertical split then move to right window.
 nnoremap <Leader>\| <C-w>v<C-w>l
-" Cycle tabs with Tab and Shift+Tab
+" Cycle buffers with Tab and Shift+Tab
 nnoremap<silent> <Tab> :bnext<CR>
 nnoremap<silent> <S-Tab> :bprevious<CR>
 " Kill buffer with Space+bk
@@ -81,4 +81,4 @@ nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
 map <leader>c :!clear && shellcheck %<CR>
 
 " Insert timestamp
-map <leader>n :r!date<cr>
+"map <leader>n :r!date<cr>

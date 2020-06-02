@@ -139,4 +139,20 @@ Plug 'mbbill/undotree'
 
 " vimwiki
 Plug 'vimwiki/vimwiki'
+
+" Bufkill plugin to help kill buffers
+"
+Plug 'qpkorr/vim-bufkill'
+
+" Illuminate plugin to highlight all words matching word under cursor
+"
+Plug 'RRethy/vim-illuminate'
+
+" Matchup to make % match better
+"
+Plug 'andymass/vim-matchup'
+
+" Peekaboo find out what is stored in the registers
+"
+Plug 'junegunn/vim-peekaboo'
 call plug#end()

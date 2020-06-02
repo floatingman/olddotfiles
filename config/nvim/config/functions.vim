@@ -71,4 +71,15 @@ function! OnTermExit(job_id, code, event) dict
     endif
 endfunction
 
-" REQUIRED FOR LAZYGIT
+" zoom function that opens the current buffer in a new tab
+" found at: github.com/junegunn/dotfiles/blob/master/vimrc
+"
+function! s:zoom()
+  if winnr('$') > 1
+    tab split
+  elseif len(filter(map(range(tabpagenr('$')), 'tabpagebuflist(v:val + 1)'),
+                  \ 'index(v:val, '.bufnr('').') >= 0')) > 1
+    tabclose
+  endif
+endfunction
+nnoremap <silent> <leader>z :call <sid>zoom()<cr>
