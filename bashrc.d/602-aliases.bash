@@ -64,7 +64,9 @@ alias E='sudo e'
 alias f='e `fzf -i`'
 
 if _have git; then
-    alias gc=". ${HOME}/bin/gitdate && git commit -v "
+    alias gc="git commit -v"
+    # Not currently working
+    #alias gc=". ${HOME}/bin/gitdate && git commit -v "
     alias g="git"
     alias gaa="git aa"
     alias gd="git d"
