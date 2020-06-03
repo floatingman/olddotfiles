@@ -43,11 +43,11 @@ nmap <leader><leader> V
 nmap <leader>y "+y
 
 " For simple sizing of splits.
-map - <C-W>-
-map + <C-W>+
-nnoremap <silent> <Leader>vr :vertical resize 30<CR>
-nnoremap <silent> <Leader>r+ :vertical resize +5<CR>
-nnoremap <silent> <Leader>r- :vertical resize -5<CR>
+" map - <C-W>-
+" map + <C-W>+
+" nnoremap <silent> <Leader>vr :vertical resize 30<CR>
+" nnoremap <silent> <Leader>r+ :vertical resize +5<CR>
+" nnoremap <silent> <Leader>r- :vertical resize -5<CR>
 
 " Faster ESC
 inoremap jk <ESC>
