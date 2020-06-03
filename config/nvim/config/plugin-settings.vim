@@ -576,3 +576,7 @@ let g:matchup_matchparen_offscreen = {}
 " configure undoquit plugin
 "
 nnoremap <c-w>c :call undoquit#SaveWindowQuitHistory()<cr><c-w>c
+
+" configure dirvish plugin
+"
+nmap <leader>d <Plug>(dirvish_up)

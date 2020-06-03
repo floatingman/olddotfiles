@@ -159,4 +159,8 @@ Plug 'junegunn/vim-peekaboo'
 " UndoQuit to undo hasty quits
 "
 Plug 'AndrewRadev/undoquit.vim'
+
+" Dirvish for file browsing
+"
+Plug 'justinmk/vim-dirvish'
 call plug#end()

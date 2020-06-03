@@ -96,7 +96,8 @@ set guioptions-=L  "remove left-hand scroll bar
 set autoread
 
 " Set the cwd to whatever file is in view. Helps with omnicomplete.
-set autochdir
+" Doesn't work with Dirvish
+"set autochdir
 
 " Allow a new buffer to be created without saving the current one
 set hidden
