@@ -19,7 +19,7 @@ call plug#begin('~/.config/nvim/plugged')
 "Plug 'tpope/vim-sensible'
 
 " Syntax
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 Plug 'ap/vim-css-color'
 
 " Vim Javascript and node
@@ -34,10 +34,10 @@ Plug 'leafgarland/typescript-vim'
 Plug 'sheerun/vim-polyglot'
 
 " Comfy scroll
-Plug 'yuttie/comfortable-motion.vim'
+" Plug 'yuttie/comfortable-motion.vim'
 
 " Completion
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -45,7 +45,8 @@ Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
 
 " Comments
-Plug 'preservim/nerdcommenter'
+" Plug 'preservim/nerdcommenter'
+Plug 'tpope/vim-commentary'
 
 " NERDTree
 Plug 'preservim/nerdtree'
@@ -168,4 +169,16 @@ Plug 'haya14busa/vim-asterisk'
 " Bufferize for exposing those hidden buffers
 "
 Plug 'AndrewRadev/bufferize.vim'
+
+" Manipulate lines of text easily
+"
+Plug 't9md/vim-textmanip'
+
+" Bufferline makes it easy to work with multiple buffers
+"
+Plug 'bling/vim-bufferline'
+
+" Clever-f helps with motions searching for characters
+"
+Plug 'rhysd/clever-f.vim'
 call plug#end()

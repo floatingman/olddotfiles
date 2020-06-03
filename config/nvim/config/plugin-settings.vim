@@ -121,27 +121,27 @@ nnoremap <silent> <Leader>b :Buffers<CR>
 " Nerd Commenter "
 """"""""""""""""""
 " Add spaces after coment delimiters by default
-let g:NERDSpaceDelims = 1
-" Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
-" Toggle comments in visual or normal mode
-nnoremap <leader>n :call NERDComment(0,"toggle")<cr>
-vnoremap <leader>n :call NERDComment(1,"toggle")<cr>
-" Toggle a sexy comment
-nnoremap <leader>ns :call NERDComment(0,"sexy")<cr>
-vnoremap <leader>ns :call NERDComment(1,"sexy")<cr>
-" append a  comment
-nnoremap <leader>na :call NERDComment(0,"append")<cr>
-vnoremap <leader>na :call NERDComment(1,"append")<cr>
-" uncomment section
-nnoremap <leader>nu :call NERDComment(0,"uncomment")<cr>
-vnoremap <leader>nu :call NERDComment(1,"uncomment")<cr>
-" invert comments
-nnoremap <leader>ni :call NERDComment(0,"invert")<cr>
-vnoremap <leader>ni :call NERDComment(1,"invert")<cr>
-" comment section
-nnoremap <leader>nc :call NERDComment(0,"comment")<cr>
-vnoremap <leader>nc :call NERDComment(1,"comment")<cr>
+" let g:NERDSpaceDelims = 1
+" " Use compact syntax for prettified multi-line comments
+" let g:NERDCompactSexyComs = 1
+" " Toggle comments in visual or normal mode
+" nnoremap <leader>n :call NERDComment(0,"toggle")<cr>
+" vnoremap <leader>n :call NERDComment(1,"toggle")<cr>
+" " Toggle a sexy comment
+" nnoremap <leader>ns :call NERDComment(0,"sexy")<cr>
+" vnoremap <leader>ns :call NERDComment(1,"sexy")<cr>
+" " append a  comment
+" nnoremap <leader>na :call NERDComment(0,"append")<cr>
+" vnoremap <leader>na :call NERDComment(1,"append")<cr>
+" " uncomment section
+" nnoremap <leader>nu :call NERDComment(0,"uncomment")<cr>
+" vnoremap <leader>nu :call NERDComment(1,"uncomment")<cr>
+" " invert comments
+" nnoremap <leader>ni :call NERDComment(0,"invert")<cr>
+" vnoremap <leader>ni :call NERDComment(1,"invert")<cr>
+" " comment section
+" nnoremap <leader>nc :call NERDComment(0,"comment")<cr>
+" vnoremap <leader>nc :call NERDComment(1,"comment")<cr>
 "
 
 """""""
@@ -149,116 +149,116 @@ vnoremap <leader>nc :call NERDComment(1,"comment")<cr>
 """""""
 
 " Define Error Symbols and colors
-let g:coc_status_warning_sign = ''
-let g:coc_status_error_sign = ''
-hi CocWarningSign ctermfg=blue
-hi CocErrorSign ctermfg=red
-hi CocInfoSign ctermfg=yellow
-hi CocHintSign ctermfg=green
+" let g:coc_status_warning_sign = ''
+" let g:coc_status_error_sign = ''
+" hi CocWarningSign ctermfg=blue
+" hi CocErrorSign ctermfg=red
+" hi CocInfoSign ctermfg=yellow
+" hi CocHintSign ctermfg=green
 
-" Transparent popup window
-hi! Pmenu ctermbg=black
-hi! PmenuSel ctermfg=2
-hi! PmenuSel ctermbg=0
+" " Transparent popup window
+" hi! Pmenu ctermbg=black
+" hi! PmenuSel ctermfg=2
+" hi! PmenuSel ctermbg=0
 
-" Brighter line numbers
-hi! LineNr ctermfg=NONE guibg=NONE
+" " Brighter line numbers
+" hi! LineNr ctermfg=NONE guibg=NONE
 
-" KEY REMAPS ""
-set updatetime=300
-let g:ycm_server_python_interpreter = '$HOME/.pyenv/shims/python3'
-let g:coc_snippet_next = '<TAB>'
-let g:coc_snippet_prev = '<S-TAB>'
+" " KEY REMAPS ""
+" set updatetime=300
+" let g:ycm_server_python_interpreter = '$HOME/.pyenv/shims/python3'
+" let g:coc_snippet_next = '<TAB>'
+" let g:coc_snippet_prev = '<S-TAB>'
 
-" Extensions. Some need configuration.
-" coc-java needs a valid JVM filepath defined in coc-settings
-" coc-eslint needs eslint npm package installed globally
-let g:coc_global_extensions = [
-      \'coc-html',
-      \'coc-xml',
-      \'coc-java',
-      \'coc-powershell',
-      \'coc-r-lsp',
-      \'coc-vimlsp',
-      \'coc-lua',
-      \'coc-sql',
-      \'coc-go',
-      \'coc-css',
-      \'coc-sh',
-      \'coc-snippets',
-      \'coc-prettier',
-      \'coc-eslint',
-      \'coc-emmet',
-      \'coc-tsserver',
-      \'coc-translator',
-      \'coc-docker',
-      \'coc-pairs',
-      \'coc-json',
-      \'coc-python',
-      \'coc-imselect',
-      \'coc-highlight',
-      \'coc-git',
-      \'coc-github',
-      \'coc-gitignore',
-      \'coc-emoji',
-      \'coc-lists',
-      \'coc-post',
-      \'coc-stylelint',
-      \'coc-yaml',
-      \'coc-template',
-      \'coc-utils'
-      \]
+" " Extensions. Some need configuration.
+" " coc-java needs a valid JVM filepath defined in coc-settings
+" " coc-eslint needs eslint npm package installed globally
+" let g:coc_global_extensions = [
+      " \'coc-html',
+      " \'coc-xml',
+      " \'coc-java',
+      " \'coc-powershell',
+      " \'coc-r-lsp',
+      " \'coc-vimlsp',
+      " \'coc-lua',
+      " \'coc-sql',
+      " \'coc-go',
+      " \'coc-css',
+      " \'coc-sh',
+      " \'coc-snippets',
+      " \'coc-prettier',
+      " \'coc-eslint',
+      " \'coc-emmet',
+      " \'coc-tsserver',
+      " \'coc-translator',
+      " \'coc-docker',
+      " \'coc-pairs',
+      " \'coc-json',
+      " \'coc-python',
+      " \'coc-imselect',
+      " \'coc-highlight',
+      " \'coc-git',
+      " \'coc-github',
+      " \'coc-gitignore',
+      " \'coc-emoji',
+      " \'coc-lists',
+      " \'coc-post',
+      " \'coc-stylelint',
+      " \'coc-yaml',
+      " \'coc-template',
+      " \'coc-utils'
+      " \]
 
-augroup MyAutoCmd
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
+" augroup MyAutoCmd
+  " autocmd!
+  " " Setup formatexpr specified filetype(s).
+  " autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " " Update signature help on jump placeholder
+  " autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+" augroup end
 
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" " Highlight symbol under cursor on CursorHold
+" autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" COC Keybinds
-" Remap keys for gotos
-map <leader>cd <Plug>(coc-definition)
-nmap <leader>ct <Plug>(coc-type-definition)
-nmap <leader>ci <Plug>(coc-implementation)
-map <leader>cr <Plug>(coc-references)
-" Remap for rename current word
-nmap <leader>crn <Plug>(coc-rename)
-" Remap for format selected region
-xmap <leader>cf <Plug>(coc-format-selected)
-nmap <leader>cf <Plug>(coc-format-selected)
-" Fix current line
-nmap <leader>cfl  <Plug>(coc-fix-current)
-" Using CocList
-" Show all diagnostics
-nnoremap  <Leader>cdi  :<C-u>CocList diagnostics<cr>
-" Manage extensions
-nnoremap  <Leader>ce  :<C-u>CocList extensions<cr>
-" Show commands
-nnoremap  <Leader>cc  :<C-u>CocList commands<cr>
-" Find symbol of current document
-nnoremap <Leader>co  :<C-u>CocList outline<cr>
-" Completion keybinds
+" " COC Keybinds
+" " Remap keys for gotos
+" map <leader>cd <Plug>(coc-definition)
+" nmap <leader>ct <Plug>(coc-type-definition)
+" nmap <leader>ci <Plug>(coc-implementation)
+" map <leader>cr <Plug>(coc-references)
+" " Remap for rename current word
+" nmap <leader>crn <Plug>(coc-rename)
+" " Remap for format selected region
+" xmap <leader>cf <Plug>(coc-format-selected)
+" nmap <leader>cf <Plug>(coc-format-selected)
+" " Fix current line
+" nmap <leader>cfl  <Plug>(coc-fix-current)
+" " Using CocList
+" " Show all diagnostics
+" nnoremap  <Leader>cdi  :<C-u>CocList diagnostics<cr>
+" " Manage extensions
+" nnoremap  <Leader>ce  :<C-u>CocList extensions<cr>
+" " Show commands
+" nnoremap  <Leader>cc  :<C-u>CocList commands<cr>
+" " Find symbol of current document
+" nnoremap <Leader>co  :<C-u>CocList outline<cr>
+" " Completion keybinds
 
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+" inoremap <silent><expr> <TAB>
+      " \ pumvisible() ? "\<C-n>" :
+      " \ <SID>check_back_space() ? "\<TAB>" :
+      " \ coc#refresh()
 
-" shift+tab cycles backwards
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" " shift+tab cycles backwards
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+" function! s:check_back_space() abort
+  " let col = col('.') - 1
+  " return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
 
-" Enter to confirm completion
-inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+" " Enter to confirm completion
+" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
 """""""""""""
 "Devicons   "
@@ -385,10 +385,10 @@ let g:AutoPairsMultilineClose = 0
 """""""""""""""""
 "Comfy-Scroll   "
 """""""""""""""""
-noremap <silent> <ScrollWheelDown> :call comfortable_motion#flick(40)<CR>
-noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
-let g:comfortable_motion_friction = 50.0
-let g:comfortable_motion_air_drag = 1.0
+" noremap <silent> <ScrollWheelDown> :call comfortable_motion#flick(40)<CR>
+" noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
+" let g:comfortable_motion_friction = 50.0
+" let g:comfortable_motion_air_drag = 1.0
 
 """"""""""
 " Emoji  "
@@ -451,13 +451,13 @@ let g:lengthmatters_start_at_column = 130
 
 " Syntax
 "ale
-set completeopt-=preview
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
-" Set this variable to 1 to fix files when you save them.
-let g:ale_fix_on_save = 1
-" Let Ale autoimport modules in typescript
-let g:ale_completion_tsserver_autoimport = 1
+" set completeopt-=preview
+" let g:ale_set_loclist = 0
+" let g:ale_set_quickfix = 1
+" " Set this variable to 1 to fix files when you save them.
+" let g:ale_fix_on_save = 1
+" " Let Ale autoimport modules in typescript
+" let g:ale_completion_tsserver_autoimport = 1
 
 " FZF
 " An action can be a reference to a function that processes selected lines
@@ -583,3 +583,12 @@ let g:asterisk#keeppos = 1
 " make an alias command :B for :Bufferize
 "
 cabbrev B Bufferize
+
+" configure textmanip plugin
+"
+let g:textmanip_enable_mappings = 0
+let g:textmanip_move_ignore_shiftwidth = 1
+xmap <C-j> <Plug>(textmanip-move-down)
+xmap <C-k> <Plug>(textmanip-move-up)
+xmap <C-h> <Plug>(textmanip-move-left)
+xmap <C-l> <Plug>(textmanip-move-right)
