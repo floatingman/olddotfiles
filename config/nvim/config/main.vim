@@ -327,3 +327,7 @@ set showbreak=...
 " always report the number of changed lines
 "
 set report=0
+
+" when vim exits, preserve clipboard data
+"
+autocmd VimLeave * call system("xsel -ib", getreg('+'))
