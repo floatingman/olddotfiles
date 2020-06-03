@@ -81,4 +81,9 @@ nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
 map <leader>c :!clear && shellcheck %<CR>
 
 " Insert timestamp
-"map <leader>n :r!date<cr>
+map <leader>ts :r!date<cr>
+
+" improve undo/redo for Ctrl-u and Ctrl-w
+"
+inoremap <C-u> <C-g>u<C-u>
+inoremap <C-w> <C-g>u<C-w>

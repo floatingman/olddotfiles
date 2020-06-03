@@ -21,8 +21,8 @@ endif
 
 " Enable syntax hightlighting
 syntax on
-set background=light
-colorscheme lucius
+set background=dark
+colorscheme gruvbox
 
 " increase undo levels to 10,000
 "
