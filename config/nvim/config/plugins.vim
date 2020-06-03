@@ -56,9 +56,6 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 "
 Plug 'jlanzarotta/bufexplorer'
 
-" VIFM
-Plug 'vifm/vifm.vim'
-
 " Tagbar
 Plug 'liuchengxu/vista.vim'
 
@@ -163,4 +160,12 @@ Plug 'AndrewRadev/undoquit.vim'
 " Dirvish for file browsing
 "
 Plug 'justinmk/vim-dirvish'
+
+" Asterisk for better searching
+"
+Plug 'haya14busa/vim-asterisk'
+
+" Bufferize for exposing those hidden buffers
+"
+Plug 'AndrewRadev/bufferize.vim'
 call plug#end()

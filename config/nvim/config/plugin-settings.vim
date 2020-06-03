@@ -508,13 +508,6 @@ endif
 " Centered floating window for fzf
 let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
 
-" Vifm
-map <Leader>vv :Vifm<CR>
-map <Leader>vs :VsplitVifm<CR>
-map <Leader>sp :SplitVifm<CR>
-map <Leader>dv :DiffVifm<CR>
-map <Leader>tv :TabVifm<CR>
-
 " VimWiki
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
@@ -580,3 +573,13 @@ nnoremap <c-w>c :call undoquit#SaveWindowQuitHistory()<cr><c-w>c
 " configure dirvish plugin
 "
 nmap <leader>d <Plug>(dirvish_up)
+
+" configure Asterisk
+"
+map * <Plug>(asterisk-*)
+map # <Plug>(asterisk-#)
+let g:asterisk#keeppos = 1
+
+" make an alias command :B for :Bufferize
+"
+cabbrev B Bufferize
