@@ -488,3 +488,6 @@ alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/mas
 # termbin
 alias tb="nc termbin.com 9999"
 
+# Change terminal colors
+alias termcolor="alacritty-colorscheme -t gruvbox_light.yaml gruvbox_dark.yaml"
+
