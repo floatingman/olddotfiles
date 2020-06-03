@@ -87,6 +87,11 @@ map <leader>ts :r!date<cr>
 "
 nmap ,, :noh<CR>
 
+" use very magic and case insensitive search patterns
+"
+nnoremap / /\v\c
+nnoremap ? ?\v\c
+
 " improve undo/redo for Ctrl-u and Ctrl-w
 "
 inoremap <C-u> <C-g>u<C-u>

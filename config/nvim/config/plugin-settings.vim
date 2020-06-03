@@ -590,3 +590,13 @@ nmap <leader>ea <Plug>(EasyAlign)
 "
 let g:ranger_map_keys = 0
 map <leader>r :Ranger<CR>
+
+" configure scratch plugin
+"
+let g:scratch_no_mappings = 1
+
+" configure speeddating plugin
+"
+let g:speeddating_no_mappings = 1
+nmap <C-a> <Plug>SpeedDatingUp
+nmap <C-x> <Plug>SpeedDatingDown

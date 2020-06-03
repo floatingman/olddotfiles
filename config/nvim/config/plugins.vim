@@ -67,7 +67,6 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'rhysd/conflict-marker.vim'
 Plug 'whatyouhide/vim-lengthmatters'
 "Plug 'ludovicchabant/vim-gutentags'
-Plug 'vim-utils/vim-man'
 
 "" Markdown editing
 Plug 'junegunn/goyo.vim'
@@ -268,4 +267,28 @@ Plug 'vim-scripts/ReplaceWithRegister'
 " Same as above replace but keep indent of line
 "
 Plug 'vim-scripts/ReplaceWithSameIndentRegister'
+
+" Changes directory to opened file
+"
+Plug 'airblade/vim-rooter'
+
+" Scratch buffer for vim
+"
+Plug 'mtth/scratch.vim'
+
+" Show where marks are added to a buffer
+"
+Plug 'kshenoy/vim-signature'
+
+" Add the ability to increment/decrement dates
+"
+Plug 'tpope/vim-speeddating'
+
+" Split between multi-line and single line code
+"
+Plug 'AndrewRadev/splitjoin.vim'
+
+" Read man pages with power
+"
+Plug 'jez/vim-superman'
 call plug#end()

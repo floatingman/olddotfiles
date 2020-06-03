@@ -213,8 +213,8 @@ au bufnewfile,bufRead *gitconfig set filetype=gitconfig
 au bufnewfile,bufread /tmp/psql.edit.* set syntax=sql
 
 " let status and other commands see the type of the current file
-au bufnewfile,bufread * call system("echo " . &filetype . " > $HOME/.vim/curfiletype")
-au vimleavepre * call system("echo > $HOME/.vim/curfiletype" )
+au bufnewfile,bufread * call system("echo " . &filetype . " > $HOME/.config/nvim/curfiletype")
+au vimleavepre * call system("echo > $HOME/.config/nvim/curfiletype" )
 
 " Run xrdb whenever Xdefaults or Xresources are updated.
 autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb %
@@ -239,9 +239,6 @@ set omnifunc=syntaxcomplete#Complete
 
 " Set syntax highlighting
 let python_highlight_all=1
-
-" Pydiction setup
-let g:pydiction_location = '/home/dnewman/.config/nvim/plugged/Pydiction/complete-dict'
 
 " config helpers
 command! InitEdit :e ~/.config/nvim/init.vim
@@ -331,3 +328,7 @@ set report=0
 " when vim exits, preserve clipboard data
 "
 autocmd VimLeave * call system("xsel -ib", getreg('+'))
+
+" drop comment symbols when joining lines
+"
+set formatoptions+=j
