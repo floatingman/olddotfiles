@@ -181,4 +181,8 @@ Plug 'bling/vim-bufferline'
 " Clever-f helps with motions searching for characters
 "
 Plug 'rhysd/clever-f.vim'
+
+" Help merge git conflicts
+"
+Plug 'christoomey/vim-conflicted'
 call plug#end()
