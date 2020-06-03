@@ -105,6 +105,8 @@ Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'rking/ag.vim'
 Plug 'gabesoft/vim-ags'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tacahiroy/ctrlp-funky'
+Plug 'dyng/ctrlsf.vim'
 Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
 Plug 'jremmen/vim-ripgrep'
 
@@ -130,7 +132,11 @@ Plug 'junegunn/vim-emoji'
 Plug 'Yggdroot/indentLine'
 
 " Auto pairs
-Plug 'jiangmiao/auto-pairs'
+Plug 'Raimondi/delimitMate'
+
+" Enhanced Diffing
+"
+Plug 'chrisbra/vim-diff-enhanced'
 
 " Undo
 Plug 'mbbill/undotree'

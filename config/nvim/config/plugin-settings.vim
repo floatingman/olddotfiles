@@ -379,8 +379,8 @@ let g:indentLine_fileTypeExclude = [
 """""""""""""
 "Autopairs  "
 """""""""""""
-let g:AutoPairsFlyMode = 0
-let g:AutoPairsMultilineClose = 0
+" let g:AutoPairsFlyMode = 0
+" let g:AutoPairsMultilineClose = 0
 
 """""""""""""""""
 "Comfy-Scroll   "
@@ -413,10 +413,6 @@ let g:startify_custom_header = s:center(s:header)
 " Optionally create and use footer
 "let s:header= []
 "let g:startify_custom_footer = s:center(s:footer)
-
-" ctrlp
-map <leader>pf :CtrlP<cr>
-map <c-b> :CtrlPBuffer<cr>
 
 " vim-ags
 " Search for the word under cursor
