@@ -585,3 +585,8 @@ xmap <C-l> <Plug>(textmanip-move-right)
 "
 xmap <leader>ea <Plug>(EasyAlign)
 nmap <leader>ea <Plug>(EasyAlign)
+
+" configure ranger plugin
+"
+let g:ranger_map_keys = 0
+map <leader>r :Ranger<CR>

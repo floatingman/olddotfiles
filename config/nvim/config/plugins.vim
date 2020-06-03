@@ -235,4 +235,37 @@ Plug 'mtth/locate.vim'
 " Match html tags
 "
 Plug 'Valloric/MatchTagAlways'
+
+" Filter quickfix results
+"
+Plug 'sk1418/QFGrep'
+
+" Put results of iList in a quickfix buffer
+"
+Plug 'romainl/vim-qlist'
+
+" Edit the quickfix list
+"
+Plug 'stefandtw/quickfix-reflector.vim'
+
+" Create closing tags in html
+"
+Plug 'tpope/vim-ragtag'
+
+" Use ranger(file browser) in vim
+"
+Plug 'francoiscabrol/ranger.vim'
+Plug 'rbgrouleff/bclose.vim'
+
+" Make vim repeat more useful
+"
+Plug 'tpope/vim-repeat'
+
+" Replace text covered by a motion with register
+"
+Plug 'vim-scripts/ReplaceWithRegister'
+
+" Same as above replace but keep indent of line
+"
+Plug 'vim-scripts/ReplaceWithSameIndentRegister'
 call plug#end()
