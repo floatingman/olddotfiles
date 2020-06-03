@@ -83,6 +83,10 @@ map <leader>c :!clear && shellcheck %<CR>
 " Insert timestamp
 map <leader>ts :r!date<cr>
 
+" make ,, hide syntax highlighting
+"
+nmap ,, :noh<CR>
+
 " improve undo/redo for Ctrl-u and Ctrl-w
 "
 inoremap <C-u> <C-g>u<C-u>

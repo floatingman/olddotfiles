@@ -278,14 +278,6 @@ let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
 let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
 let g:DevIconsDefaultFolderOpenSymbol = ''
 
-" Text alignment
-nnoremap <Leader>Al :left<CR>
-nnoremap <Leader>Ac :center<CR>
-nnoremap <Leader>Ar :right<CR>
-vnoremap <Leader>Al :left<CR>
-vnoremap <Leader>Ac :center<CR>
-vnoremap <Leader>Ar :right<CR>
-
 """"""""""""
 "Airline   "
 """"""""""""
@@ -588,3 +580,8 @@ xmap <C-j> <Plug>(textmanip-move-down)
 xmap <C-k> <Plug>(textmanip-move-up)
 xmap <C-h> <Plug>(textmanip-move-left)
 xmap <C-l> <Plug>(textmanip-move-right)
+
+" configure easy-align plugin
+"
+xmap <leader>ea <Plug>(EasyAlign)
+nmap <leader>ea <Plug>(EasyAlign)

@@ -33,9 +33,6 @@ Plug 'leafgarland/typescript-vim'
 " Language Packs
 Plug 'sheerun/vim-polyglot'
 
-" Comfy scroll
-" Plug 'yuttie/comfortable-motion.vim'
-
 " Completion
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -43,10 +40,11 @@ Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/gv.vim'
 
 " Comments
-" Plug 'preservim/nerdcommenter'
 Plug 'tpope/vim-commentary'
+Plug 'preservim/nerdcommenter'
 
 " NERDTree
 Plug 'preservim/nerdtree'
@@ -102,13 +100,15 @@ Plug 'pearofducks/ansible-vim'
 Plug 'martinda/Jenkinsfile-vim-syntax'
 
 "" Searching
-Plug 'rking/ag.vim'
-Plug 'gabesoft/vim-ags'
+" Plug 'rking/ag.vim'
+" Plug 'gabesoft/vim-ags'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tacahiroy/ctrlp-funky'
 Plug 'dyng/ctrlsf.vim'
 Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
-Plug 'jremmen/vim-ripgrep'
+Plug 'pbogut/fzf-mru.vim'
+" Plug 'jremmen/vim-ripgrep'
+Plug 'mhinz/vim-grepper'
 
 "" Color Schemes
 Plug 'dylanaraps/wal.vim'
@@ -191,4 +191,48 @@ Plug 'rhysd/clever-f.vim'
 " Help merge git conflicts
 "
 Plug 'christoomey/vim-conflicted'
+
+" Delete surrounding function
+"
+Plug 'AndrewRadev/dsf.vim'
+
+" Easy align plugin
+"
+Plug 'junegunn/vim-easy-align'
+
+" Easy motion commands for moving around
+"
+Plug 'easymotion/vim-easymotion'
+
+" Exchange words
+"
+Plug 'tommcdo/vim-exchange'
+
+" Expand regions
+"
+Plug 'terryma/vim-expand-region'
+
+" Find and replace words
+"
+Plug 'brooth/far.vim'
+
+" Highlight multiple words
+"
+Plug 'lfv89/vim-interestingwords'
+
+"Diff two blocks of text
+"
+Plug 'AndrewRadev/linediff.vim'
+
+" Quickly open quickfix and location
+"
+Plug 'Valloric/ListToggle'
+
+" Show all matches in a file
+"
+Plug 'mtth/locate.vim'
+
+" Match html tags
+"
+Plug 'Valloric/MatchTagAlways'
 call plug#end()
