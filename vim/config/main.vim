@@ -213,8 +213,8 @@ au bufnewfile,bufRead *gitconfig set filetype=gitconfig
 au bufnewfile,bufread /tmp/psql.edit.* set syntax=sql
 
 " let status and other commands see the type of the current file
-au bufnewfile,bufread * call system("echo " . &filetype . " > $HOME/.config/nvim/curfiletype")
-au vimleavepre * call system("echo > $HOME/.config/nvim/curfiletype" )
+au bufnewfile,bufread * call system("echo " . &filetype . " > $HOME/.vim/curfiletype")
+au vimleavepre * call system("echo > $HOME/.vim/curfiletype" )
 
 " Run xrdb whenever Xdefaults or Xresources are updated.
 autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb %
