@@ -86,3 +86,7 @@ nnoremap ? ?\v\c
 "
 inoremap <C-u> <C-g>u<C-u>
 inoremap <C-w> <C-g>u<C-w>
+
+" Change working directory to current buffer location
+"
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
