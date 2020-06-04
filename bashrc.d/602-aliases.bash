@@ -158,7 +158,6 @@ alias count_files_recursive_per_directory='ls -d */ | xargs -I _ sh -c "find \"_
 alias flat_this_dir="sudo find . -mindepth 2 -type f -exec mv -i '{}' . ';'"
 alias size_of_directory="ncdu --color dark -rr -x"
 alias available_commands='bash -c "compgen -c"'
-alias man='nvim -c "SuperMan $@"'
 
 
 # Pipe my public key to my clipboard.

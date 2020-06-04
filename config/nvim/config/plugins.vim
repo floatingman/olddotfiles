@@ -18,9 +18,21 @@ call plug#begin('~/.config/nvim/plugged')
 " lets be sensible
 "Plug 'tpope/vim-sensible'
 
-" Syntax
+" Syntax Highlighting
 " Plug 'w0rp/ale'
 Plug 'ap/vim-css-color'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'martinda/Jenkinsfile-vim-syntax'
+Plug 'othree/html5.vim'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'leshill/vim-json'
+Plug 'chr4/nginx.vim'
+Plug 'StanAngeloff/php.vim'
+Plug 'ericpruitt/tmux.vim'
+
 
 " Vim Javascript and node
 Plug 'pangloss/vim-javascript'
@@ -71,12 +83,10 @@ Plug 'whatyouhide/vim-lengthmatters'
 "" Markdown editing
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
-Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'plasticboy/vim-markdown'
 Plug 'honza/vim-snippets'
 Plug 'elzr/vim-json'
 Plug 'godlygeek/tabular'
-Plug 'vim-pandoc/vim-pandoc-syntax'
 
 " Markdown Preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
@@ -94,9 +104,6 @@ Plug 'mhinz/vim-startify'
 
 "" ansible
 Plug 'pearofducks/ansible-vim'
-
-"" Jenkins
-Plug 'martinda/Jenkinsfile-vim-syntax'
 
 "" Searching
 " Plug 'rking/ag.vim'
@@ -291,4 +298,45 @@ Plug 'AndrewRadev/splitjoin.vim'
 " Read man pages with power
 "
 Plug 'jez/vim-superman'
+
+" Work with surroundings in code
+"
+Plug 'tpope/vim-surround'
+
+" Swap deliminated items in a list
+"
+Plug 'machakann/vim-swap'
+
+" Adds copying to terminal in vim
+"
+Plug 'christoomey/vim-system-copy'
+
+" Quickly align text
+"
+Plug 'godlygeek/tabular'
+
+" Edit matching tags
+"
+Plug 'AndrewRadev/tagalong.vim'
+
+" Adds a few text objects doing things in vim
+"
+Plug 'wellle/targets.vim'
+
+" Enhance terminal in vim
+"
+Plug 'wincent/terminus'
+
+" Create you're own text objects
+"
+Plug 'kana/vim-textobj-user'
+
+" Add textobjects for entire buffer
+"
+Plug 'kana/vim-textobj-entire'
+
+" Add a thesaurus
+"
+Plug 'Ron89/thesaurus_query.vim'
+
 call plug#end()

@@ -600,3 +600,9 @@ let g:scratch_no_mappings = 1
 let g:speeddating_no_mappings = 1
 nmap <C-a> <Plug>SpeedDatingUp
 nmap <C-x> <Plug>SpeedDatingDown
+
+" configure thesaurus-query plugin
+"
+let g:tq_map_keys = 0
+let g:tq_use_vim_autocomplete = 0
+let g:tq_openoffice_en_file = "~/.vim/thesaurus/th_en_US_v2"
