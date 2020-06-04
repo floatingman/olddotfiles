@@ -86,12 +86,6 @@ set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
 
-" Removes pipes | that act as seperators on splits
-:set fillchars+=vert:\
-
-" Don't show the mode in the command line
-"set noshowmode
-
 " Automatically reread the file if it changes outside of vim
 set autoread
 

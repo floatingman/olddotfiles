@@ -606,3 +606,15 @@ nmap <C-x> <Plug>SpeedDatingDown
 let g:tq_map_keys = 0
 let g:tq_use_vim_autocomplete = 0
 let g:tq_openoffice_en_file = "~/.vim/thesaurus/th_en_US_v2"
+
+" configure ultisnips plugin
+"
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+
+" configure vimade plugin
+"
+let g:vimade = {}
+let g:vimade.fadelevel = 0.5
