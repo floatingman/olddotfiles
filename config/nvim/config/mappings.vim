@@ -27,9 +27,6 @@ nnoremap <C-l> <C-w>l
 nnoremap <Leader>- <C-w>s
 " Vertical split then move to right window.
 nnoremap <Leader>\| <C-w>v<C-w>l
-" Cycle buffers with Tab and Shift+Tab
-nnoremap<silent> <Tab> :bnext<CR>
-nnoremap<silent> <S-Tab> :bprevious<CR>
 " Kill buffer with Space+bk
 nnoremap<silent> <Space>bk :bdelete<CR>
 
@@ -41,13 +38,6 @@ nnoremap ]Q   :clast<CR>
 " Copying
 nmap <leader><leader> V
 nmap <leader>y "+y
-
-" For simple sizing of splits.
-" map - <C-W>-
-" map + <C-W>+
-" nnoremap <silent> <Leader>vr :vertical resize 30<CR>
-" nnoremap <silent> <Leader>r+ :vertical resize +5<CR>
-" nnoremap <silent> <Leader>r- :vertical resize -5<CR>
 
 " Faster ESC
 inoremap jk <ESC>
