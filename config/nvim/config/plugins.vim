@@ -339,4 +339,47 @@ Plug 'kana/vim-textobj-entire'
 "
 Plug 'Ron89/thesaurus_query.vim'
 
+" Plugin to aid in completeing text in tmux sessions
+"
+Plug 'wellle/tmux-complete.vim'
+
+" Switch between alternate files
+"
+Plug 'vim-scripts/a.vim'
+
+" Show unicode characters under cursor
+"
+Plug 'tpope/vim-characterize'
+
+" Preview replacements
+"
+Plug 'markonm/traces.vim'
+
+" Snippets
+"
+Plug 'SirVer/ultisnips'
+
+" Insert unicode characters
+"
+Plug 'chrisbra/unicode.vim'
+
+" Add shortcuts for commands that come in pairs
+"
+Plug 'tpope/vim-unimpaired'
+
+" Close splits that are stale
+"
+Plug 'TaDaa/vimade'
+
+" Add repeat to visual mode
+"
+Plug 'vim-scripts/visualrepeat'
+
+" Add visual cues when splitting
+"
+Plug 'wellle/visual-split.vim'
+
+" Create an editable search
+"
+Plug 'AndrewRadev/writable_search.vim'
 call plug#end()
