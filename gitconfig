@@ -159,3 +159,5 @@
 
 [github]
 	user = floatingman
+[pull]
+	rebase = false
