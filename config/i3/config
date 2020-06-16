@@ -211,7 +211,7 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 # Window focus should not follow mouse
-focus_follows_mouse no
+focus_follows_mouse yes
 
 # Cycle through workspaces with mouse.
 bindsym --whole-window button10 workspace next
