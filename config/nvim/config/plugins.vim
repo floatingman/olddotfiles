@@ -382,4 +382,8 @@ Plug 'wellle/visual-split.vim'
 " Create an editable search
 "
 Plug 'AndrewRadev/writable_search.vim'
+
+" Emmet like plugin for vim
+"
+Plug 'mattn/emmet-vim'
 call plug#end()
