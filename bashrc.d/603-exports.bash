@@ -88,3 +88,8 @@ if $_ismac; then
 else
   source "${HOME}/.config/broot/launcher/bash/br"
 fi
+
+#Jenkins X
+if [ -d $HOME/.jx/bin ]; then
+    _add_to_path "$HOME/.jx/bin"
+fi
