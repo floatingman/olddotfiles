@@ -59,7 +59,7 @@ nnoremap <silent> <Leader>t :call NERDTreeToggleCurrentFile()<CR>
 
 "" NerdTreeGitPlugin Settings
 "
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
     \ "Untracked" : "✭",
@@ -71,7 +71,7 @@ let g:NERDTreeIndicatorMapCustom = {
     \ 'Ignored'   : '☒',
     \ "Unknown"   : "?"
     \ }
-let g:NERDTreeShowIgnoredStatus = 1
+let g:NERDTreeGitStatusShowIgnored = 1
 
 ""NerdTree Syntax Plugin
 "
