@@ -14,7 +14,17 @@ fi
 
 # For the fuzzy finder
 if _have fzf; then
-  export FZF_DEFAULT_OPTS='--color=bg+:24 --reverse';
+    # Customize the default Fuzzy Finder command. Use "fd" instead of the default
+    # "find" command to traverse the file system while respecting .gitignore. fd is
+    # a simple, fast and user-friendly alternative to find. While it does not seek
+    # to mirror all of find's powerful functionality, it provides sensible
+    # (opinionated) defaults for 80% of the use cases. It's the perfect tool to use
+    # with fzf, each with its own strength.
+    export FZF_DEFAULT_COMMAND='fd --hidden --exclude=.local --exclude=.config --exclude=.rbenv --exclude=.cache --exclude=.git --exclude=node_modules'
+    # Default command for finding dirs
+    export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type=d"
+    # Default command for finding files
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --type=f"
 fi
 
 if [ -e ~/.dpi ]; then
