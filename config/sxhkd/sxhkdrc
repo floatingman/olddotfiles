@@ -19,7 +19,7 @@ super + {k,j}
     pulseaudio-ctl {up,down} 2
 
 super + shift + {k,j}
-		pulseaudio-ctl {up,down} 10
+	pulseaudio-ctl {up,down} 10
 
 # Toggle mpd
 super + 0
