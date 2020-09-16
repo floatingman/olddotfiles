@@ -103,3 +103,9 @@ fi
 if [ -d $HOME/.jx/bin ]; then
     _add_to_path "$HOME/.jx/bin"
 fi
+
+#Yarn
+if [ -d $HOME/.yarn/bin ]; then
+    _add_to_path "$HOME/.yarn/bin"
+    _add_to_path "$HOME/.config/yarn/global/node_modules/.bin"
+fi
