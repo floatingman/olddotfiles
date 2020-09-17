@@ -70,7 +70,6 @@ if $_ismac; then
   _add_to_path "/usr/local/sbin"
 fi
 
-
 # PyENV
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
