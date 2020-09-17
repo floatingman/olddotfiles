@@ -245,6 +245,9 @@ for_window [title="^Qalculate!$"] floating enable
 # float edit_text windows
 for_window [title="^edit_text$"] floating enable
 
+# float android emulator
+for_window [title="Android Emulator"] floating enable
+
 # Window colors         Border  BG      Text    Indicator Child Border
 client.focused          #002b36 #586e75 #fdf6e3 #268bd2
 client.focused_inactive #002b36 #073642 #839496 #073642
