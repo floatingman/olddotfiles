@@ -1,5 +1,5 @@
 #+TITLE: Emacs Configuration
-#+PROPERTY: header-args:emacs-lisp :tangle .emacs.d/init.el
+#+PROPERTY: header-args:emacs-lisp :tangle emacs.d/init.el
 
 * Table of Contents
 :PROPERTIES:
@@ -7,6 +7,7 @@
 :END:
 :CONTENTS:
 - [[#startup-performance][Startup Performance]]
+- [[#system-settings][System Settings]]
 - [[#keep-emacsd-clean][Keep .emacs.d Clean]]
 - [[#package-management][Package Management]]
 - [[#update-load-path][Update Load Path]]
@@ -123,6 +124,14 @@ Make startup faster by reducing the frequency of garbage collection and then use
 		       gcs-done)))
 #+end_src
 
+* System Settings
+#+begin_src emacs-lisp
+(load-file "~/.emacs.d/per-system-settings.el")
+
+(require 'subr-x)
+(setq dn/is-termux
+      (string-suffix-p "Android" (string-trim (shell-command-to-string "uname -a"))))
+#+end_src
 * Keep .emacs.d Clean
 
 I don't want a bunch of transient files showing up as untracked in the Git repo so I move them all to another location
