@@ -48,9 +48,6 @@ udiskie &
 # Blueman for bluetooth
 blueman-applet &
 
-# Start dropbox
-dropbox &
-
 # Start compost manager
 xcompmgr -c &
 

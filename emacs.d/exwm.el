@@ -17,13 +17,8 @@
                 ("Vimb" (exwm-workspace-rename-buffer (format "vimb: %s" exwm-title)))
                 ("qutebrowser" (exwm-workspace-rename-buffer (format "Qutebrowser: %s" exwm-title))))))
 
-  (exwm-enable))
-
-;; Enable exwm-randr before exwm-init gets called
-(use-package exwm-randr
-  :if dw/exwm-enabled
-  :after (exwm)
-  :config
+  (exwm-enable)
+  (require 'exwm-randr)
   (exwm-randr-enable)
   (setq exwm-randr-workspace-monitor-plist '(4 "eDP-1")))
 
@@ -157,17 +152,17 @@
 
 (defalias 'switch-to-buffer-original 'exwm-workspace-switch-to-buffer)
 
-(defun dw/send-polybar-hook (name number)
+(defun dn/send-polybar-hook (name number)
   (start-process-shell-command "polybar-msg" nil (format "polybar-msg hook %s %s" name number)))
 
-(defun dw/update-polybar-exwm (&optional path)
-  (dw/send-polybar-hook "exwm" 1)
-  (dw/send-polybar-hook "exwm-path" 1))
+(defun dn/update-polybar-exwm (&optional path)
+  (dn/send-polybar-hook "exwm" 1)
+  (dn/send-polybar-hook "exwm-path" 1))
 
-(defun dw/update-polybar-telegram ()
-  (dw/send-polybar-hook "telegram" 1))
+(defun dn/update-polybar-telegram ()
+  (dn/send-polybar-hook "telegram" 1))
 
-(defun dw/polybar-exwm-workspace ()
+(defun dn/polybar-exwm-workspace ()
   (pcase exwm-workspace-current-index
     (0 "")
     (1 "")
@@ -175,40 +170,40 @@
     (3 "")
     (4 "")))
 
-(defun dw/polybar-exwm-workspace-path ()
+(defun dn/polybar-exwm-workspace-path ()
   (let ((workspace-path (frame-parameter nil 'bufler-workspace-path-formatted)))
     (if workspace-path
         (substring-no-properties workspace-path)
       "")))
 
-(defun dw/polybar-mail-count (max-count)
-  (if dw/mail-enabled
+(defun dn/polybar-mail-count (max-count)
+  (if dn/mail-enabled
     (let* ((mail-count (shell-command-to-string
-                         (format "mu find --nocolor -n %s \"%s\" | wc -l" max-count dw/mu4e-inbox-query))))
+                         (format "mu find --nocolor -n %s \"%s\" | wc -l" max-count dn/mu4e-inbox-query))))
       (format " %s" (string-trim mail-count)))
     ""))
 
-(defun dw/telega-normalize-name (chat-name)
+(defun dn/telega-normalize-name (chat-name)
   (let* ((trimmed-name (string-trim-left (string-trim-right chat-name "}") "◀{"))
          (first-name (nth 0 (split-string trimmed-name " "))))
     first-name))
 
-(defun dw/propertized-to-polybar (buffer-name)
+(defun dn/propertized-to-polybar (buffer-name)
   (if-let* ((text (substring-no-properties buffer-name))
             (fg-face (get-text-property 0 'face buffer-name))
             (fg-color (face-attribute fg-face :foreground)))
-    (format "%%{F%s}%s%%{F-}" fg-color (dw/telega-normalize-name text))
+    (format "%%{F%s}%s%%{F-}" fg-color (dn/telega-normalize-name text))
     text))
 
-(defun dw/polybar-telegram-chats ()
+(defun dn/polybar-telegram-chats ()
   (if (> (length tracking-buffers) 0)
-    (format " %s" (string-join (mapcar 'dw/propertized-to-polybar tracking-buffers) ", "))
+    (format " %s" (string-join (mapcar 'dn/propertized-to-polybar tracking-buffers) ", "))
     ""))
 
-(add-hook 'exwm-workspace-switch-hook #'dw/update-polybar-exwm)
-(add-hook 'bufler-workspace-set-hook #'dw/update-polybar-exwm)
+(add-hook 'exwm-workspace-switch-hook #'dn/update-polybar-exwm)
+(add-hook 'bufler-workspace-set-hook #'dn/update-polybar-exwm)
 
-(when dw/exwm-enabled
+(when dn/exwm-enabled
   ;; These keys should always pass through to Emacs
   (setq exwm-input-prefix-keys
         '(?\C-x

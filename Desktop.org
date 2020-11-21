@@ -15,6 +15,10 @@
   - [[#panel][Panel]]
   - [[#keybindings][Keybindings]]
 - [[#polybar][Polybar]]
+- [[#desktop-notifications-via-dunst][Desktop Notifications via Dunst]]
+- [[#applications][Applications]]
+  - [[#browsers][Browsers]]
+    - [[#qutebrowser][Qutebrowser]]
 :END:
 
 * System Settings
@@ -36,7 +40,6 @@ https://github.com/daviwil/dotfiles/blob/master/Desktop.org
 https://gitlab.com/dwt1/dotfiles/-/blob/master/.doom.d/config.org#exwm
 https://wiki.archlinux.org/index.php/EXWM
 #+begin_src emacs-lisp :tangle emacs.d/exwm.el
-
 (use-package exwm
   :init
   (setq mouse-autoselect-window nil
@@ -56,13 +59,8 @@ https://wiki.archlinux.org/index.php/EXWM
                 ("Vimb" (exwm-workspace-rename-buffer (format "vimb: %s" exwm-title)))
                 ("qutebrowser" (exwm-workspace-rename-buffer (format "Qutebrowser: %s" exwm-title))))))
 
-  (exwm-enable))
-
-;; Enable exwm-randr before exwm-init gets called
-(use-package exwm-randr
-  :if dw/exwm-enabled
-  :after (exwm)
-  :config
+  (exwm-enable)
+  (require 'exwm-randr)
   (exwm-randr-enable)
   (setq exwm-randr-workspace-monitor-plist '(4 "eDP-1")))
 #+end_src
@@ -211,17 +209,17 @@ https://wiki.archlinux.org/index.php/EXWM
 ** Panel
 Setting up polybar
 #+begin_src emacs-lisp :tangle emacs.d/exwm.el
-(defun dw/send-polybar-hook (name number)
+(defun dn/send-polybar-hook (name number)
   (start-process-shell-command "polybar-msg" nil (format "polybar-msg hook %s %s" name number)))
 
-(defun dw/update-polybar-exwm (&optional path)
-  (dw/send-polybar-hook "exwm" 1)
-  (dw/send-polybar-hook "exwm-path" 1))
+(defun dn/update-polybar-exwm (&optional path)
+  (dn/send-polybar-hook "exwm" 1)
+  (dn/send-polybar-hook "exwm-path" 1))
 
-(defun dw/update-polybar-telegram ()
-  (dw/send-polybar-hook "telegram" 1))
+(defun dn/update-polybar-telegram ()
+  (dn/send-polybar-hook "telegram" 1))
 
-(defun dw/polybar-exwm-workspace ()
+(defun dn/polybar-exwm-workspace ()
   (pcase exwm-workspace-current-index
     (0 "")
     (1 "")
@@ -229,42 +227,42 @@ Setting up polybar
     (3 "")
     (4 "")))
 
-(defun dw/polybar-exwm-workspace-path ()
+(defun dn/polybar-exwm-workspace-path ()
   (let ((workspace-path (frame-parameter nil 'bufler-workspace-path-formatted)))
     (if workspace-path
         (substring-no-properties workspace-path)
       "")))
 
-(defun dw/polybar-mail-count (max-count)
-  (if dw/mail-enabled
+(defun dn/polybar-mail-count (max-count)
+  (if dn/mail-enabled
     (let* ((mail-count (shell-command-to-string
-                         (format "mu find --nocolor -n %s \"%s\" | wc -l" max-count dw/mu4e-inbox-query))))
+                         (format "mu find --nocolor -n %s \"%s\" | wc -l" max-count dn/mu4e-inbox-query))))
       (format " %s" (string-trim mail-count)))
     ""))
 
-(defun dw/telega-normalize-name (chat-name)
+(defun dn/telega-normalize-name (chat-name)
   (let* ((trimmed-name (string-trim-left (string-trim-right chat-name "}") "◀{"))
          (first-name (nth 0 (split-string trimmed-name " "))))
     first-name))
 
-(defun dw/propertized-to-polybar (buffer-name)
+(defun dn/propertized-to-polybar (buffer-name)
   (if-let* ((text (substring-no-properties buffer-name))
             (fg-face (get-text-property 0 'face buffer-name))
             (fg-color (face-attribute fg-face :foreground)))
-    (format "%%{F%s}%s%%{F-}" fg-color (dw/telega-normalize-name text))
+    (format "%%{F%s}%s%%{F-}" fg-color (dn/telega-normalize-name text))
     text))
 
-(defun dw/polybar-telegram-chats ()
+(defun dn/polybar-telegram-chats ()
   (if (> (length tracking-buffers) 0)
-    (format " %s" (string-join (mapcar 'dw/propertized-to-polybar tracking-buffers) ", "))
+    (format " %s" (string-join (mapcar 'dn/propertized-to-polybar tracking-buffers) ", "))
     ""))
 
-(add-hook 'exwm-workspace-switch-hook #'dw/update-polybar-exwm)
-(add-hook 'bufler-workspace-set-hook #'dw/update-polybar-exwm)
+(add-hook 'exwm-workspace-switch-hook #'dn/update-polybar-exwm)
+(add-hook 'bufler-workspace-set-hook #'dn/update-polybar-exwm)
 #+end_src
 ** Keybindings 
 #+begin_src emacs-lisp :tangle emacs.d/exwm.el
-(when dw/exwm-enabled
+(when dn/exwm-enabled
   ;; These keys should always pass through to Emacs
   (setq exwm-input-prefix-keys
         '(?\C-x
@@ -349,6 +347,7 @@ Setting up polybar
 #+end_src
 * Polybar
 This is used to display a panel in the top and bottom of EXWM
+*config/polybar/config:*
 #+begin_src conf :tangle config/polybar/config :noweb yes
 
 ; Docs: https://github.com/polybar/polybar
@@ -400,8 +399,7 @@ font-2 = "Material Icons:size=<<get-setting(name="polybar/font-2-size")>>;5"
 font-3 = "Fira Mono:size=<<get-setting(name="polybar/font-3-size")>>;-3"
 
 modules-left = exwm exwm-path
-modules-center = spotify
-modules-right = telegram mu4e cpu temperature battery date
+modules-right = cpu temperature battery date
 
 tray-position = right
 tray-padding = 2
@@ -412,7 +410,7 @@ cursor-scroll = ns-resize
 
 [module/exwm]
 type = custom/ipc
-hook-0 = emacsclient -e "(dw/polybar-exwm-workspace)" | sed -e 's/^"//' -e 's/"$//'
+hook-0 = emacsclient -e "(dn/polybar-exwm-workspace)" | sed -e 's/^"//' -e 's/"$//'
 initial = 1
 format-underline = ${colors.underline-1}
 format-background = ${colors.background-alt}
@@ -420,27 +418,27 @@ format-padding = 1
 
 [module/exwm-path]
 type = custom/ipc
-hook-0 = emacsclient -e "(dw/polybar-exwm-workspace-path)" | sed -e 's/^"//' -e 's/"$//'
+hook-0 = emacsclient -e "(dn/polybar-exwm-workspace-path)" | sed -e 's/^"//' -e 's/"$//'
 format-foreground = #f78c6c
 initial = 1
 
-[module/spotify]
-type = custom/script
-exec = ~/.config/polybar/player-status.sh
-interval = 3
+#[module/spotify]
+#type = custom/script
+#exec = ~/.config/polybar/player-status.sh
+#interval = 3
 
-[module/mu4e]
-type = custom/ipc
-hook-0 = emacsclient -e '(dw/polybar-mail-count 500)' | sed -e 's/^"//' -e 's/"$//'
-initial = 1
-format-underline = ${colors.underline-1}
-click-left = emacsclient -e '(dw/go-to-inbox)'
+#[module/mu4e]
+#type = custom/ipc
+#hook-0 = emacsclient -e '(dn/polybar-mail-count 500)' | sed -e 's/^"//' -e 's/"$//'
+#initial = 1
+#format-underline = ${colors.underline-1}
+#click-left = emacsclient -e '(dn/go-to-inbox)'
 
-[module/telegram]
-type = custom/ipc
-hook-0 = emacsclient -e '(dw/polybar-telegram-chats)' | sed -e 's/^"//' -e 's/"$//'
-format-padding = 3
-initial = 1
+#[module/telegram]
+#type = custom/ipc
+#hook-0 = emacsclient -e '(dn/polybar-telegram-chats)' | sed -e 's/^"//' -e 's/"$//'
+#format-padding = 3
+#initial = 1
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -541,5 +539,278 @@ format-warn-underline = ${self.format-underline}
 label = %temperature-c%
 label-warn = %temperature-c%!
 label-warn-foreground = ${colors.secondary}
+
+#+end_src
+* Desktop Notifications via Dunst
+[[https://dunst-project.org/][Dunst]] is a minimal interface for displaying desktop notifications.  It is quite hackable but I'm not currently taking much advantage of its power.  One useful feature is the ability to recall notification history; the keybinding is =C-`= in my configuration (though I'd prefer if I could invoke it from an Emacs keybinding somehow).
+*config/dunst/dunstrc:*
+#+begin_src conf :tangle config/dunst/dunstrc :noweb yes
+[global]
+    ### Display ###
+    monitor = 0
+
+    # The geometry of the window:
+    #   [{width}]x{height}[+/-{x}+/-{y}]
+    geometry = "500x10-10+50"
+
+    # Show how many messages are currently hidden (because of geometry).
+    indicate_hidden = yes
+
+    # Shrink window if it's smaller than the width.  Will be ignored if
+    # width is 0.
+    shrink = no
+
+    # The transparency of the window.  Range: [0; 100].
+    transparency = 10
+
+    # The height of the entire notification.  If the height is smaller
+    # than the font height and padding combined, it will be raised
+    # to the font height and padding.
+    notification_height = 0
+
+    # Draw a line of "separator_height" pixel height between two
+    # notifications.
+    # Set to 0 to disable.
+    separator_height = 1
+    separator_color = frame
+
+    # Padding between text and separator.
+    padding = 8
+
+    # Horizontal padding.
+    horizontal_padding = 8
+
+    # Defines width in pixels of frame around the notification window.
+    # Set to 0 to disable.
+    frame_width = 2
+
+    # Defines color of the frame around the notification window.
+    frame_color = "#89AAEB"
+
+    # Sort messages by urgency.
+    sort = yes
+
+    # Don't remove messages, if the user is idle (no mouse or keyboard input)
+    # for longer than idle_threshold seconds.
+    idle_threshold = 120
+
+    ### Text ###
+
+    font = Cantarell <<get-setting(name="dunst/font-size")>>
+
+    # The spacing between lines.  If the height is smaller than the
+    # font height, it will get raised to the font height.
+    line_height = 0
+    markup = full
+
+    # The format of the message.  Possible variables are:
+    #   %a  appname
+    #   %s  summary
+    #   %b  body
+    #   %i  iconname (including its path)
+    #   %I  iconname (without its path)
+    #   %p  progress value if set ([  0%] to [100%]) or nothing
+    #   %n  progress value if set without any extra characters
+    #   %%  Literal %
+    # Markup is allowed
+    format = "<b>%s</b>\n%b"
+
+    # Alignment of message text.
+    # Possible values are "left", "center" and "right".
+    alignment = left
+
+    # Show age of message if message is older than show_age_threshold
+    # seconds.
+    # Set to -1 to disable.
+    show_age_threshold = 60
+
+    # Split notifications into multiple lines if they don't fit into
+    # geometry.
+    word_wrap = yes
+
+    # When word_wrap is set to no, specify where to make an ellipsis in long lines.
+    # Possible values are "start", "middle" and "end".
+    ellipsize = middle
+
+    # Ignore newlines '\n' in notifications.
+    ignore_newline = no
+
+    # Stack together notifications with the same content
+    stack_duplicates = true
+
+    # Hide the count of stacked notifications with the same content
+    hide_duplicate_count = false
+
+    # Display indicators for URLs (U) and actions (A).
+    show_indicators = yes
+
+    ### Icons ###
+
+    # Align icons left/right/off
+    icon_position = left
+
+    # Scale larger icons down to this size, set to 0 to disable
+    max_icon_size = <<get-setting(name="dunst/max-icon-size")>>
+
+    # Paths to default icons.
+    icon_path = /usr/share/icons/Adwaita/16x16/status:/usr/share/icons/Adwaita/16x16/devices/
+
+    ### History ###
+
+    # Should a notification popped up from history be sticky or timeout
+    # as if it would normally do.
+    sticky_history = no
+
+    # Maximum amount of notifications kept in history
+    history_length = 20
+
+    ### Misc/Advanced ###
+
+    # Browser for opening urls in context menu.
+    browser = qutebrowser
+
+    # Always run rule-defined scripts, even if the notification is suppressed
+    always_run_script = true
+
+    # Define the title of the windows spawned by dunst
+    title = Dunst
+
+    # Define the class of the windows spawned by dunst
+    class = Dunst
+
+    startup_notification = false
+    verbosity = mesg
+
+    # Define the corner radius of the notification window
+    # in pixel size. If the radius is 0, you have no rounded
+    # corners.
+    # The radius will be automatically lowered if it exceeds half of the
+    # notification height to avoid clipping text and/or icons.
+    corner_radius = 4
+
+    mouse_left_click = close_current
+    mouse_middle_click = do_action
+    mouse_right_click = close_all
+
+# Experimental features that may or may not work correctly. Do not expect them
+# to have a consistent behaviour across releases.
+[experimental]
+    # Calculate the dpi to use on a per-monitor basis.
+    # If this setting is enabled the Xft.dpi value will be ignored and instead
+    # dunst will attempt to calculate an appropriate dpi value for each monitor
+    # using the resolution and physical size. This might be useful in setups
+    # where there are multiple screens with very different dpi values.
+    per_monitor_dpi = false
+
+[shortcuts]
+
+    # Shortcuts are specified as [modifier+][modifier+]...key
+    # Available modifiers are "ctrl", "mod1" (the alt-key), "mod2",
+    # "mod3" and "mod4" (windows-key).
+    # Xev might be helpful to find names for keys.
+
+    # Close notification.
+    #close = ctrl+space
+
+    # Close all notifications.
+    #close_all = ctrl+shift+space
+
+    # Redisplay last message(s).
+    # On the US keyboard layout "grave" is normally above TAB and left
+    # of "1". Make sure this key actually exists on your keyboard layout,
+    # e.g. check output of 'xmodmap -pke'
+    history = ctrl+grave
+
+    # Context menu.
+    context = ctrl+shift+period
+
+[urgency_low]
+    # IMPORTANT: colors have to be defined in quotation marks.
+    # Otherwise the "#" and following would be interpreted as a comment.
+    background = "#222222"
+    foreground = "#888888"
+    timeout = 10
+    # Icon for notifications with low urgency, uncomment to enable
+    #icon = /path/to/icon
+
+[urgency_normal]
+    background = "#1c1f26"
+    foreground = "#ffffff"
+    timeout = 10
+    # Icon for notifications with normal urgency, uncomment to enable
+    #icon = /path/to/icon
+
+[urgency_critical]
+    background = "#900000"
+    foreground = "#ffffff"
+    frame_color = "#ff0000"
+    timeout = 0
+    # Icon for notifications with critical urgency, uncomment to enable
+    #icon = /path/to/icon
+#+end_src
+* Applications
+** Browsers
+*** Qutebrowser
+[[https://github.com/qutebrowser/qutebrowser][Qutebrowser]] is a great keyboard-centric browser which uses the Chromium rendering engine via QT 5's WebEngine component.  I've configured it to act more like Vimb for window-per-tab behavior that integrates well into Emacs.  One thing I like about this browser is that it does a much better job of remembering what windows you had open when it exits so that you can maintain your session more easily.  I also like that when you reopen a tab/window, the history of that window is still present.
+
+#+begin_src python :tangle config/qutebrowser/config.py
+
+# Open every tab as a new window, Vimb style
+c.tabs.tabs_are_windows = True
+c.tabs.show = "multiple"
+c.tabs.last_close = "close"
+
+c.auto_save.session = True
+c.scrolling.smooth = True
+c.session.lazy_restore = True
+c.content.autoplay = False
+
+# Scale pages and UI better for hidpi
+c.zoom.default = "200%"
+c.fonts.hints = "bold 20pt monospace"
+
+# Better default fonts
+c.fonts.web.family.standard = "Bitstream Vera Sans"
+c.fonts.web.family.serif = "Bitstream Vera Serif"
+c.fonts.web.family.sans_serif = "Bitstream Vera Sans"
+c.fonts.web.family.fixed = "Fira Mono"
+c.fonts.statusbar = "18pt Cantarell"
+
+# Use dark mode where possible
+c.colors.webpage.darkmode.enabled = True
+c.colors.webpage.bg = "black"
+
+# Automatically turn on insert mode when a loaded page focuses a text field
+c.input.insert_mode.auto_load = True
+
+# Edit fields in Emacs with Ctrl+E
+c.editor.command = ["emacsclient", "+{line}:{column}", "{file}"]
+
+# Make Ctrl+g quit everything like in Emacs
+config.bind('<Ctrl-g>', 'leave-mode', mode='insert')
+config.bind('<Ctrl-g>', 'leave-mode', mode='command')
+config.bind('<Ctrl-g>', 'leave-mode', mode='prompt')
+config.bind('<Ctrl-g>', 'leave-mode', mode='hint')
+config.bind('v', 'spawn ~/bin/umpv {url}')
+config.bind('V', 'hint links spawn ~/bin/umpv {hint-url}')
+
+# Tweak some keybindings
+config.unbind('d') # Don't close window on lower-case 'd'
+config.bind('yy', 'yank')
+
+# Vim-style movement keys in command mode
+config.bind('<Ctrl-j>', 'completion-item-focus --history next', mode='command')
+config.bind('<Ctrl-k>', 'completion-item-focus --history prev', mode='command')
+
+# More binding hints here: https://gitlab.com/Kaligule/qutebrowser-emacs-config/blob/master/config.py
+#+end_src
+
+#+begin_src conf :tangle config/qutebrowser/quickmarks
+
+gn https://github.com/notifications
+dot https://github.com/floatingman/dotfiles
+ddg https://duckduckgo.com/?q $0
+gh https://github.com/$0
+npm https://www.npmjs.com/search?q $0
 
 #+end_src
