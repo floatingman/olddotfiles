@@ -1,0 +1,533 @@
+#+TITLE: Desktop Environment
+#+PROPERTY: header-args :mkdirp yes
+
+* Table of Contents
+:PROPERTIES:
+:TOC:      :include all :ignore this
+:END:
+:CONTENTS:
+- [[#window-manager][Window Manager]]
+  - [[#helper-functions][Helper Functions]]
+  - [[#configuration][Configuration]]
+  - [[#desktop-configuration][Desktop Configuration]]
+  - [[#window-switcher][Window Switcher]]
+  - [[#panel][Panel]]
+  - [[#keybindings][Keybindings]]
+- [[#polybar][Polybar]]
+:END:
+
+* Window Manager
+I am trying out Emacs Window manager
+
+Checking out configs from 
+https://github.com/daviwil/dotfiles/blob/master/Desktop.org
+https://gitlab.com/dwt1/dotfiles/-/blob/master/.doom.d/config.org#exwm
+https://wiki.archlinux.org/index.php/EXWM
+#+begin_src emacs-lisp :tangle .emacs.d/exwm.el
+
+(use-package exwm
+  :init
+  (setq mouse-autoselect-window nil
+        focus-follows-mouse t
+        exwm-workspace-warp-cursor t
+        exwm-workspace-number 5)
+        ;exwm-workspace-display-echo-area-timeout 5
+        ;exwm-workspace-minibuffer-position 'bottom) ;; Annoying focus issues
+  :config
+  ;; Make class name the buffer name
+  (add-hook 'exwm-update-class-hook
+            (lambda ()
+              (exwm-workspace-rename-buffer exwm-class-name)))
+  (add-hook 'exwm-update-title-hook
+            (lambda ()
+              (pcase exwm-class-name
+                ("Vimb" (exwm-workspace-rename-buffer (format "vimb: %s" exwm-title)))
+                ("qutebrowser" (exwm-workspace-rename-buffer (format "Qutebrowser: %s" exwm-title))))))
+
+  (exwm-enable))
+
+;; Enable exwm-randr before exwm-init gets called
+(use-package exwm-randr
+  :if dw/exwm-enabled
+  :after (exwm)
+  :config
+  (exwm-randr-enable)
+  (setq exwm-randr-workspace-monitor-plist '(4 "eDP-1")))
+#+end_src
+
+** Helper Functions
+#+begin_src emacs-lisp :tangle .emacs.d/exwm.el
+(defun exwm/run-in-background (command)
+  (let ((command-parts (split-string command "[ ]+")))
+    (apply #'call-process `(,(car command-parts) nil 0 nil ,@(cdr command-parts)))))
+
+(defun exwm/bind-function (key invocation &rest bindings)
+  "Bind KEYs to FUNCTIONs globally"
+  (while key
+    (exwm-input-set-key (kbd key)
+                        `(lambda ()
+                           (interactive)
+                           (funcall ',invocation)))
+    (setq key (pop bindings)
+          invocation (pop bindings))))
+
+(defun exwm/bind-command (key command &rest bindings)
+  "Bind KEYs to COMMANDs globally"
+  (while key
+    (exwm-input-set-key (kbd key)
+                        `(lambda ()
+                           (interactive)
+                           (exwm/run-in-background ,command)))
+    (setq key (pop bindings)
+          command (pop bindings))))
+#+end_src
+
+** Configuration
+#+begin_src emacs-lisp :tangle .emacs.d/exwm.el
+(defun dn/exwm-init-hook ()
+  ;; Launch Telega in workspace 0 if we've logged in before
+  ;; (when (file-exists-p "~/.telega/db.sqlite")
+  ;;   (telega nil))
+
+  ;; Make workspace 1 be the one where we land at startup
+  (exwm-workspace-switch-create 1)
+
+  ;; Open eshell by default
+  (eshell)
+
+  ;; Launch apps that will run in the background
+  (exwm/run-in-background "dunst")
+  (exwm/run-in-background "nm-applet")
+  (exwm/run-in-background "syncthing-gtk --minimized")
+  (exwm/run-in-background "redshift -l 36.083286:-87.009861 -t 6500:3500"))
+
+(use-package exwm
+  :if dn/exwm-enabled
+  :config
+  ;(display-time-mode 1) ;; Not needed for now since we have a panel
+
+  (add-hook 'exwm-mode-hook
+            (lambda ()
+              (evil-local-set-key 'motion (kbd "C-u") nil)))
+
+  (require 'dn-exwm)
+
+  (defun dn/setup-window-by-class ()
+    (interactive)
+    (pcase exwm-class-name
+      ("qutebrowser" (exwm-workspace-move-window 2))
+      ("qjackctl" (exwm-floating-toggle-floating))
+      ("mpv" (exwm-floating-toggle-floating)
+             (dn/exwm-floating-toggle-pinned))))
+
+  ;; Do some post-init setup
+  (add-hook 'exwm-init-hook #'dn/exwm-init-hook)
+
+  ;; Manipulate windows as they're created
+  (add-hook 'exwm-manage-finish-hook
+            (lambda ()
+              ;; Send the window where it belongs
+              (dn/setup-window-by-class)))
+
+              ;; Hide the modeline on all X windows
+              ;(exwm-layout-hide-mode-line)))
+
+  ;; Hide the modeline on all X windows
+  (add-hook 'exwm-floating-setup-hook
+            (lambda ()
+              (exwm-layout-hide-mode-line))))
+
+(use-package exwm-systemtray
+  :disabled
+  :if dn/exwm-enabled
+  :after (exwm)
+  :config
+  (exwm-systemtray-enable)
+  (setq exwm-systemtray-height 35))
+#+end_src
+
+** Desktop Configuration
+#+begin_src emacs-lisp :tangle .emacs.d/exwm.el
+(defun dn/run-xmodmap ()
+  (interactive)
+  (start-process-shell-command "xmodmap" nil "xmodmap ~/.Xmodmap"))
+
+(defun dn/update-wallpapers ()
+  (interactive)
+  (start-process-shell-command
+   "feh" nil
+   (format "feh --bg-scale ~/.dotfiles/backgrounds/%s" (alist-get 'desktop/background dn/system-settings))))
+
+(setq dn/panel-process nil)
+(defun dn/kill-panel ()
+  (interactive)
+  (when dn/panel-process
+    (ignore-errors
+      (kill-process dn/panel-process)))
+  (setq dn/panel-process nil))
+
+(defun dn/start-panel ()
+  (interactive)
+  (dn/kill-panel)
+  (setq dn/panel-process (start-process-shell-command "polybar" nil "polybar panel")))
+
+(defun dn/update-screen-layout ()
+  (interactive)
+  (let ((layout-script "~/bin/update-screens"))
+     (message "Running screen layout script: %s" layout-script)
+     (start-process-shell-command "xrandr" nil layout-script)))
+
+(defun dn/configure-desktop ()
+  (interactive)
+    (dn/run-xmodmap)
+    (dn/update-screen-layout)
+    (run-at-time "2 sec" nil (lambda () (dn/update-wallpapers))))
+
+(defun dn/on-exwm-init ()
+  (dn/configure-desktop)
+  (dn/start-panel))
+
+(when dn/exwm-enabled
+  ;; Configure the desktop for first load
+  (add-hook 'exwm-init-hook #'dn/on-exwm-init))
+#+end_src
+
+** Window Switcher
+#+begin_src emacs-lisp :tangle .emacs.d/exwm.el
+(defalias 'switch-to-buffer-original 'exwm-workspace-switch-to-buffer)
+#+end_src
+** Panel
+Setting up polybar
+#+begin_src emacs-lisp :tangle .emacs.d/exwm.el
+(defun dw/send-polybar-hook (name number)
+  (start-process-shell-command "polybar-msg" nil (format "polybar-msg hook %s %s" name number)))
+
+(defun dw/update-polybar-exwm (&optional path)
+  (dw/send-polybar-hook "exwm" 1)
+  (dw/send-polybar-hook "exwm-path" 1))
+
+(defun dw/update-polybar-telegram ()
+  (dw/send-polybar-hook "telegram" 1))
+
+(defun dw/polybar-exwm-workspace ()
+  (pcase exwm-workspace-current-index
+    (0 "")
+    (1 "")
+    (2 "")
+    (3 "")
+    (4 "")))
+
+(defun dw/polybar-exwm-workspace-path ()
+  (let ((workspace-path (frame-parameter nil 'bufler-workspace-path-formatted)))
+    (if workspace-path
+        (substring-no-properties workspace-path)
+      "")))
+
+(defun dw/polybar-mail-count (max-count)
+  (if dw/mail-enabled
+    (let* ((mail-count (shell-command-to-string
+                         (format "mu find --nocolor -n %s \"%s\" | wc -l" max-count dw/mu4e-inbox-query))))
+      (format " %s" (string-trim mail-count)))
+    ""))
+
+(defun dw/telega-normalize-name (chat-name)
+  (let* ((trimmed-name (string-trim-left (string-trim-right chat-name "}") "◀{"))
+         (first-name (nth 0 (split-string trimmed-name " "))))
+    first-name))
+
+(defun dw/propertized-to-polybar (buffer-name)
+  (if-let* ((text (substring-no-properties buffer-name))
+            (fg-face (get-text-property 0 'face buffer-name))
+            (fg-color (face-attribute fg-face :foreground)))
+    (format "%%{F%s}%s%%{F-}" fg-color (dw/telega-normalize-name text))
+    text))
+
+(defun dw/polybar-telegram-chats ()
+  (if (> (length tracking-buffers) 0)
+    (format " %s" (string-join (mapcar 'dw/propertized-to-polybar tracking-buffers) ", "))
+    ""))
+
+(add-hook 'exwm-workspace-switch-hook #'dw/update-polybar-exwm)
+(add-hook 'bufler-workspace-set-hook #'dw/update-polybar-exwm)
+#+end_src
+** Keybindings 
+#+begin_src emacs-lisp :tangle .emacs.d/exwm.el
+(when dw/exwm-enabled
+  ;; These keys should always pass through to Emacs
+  (setq exwm-input-prefix-keys
+        '(?\C-x
+          ?\C-h
+          ?\M-x
+          ?\M-`
+          ?\M-&
+          ?\M-:
+          ?\C-\M-j  ;; Buffer list
+          ?\C-\M-k  ;; Browser list
+          ?\C-\     ;; Ctrl+Space
+          ?\C-\;))
+
+  ;; Ctrl+Q will enable the next key to be sent directly
+  (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
+
+  (defun exwm/run-vimb ()
+    (exwm/run-in-background "vimb")
+    (exwm-workspace-switch-create 2))
+
+  (defun exwm/run-qute ()
+    (exwm/run-in-background "qutebrowser")
+    (exwm-workspace-switch-create 2))
+
+  (exwm/bind-function
+   "s-o" 'exwm/run-qute)
+
+  (exwm/bind-command
+   "s-p" "playerctl play-pause"
+   "s-[" "playerctl previous"
+   "s-]" "playerctl next")
+
+  (use-package desktop-environment
+    :after exwm
+    :config (desktop-environment-mode)
+    :custom
+    (desktop-environment-brightness-small-increment "2%+")
+    (desktop-environment-brightness-small-decrement "2%-")
+    (desktop-environment-brightness-normal-increment "5%+")
+    (desktop-environment-brightness-normal-decrement "5%-"))
+
+  ;; This needs a more elegant ASCII banner
+  (defhydra hydra-exwm-move-resize (:timeout 4)
+    "Move/Resize Window (Shift is bigger steps, Ctrl moves window)"
+    ("j" (lambda () (interactive) (exwm-layout-enlarge-window 10)) "V 10")
+    ("J" (lambda () (interactive) (exwm-layout-enlarge-window 30)) "V 30")
+    ("k" (lambda () (interactive) (exwm-layout-shrink-window 10)) "^ 10")
+    ("K" (lambda () (interactive) (exwm-layout-shrink-window 30)) "^ 30")
+    ("h" (lambda () (interactive) (exwm-layout-shrink-window-horizontally 10)) "< 10")
+    ("H" (lambda () (interactive) (exwm-layout-shrink-window-horizontally 30)) "< 30")
+    ("l" (lambda () (interactive) (exwm-layout-enlarge-window-horizontally 10)) "> 10")
+    ("L" (lambda () (interactive) (exwm-layout-enlarge-window-horizontally 30)) "> 30")
+    ("C-j" (lambda () (interactive) (exwm-floating-move 0 10)) "V 10")
+    ("C-S-j" (lambda () (interactive) (exwm-floating-move 0 30)) "V 30")
+    ("C-k" (lambda () (interactive) (exwm-floating-move 0 -10)) "^ 10")
+    ("C-S-k" (lambda () (interactive) (exwm-floating-move 0 -30)) "^ 30")
+    ("C-h" (lambda () (interactive) (exwm-floating-move -10 0)) "< 10")
+    ("C-S-h" (lambda () (interactive) (exwm-floating-move -30 0)) "< 30")
+    ("C-l" (lambda () (interactive) (exwm-floating-move 10 0)) "> 10")
+    ("C-S-l" (lambda () (interactive) (exwm-floating-move 30 0)) "> 30")
+    ("f" nil "finished" :exit t))
+
+  ;; Workspace switching
+  (setq exwm-input-global-keys
+        `(([?\s-\C-r] . exwm-reset)
+          ([?\s-w] . exwm-workspace-switch)
+          ([?\s-r] . hydra-exwm-move-resize/body)
+          ([?\s-e] . dired-jump)
+          ([?\s-E] . (lambda () (interactive) (dired "~")))
+          ([?\s-Q] . (lambda () (interactive) (kill-buffer)))
+          ([?\s-`] . (lambda () (interactive) (exwm-workspace-switch-create 0)))
+          ,@(mapcar (lambda (i)
+                      `(,(kbd (format "s-%d" i)) .
+                        (lambda ()
+                          (interactive)
+                          (exwm-workspace-switch-create ,i))))
+                    (number-sequence 0 9))))
+
+  (exwm-input-set-key (kbd "<s-return>") 'vterm)
+  (exwm-input-set-key (kbd "s-SPC") 'counsel-linux-app)
+  (exwm-input-set-key (kbd "s-f") 'exwm-layout-toggle-fullscreen))
+#+end_src
+* Polybar
+This is used to display a panel in the top and bottom of EXWM
+#+begin_src conf :tangle .config/polybar/config :noweb yes
+
+; Docs: https://github.com/polybar/polybar
+;==========================================================
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+[colors]
+background = #f0232635
+background-alt = #576075
+foreground = #A6Accd
+foreground-alt = #555
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
+underline-1 = #c792ea
+
+[bar/panel]
+width = 100%
+height = <<get-setting(name="polybar/height")>>
+offset-x = 0
+offset-y = 0
+fixed-center = true
+enable-ipc = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 2
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-top = 5
+padding-left = 1
+padding-right = 1
+
+module-margin = 1
+
+font-0 = "Cantarell:size=<<get-setting(name="polybar/font-0-size")>>:weight=bold;2"
+font-1 = "Font Awesome:size=<<get-setting(name="polybar/font-1-size")>>;2"
+font-2 = "Material Icons:size=<<get-setting(name="polybar/font-2-size")>>;5"
+font-3 = "Fira Mono:size=<<get-setting(name="polybar/font-3-size")>>;-3"
+
+modules-left = exwm exwm-path
+modules-center = spotify
+modules-right = telegram mu4e cpu temperature battery date
+
+tray-position = right
+tray-padding = 2
+tray-maxsize = 28
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/exwm]
+type = custom/ipc
+hook-0 = emacsclient -e "(dw/polybar-exwm-workspace)" | sed -e 's/^"//' -e 's/"$//'
+initial = 1
+format-underline = ${colors.underline-1}
+format-background = ${colors.background-alt}
+format-padding = 1
+
+[module/exwm-path]
+type = custom/ipc
+hook-0 = emacsclient -e "(dw/polybar-exwm-workspace-path)" | sed -e 's/^"//' -e 's/"$//'
+format-foreground = #f78c6c
+initial = 1
+
+[module/spotify]
+type = custom/script
+exec = ~/.config/polybar/player-status.sh
+interval = 3
+
+[module/mu4e]
+type = custom/ipc
+hook-0 = emacsclient -e '(dw/polybar-mail-count 500)' | sed -e 's/^"//' -e 's/"$//'
+initial = 1
+format-underline = ${colors.underline-1}
+click-left = emacsclient -e '(dw/go-to-inbox)'
+
+[module/telegram]
+type = custom/ipc
+hook-0 = emacsclient -e '(dw/polybar-telegram-chats)' | sed -e 's/^"//' -e 's/"$//'
+format-padding = 3
+initial = 1
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+format-prefix-font = 1
+format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-underline = ${colors.underline-1}
+
+label-layout = %layout%
+label-layout-underline = ${colors.underline-1}
+
+label-indicator-padding = 2
+label-indicator-margin = 1
+label-indicator-underline = ${colors.underline-1}
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format = <label> <ramp-coreload>
+format-underline = ${colors.underline-1}
+click-left = emacsclient -e "(proced)"
+label = %percentage:2%%
+ramp-coreload-spacing = 0
+ramp-coreload-0 = ▁
+ramp-coreload-0-foreground = ${colors.foreground-alt}
+ramp-coreload-1 = ▂
+ramp-coreload-2 = ▃
+ramp-coreload-3 = ▄
+ramp-coreload-4 = ▅
+ramp-coreload-5 = ▆
+ramp-coreload-6 = ▇
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = "M:"
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = ${colors.underline-1}
+label = %percentage_used%%
+
+[module/date]
+type = internal/date
+interval = 5
+
+date = "W%U: %a %b %e"
+date-alt = "%A %B %d %Y"
+
+time = %l:%M %p
+time-alt = %H:%M:%S
+
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = ${colors.underline-1}
+
+label = %date% %time%
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+full-at = 98
+time-format = %-l:%M
+
+label-charging = %percentage%% / %time%
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = ${colors.underline-1}
+
+label-discharging = %percentage%% / %time%
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-underline = ${self.format-charging-underline}
+
+format-full = <ramp-capacity> <label-full>
+format-full-underline = ${self.format-charging-underline}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 750
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <label>
+format-underline = ${colors.underline-1}
+format-warn = <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label = %temperature-c%
+label-warn = %temperature-c%!
+label-warn-foreground = ${colors.secondary}
+
+#+end_src
