@@ -6,6 +6,7 @@
 :TOC:      :include all :ignore this
 :END:
 :CONTENTS:
+- [[#system-settings][System Settings]]
 - [[#window-manager][Window Manager]]
   - [[#helper-functions][Helper Functions]]
   - [[#configuration][Configuration]]
@@ -16,6 +17,17 @@
 - [[#polybar][Polybar]]
 :END:
 
+* System Settings
+
+#+NAME: system-settings
+#+begin_src emacs-lisp :session system-settings
+(load-file "emacs.d/per-system-settings.el")
+#+end_src
+
+#+NAME: get-setting
+#+begin_src emacs-lisp :var name="nil" :session system-settings 
+(alist-get (intern name) dn/system-settings)
+#+end_src
 * Window Manager
 I am trying out Emacs Window manager
 
@@ -23,7 +35,7 @@ Checking out configs from
 https://github.com/daviwil/dotfiles/blob/master/Desktop.org
 https://gitlab.com/dwt1/dotfiles/-/blob/master/.doom.d/config.org#exwm
 https://wiki.archlinux.org/index.php/EXWM
-#+begin_src emacs-lisp :tangle .emacs.d/exwm.el
+#+begin_src emacs-lisp :tangle emacs.d/exwm.el
 
 (use-package exwm
   :init
@@ -56,7 +68,7 @@ https://wiki.archlinux.org/index.php/EXWM
 #+end_src
 
 ** Helper Functions
-#+begin_src emacs-lisp :tangle .emacs.d/exwm.el
+#+begin_src emacs-lisp :tangle emacs.d/exwm.el
 (defun exwm/run-in-background (command)
   (let ((command-parts (split-string command "[ ]+")))
     (apply #'call-process `(,(car command-parts) nil 0 nil ,@(cdr command-parts)))))
@@ -83,7 +95,7 @@ https://wiki.archlinux.org/index.php/EXWM
 #+end_src
 
 ** Configuration
-#+begin_src emacs-lisp :tangle .emacs.d/exwm.el
+#+begin_src emacs-lisp :tangle emacs.d/exwm.el
 (defun dn/exwm-init-hook ()
   ;; Launch Telega in workspace 0 if we've logged in before
   ;; (when (file-exists-p "~/.telega/db.sqlite")
@@ -147,7 +159,7 @@ https://wiki.archlinux.org/index.php/EXWM
 #+end_src
 
 ** Desktop Configuration
-#+begin_src emacs-lisp :tangle .emacs.d/exwm.el
+#+begin_src emacs-lisp :tangle emacs.d/exwm.el
 (defun dn/run-xmodmap ()
   (interactive)
   (start-process-shell-command "xmodmap" nil "xmodmap ~/.Xmodmap"))
@@ -193,12 +205,12 @@ https://wiki.archlinux.org/index.php/EXWM
 #+end_src
 
 ** Window Switcher
-#+begin_src emacs-lisp :tangle .emacs.d/exwm.el
+#+begin_src emacs-lisp :tangle emacs.d/exwm.el
 (defalias 'switch-to-buffer-original 'exwm-workspace-switch-to-buffer)
 #+end_src
 ** Panel
 Setting up polybar
-#+begin_src emacs-lisp :tangle .emacs.d/exwm.el
+#+begin_src emacs-lisp :tangle emacs.d/exwm.el
 (defun dw/send-polybar-hook (name number)
   (start-process-shell-command "polybar-msg" nil (format "polybar-msg hook %s %s" name number)))
 
@@ -251,7 +263,7 @@ Setting up polybar
 (add-hook 'bufler-workspace-set-hook #'dw/update-polybar-exwm)
 #+end_src
 ** Keybindings 
-#+begin_src emacs-lisp :tangle .emacs.d/exwm.el
+#+begin_src emacs-lisp :tangle emacs.d/exwm.el
 (when dw/exwm-enabled
   ;; These keys should always pass through to Emacs
   (setq exwm-input-prefix-keys
@@ -337,7 +349,7 @@ Setting up polybar
 #+end_src
 * Polybar
 This is used to display a panel in the top and bottom of EXWM
-#+begin_src conf :tangle .config/polybar/config :noweb yes
+#+begin_src conf :tangle config/polybar/config :noweb yes
 
 ; Docs: https://github.com/polybar/polybar
 ;==========================================================

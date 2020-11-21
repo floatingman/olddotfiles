@@ -10,6 +10,12 @@
 			(time-subtract after-init-time before-init-time)))
 		     gcs-done)))
 
+(load-file "~/.emacs.d/per-system-settings.el")
+
+(require 'subr-x)
+(setq dn/is-termux
+      (string-suffix-p "Android" (string-trim (shell-command-to-string "uname -a"))))
+
 ;; Keep transient cruft out of ~/.emacs.d/
 (setq user-emacs-directory "~/.cache/emacs/"
 backup-directory-alist `(("." . ,(expand-file-name "backups" user-emacs-directory)))
