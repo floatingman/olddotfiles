@@ -14,6 +14,7 @@
 - [[#helper-functions][Helper Functions]]
   - [[#platform-helpers][Platform Helpers]]
 - [[#start-the-server][Start the server]]
+- [[#desktop-environment][Desktop Environment]]
 - [[#keyboard-bindings][Keyboard Bindings]]
   - [[#esc-cancels-all][ESC Cancels All]]
   - [[#rebind-c-u][Rebind C-u]]
@@ -218,6 +219,15 @@ https://github.com/daviwil/dotfiles/blob/f2c6fb1c80a8fe2f90f1a22e975b8b37dc9cf32
 * Start the server
 #+begin_src emacs-lisp
   (server-start)
+#+end_src
+* Desktop Environment
+#+begin_src emacs-lisp
+(setq dn/exwm-enabled (and (not dn/is-termux)
+                           (eq window-system 'x)
+                           (seq-contains command-line-args "--use-exwm")))
+
+(when dn/exwm-enabled
+  (load-file "~/.emacs.d/exwm.el"))
 #+end_src
 * Keyboard Bindings
 ** ESC Cancels All

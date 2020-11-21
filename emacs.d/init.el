@@ -85,6 +85,13 @@ projectile-known-projects-file (expand-file-name "projectile-bookmarks.eld" user
 
 (server-start)
 
+(setq dn/exwm-enabled (and (not dn/is-termux)
+                           (eq window-system 'x)
+                           (seq-contains command-line-args "--use-exwm")))
+
+(when dn/exwm-enabled
+  (load-file "~/.emacs.d/exwm.el"))
+
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 (global-set-key (kbd "C-M-u") 'universal-argument)

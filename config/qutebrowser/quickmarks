@@ -1,0 +1,5 @@
+gn https://github.com/notifications
+dot https://github.com/floatingman/dotfiles
+ddg https://duckduckgo.com/?q $0
+gh https://github.com/$0
+npm https://www.npmjs.com/search?q $0

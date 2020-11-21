@@ -47,8 +47,7 @@ font-2 = "Material Icons:size=20;5"
 font-3 = "Fira Mono:size=13;-3"
 
 modules-left = exwm exwm-path
-modules-center = spotify
-modules-right = telegram mu4e cpu temperature battery date
+modules-right = cpu temperature battery date
 
 tray-position = right
 tray-padding = 2
@@ -59,7 +58,7 @@ cursor-scroll = ns-resize
 
 [module/exwm]
 type = custom/ipc
-hook-0 = emacsclient -e "(dw/polybar-exwm-workspace)" | sed -e 's/^"//' -e 's/"$//'
+hook-0 = emacsclient -e "(dn/polybar-exwm-workspace)" | sed -e 's/^"//' -e 's/"$//'
 initial = 1
 format-underline = ${colors.underline-1}
 format-background = ${colors.background-alt}
@@ -67,27 +66,27 @@ format-padding = 1
 
 [module/exwm-path]
 type = custom/ipc
-hook-0 = emacsclient -e "(dw/polybar-exwm-workspace-path)" | sed -e 's/^"//' -e 's/"$//'
+hook-0 = emacsclient -e "(dn/polybar-exwm-workspace-path)" | sed -e 's/^"//' -e 's/"$//'
 format-foreground = #f78c6c
 initial = 1
 
-[module/spotify]
-type = custom/script
-exec = ~/.config/polybar/player-status.sh
-interval = 3
+#[module/spotify]
+#type = custom/script
+#exec = ~/.config/polybar/player-status.sh
+#interval = 3
 
-[module/mu4e]
-type = custom/ipc
-hook-0 = emacsclient -e '(dw/polybar-mail-count 500)' | sed -e 's/^"//' -e 's/"$//'
-initial = 1
-format-underline = ${colors.underline-1}
-click-left = emacsclient -e '(dw/go-to-inbox)'
+#[module/mu4e]
+#type = custom/ipc
+#hook-0 = emacsclient -e '(dn/polybar-mail-count 500)' | sed -e 's/^"//' -e 's/"$//'
+#initial = 1
+#format-underline = ${colors.underline-1}
+#click-left = emacsclient -e '(dn/go-to-inbox)'
 
-[module/telegram]
-type = custom/ipc
-hook-0 = emacsclient -e '(dw/polybar-telegram-chats)' | sed -e 's/^"//' -e 's/"$//'
-format-padding = 3
-initial = 1
+#[module/telegram]
+#type = custom/ipc
+#hook-0 = emacsclient -e '(dn/polybar-telegram-chats)' | sed -e 's/^"//' -e 's/"$//'
+#format-padding = 3
+#initial = 1
 
 [module/xkeyboard]
 type = internal/xkeyboard
