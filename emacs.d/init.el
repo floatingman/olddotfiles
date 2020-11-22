@@ -189,6 +189,12 @@ projectile-known-projects-file (expand-file-name "projectile-bookmarks.eld" user
 (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
 (setq scroll-step 1) ;; keyboard scroll one line at a time
 
+(unless dn/is-termux
+  (set-frame-parameter (selected-frame) 'alpha '(90 . 90))
+  (add-to-list 'default-frame-alist '(alpha . (90 . 90)))
+  (set-frame-parameter (selected-frame) 'fullscreen 'maximized)
+  (add-to-list 'default-frame-alist '(fullscreen . maximized)))
+
 (column-number-mode)
 
 ;; Enable line numbers for some modes
@@ -303,15 +309,6 @@ projectile-known-projects-file (expand-file-name "projectile-bookmarks.eld" user
   :hook (erc-mode . emojify-mode)
   :commands emojify-mode)
 
-(use-package default-text-scale
-  :when my/gui?
-  :defer t
-  :init
-  (general-define-key
-   "M-=" #'default-text-scale-increase
-   "M--" #'default-text-scale-decrease
-   "M-0" #'default-text-scale-reset))
-
 (setq display-time-format "%l:%M %p %b %y"
 display-time-default-load-average nil)
 
@@ -363,12 +360,87 @@ display-time-default-load-average nil)
   "tw" 'whitespace-mode
   "tt" '(counsel-load-theme :which-key "choose theme"))
 
+(use-package paren
+  :config
+  (set-face-attribute 'show-paren-match-expression nil :background "#363e4a")
+  (show-paren-mode 1))
+
+(setq display-time-world-list
+	'(("America/Los_Angeles" "Los Angeles")
+  	("America/Denver" "Denver")
+    ("America/New_York" "New York")
+    ("Europe/Athens" "Athens")
+    ("Pacific/Auckland" "Auckland")
+    ("Asia/Shanghai" "Shanghai")))
+(setq display-time-world-time-format "%a, %d %b %I:%M %p %Z")
+
+(use-package pinentry
+  :defer t
+  :config
+  (setq epa-pinentry-mode 'loopback))
+
+(pinentry-start)
+
+;; Set default connection mode to SSH
+(setq tramp-default-method "ssh")
+
 (use-package sudo-edit)
 
 (setq-default tab-width 2)
 (setq-default evil-shift-width tab-width)
 
 (setq-default indent-tabs-mode nil)
+
+(use-package evil-nerd-commenter
+  :bind ("M-/" . evilnc-comment-or-uncomment-lines))
+
+(use-package ws-butler
+  :hook ((text-mode . ws-butler-mode)
+         (prog-mode . ws-butler-mode)))
+
+(use-package parinfer
+  :hook ((clojure-mode . parinfer-mode)
+         (emacs-lisp-mode . parinfer-mode)
+         (common-lisp-mode . parinfer-mode)
+         (scheme-mode . parinfer-mode)
+         (lisp-mode . parinfer-mode))
+  :config
+  (setq parinfer-extensions
+      '(defaults       ; should be included.
+        pretty-parens  ; different paren styles for different modes.
+        evil           ; If you use Evil.
+        smart-tab      ; C-b & C-f jump positions and smart shift with tab & S-tab.
+        smart-yank)))  ; Yank behavior depend on mode.
+
+(dn/leader-key-def
+  "tp" 'parinfer-toggle-mode)
+
+(defun dn/org-file-jump-to-heading (org-file heading-title)
+  (interactive)
+  (find-file (expand-file-name org-file))
+  (goto-char (point-min))
+  (search-forward (concat "* " heading-title))
+  (org-overview)
+  (org-reveal)
+  (org-show-subtree)
+  (forward-line))
+
+(defun dn/org-file-show-headings (org-file)
+  (interactive)
+  (find-file (expand-file-name org-file))
+  (counsel-org-goto)
+  (org-overview)
+  (org-reveal)
+  (org-show-subtree)
+  (forward-line))
+
+(dn/leader-key-def
+  "fn" '((lambda () (interactive) (counsel-find-file "~/Notes/")) :which-key "notes")
+  "fd"  '(:ignore t :which-key "dotfiles")
+  "fdd" '((lambda () (interactive) (find-file "~/.dotfiles/Desktop.org")) :which-key "desktop")
+  "fde" '((lambda () (interactive) (find-file (expand-file-name "~/.dotfiles/Emacs.org"))) :which-key "edit config")
+  "fdE" '((lambda () (interactive) (dn/org-file-show-headings "~/.dotfiles/Emacs.org")) :which-key "edit config")
+  "fdp" '((lambda () (interactive) (dn/org-file-jump-to-heading "~/.dotfiles/Desktop.org" "Panel via Polybar")) :which-key "polybar"))
 
 (use-package hydra
   :defer 1)
@@ -476,6 +548,84 @@ display-time-default-load-average nil)
   "fr"  '(counsel-recentf :which-key "recent files")
   "fR"  '(revert-buffer :which-key "revert file")
   "fj"  '(counsel-file-jump :which-key "jump to file"))
+
+(use-package bufler
+  :ensure t
+  :bind (("C-M-j" . bufler-switch-buffer)
+         ("C-M-k" . bufler-workspace-frame-set))
+  :config
+  (evil-collection-define-key 'normal 'bufler-list-mode-map
+    (kbd "RET")   'bufler-list-buffer-switch
+    (kbd "M-RET") 'bufler-list-buffer-peek
+    "D"           'bufler-list-buffer-kill)
+
+  (setf bufler-groups
+        (bufler-defgroups
+          ;; Subgroup collecting all named workspaces.
+          (group (auto-workspace))
+          ;; Subgroup collecting buffers in a projectile project.
+          (group (auto-projectile))
+          ;; Grouping browser windows
+          (group
+           (group-or "Browsers"
+                     (name-match "Vimb" (rx bos "vimb"))
+                     (name-match "Qutebrowser" (rx bos "Qutebrowser"))
+                     (name-match "Chromium" (rx bos "Chromium"))))
+          (group
+           (group-or "Chat"
+                     (mode-match "Telega" (rx bos "telega-"))))
+          (group
+           ;; Subgroup collecting all `help-mode' and `info-mode' buffers.
+           (group-or "Help/Info"
+                     (mode-match "*Help*" (rx bos (or "help-" "helpful-")))
+                     ;; (mode-match "*Helpful*" (rx bos "helpful-"))
+                     (mode-match "*Info*" (rx bos "info-"))))
+          (group
+           ;; Subgroup collecting all special buffers (i.e. ones that are not
+           ;; file-backed), except `magit-status-mode' buffers (which are allowed to fall
+           ;; through to other groups, so they end up grouped with their project buffers).
+           (group-and "*Special*"
+                      (name-match "**Special**"
+                                  (rx bos "*" (or "Messages" "Warnings" "scratch" "Backtrace" "Pinentry") "*"))
+                      (lambda (buffer)
+                        (unless (or (funcall (mode-match "Magit" (rx bos "magit-status"))
+                                             buffer)
+                                    (funcall (mode-match "Dired" (rx bos "dired"))
+                                             buffer)
+                                    (funcall (auto-file) buffer))
+                          "*Special*"))))
+          ;; Group remaining buffers by major mode.
+          (auto-mode))))
+
+(use-package default-text-scale
+  :when my/gui?
+  :defer t
+  :init
+  (general-define-key
+   "M-=" #'default-text-scale-increase
+   "M--" #'default-text-scale-decrease
+   "M-0" #'default-text-scale-reset))
+
+(use-package ace-window
+  :bind (("M-o" . ace-window))
+  :config
+  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
+
+(winner-mode)
+(define-key evil-window-map "u" 'winner-undo)
+
+(defun dn/org-mode-visual-fill ()
+  (setq visual-fill-column-width 100
+        visual-fill-column-center-text t)
+  (visual-fill-column-mode 1))
+
+(use-package visual-fill-column
+  :defer t
+  :hook (org-mode . dn/org-mode-visual-fill))
+
+(use-package expand-region
+  :bind (("M-[" . er/expand-region)
+         ("C-(" . er/mark-outside-pairs)))
 
 (use-package avy
   :commands (avy-goto-char avy-goto-word-0 avy-goto-line))
@@ -1319,7 +1469,7 @@ display-time-default-load-average nil)
   (add-hook 'eshell-banner-load-hook
           '(lambda ()
              (setq eshell-banner-message
-                   (concat "\n" (propertize " " 'display (create-image "~/.dotfiles/.emacs.d/images/flux_banner.png" 'png nil :scale 0.2 :align-to "center")) "\n\n"))))
+                   (concat "\n" (propertize " " 'display (create-image "~/.emacs.d/images/flux_banner.png" 'png nil :scale 0.2 :align-to "center")) "\n\n"))))
 
 (defun dn/eshell-configure ()
   (require 'evil-collection-eshell)
@@ -1417,6 +1567,24 @@ display-time-default-load-average nil)
   :config
   (setq vterm-max-scrollback 10000))
 
+(use-package multi-term
+  :commands multi-term-next
+  :config
+  (setq term-buffer-maximum-size 10000)
+  (setq term-scroll-to-bottom-on-output t)
+  (add-hook 'term-mode-hook
+      (lambda ()
+        (add-to-list 'term-bind-key-alist '("M-[" . multi-term-prev))
+        (add-to-list 'term-bind-key-alist '("M-]" . multi-term-next)))))
+
+(dn/leader-key-def
+  "C-SPC" 'multi-term-next)
+
+;; Don't let ediff break EXWM, keep it in one frame
+(setq ediff-diff-options "-w"
+      ediff-split-window-function 'split-window-horizontally
+      ediff-window-setup-function 'ediff-setup-windows-plain)
+
 (use-package elfeed
   :commands elfeed
   :config
@@ -1444,3 +1612,56 @@ display-time-default-load-average nil)
   :commands pulseaudio-control-select-sink-by-name
   :config
   (setq pulseaudio-control-pactl-path "/usr/sbin/pactl"))
+
+(use-package tracking
+  :defer t
+  :config
+  (setq tracking-faces-priorities '(all-the-icons-pink
+                                    all-the-icons-lgreen
+                                    all-the-icons-lblue))
+  (setq tracking-frame-behavior nil))
+
+;; Add faces for specific people in the modeline.  There must
+;; be a better way to do this.
+(defun dn/around-tracking-add-buffer (original-func buffer &optional faces)
+  (let* ((name (buffer-name buffer))
+         (face (cond ((s-contains? "Maria" name) '(all-the-icons-pink))
+                     ((s-contains? "Alex " name) '(all-the-icons-lgreen))
+                     ((s-contains? "Steve" name) '(all-the-icons-lblue))))
+         (result (apply original-func buffer (list face))))
+    (dn/update-polybar-telegram)
+    result))
+
+(defun dn/after-tracking-remove-buffer (buffer)
+  (dn/update-polybar-telegram))
+
+(advice-add 'tracking-add-buffer :around #'dn/around-tracking-add-buffer)
+(advice-add 'tracking-remove-buffer :after #'dn/after-tracking-remove-buffer)
+(advice-remove 'tracking-remove-buffer #'dn/around-tracking-remove-buffer)
+
+;; Advise exwm-workspace-switch so that we can more reliably clear tracking buffers
+;; NOTE: This is a hack and I hate it.  It'd be great to find a better solution.
+(defun dn/before-exwm-workspace-switch (frame-or-index &optional force)
+  (when (fboundp 'tracking-remove-visible-buffers)
+    (when (eq exwm-workspace-current-index 0)
+      (tracking-remove-visible-buffers))))
+
+(advice-add 'exwm-workspace-switch :before #'dn/before-exwm-workspace-switch)
+
+(use-package telega
+  :commands telega
+  :config
+  (setq telega-user-use-avatars nil
+        telega-use-tracking-for '(any pin unread)
+        telega-chat-use-markdown-formatting t
+        telega-emoji-use-images t
+        telega-completing-read-function #'ivy-completing-read
+        telega-msg-rainbow-title nil
+        telega-chat-fill-column 75))
+
+(use-package elcord
+  :ensure t
+  :custom
+  (elcord-display-buffer-details nil)
+  :config
+  (elcord-mode))

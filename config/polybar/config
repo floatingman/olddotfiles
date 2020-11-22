@@ -47,7 +47,7 @@ font-2 = "Material Icons:size=20;5"
 font-3 = "Fira Mono:size=13;-3"
 
 modules-left = exwm exwm-path
-modules-right = cpu temperature battery date
+modules-right = telegram cpu temperature battery date
 
 tray-position = right
 tray-padding = 2
@@ -82,11 +82,11 @@ initial = 1
 #format-underline = ${colors.underline-1}
 #click-left = emacsclient -e '(dn/go-to-inbox)'
 
-#[module/telegram]
-#type = custom/ipc
-#hook-0 = emacsclient -e '(dn/polybar-telegram-chats)' | sed -e 's/^"//' -e 's/"$//'
-#format-padding = 3
-#initial = 1
+[module/telegram]
+type = custom/ipc
+hook-0 = emacsclient -e '(dn/polybar-telegram-chats)' | sed -e 's/^"//' -e 's/"$//'
+format-padding = 3
+initial = 1
 
 [module/xkeyboard]
 type = internal/xkeyboard
