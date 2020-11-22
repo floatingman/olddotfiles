@@ -270,6 +270,7 @@
   (setq exwm-input-global-keys
         `(([?\s-\C-r] . exwm-reset)
           ([?\s-w] . exwm-workspace-switch)
+          ([?\s-\C-w] . exwm-workspace-move)
           ([?\s-r] . hydra-exwm-move-resize/body)
           ([?\s-e] . dired-jump)
           ([?\s-E] . (lambda () (interactive) (dired "~")))
