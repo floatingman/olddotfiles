@@ -96,8 +96,8 @@ https://wiki.archlinux.org/index.php/EXWM
 #+begin_src emacs-lisp :tangle emacs.d/exwm.el
 (defun dn/exwm-init-hook ()
   ;; Launch Telega in workspace 0 if we've logged in before
-  ;; (when (file-exists-p "~/.telega/db.sqlite")
-  ;;   (telega nil))
+  (when (file-exists-p "~/.telega/db.sqlite")
+    (telega nil))
 
   ;; Make workspace 1 be the one where we land at startup
   (exwm-workspace-switch-create 1)
@@ -399,7 +399,7 @@ font-2 = "Material Icons:size=<<get-setting(name="polybar/font-2-size")>>;5"
 font-3 = "Fira Mono:size=<<get-setting(name="polybar/font-3-size")>>;-3"
 
 modules-left = exwm exwm-path
-modules-right = cpu temperature battery date
+modules-right = telegram cpu temperature battery date
 
 tray-position = right
 tray-padding = 2
@@ -434,11 +434,11 @@ initial = 1
 #format-underline = ${colors.underline-1}
 #click-left = emacsclient -e '(dn/go-to-inbox)'
 
-#[module/telegram]
-#type = custom/ipc
-#hook-0 = emacsclient -e '(dn/polybar-telegram-chats)' | sed -e 's/^"//' -e 's/"$//'
-#format-padding = 3
-#initial = 1
+[module/telegram]
+type = custom/ipc
+hook-0 = emacsclient -e '(dn/polybar-telegram-chats)' | sed -e 's/^"//' -e 's/"$//'
+format-padding = 3
+initial = 1
 
 [module/xkeyboard]
 type = internal/xkeyboard
