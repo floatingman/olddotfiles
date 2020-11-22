@@ -48,8 +48,8 @@
 
 (defun dn/exwm-init-hook ()
   ;; Launch Telega in workspace 0 if we've logged in before
-  ;; (when (file-exists-p "~/.telega/db.sqlite")
-  ;;   (telega nil))
+  (when (file-exists-p "~/.telega/db.sqlite")
+    (telega nil))
 
   ;; Make workspace 1 be the one where we land at startup
   (exwm-workspace-switch-create 1)
