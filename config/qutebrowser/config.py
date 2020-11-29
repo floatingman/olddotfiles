@@ -9,7 +9,7 @@ c.session.lazy_restore = True
 c.content.autoplay = False
 
 # Scale pages and UI better for hidpi
-c.zoom.default = "200%"
+c.zoom.default = "100%"
 c.fonts.hints = "bold 20pt monospace"
 
 # Better default fonts
