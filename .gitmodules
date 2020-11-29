@@ -10,15 +10,6 @@
 [submodule "dircolors-solarized"]
 	path = dircolors-solarized
 	url = https://github.com/seebi/dircolors-solarized.git
-[submodule "config/mpv/scripts/mpv-scripts"]
-	path = config/mpv/scripts/mpv-scripts
-	url = git@github.com:Argon-/mpv-scripts.git
-[submodule "config/mpv/scripts/mpv-repl"]
-	path = config/mpv/scripts/mpv-repl
-	url = git@github.com:rossy/mpv-repl.git
-[submodule "config/mpv/shaders/mpv-prescalers"]
-	path = config/mpv/shaders/mpv-prescalers
-	url = https://github.com/bjin/mpv-prescalers
 [submodule "tmux/plugins/tpm"]
 	path = tmux/plugins/tpm
 	url = git@github.com:tmux-plugins/tpm.git

@@ -60,13 +60,14 @@
   ;; Launch apps that will run in the background
   (exwm/run-in-background "dunst")
   (exwm/run-in-background "nm-applet")
+  (exwm/run-in-background "keepassxc")
   (exwm/run-in-background "syncthing-gtk --minimized")
   (exwm/run-in-background "redshift -l 36.083286:-87.009861 -t 6500:3500"))
 
 (use-package exwm
   :if dn/exwm-enabled
   :config
-  ;(display-time-mode 1) ;; Not needed for now since we have a panel
+                                        ;(display-time-mode 1) ;; Not needed for now since we have a panel
 
   (add-hook 'exwm-mode-hook
             (lambda ()
@@ -80,7 +81,8 @@
       ("qutebrowser" (exwm-workspace-move-window 2))
       ("qjackctl" (exwm-floating-toggle-floating))
       ("mpv" (exwm-floating-toggle-floating)
-             (dn/exwm-floating-toggle-pinned))))
+       (dn/exwm-floating-toggle-pinned))
+	    ("KeePassXC" (exwm-floating-toggle-floating))))
 
   ;; Do some post-init setup
   (add-hook 'exwm-init-hook #'dn/exwm-init-hook)
@@ -91,8 +93,8 @@
               ;; Send the window where it belongs
               (dn/setup-window-by-class)))
 
-              ;; Hide the modeline on all X windows
-              ;(exwm-layout-hide-mode-line)))
+  ;; Hide the modeline on all X windows
+                                        ;(exwm-layout-hide-mode-line)))
 
   ;; Hide the modeline on all X windows
   (add-hook 'exwm-floating-setup-hook
@@ -269,7 +271,10 @@
   ;; Workspace switching
   (setq exwm-input-global-keys
         `(([?\s-\C-r] . exwm-reset)
+          ([?\s-v] . evil-window-vsplit)
+          ([?\s-z] . evil-window-split)
           ([?\s-w] . exwm-workspace-switch)
+          ([?\s-W] . exwm-workspace-swap)
           ([?\s-\C-w] . exwm-workspace-move)
           ([?\s-r] . hydra-exwm-move-resize/body)
           ([?\s-e] . dired-jump)
