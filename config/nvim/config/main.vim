@@ -198,6 +198,9 @@ autocmd BufWritePost ~/.bmdirs,~/.bmfiles !shortcuts
 " Update binds when sxhkdrc is updated.
 autocmd BufWritePost *sxhkdrc !pkill -USR1 sxhkd
 
+" Update dwmblocks when config.h is edited
+autocmd BufWritePost ~/Repos/dwmblocks/config.h !cd ~/Repos/dwmblocks/; sudo make install && { killall -q dwmblocks;setsid dwmblocks & }
+
 " syntax helpers
 au bufnewfile,bufRead *.bash* set ft=sh
 au bufnewfile,bufRead *.profile set filetype=sh
