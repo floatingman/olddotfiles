@@ -8,9 +8,15 @@ if $_ismac; then
 fi
 
 # Set alacritty as the default terminal
-if _have alacritty; then
-  export TERMINAL='alacritty';
+#if _have alacritty; then
+#  export TERMINAL='alacritty';
+#fi
+
+# Set st as default terminal
+if _have st; then
+    export TERMINAL="st";
 fi
+
 
 # For the fuzzy finder
 if _have fzf; then

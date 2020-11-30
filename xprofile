@@ -1,40 +1,49 @@
+# Speed up your keyboard
+xset r rate 300 50 &
+
 # Read the Xresources file if it exists.
-[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+#[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
 # Map keys with xmodmap
-xmodmap ~/.Xmodmap
+#xmodmap ~/.Xmodmap
+
+# Remap keys
+remaps &
+
+# Set the background
+setbg &
 
 # Bind keys with sxhkd.
-sxhkd &
+#sxhkd &
 
 # Launch the screen locker
 #xautolock -time 09 -locker "betterlockscreen -l" -detectsleep -secure -corners 0-00 -cornerdelay 3 -cornerredelay 20 &
 
 # For xscreensaver to run as part of the x session
-/usr/bin/xscreensaver -nosplash &
+#/usr/bin/xscreensaver -nosplash &
 
 # Restore the desktop background
-if [ -f ~/.fehbg ]; then
-	sh ~/.fehbg &
-fi
+#if [ -f ~/.fehbg ]; then
+#	sh ~/.fehbg &
+#fi
 
 # Control volume with pasystray.
-pasystray &
+#pasystray &
 
 # NetworkManager for managing networks
-nm-applet &
+#nm-applet &
 
 # Hide the cursor when idle.
 unclutter &
 
 # Notifications with dunst
-#dunst &
+dunst &
 
 # Start geoclue
-/usr/lib/geoclue-2.0/demos/agent &
+#/usr/lib/geoclue-2.0/demos/agent &
 
 # Adjust color temperature with Redshift
-redshift-gtk &
+#redshift-gtk &
 
 # Load the best monitor profile available
 #autorandr --change --default mobile
@@ -43,18 +52,18 @@ redshift-gtk &
 #srandrd autorandr --change --default mobile
 
 # Udiskie for mounting
-udiskie &
+#udiskie &
 
 # Blueman for bluetooth
-blueman-applet &
+#blueman-applet &
 
 # Start compost manager
-xcompmgr -c &
+xcompmgr &
 
 ~/bin/lightson+ -d 2 &
 
-keepassxc &
+#keepassxc &
 
 # Start wallpaper changer
-~/bin/wallpaper.sh &
+#~/bin/wallpaper.sh &
 
