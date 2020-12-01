@@ -191,15 +191,13 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Automatically deletes all trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
+autocmd BufWritePre * %s/\n\+\%$//e
 
 " When shortcut files are updated, renew bash and ranger configs with new material:
-autocmd BufWritePost ~/.bmdirs,~/.bmfiles !shortcuts
-
-" Update binds when sxhkdrc is updated.
-autocmd BufWritePost *sxhkdrc !pkill -USR1 sxhkd
+autocmd BufWritePost bm-files,bm-dirs !shortcuts
 
 " Update dwmblocks when config.h is edited
-autocmd BufWritePost ~/Repos/dwmblocks/config.h !cd ~/Repos/dwmblocks/; sudo make install && { killall -q dwmblocks;setsid dwmblocks & }
+autocmd BufWritePost ~/.local/src/dwmblocks/config.h !cd ~/.local/src/dwmblocks/; sudo make install && { killall -q dwmblocks;setsid dwmblocks & }
 
 " syntax helpers
 au bufnewfile,bufRead *.bash* set ft=sh
