@@ -53,6 +53,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/gv.vim'
+Plug 'jreybert/vimagit'
 
 " Comments
 Plug 'tpope/vim-commentary'
