@@ -138,10 +138,6 @@
 [apply]
         # Detect whitespace errors when applying a patch
         whitespace = fix
-[pager]
-        diff = diff-so-fancy | less --tabs=4 -RFX
-        show = diff-so-fancy | less --tabs=4 -RFX
-
 [merge]
     tool = vimdiff4
 		# Include summaries of merged commits in newly created merge commit messages
