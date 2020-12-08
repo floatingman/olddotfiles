@@ -3,61 +3,27 @@ resize_grip = false
 scroll_on_output = false
 scroll_on_keystroke = true
 audible_bell = false
-visible_bell = false
+visible_bell = true
 mouse_autohide = false
 allow_bold = true
 dynamic_title = true
 urgent_on_bell = true
 clickable_url = true
-#font = Fira Code
-#font = DelugiaCode NF
-font = Iosevka 16
+font = Inconsolata Regular 14
 scrollback_lines = 1000
 search_wrap = true
-cursor_blink = system
-bold_is_bright = true
-hyperlinks   = true
+
+cursor_blink = off
+
 # "block", "underline" or "ibeam"
 cursor_shape = block
-scrollbar = off
+
 browser = xdg-open
 
-# [colors]
-# # Base16 Tomorrow
-# # Scheme: Chris Kempson (http://chriskempson.com)
+# Gruvbox
+# https://github.com/morhetz/gruvbox-contrib/blob/master/termite/gruvbox-dark
 
-# foreground      = #c5c8c6
-# foreground_bold = #c5c8c6
-# cursor          = #c5c8c6
-# background      = #1d1f21
-
-# # 16 color space
-# color0  = #1d1f21
-# color1  = #cc6666
-# color2  = #b5bd68
-# color3  = #f0c674
-# color4  = #81a2be
-# color5  = #b294bb
-# color6  = #8abeb7
-# color7  = #c5c8c6
-# color8  = #969896
-# color9  = #cc6666
-# color10 = #b5bd68
-# color11 = #f0c674
-# color12 = #81a2be
-# color13 = #b294bb
-# color14 = #8abeb7
-# color15 = #ffffff
-
-# # 256 color space
-# color16 = #de935f
-# color17 = #a3685a
-# color18 = #282a2e
-# color19 = #373b41
-# color20 = #b4b7b4
-# color21 = #e0e0e0
 [colors]
-# Gruvbox-dark
 # hard contrast: background = #1d2021
 background = #282828
 # soft contrast: background = #32302f
@@ -95,13 +61,3 @@ color14 = #8ec07c
 # light4 + light1
 color7 = #a89984
 color15 = #ebdbb2
-
-[hints]
-#foreground = #93e0e3
-#background = #3f3f3f
-#padding = 2
-#border = #3f3f3f
-#border_width = 0.5
-#roundness = 2.0
-
-# vim: ft=dosini cms=#%s

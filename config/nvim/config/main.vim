@@ -131,13 +131,13 @@ set showmatch
 set backupskip=/tmp/*,/private/tmp/*"
 
 " Store backup files in one place.
-set backupdir^=$HOME/.config/nvim//storage/backups//
+" set backupdir^=$HOME/.config/nvim//storage/backups//
 
 " Store swap files in one place.
-set dir^=$HOME/.config/nvim//storage/swaps//
+" set dir^=$HOME/.config/nvim//storage/swaps//
 
 " Store undo files in one place.
-set undodir^=$HOME/.config/nvim/storage/undos//
+" set undodir^=$HOME/.config/nvim/storage/undos//
 
 " line wrapping
 set wrap
@@ -212,13 +212,14 @@ au bufnewfile,bufread * call system("echo " . &filetype . " > $HOME/.config/nvim
 au vimleavepre * call system("echo > $HOME/.config/nvim/curfiletype" )
 
 " Run xrdb whenever Xdefaults or Xresources are updated.
-autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb %
+autocmd BufRead,BufNewFile xresources,xdefaults set filetype=xdefaults
+autocmd BufWritePost Xresources,Xdefaults,xresources,xdefaults !xrdb %
 
 " Restart yabai everytime config is updated
 autocmd BufWritePost ~/.confg/yabai/yabairc !brew services restart yabai
 
 " Restart skhd everytime config is updated
-autocmd BufWritePost ~/.skhdrc !brew services restart skhd
+autocmd BufWritePost skhdrc !brew services restart skhd
 
 " Use the below highlight group when displaying bad whitespace is desired
 highlight BadWhitespace ctermbg=red guibg=red
