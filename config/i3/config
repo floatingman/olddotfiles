@@ -2,11 +2,11 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 #
-set $mod Mod4
+set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
-font pango:monospace 8
+font pango:Inconsolata Regular 10
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -16,13 +16,13 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+#bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -176,30 +176,34 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-#bar {
-#    status_command  py3status
-#    position        top
-#    colors {
-#        background #002b36
-#        statusline #839496
-#        separator #586e75
-#
-#        # State             Border  BG      Text
-#        focused_workspace   #b58900 #b58900 #002b36
-#        active_workspace    #586e75 #586e75 #002b36
-#        inactive_workspace  #073642 #002b36 #839496
-#        urgent_workspace    #cc6666 #cc6666 #fdf6e3
-#    }
-#}
 bar {
-  status_command i3status
-}
+   status_command  py3status
+    position        top
+    colors {
+        background #282828
+        statusline #ebdbb2
+        separator  #a89984
 
-bar {
-  position top
-  status_command i3blocks
-  workspace_buttons no
+        background #3c3836
+        statusline #ebdbb2
+        separator  #666666
+
+        # State             Border  BG      Text
+        focused_workspace   #ebddb2 #ebdbb2 #282828
+        active_workspace    #504945 #504945 #ebdbb2
+        inactive_workspace  #504945 #504945 #ebdbb2
+        urgent_workspace    #fb4934 #fb4934 #504945
+    }
 }
+#bar {
+#  status_command i3status
+#}
+
+#bar {
+#  position top
+#  status_command i3blocks
+#  workspace_buttons no
+#}
 
 # Automatic workspace switching back-and-forth.
 workspace_auto_back_and_forth yes
@@ -211,7 +215,7 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 # Window focus should not follow mouse
-focus_follows_mouse yes
+focus_follows_mouse no
 
 # Cycle through workspaces with mouse.
 bindsym --whole-window button10 workspace next
@@ -240,7 +244,7 @@ for_window [title="^qcode$"] floating enable
 for_window [title="^showme$"] floating enable
 
 # float qalculate windows
-for_window [title="^Qalculate!$"] floating enable
+for_window [title="^qalculate-gtk$"] floating enable
 #
 # float edit_text windows
 for_window [title="^edit_text$"] floating enable
@@ -252,10 +256,10 @@ for_window [title="Android Virtual Device Manager"] floating enable
 for_window [title="Android Emulator"] floating enable
 
 # Window colors         Border  BG      Text    Indicator Child Border
-client.focused          #002b36 #586e75 #fdf6e3 #268bd2
-client.focused_inactive #002b36 #073642 #839496 #073642
-client.unfocused        #002b36 #073642 #839496 #073642
-client.urgent           #002b36 #cc6666 #fdf6e3 #002b36
+client.focused          #665c54 #665c54 #eddbb2 #2e9ef4
+client.focused_inactive #3c3836 #3c3836 #a89984 #292d2e
+client.unfocused        #3c3836 #3c3836 #a89984 #292d2e
+client.urgent           #fb4934 #fb4934 #ebdbb2 #fb4934
 
 # Hide borders adjacent to screen edges
 hide_edge_borders both
@@ -263,16 +267,3 @@ hide_edge_borders both
 # Assign MPV to workspace 4 and focus
 assign [class="mpv"] 4
 for_window [class="mpv"] focus
-
-#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-
-# Switch alacritty color themes
-
-# Set program location
-set $alacritty_colorscheme /usr/sbin/alacritty-colorscheme
-
-# Toggle between light and dark colorscheme
-bindsym $mod+Shift+n exec $alacritty_colorscheme -t solarized-light.yml solarized-dark.yml
-
-# Get notification with current colorscheme
-bindsym $mod+Shift+b exec notify-send "Alacritty Colorscheme" `$alacritty_colorscheme -s
