@@ -34,14 +34,17 @@ XTerm*scrollBar: false
 !URxvt.boldItalicFont: xft:Consolas:style=Bold Italic:pixelsize=FONT_SIZE:antialias=true:hinting=full,\
                 !xft:Noto Color Emoji,\
                 !xft:Symbola:pixelsize=FONT_SIZE:antialias=true:hinting=full
-URxvt.letterSpace: 0
 !URxvt.font: xft:Noto Sans:size=FONT_SIZE
 URxvt.font: xft:Fira Code:style=Retina:pixelsize=FONT_SIZE:antialias=true:hinting=true
+
+!Font Spacing
 !URxvt.linespace: 1
-!URxvt.letterSpace: 0
+!URxvt.linespace: 1
+URxvt.letterSpace: 0
 
 #include ".Xresources.d/urxvt.xresources"
-!#include ".Xresources.d/themes/grubox-dark.xresources"
+#include ".Xresources.d/themes/gruvbox-dark.xresources"
+!#include ".Xresources.d/themes/gruvbox-light.xresources"
 !#include ".Xresources.d/themes/grubox-urxvt256.xresources"
 !#include ".Xresources.d/themes/isotope.dark.xresource"
-#include ".Xresources.d/themes/solarized.xresources"
+!#include ".Xresources.d/themes/solarized.xresources"

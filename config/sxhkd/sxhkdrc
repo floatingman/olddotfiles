@@ -50,11 +50,11 @@ super + t
 
 # Launch web browser
 super + w
-    firefox -P Accounts
+    firefox -P default
 
 # Launch web browser with work profile
 super + shift + w
-    firefox -P Work
+    firefox -P work
 
 # Launch application launcher
 super + space
@@ -63,6 +63,14 @@ super + space
 # Launch window switcher
 alt + Tab
     rofi -show window
+
+# Launch password manager
+super + p
+    menu=$(echo -e "$HOME/.password-store\n$ALTPASSDIR" | rofi -dmenu); rofi-pass --root "${menu}"
+
+# Bookmark via pinboard
+super + d
+    termite --title pinit -e ~/bin/pinit
 
 # Launch rofi surfraw
 super + shift + f
@@ -108,6 +116,8 @@ Print
 	flameshot full -p ~/www
 super + s
 	flameshot gui
+super + shift + s
+    teiler
 
 # Generate a QR code from the clipboard
 super + q
