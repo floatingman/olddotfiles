@@ -64,10 +64,10 @@ TMPPREFIX="${TMPDIR%/}/zsh"
 export WORKON_HOME="$HOME/.virtualenvs"
 
 # Set the default project directory for virtualenvwrapper.
-export PROJECT_HOME="$HOME/projects"
+#export PROJECT_HOME="$HOME/projects"
 
 # Load virtualenvwrapper (lazy).
-source /usr/bin/virtualenvwrapper_lazy.sh
+#source /usr/bin/virtualenvwrapper_lazy.sh
 
 #
 # Notes
