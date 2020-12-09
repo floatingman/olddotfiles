@@ -39,7 +39,7 @@ fi
 
 if _have youtube-dl; then
     alias ytwlexp='youtube-dl --download-archive /mnt/SuperBig/Media/Video/YouTube/archive.txt --no-mtime --write-sub --sub-lang en_US --mark-watched --embed-subs -o "/mnt/SuperBig/Media/Video/YouTube/%(uploader)s-%(title)s.%(ext)s" "https://www.youtube.com/playlist?list=PL5D8rBmak6B01Db6kNoGC7oNwL-nRoOFk"'
-    alias ytwl='youtube-dl --no-mtime --write-sub --sub-lang en_US --mark-watched --embed-subs -o "/mnt/SuperBig/Media/Video/YouTube/%(uploader)s-%(title)s.%(ext)s" :ytwatchlater'
+    alias ytwl='youtube-dl --no-mtime --write-sub --sub-lang en_US --mark-watched --embed-subs -o "/mnt/SuperBig/Media/Video/YouTube/%(uploader)s-%(title)s.%(ext)s" --cookies=~/videos/cookies.txt :ytwatchlater'
     alias yt="youtube-dl --add-metadata -i"
     alias YT="youtube-viewer"
     alias podcast='youtube-dl --no-mtime --verbose -x --audio-format mp3 --audio-quality 0 -o "/mnt/SuperBig/Media/Audio/podcast/%(uploader)s-%(upload_date)s-%(title)s.%(ext)s" https://www.youtube.com/playlist?list=PL5D8rBmak6B39tevwhz_LMTrEof7MeyQt'
