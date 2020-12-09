@@ -57,7 +57,7 @@ super + shift + w
     firefox -P work
 
 # Launch application launcher
-super + space
+alt + space
     rofi -show run
 
 # Launch window switcher
