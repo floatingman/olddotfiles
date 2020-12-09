@@ -7,9 +7,6 @@
 [submodule "weechat/vimode"]
 	path = weechat/vimode
 	url = https://github.com/GermainZ/weechat-vimode
-[submodule "dircolors-solarized"]
-	path = dircolors-solarized
-	url = https://github.com/seebi/dircolors-solarized.git
 [submodule "tmux/plugins/tpm"]
 	path = tmux/plugins/tpm
 	url = git@github.com:tmux-plugins/tpm.git
