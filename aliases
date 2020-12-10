@@ -9,7 +9,7 @@ alias l='ls -lh'         # Lists human readable sizes.
 alias ll='l -A'          # Lists human readable sizes, hidden files.
 alias lr='l -R'          # Lists human readable sizes, recursively.
 alias lt='l -tr'         # Lists sorted by date, most recent last.
-
+alias ka='killall'       # Shorten kill all
 
 ###########
 # Udiskie #
@@ -59,7 +59,7 @@ alias gws='git status --short'
 ##########
 # Pacman #
 ##########
-
+alias p="sudo pacman"
 alias pacx="sudo pacman --remove"
 alias pacX="sudo pacman --remove --nosave --recursive"
 
@@ -67,15 +67,20 @@ alias pacX="sudo pacman --remove --nosave --recursive"
 # Editors #
 ###########
 
-alias e='nvim'
+alias e='$EDITOR'
+alias v='$EDITOR'
 
 ########
 # Misc #
 ########
-
+alias calcurse="calcurse -D ~/.config/calcurse"
+alias SS="sudo systemctl"
 alias http-serve='python -m http.server'
 alias bc='bc -lq'
 alias utc='env TZ="UTC" date'
+alias weath="less -S ${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport"
+alias yt="youtube-dl --add-metadata -i"
+alias yta="yt -x -f bestaudio/best"
 
 iowaiting() {
     watch -n 1 "(ps aux | awk '\$8 ~ /D/  { print \$0 }')"
