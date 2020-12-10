@@ -25,9 +25,9 @@ super + shift + c
 super + shift + e
 	tutorialvids
 super + w
-	webby | xargs -r $BROWSER
-super + shift + w
 	$BROWSER
+super + shift + w
+	$TERMINAL -e sudo -A nmtui
 super + shift + g
 	gimp
 
@@ -119,15 +119,13 @@ super + F11
 super + F12
 	$TERMINAL -e sudo -A nmtui
 
+# Launch application launcher
+alt + space
+    rofi -show run
 
-
-# # Launch application launcher
-# alt + space
-#     rofi -show run
-
-# # Launch window switcher
-# alt + Tab
-#     rofi -show window
+# Launch window switcher
+alt + Tab
+    rofi -show window
 
 # # Launch password manager
 # super + p
@@ -137,17 +135,17 @@ super + F12
 # # Media #
 # #########
 
-# # Toggle mute
-# XF86AudioMute
-#    pulseaudio-ctl mute
+# Toggle mute
+XF86AudioMute
+   pulseaudio-ctl mute
 
-# # Toggle mic mute
-# XF86AudioMicMute
-#     pulseaudio-ctl mute-input
+# Toggle mic mute
+XF86AudioMicMute
+    pulseaudio-ctl mute-input
 
-# # Change volume
-# XF86Audio{Raise,Lower}Volume
-#     pulseaudio-ctl {up,down} 2
+# Change volume
+XF86Audio{Raise,Lower}Volume
+    pulseaudio-ctl {up,down} 2
 
 # # Change volume
 # super + {k,j}
@@ -168,13 +166,13 @@ super + F12
 # super + slash
 # 	notify-send -u low "$(mpc -f "%title%" current)" "by $(mpc -f "%artist%" current)\non $(mpc -f "%album%" current) (#$(mpc -f "%track%" current))\n$(mpc -f "%originaldate%" current)"
 
-# # Play the video URL in the clipboard
-# # super + m
-#       # play
+# Play the video URL in the clipboard
+super + p
+    play
 
-# # Mute individual pulse streams
-# # super + shift + m
-#       # pamute
+# Mute individual pulse streams
+super + shift + m
+      pamute
 # ################
 # # Applications #
 # ################
