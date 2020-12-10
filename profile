@@ -1,4 +1,10 @@
 #
+# Path
+#
+[[ -r "$HOME/bin" ]] && export PATH="$PATH:$(du --exclude=.git "$HOME/bin" | cut -f2 | tr '\n' ':')"
+[[ -r "$HOME/.local/bin" ]] && export PATH="$PATH:$(du --exclude=.git "$HOME/.local/bin" | cut -f2 | tr '\n' ':')"
+
+#
 # Terminal
 #
 
@@ -7,48 +13,38 @@ export TERMINAL='termite'
 #
 # Editors
 #
-
 export EDITOR='vim'
 export VISUAL='vim'
 export PAGER='less'
+export BROWSER="firefox"
+export READER="zathura"
+export FILE="vifm"
+
+#
+# DPI
+#
+if [ -e ~/.dpi ]; then
+  source ~/.dpi
+fi
+
+# less/man colors
+export LESS=-R
+export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')"; a="${a%_}"
+export LESS_TERMCAP_md="$(printf '%b' '[1;36m')"; a="${a%_}"
+export LESS_TERMCAP_me="$(printf '%b' '[0m')"; a="${a%_}"
+export LESS_TERMCAP_so="$(printf '%b' '[01;44;33m')"; a="${a%_}"
+export LESS_TERMCAP_se="$(printf '%b' '[0m')"; a="${a%_}"
+export LESS_TERMCAP_us="$(printf '%b' '[1;32m')"; a="${a%_}"
+export LESS_TERMCAP_ue="$(printf '%b' '[0m')"; a="${a%_}"
 
 #
 # Language
 #
-
 export LANG='en_US.UTF-8'
-
-#
-# Path
-#
-
-export PATH=~/bin:~/.local/bin/:$PATH
-
-#
-# Less
-#
-
-# Set the default Less options.
-# Mouse-wheel scrolling has been disabled by -X (disable screen clearing).
-# Remove -X and -F (exit if the content fits on one screen) to enable it.
-export LESS='-F -g -i -M -R -w -X -z-4 -#3 -N'
-
-# Find lesspipe
-if command -v lesspipe.sh >/dev/null 2>&1; then
-    lesspipe="lesspipe.sh"
-elif command -v lesspipe >/dev/null 2>&1; then
-    lesspipe="lesspipe"
-fi
-
-# Set the less input preprocessor.
-if [[ -z "$lesspipe" ]]; then
-  export LESSOPEN="| $lesspipe %s 2>&-"
-fi
 
 #
 # Temporary Files
 #
-
 if [[ ! -d "$TMPDIR" ]]; then
   export TMPDIR="/tmp/$LOGNAME"
   mkdir -p -m 700 "$TMPDIR"
@@ -104,7 +100,7 @@ export FINPASSDIR=~/library/finance
 #
 
 # Set the dmenu font.
-export DMENU_OPTIONS="-fn -inconsolata-medium-r-*-*-14-*"
+#export DMENU_OPTIONS="-fn -inconsolata-medium-r-*-*-14-*"
 
 # Source credentials.
 if [ -f ~/.keys/creds.sh ]; then

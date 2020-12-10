@@ -1,137 +1,257 @@
 #########
-# Media #
+# Basic #
 #########
+super + Return
+      $TERMINAL
 
-# Toggle mute
-XF86AudioMute
-   pulseaudio-ctl mute
-
-# Toggle mic mute
-XF86AudioMicMute
-    pulseaudio-ctl mute-input
-
-# Change volume
-XF86Audio{Raise,Lower}Volume
-    pulseaudio-ctl {up,down} 2
-
-# Change volume
-super + {k,j}
-    pulseaudio-ctl {up,down} 2
-
-super + shift + {k,j}
-	pulseaudio-ctl {up,down} 10
-
-# Toggle mpd
-super + 0
-    mpc -q toggle
-
-# Navigate mpd playlist
-super + {comma, period}
-    mpc -q {prev, next}
-
-# Display current mpd track
-super + slash
-	notify-send -u low "$(mpc -f "%title%" current)" "by $(mpc -f "%artist%" current)\non $(mpc -f "%album%" current) (#$(mpc -f "%track%" current))\n$(mpc -f "%originaldate%" current)"
-
-# Play the video URL in the clipboard
-super + m
-      play
-
-# Mute individual pulse streams
-super + shift + m
-      pamute
-################
-# Applications #
-################
-
-# Launch terminal
-super + t
-		$TERMINAL
-
-# Launch web browser
-super + w
-    firefox -P default
-
-# Launch web browser with work profile
-super + shift + w
-    firefox -P work
-
-# Launch application launcher
-alt + space
-    rofi -show run
-
-# Launch window switcher
-alt + Tab
-    rofi -show window
-
-# Launch password manager
-super + p
-    menu=$(echo -e "$HOME/.password-store\n$ALTPASSDIR" | rofi -dmenu); rofi-pass --root "${menu}"
-
-# Bookmark via pinboard
 super + d
-    termite --title pinit -e ~/bin/pinit
+      dmenu_run
 
-# Launch rofi surfraw
-super + shift + f
-	surfraw-rofi
+super + r
+      $TERMINAL -e lf
 
-# Launch rofi surfraw
-super + f
-	surfraw duckduckgo -j $(xclip -o -selection clipboard)
+super + m
+	$TERMINAL -e ncmpcpp
+super + n
+	$TERMINAL -e newsboat
+super + i
+	$TERMINAL -e htop
+super + y
+	$TERMINAL -e calcurse
+super + shift + a
+	$TERMINAL -e pulsemixer
+super + shift + c
+	camtoggle
+super + shift + e
+	tutorialvids
+super + w
+	webby | xargs -r $BROWSER
+super + shift + w
+	$BROWSER
+super + shift + g
+	gimp
 
-# Launch qalculator
-super + c
-	qalculate-gtk
-
-# Launch rofi zeal
-super + z
-    rofi-zeal
-
-########
-# Misc #
-########
-
-# Lock the screen
-control + alt + l
-    betterlockscreen -l
-
-# Lock the screen
-XF86ScreenSaver
-    betterlockscreen -l
-
-# Toggle trackpad
-XF86TouchpadToggle
-    toggle-touchpad.sh
-
+# Et cetera...
+super + grave
+	dmenuunicode
+super + Scroll_Lock
+	killall screenkey || screenkey
+super + Insert
+	showclip
+super + shift + x
+	prompt "Shutdown computer?" "sudo -A shutdown -h now"
+super + shift + BackSpace
+	prompt "Reboot computer?" "sudo -A shutdown -h now"
+super + x
+	mpc pause; pauseallmpv; i3lock -e -f -c 1d2021; xset dpms force off
 XF86Launch1
-    toggle-touchpad.sh
+	xset dpms force off
 
-# Change screen brightness
-XF86MonBrightness{Up,Down}
-    light -{A,U} 10
-
-# Take a screenshot
+# Recording
+# Take screenshot
 Print
-	flameshot full -p ~/www
-super + s
-	flameshot gui
-super + shift + s
-    teiler
+	maim pic-full-$(date '+%y%m%d-%H%M-%S').png
+# Pick screenshot type
+shift + Print
+	maimpick
+# Record audio or video
+super + Print
+	dmenurecord
+# kill active recording
+super + Delete
+	dmenurecord kill
 
-# Generate a QR code from the clipboard
-super + q
-	qcode
+# Pause audio
+super + {_,shift +} p
+	lmc {toggle,pause}
+# Changes to next/previous tracks
+super + {comma,period}
+	lmc {prev,next}
+# Restart track
+super + shift + less
+	lmc replay
+# Increase volume
+super + {equal,plus}
+	lmc up {5,15}
+# Decrease volume
+super {_,shift +} + minus
+	lmc down {5,15}
+# Seek foward in song
+super + {_,shift +} bracketright
+	lmc forward {10,120}
+# Seek backward in song
+super + {_,shift +} bracketleft
+	lmc back {10,120}
 
-# Suspend (F12)
-super + XF86Explorer
-	systemctl suspend
+# Function keys
+# Show readme
+super + F1
+	groff -mom $HOME/.local/share/larbs/readme.mom -Tpdf | zathura -
+# F2 is restart in i3 right now.
+# Change display
+super + F3
+	displayselect
+# Hibernate
+super + F4
+	prompt 'Hibernate computer?' 'sudo systemctl suspend'
+# Restart/rescan wifi/eth networks
+super + F5
+	sudo -A systemctl restart NetworkManager
+# Start torrent daemon/open interface
+super + F6
+	torwrap
+# toggle torrent daemon
+super + F7
+	td-togggle
+# sync email
+super + F8
+	mailsync
+# Mount a USB drive or Android device
+super + F9
+	dmenumount
+# Unmount a USB drive or Android device
+super + F10
+	dmenuumount
+# Search with Duckduckgo
+super + F11
+	ducksearch
+# Network Manager interface
+super + F12
+	$TERMINAL -e sudo -A nmtui
 
-#########
-# Mouse #
-#########
-button9
-	xte 'key Page_Up'
 
-button8
-	xte 'key Page_Down'
+
+# # Launch application launcher
+# alt + space
+#     rofi -show run
+
+# # Launch window switcher
+# alt + Tab
+#     rofi -show window
+
+# # Launch password manager
+# super + p
+#     menu=$(echo -e "$HOME/.password-store\n$ALTPASSDIR" | rofi -dmenu); rofi-pass --root "${menu}"
+
+# #########
+# # Media #
+# #########
+
+# # Toggle mute
+# XF86AudioMute
+#    pulseaudio-ctl mute
+
+# # Toggle mic mute
+# XF86AudioMicMute
+#     pulseaudio-ctl mute-input
+
+# # Change volume
+# XF86Audio{Raise,Lower}Volume
+#     pulseaudio-ctl {up,down} 2
+
+# # Change volume
+# super + {k,j}
+#     pulseaudio-ctl {up,down} 2
+
+# super + shift + {k,j}
+# 	pulseaudio-ctl {up,down} 10
+
+# # Toggle mpd
+# super + 0
+#     mpc -q toggle
+
+# # Navigate mpd playlist
+# super + {comma, period}
+#     mpc -q {prev, next}
+
+# # Display current mpd track
+# super + slash
+# 	notify-send -u low "$(mpc -f "%title%" current)" "by $(mpc -f "%artist%" current)\non $(mpc -f "%album%" current) (#$(mpc -f "%track%" current))\n$(mpc -f "%originaldate%" current)"
+
+# # Play the video URL in the clipboard
+# # super + m
+#       # play
+
+# # Mute individual pulse streams
+# # super + shift + m
+#       # pamute
+# ################
+# # Applications #
+# ################
+
+# # Launch web browser
+# # super + w
+# #     firefox -P default
+
+# # # Launch web browser with work profile
+# # super + shift + w
+# #     firefox -P work
+
+
+# # Bookmark via pinboard
+# super + d
+#     termite --title pinit -e ~/bin/pinit
+
+# # Launch rofi surfraw
+# super + shift + f
+# 	surfraw-rofi
+
+# # Launch rofi surfraw
+# super + f
+# 	surfraw duckduckgo -j $(xclip -o -selection clipboard)
+
+# # Launch qalculator
+# super + c
+# 	qalculate-gtk
+
+# # Launch rofi zeal
+# super + z
+#     rofi-zeal
+
+# ########
+# # Misc #
+# ########
+
+# # Lock the screen
+# control + alt + l
+#     betterlockscreen -l
+
+# # Lock the screen
+# XF86ScreenSaver
+#     betterlockscreen -l
+
+# # Toggle trackpad
+# XF86TouchpadToggle
+#     toggle-touchpad.sh
+
+# XF86Launch1
+#     toggle-touchpad.sh
+
+# # Change screen brightness
+# XF86MonBrightness{Up,Down}
+#     light -{A,U} 10
+
+# # Take a screenshot
+# Print
+# 	flameshot full -p ~/Photos/screenshots
+# super + Print
+# 	flameshot gui
+# super + shift + s
+#     teiler
+
+# # Generate a QR code from the clipboard
+# super + q
+# 	qcode
+
+# # Suspend (F12)
+# super + XF86Explorer
+# 	systemctl suspend
+
+# #########
+# # Mouse #
+# #########
+# button9
+# 	xte 'key Page_Up'
+
+# button8
+# 	xte 'key Page_Down'
