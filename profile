@@ -1,14 +1,48 @@
+# Detect which platform we are on
+[ -z "$OS" ] && export OS=`uname`
+case "$OS" in
+  Linux)          export PLATFORM=linux ;;
+  *indows*)       export PLATFORM=windows ;;
+  FreeBSD|Darwin) export PLATFORM=mac ;;
+  *)              export PLATFORM=unknown ;;
+esac
+
+onmac () {
+  [[ $PLATFORM == mac ]]  && return 0
+  return 1
+} && export -f onmac
+
+onwin () {
+  [[ $PLATFORM == windows ]]  && return 0
+  return 1
+} && export -f onwin
+
+onlinux () {
+  [[ $PLATFORM == linux ]]  && return 0
+  return 1
+} && export -f onlinux
+
+onunknown () {
+  [[ PLATFORM == unknown ]]  && return 0
+  return 1
+} && export -f onunknown
+
+
 #
 # Path
 #
-[[ -r "$HOME/bin" ]] && export PATH="$PATH:$(du --exclude=.git "$HOME/bin" | cut -f2 | tr '\n' ':')"
-[[ -r "$HOME/.local/bin" ]] && export PATH="$PATH:$(du --exclude=.git "$HOME/.local/bin" | cut -f2 | tr '\n' ':')"
-
+if onmac; then
+  [[ -r "$HOME/bin" ]] && export PATH="$PATH:$(du -I .git "$HOME/bin" | cut -f2 | tr '\n' ':')"
+  [[ -r "$HOME/.bin" ]] && export PATH="$PATH:$(du -I .git "$HOME/.bin" | cut -f2 | tr '\n' ':')"
+else
+    [[ -r "$HOME/bin" ]] && export PATH="$PATH:$(du --exclude=.git "$HOME/bin" | cut -f2 | tr '\n' ':')"
+    [[ -r "$HOME/.local/bin" ]] && export PATH="$PATH:$(du --exclude=.git "$HOME/.local/bin" | cut -f2 | tr '\n' ':')"
+fi
 #
 # Terminal
 #
 
-export TERMINAL='termite'
+export TERMINAL='st'
 
 #
 # Editors
