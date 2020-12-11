@@ -1,37 +1,49 @@
+#
+# Utilities
+#
+
+# is $1 installed?
+_have() { which "$1" &>/dev/null; }
+
 # Detect which platform we are on
-[ -z "$OS" ] && export OS=`uname`
-case "$OS" in
-  Linux)          export PLATFORM=linux ;;
-  *indows*)       export PLATFORM=windows ;;
-  FreeBSD|Darwin) export PLATFORM=mac ;;
-  *)              export PLATFORM=unknown ;;
-esac
+_islinux=false
+[[ "$(uname -s)" =~ Linux|GNU|GNU/* ]] && _islinux=true
 
-onmac () {
-  [[ $PLATFORM == mac ]]  && return 0
-  return 1
-} && export -f onmac
+_ismac=false
+[[ "$(uname -s)" =~ Darwin ]] && _ismac=true
 
-onwin () {
-  [[ $PLATFORM == windows ]]  && return 0
-  return 1
-} && export -f onwin
+_isubuntu=false
+[[ "$(uname -v)" =~ Ubuntu ]] && _isubuntu=true
+_isarch=false
+[[ -f /etc/arch-release ]] && _isarch=true
 
-onlinux () {
-  [[ $PLATFORM == linux ]]  && return 0
-  return 1
-} && export -f onlinux
+# Detect if gui is running
+_isxrunning=false
+[[ -n "$DISPLAY" ]] && _isxrunning=true
 
-onunknown () {
-  [[ PLATFORM == unknown ]]  && return 0
-  return 1
-} && export -f onunknown
+_isroot=false
+[[ $UID -eq 0 ]] && _isroot=true
 
+# add directories to $PATH
+_add_to_path() {
+    local path
+
+    for path; do
+        [[ -d "$path" ]] && [[ ! ":${PATH}:" =~ :${path}: ]] && export PATH=${path}:$PATH
+    done
+}
+
+# source a file if readable
+_source () {
+    local file="$1"
+    [[ -r "$file" ]] || return 1
+    . "$file"
+}
 
 #
 # Path
 #
-if onmac; then
+if $_ismac; then
   [[ -r "$HOME/bin" ]] && export PATH="$PATH:$(du -I .git "$HOME/bin" | cut -f2 | tr '\n' ':')"
   [[ -r "$HOME/.bin" ]] && export PATH="$PATH:$(du -I .git "$HOME/.bin" | cut -f2 | tr '\n' ':')"
 else
