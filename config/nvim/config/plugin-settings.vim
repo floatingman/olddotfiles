@@ -15,7 +15,7 @@ let g:gitgutter_grep=''
 """""""""""
 " Goyo    "
 """""""""""
-nmap <F6> :Goyo \| set linebreak<CR>
+nmap <F6> :Goyo \| set bg=light \|set linebreak<CR>
 " Goyo's width will be the line limit in mutt.
 autocmd BufRead,BufNewFile /tmp/neomutt* let g:goyo_width=80
 autocmd BufRead,BufNewFile /tmp/neomutt* :Goyo
