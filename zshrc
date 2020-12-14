@@ -1,12 +1,22 @@
+# Enable colors and change prompt:
+autoload -U colors && colors	# Load colors
+PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+setopt autocd		# Automatically cd into typed directory.
+stty stop undef		# Disable ctrl-s to freeze terminal.
+setopt interactive_comments
+
+
+# tab completion
+autoload -U compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)  # Include hidden files
+
 ###########
 # plugins #
 ###########
-
-autoload -Uz compinit
-compinit
-
 source ~/.zsh_plugins.sh
-
 
 ###########
 # History #
@@ -33,7 +43,7 @@ setopt share_history
 # Keep a ton of history.
 HISTSIZE=100000
 SAVEHIST=100000
-HISTFILE=~/.zhistory
+HISTFILE=~/.cache/zsh/history
 export HISTORY_IGNORE="(ls|l|ll|lt|[bf]g|exit|reset|clear|cd|cd ..|cd ../|pwd|date|* --help)"
 
 
@@ -59,6 +69,14 @@ test -r "~/.dir_colors" && eval $(dircolors ~/.dir_colors)
 ######
 # Vi #
 ######
+bindkey -v
+export KEYTIMEOUT=1
+# Use vim keys in tab complete menu
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -v '^?' backward-delete-char
 
 bindkey -M viins 'kj' vi-cmd-mode
 bindkey -M vicmd "?" history-incremental-search-backward
@@ -66,6 +84,49 @@ bindkey -M vicmd "/" history-incremental-search-forward
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
+# Change cursor shape for different vi modes.
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+zle -N zle-keymap-select
+zle-line-init() {
+    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+    echo -ne "\e[5 q"
+}
+zle -N zle-line-init
+echo -ne '\e[5 q' # Use beam shape cursor on startup.
+preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+
+
+# Use lf to switch directories and bind it to ctrl-o
+lfcd () {
+    tmp="$(mktemp)"
+    lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp" >/dev/null
+        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+    fi
+}
+bindkey -s '^o' 'lfcd\n'
+
+bindkey -s '^a' 'bc -lq\n'
+
+bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
+
+bindkey '^[[P' delete-char
+
+# Edit line in vim with ctrl-e:
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^e' edit-command-line
 
 #######
 # FZF #
@@ -137,7 +198,7 @@ if command -v brew 1>/dev/null 2>&1; then
     export BASH_SILENCE_DEPRECATION_WARNING=1
     export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
 
-    # tabtab source for serverless package
+# tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
 [ -f /Users/dnewman/gitrepos/vision-stratus/vision-nx-mobile-combined/node_modules/tabtab/.completions/serverless.bash ] && . /Users/dnewman/gitrepos/vision-stratus/vision-nx-mobile-combined/node_modules/tabtab/.completions/serverless.bash
 # tabtab source for sls package
@@ -191,3 +252,6 @@ export NVM_DIR="$HOME/.nvm"
 export SDKMAN_DIR="${HOME}/.sdkman"
 [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+# Load syntax highlighting; should be last.
+source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null
