@@ -56,8 +56,6 @@ export HISTORY_IGNORE="(ls|l|ll|lt|[bf]g|exit|reset|clear|cd|cd ..|cd ../|pwd|da
 # Misc #
 ########
 
-source ~/.aliases
-
 # Use SSH completion for Mosh.
 compdef mosh=ssh
 
