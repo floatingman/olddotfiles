@@ -168,6 +168,12 @@ for_window [window_role="GtkFileChooserDialog"] resize set 800 600
 for_window [window_role="GtkFileChooserDialog"] move position center
 for_window [title="Default - Wine desktop"] floating enable
 
+for_window [class="KeePassXC"] move scratchpad
+for_window [class="KeePassXC"] scratchpad show
+for_window [class="KeePassXC"] sticky enable
+for_window [class="KeePassXC"] floating enable
+for_window [class="KeePassXC"] resize set 800 300
+
 # Bindings to make the webcam float and stick.
 for_window [title="mpvfloat"] floating enable
 for_window [title="mpvfloat"] sticky enable

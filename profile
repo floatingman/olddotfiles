@@ -50,21 +50,43 @@ else
     [[ -r "$HOME/bin" ]] && export PATH="$PATH:$(du --exclude=.git "$HOME/bin" | cut -f2 | tr '\n' ':')"
     [[ -r "$HOME/.local/bin" ]] && export PATH="$PATH:$(du --exclude=.git "$HOME/.local/bin" | cut -f2 | tr '\n' ':')"
 fi
-#
-# Terminal
-#
 
+unsetopt PROMPT_SP
+
+#
+# Default programs
+#
 export TERMINAL='st'
+export EDITOR='nvim'
+export BROWSER="firefox"
 
 #
-# Editors
+# Default directories
 #
-export EDITOR='nvim'
-export VISUAL='nvim'
-export PAGER='less'
-export BROWSER="firefox"
-export READER="zathura"
-export FILE="vifm"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+#export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
+#export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority" # This line will break some DMs.
+export NOTMUCH_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/notmuch-config"
+export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
+export LESSHISTFILE="-"
+export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
+export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/shell/inputrc"
+export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
+#export ALSA_CONFIG_PATH="$XDG_CONFIG_HOME/alsa/asoundrc"
+#export GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}/gnupg"
+export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
+export KODI_DATA="${XDG_DATA_HOME:-$HOME/.local/share}/kodi"
+export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
+export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
+export ANDROID_SDK_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/android"
+export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
+export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
+export ANSIBLE_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/ansible/ansible.cfg"
+export UNISON="${XDG_DATA_HOME:-$HOME/.local/share}/unison"
+export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
+export WEECHAT_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/weechat"
 
 #
 # DPI
@@ -75,13 +97,104 @@ fi
 
 # less/man colors
 export LESS=-R
-export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')"; a="${a%_}"
-export LESS_TERMCAP_md="$(printf '%b' '[1;36m')"; a="${a%_}"
-export LESS_TERMCAP_me="$(printf '%b' '[0m')"; a="${a%_}"
-export LESS_TERMCAP_so="$(printf '%b' '[01;44;33m')"; a="${a%_}"
-export LESS_TERMCAP_se="$(printf '%b' '[0m')"; a="${a%_}"
-export LESS_TERMCAP_us="$(printf '%b' '[1;32m')"; a="${a%_}"
-export LESS_TERMCAP_ue="$(printf '%b' '[0m')"; a="${a%_}"
+export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')"
+export LESS_TERMCAP_md="$(printf '%b' '[1;36m')"
+export LESS_TERMCAP_me="$(printf '%b' '[0m')"
+export LESS_TERMCAP_so="$(printf '%b' '[01;44;33m')"
+export LESS_TERMCAP_se="$(printf '%b' '[0m')"
+export LESS_TERMCAP_us="$(printf '%b' '[1;32m')"
+export LESS_TERMCAP_ue="$(printf '%b' '[0m')"
+export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
+
+
+# Other program settings
+export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
+export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
+export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.
+export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
+export AWT_TOOLKIT="MToolkit wmname LG3D"	#May have to install wmname
+export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
+
+# This is the list for lf icons:
+export LF_ICONS="di=📁:\
+fi=📃:\
+tw=🤝:\
+ow=📂:\
+ln=⛓:\
+or=❌:\
+ex=🎯:\
+*.txt=✍:\
+*.mom=✍:\
+*.me=✍:\
+*.ms=✍:\
+*.png=🖼:\
+*.webp=🖼:\
+*.ico=🖼:\
+*.jpg=📸:\
+*.jpe=📸:\
+*.jpeg=📸:\
+*.gif=🖼:\
+*.svg=🗺:\
+*.tif=🖼:\
+*.tiff=🖼:\
+*.xcf=🖌:\
+*.html=🌎:\
+*.xml=📰:\
+*.gpg=🔒:\
+*.css=🎨:\
+*.pdf=📚:\
+*.djvu=📚:\
+*.epub=📚:\
+*.csv=📓:\
+*.xlsx=📓:\
+*.tex=📜:\
+*.md=📘:\
+*.r=📊:\
+*.R=📊:\
+*.rmd=📊:\
+*.Rmd=📊:\
+*.m=📊:\
+*.mp3=🎵:\
+*.opus=🎵:\
+*.ogg=🎵:\
+*.m4a=🎵:\
+*.flac=🎼:\
+*.wav=🎼:\
+*.mkv=🎥:\
+*.mp4=🎥:\
+*.webm=🎥:\
+*.mpeg=🎥:\
+*.avi=🎥:\
+*.mov=🎥:\
+*.mpg=🎥:\
+*.wmv=🎥:\
+*.m4b=🎥:\
+*.flv=🎥:\
+*.zip=📦:\
+*.rar=📦:\
+*.7z=📦:\
+*.tar.gz=📦:\
+*.z64=🎮:\
+*.v64=🎮:\
+*.n64=🎮:\
+*.gba=🎮:\
+*.nes=🎮:\
+*.gdi=🎮:\
+*.1=ℹ:\
+*.nfo=ℹ:\
+*.info=ℹ:\
+*.log=📙:\
+*.iso=📀:\
+*.img=📀:\
+*.bib=🎓:\
+*.ged=👪:\
+*.part=💔:\
+*.torrent=🔽:\
+*.jar=♨:\
+*.java=♨:\
+"
+
+[ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ] && shortcuts >/dev/null 2>&1 &
 
 #
 # Language
@@ -89,74 +202,8 @@ export LESS_TERMCAP_ue="$(printf '%b' '[0m')"; a="${a%_}"
 export LANG='en_US.UTF-8'
 
 #
-# Temporary Files
-#
-if [[ ! -d "$TMPDIR" ]]; then
-  export TMPDIR="/tmp/$LOGNAME"
-  mkdir -p -m 700 "$TMPDIR"
-fi
-
-TMPPREFIX="${TMPDIR%/}/zsh"
-
-#
 # Python
 #
 
 # Set the default environment directory for virtualenvwrapper.
 export WORKON_HOME="$HOME/.virtualenvs"
-
-# Set the default project directory for virtualenvwrapper.
-#export PROJECT_HOME="$HOME/projects"
-
-# Load virtualenvwrapper (lazy).
-#source /usr/bin/virtualenvwrapper_lazy.sh
-
-#
-# Notes
-#
-
-# Set the default note directory.
-export NOTEDIR=~/library/notes
-
-# Open spreadsheet notes in visidata
-export NOTEXDGEXT="csv tsv"
-
-#
-# Journal
-#
-
-# Set the default journal directory.
-export JOURNALDIR=~/library/journal
-
-#
-# Passwords
-#
-
-# Set the alternative pass directory.
-export ALTPASSDIR=~/projects/tad/pass
-
-# Set the access pass directory.
-export ACCESSPASSDIR=~/projects/tad/access
-
-# Set the finance pass directory.
-export FINPASSDIR=~/library/finance
-
-#
-# Misc
-#
-
-# Set the dmenu font.
-#export DMENU_OPTIONS="-fn -inconsolata-medium-r-*-*-14-*"
-
-# Source credentials.
-if [ -f ~/.keys/creds.sh ]; then
-    source ~/.keys/creds.sh
-fi
-
-# Disable QT5 DPI scaling
-export QT_AUTO_SCREEN_SCALE_FACTOR=0
-
-# Set GPG TTY
-export GPG_TTY=$(tty)
-
-# Contain the toxic JavaScript ecosystem.
