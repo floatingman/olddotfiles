@@ -104,6 +104,8 @@ bindsym $mod+Shift+b		floating toggle; sticky toggle; exec --no-startup-id hover
 
 bindsym $mod+Shift+n		floating toggle; sticky toggle; exec --no-startup-id hover right
 
+bindsym $mod+Shift+p [instance="keepassxc"] scratchpad show, move position center for_window [instance="keepassxc"] floating enable, resize set 800 800, move scratchpad, border pixel 5
+
 # #---Workspace Bindings---# #
 bindsym $mod+Home		workspace $ws1
 bindsym $mod+Shift+Home		move container to workspace $ws1
@@ -167,11 +169,11 @@ for_window [window_role="GtkFileChooserDialog"] resize set 800 600
 for_window [window_role="GtkFileChooserDialog"] move position center
 for_window [title="Default - Wine desktop"] floating enable
 
-for_window [class="KeePassXC"] move scratchpad
-for_window [class="KeePassXC"] scratchpad show
-for_window [class="KeePassXC"] sticky enable
-for_window [class="KeePassXC"] floating enable
-for_window [class="KeePassXC"] resize set 800 300
+# for_window [class="KeePassXC"] move scratchpad
+# for_window [class="KeePassXC"] scratchpad show
+# for_window [class="KeePassXC"] sticky enable
+# for_window [class="KeePassXC"] floating enable
+# for_window [class="KeePassXC"] resize set 800 300
 
 # Bindings to make the webcam float and stick.
 for_window [title="mpvfloat"] floating enable

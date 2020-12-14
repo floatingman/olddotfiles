@@ -81,6 +81,8 @@ alias utc='env TZ="UTC" date'
 alias weath="less -S ${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport"
 alias yt="youtube-dl --add-metadata -i"
 alias yta="yt -x -f bestaudio/best"
+alias ref="shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/zshnameddirrc"
+
 
 iowaiting() {
     watch -n 1 "(ps aux | awk '\$8 ~ /D/  { print \$0 }')"
