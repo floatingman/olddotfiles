@@ -59,6 +59,7 @@ unsetopt PROMPT_SP
 export TERMINAL='st'
 export EDITOR='nvim'
 export BROWSER="firefox"
+export FILE="lf"
 
 #
 # Default directories
