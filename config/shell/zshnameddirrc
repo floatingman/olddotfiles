@@ -1,0 +1,12 @@
+hash -d cac=/home/dnewman/.cache 
+hash -d cf=/home/dnewman/.config 
+hash -d D=/home/dnewman/Downloads 
+hash -d d=/home/dnewman/Documents 
+hash -d dt=/home/dnewman/.local/share 
+hash -d h=/home/dnewman 
+hash -d m=/home/dnewman/Music 
+hash -d mn=/mnt 
+hash -d pp=/home/dnewman/Pictures 
+hash -d sc=/home/dnewman/.local/bin 
+hash -d src=/home/dnewman/.local/src 
+hash -d vv=/home/dnewman/Videos 
