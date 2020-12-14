@@ -62,8 +62,8 @@ super + Delete
 	dmenurecord kill
 
 # Pause audio
-super + {_,shift +} p
-	lmc {toggle,pause}
+super + p
+	lmc {toggle}
 # Changes to next/previous tracks
 super + {comma,period}
 	lmc {prev,next}

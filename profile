@@ -194,6 +194,7 @@ ex=🎯:\
 *.java=♨:\
 "
 
+[ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ] && shortcuts >/dev/null 2>&1 &
 
 #
 # Language
