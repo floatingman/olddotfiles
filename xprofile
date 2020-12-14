@@ -16,12 +16,6 @@ xmodmap ~/.Xmodmap
 # Bind keys with sxhkd.
 sxhkd &
 
-# Launch the screen locker
-#xautolock -time 09 -locker "betterlockscreen -l" -detectsleep -secure -corners 0-00 -cornerdelay 3 -cornerredelay 20 &
-
-# For xscreensaver to run as part of the x session
-#/usr/bin/xscreensaver -nosplash &
-
 # Restore the desktop background
 if [ -f ~/.fehbg ]; then
 	sh ~/.fehbg &
@@ -44,12 +38,6 @@ dunst &
 
 # Adjust color temperature with Redshift
 redshift-gtk &
-
-# Load the best monitor profile available
-#autorandr --change --default mobile
-
-# Monitor monitors for changes
-#srandrd autorandr --change --default mobile
 
 # Udiskie for mounting
 udiskie &
