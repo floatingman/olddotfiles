@@ -11,6 +11,7 @@
 for_window [class="^.*"] border pixel 2
 gaps inner 15
 gaps outer 15
+set $term --no-startup-id $TERMINAL
 set $mod Mod4
 
 # #---Dropdown Windows---# #
