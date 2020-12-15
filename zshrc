@@ -191,55 +191,6 @@ if command -v pyenv 1>/dev/null 2>&1; then
 #  eval "$(register-python-argcomplete pipx)"
 fi
 
-
-# mac exports
-if command -v brew 1>/dev/null 2>&1; then
-    export HOMEBREW_AUTO_UPDATE_SECS=86400
-    export HOMEBREW_NO_ANALYTICS=true
-    export HOMEBREW_INSTALL_BADGE="(ʘ‿ʘ)"
-    export HOMEBREW_BUNDLE_FILE_PATH=~/.homebrew/Brewfile
-    export BASH_SILENCE_DEPRECATION_WARNING=1
-    export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
-
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[ -f /Users/dnewman/gitrepos/vision-stratus/vision-nx-mobile-combined/node_modules/tabtab/.completions/serverless.bash ] && . /Users/dnewman/gitrepos/vision-stratus/vision-nx-mobile-combined/node_modules/tabtab/.completions/serverless.bash
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[ -f /Users/dnewman/gitrepos/vision-stratus/vision-nx-mobile-combined/node_modules/tabtab/.completions/sls.bash ] && . /Users/dnewman/gitrepos/vision-stratus/vision-nx-mobile-combined/node_modules/tabtab/.completions/sls.bash
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-[ -f /Users/dnewman/gitrepos/vision-stratus/vision-nx-share/node_modules/tabtab/.completions/slss.bash ] && . /Users/dnewman/gitrepos/vision-stratus/vision-nx-share/node_modules/tabtab/.completions/slss.bash
-
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[ -f /Users/dnewman/gitrepos/vision-web/node_modules/tabtab/.completions/serverless.bash ] && . /Users/dnewman/gitrepos/vision-web/node_modules/tabtab/.completions/serverless.bash
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[ -f /Users/dnewman/gitrepos/vision-web/node_modules/tabtab/.completions/sls.bash ] && . /Users/dnewman/gitrepos/vision-web/node_modules/tabtab/.completions/sls.bash
-# Added by serverless binary installer
-export PATH="$HOME/.serverless/bin:$PATH"
-
-# *- set by XOI script [/Users/dnewman/gitrepos/vision-web/scripts/setup-web-dev-env]
-# alias for vision-web, to be used for local development
-export VISION_WEB_ALIAS=vision-web.d2nivkqlgf56bu.cloudfront.net
-
-# Setup browserstack credintials
-export BROWSERSTACK_USERNAME=danielnewman10
-export BROWSERSTACK_ACCESS_KEY=BdRHMyJ6WTzUXrCEQiM5
-export BROWSERSTACK_APP_ID=DanielTest
-#export FILE_PATH_TO_IPA="~/Repos/VisionNxMobile/ios/VisionNxMobile.dev.ipa"
-export BUILD_TAG=DanielTest
-export IPHONE_PLATFORM_VERSION=14.0
-export IPHONE_DEVICENAME="iPhone 11"
-# Setup Android
-export ANDROID_HOME="$HOME/Library/Android/sdk"
-export PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools/adb:$ANDROID_HOME/build-tools:$JAVA_HOME/bin
-# This one is used for the `start.android.emulator` script
-export emulator="$HOME/Library/Android/sdk/emulator"
-fi
-
-
 if [[ -r "$HOME/.rbenv" ]]; then
     export PATH="$HOME/.rbenv/bin:$PATH"
     eval "$(rbenv init -)"
@@ -255,6 +206,9 @@ export NVM_DIR="$HOME/.nvm"
 export SDKMAN_DIR="${HOME}/.sdkman"
 [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+# load private things
+source .zsh_private
 
 # Load syntax highlighting; should be last.
 source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null
