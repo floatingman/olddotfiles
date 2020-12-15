@@ -208,7 +208,7 @@ export SDKMAN_DIR="${HOME}/.sdkman"
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 # load private things
-source .zsh_private
+source ~/.zsh_private
 
 # Load syntax highlighting; should be last.
 source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null
