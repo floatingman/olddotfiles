@@ -247,7 +247,7 @@ ex ()
 }
 
 ### SOURCING BROOT ###
-source $HOME/.config/broot/launcher/bash/br
+#source $HOME/.config/broot/launcher/bash/br
 
 ### BASH INSULTER ###
 if [ -f /etc/bash.command-not-found ]; then
