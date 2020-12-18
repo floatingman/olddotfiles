@@ -170,10 +170,9 @@ bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
 ### RANDOM COLOR SCRIPT ###
 # Get this script from my GitLab: gitlab.com/dwt1/shell-color-scripts
 # Or install it from the Arch User Repository: shell-color-scripts
-colorscript random
-
-### SOURCING BROOT ###
-#source $HOME/.config/broot/launcher/bash/br
+if $_linux; then
+    colorscript random
+fi
 
 ### BASH INSULTER ###
 if [ -f /etc/bash.command-not-found ]; then
