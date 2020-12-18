@@ -8,19 +8,16 @@ _have() { which "$1" &>/dev/null; }
 # Detect which platform we are on
 _islinux=false
 [[ "$(uname -s)" =~ Linux||GNU||GNU/* ]] && _islinux=true
-
 _ismac=false
 [[ "$(uname -s)" =~ Darwin ]] && _ismac=true
-
 _isubuntu=false
 [[ "$(uname -v)" =~ Ubuntu ]] && _isubuntu=true
 _isarch=false
 [[ -f /etc/arch-release ]] && _isarch=true
-
 # Detect if gui is running
 _isxrunning=false
 [[ -n "$DISPLAY" ]] && _isxrunning=true
-
+# Detect if root
 _isroot=false
 [[ $UID -eq 0 ]] && _isroot=true
 
@@ -56,10 +53,24 @@ unsetopt PROMPT_SP
 #
 # Default programs
 #
-export TERMINAL='st'
-export EDITOR='nvim'
+export TERMINAL='alacritty'
 export BROWSER="firefox"
 export FILE="lf"
+export TERM="xterm-256color"    # For getting proper colors
+export EDITOR="emacsclient -t -a ''"        # $EDITOR use Emacs in terminal
+export VISUAL="emacsclient -c -a emacs"     # $VISUAL use Emacs in GUI mode
+
+
+### CHANGE TITLE OF TERMINALS
+case ${TERM} in
+  xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|konsole*)
+    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
+        ;;
+  screen*)
+    PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"'
+    ;;
+esac
+
 
 #
 # Default directories
@@ -207,3 +218,38 @@ export LANG='en_US.UTF-8'
 
 # Set the default environment directory for virtualenvwrapper.
 export WORKON_HOME="$HOME/.virtualenvs"
+
+### ARCHIVE EXTRACTION
+# usage: ex <file>
+ex ()
+{
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1   ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *.deb)       ar x $1      ;;
+      *.tar.xz)    tar xf $1    ;;
+      *.tar.zst)   unzstd $1    ;;
+      *)           echo "'$1' cannot be extracted via ex()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
+### SOURCING BROOT ###
+source $HOME/.config/broot/launcher/bash/br
+
+### BASH INSULTER ###
+if [ -f /etc/bash.command-not-found ]; then
+    . /etc/bash.command-not-found
+fi

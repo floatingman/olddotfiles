@@ -1,113 +1,105 @@
-# Enable colors and change prompt:
-autoload -U colors && colors	# Load colors
-PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
-setopt autocd		# Automatically cd into typed directory.
-stty stop undef		# Disable ctrl-s to freeze terminal.
-setopt interactive_comments
+### EXPORT
+export HISTORY_IGNORE="(ls|l|ll|lt|[bf]g|exit|reset|clear|cd|cd ..|cd ../|pwd|date|* --help)"
 
+### SET VI MODE ###
+# Comment this line out to enable default emacs-like bindings
+bindkey -v
 
-# tab completion
-autoload -U compinit
-zstyle ':completion:*' menu select
-zmodload zsh/complist
-compinit
-_comp_options+=(globdots)  # Include hidden files
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
 
-###########
-# plugins #
-###########
-source ~/.zsh_plugins.sh
+### PATH
+# Loaded in .profile
 
+### SHORTCUTS
 # Load aliases and shortcuts if existent.
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc"
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc"
 
-###########
-# History #
-###########
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-setopt append_history
-setopt extended_history
-setopt hist_expire_dups_first
-setopt hist_ignore_all_dups
-setopt hist_ignore_dups
-setopt hist_ignore_space
-setopt hist_reduce_blanks
-setopt hist_save_no_dups
-setopt hist_verify
-setopt pushd_ignore_dups
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
 
-# History Substring Search
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+#ZSH_THEME="robbyrussell"
 
-# Share history across all terminals.
-setopt share_history
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
-# Keep a ton of history.
-HISTSIZE=100000
-SAVEHIST=100000
-HISTFILE=~/.cache/zsh/history
-export HISTORY_IGNORE="(ls|l|ll|lt|[bf]g|exit|reset|clear|cd|cd ..|cd ../|pwd|date|* --help)"
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(   command-not-found
+            emacs
+            git
+            history
+            zsh-interactive-cd
+        )
+
+source $ZSH/oh-my-zsh.sh
 
 
-########
-# Misc #
-########
+# Load Aliases
 
-# Use SSH completion for Mosh.
-compdef mosh=ssh
-
-# Menu completion
-zstyle ':completion:*' menu select
-
-# Prevent Pure from auto-pulling git repos.
-PURE_GIT_PULL=0
-
-# Activate dircolors
-test -r "~/.dir_colors" && eval $(dircolors ~/.dir_colors)
-
-
-######
-# Vi #
-######
-bindkey -v
-export KEYTIMEOUT=1
-# Use vim keys in tab complete menu
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -v '^?' backward-delete-char
-
-bindkey -M viins 'kj' vi-cmd-mode
-bindkey -M vicmd "?" history-incremental-search-backward
-bindkey -M vicmd "/" history-incremental-search-forward
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
-
-# Change cursor shape for different vi modes.
-function zle-keymap-select {
-  if [[ ${KEYMAP} == vicmd ]] ||
-     [[ $1 = 'block' ]]; then
-    echo -ne '\e[1 q'
-  elif [[ ${KEYMAP} == main ]] ||
-       [[ ${KEYMAP} == viins ]] ||
-       [[ ${KEYMAP} = '' ]] ||
-       [[ $1 = 'beam' ]]; then
-    echo -ne '\e[5 q'
-  fi
-}
-zle -N zle-keymap-select
-zle-line-init() {
-    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-    echo -ne "\e[5 q"
-}
-zle -N zle-line-init
-echo -ne '\e[5 q' # Use beam shape cursor on startup.
-preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
-
+[ -f ~/.config/shell/aliasrc ] && . $HOME/.config/shell/aliasrc
 
 # Use lf to switch directories and bind it to ctrl-o
 lfcd () {
@@ -120,16 +112,6 @@ lfcd () {
     fi
 }
 bindkey -s '^o' 'lfcd\n'
-
-bindkey -s '^a' 'bc -lq\n'
-
-bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
-
-bindkey '^[[P' delete-char
-
-# Edit line in vim with ctrl-e:
-autoload edit-command-line; zle -N edit-command-line
-bindkey '^e' edit-command-line
 
 #######
 # FZF #
@@ -157,29 +139,46 @@ rga-fzf() {
     xdg-open "$file"
 }
 
+# Find a file and cd into it's directory
+bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
+# User configuration
 
-########
-# Pass #
-########
+# export MANPATH="/usr/local/man:$MANPATH"
 
-# Setup alternative pass.
-wpass() {
-    PASSWORD_STORE_DIR="$ALTPASSDIR" pass "$@"
-}
-compdef -e 'PASSWORD_STORE_DIR=$ALTPASSDIR _pass' wpass
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
 
-# Access pass
-access() {
-    PASSWORD_STORE_DIR="$ACCESSPASSDIR" pass "$@"
-}
-compdef -e 'PASSWORD_STORE_DIR=$ACCESSPASSDIR _pass' access
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
 
-# Finance pass
-fin() {
-    PASSWORD_STORE_DIR="$FINPASSDIR" pass "$@"
-}
-compdef -e 'PASSWORD_STORE_DIR=$FINPASSDIR _pass' fin
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
 
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+### RANDOM COLOR SCRIPT ###
+# Get this script from my GitLab: gitlab.com/dwt1/shell-color-scripts
+# Or install it from the Arch User Repository: shell-color-scripts
+colorscript random
+
+### SOURCING BROOT ###
+source $HOME/.config/broot/launcher/bash/br
+
+### BASH INSULTER ###
+if [ -f /etc/bash.command-not-found ]; then
+    . /etc/bash.command-not-found
+fi
 
 #########
 # pyenv #
@@ -210,5 +209,5 @@ test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shel
 # load private things if there
 [ -f "~/.zsh_private" ] && source ~/.zsh_private
 
-# Load syntax highlighting; should be last.
-source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null
+### SETTING THE STARSHIP PROMPT ###
+eval "$(starship init zsh)"
