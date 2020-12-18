@@ -173,7 +173,7 @@ bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
 colorscript random
 
 ### SOURCING BROOT ###
-source $HOME/.config/broot/launcher/bash/br
+#source $HOME/.config/broot/launcher/bash/br
 
 ### BASH INSULTER ###
 if [ -f /etc/bash.command-not-found ]; then
