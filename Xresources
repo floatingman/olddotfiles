@@ -4,9 +4,9 @@ Xft.dpi:        $DPI
 Xft.rgba:       rgb
 Xft.antialias:  1
 Xft.hinting:    1
-Xft.lcdfilter: lcddefault
+Xft.lcdfilter: lcdfilter
 Xft.hintstyle:  hintfull
-Xft.autohint:   0
+Xft.autohint:   1
 
 
 XTerm.termName: xterm-256color
