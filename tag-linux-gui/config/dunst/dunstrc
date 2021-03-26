@@ -1,5 +1,5 @@
 [global]
-    font = BreezeSans 18
+    font = Fira Code 14
 
     # allow a small subset of html markup:
     # <b>bold</b>
@@ -95,26 +95,27 @@
     #
     # If this option is set to mouse or keyboard, the monitor option will be
     # ignored.
-    follow = keyboard
+    follow = mouse
 
     # should a notification popped up from history be sticky or
     # timeout as if it would normally do.
     sticky_history = yes
+    history_length = 20
 
     # The height of a single line. If the height is smaller than the font height,
     # it will get raised to the font height.
     # This adds empty space above and under the text.
-    line_height = 8
+    line_height = 0
 
     # Draw a line of 'separatpr_height' pixel height between two notifications.
     # Set to 0 to disable
-    separator_height = 0
+    separator_height = 1
 
     # padding between text and separator
-    padding = 20
+    padding = 8
 
     # horizontal padding
-    horizontal_padding = 20
+    horizontal_padding = 8
 
     # Define a color for the separator.
     # possible values are:
@@ -134,8 +135,8 @@
     browser=/usr/bin/qutebrowser
 
 [frame]
-    width = O
-    color = "#FFFFFF"
+    width = 4
+    color = "#FF00DC"
 
 [shortcuts]
     # shortcuts are specified as [modifier+][modifier+]...key
@@ -144,16 +145,16 @@
     # xev might be helpful to find names for keys
 
     # close notification
-    close = twosuperior
+    close = ctrl+shift+space
 
     # close all notifications
-    close_all = mod4+shift+m
+    close_all = ctrl+space
 
     # redisplay last message(s)
-    history = mod4+n
+    history = ctrl+grave
 
     # context menu
-    context = mod4+shift+i
+    context = ctrl+shift+period
 
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the '#' and following  would be interpreted as a comment.
