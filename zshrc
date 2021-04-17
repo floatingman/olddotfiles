@@ -252,5 +252,8 @@ fi
 # load private things if there
 [ -f "$HOME/.zsh_private" ] && source $HOME/.zsh_private
 
+# load mac things if there
+[ -f "$HOME/.zsh_mac" ] && source $HOME/.zsh_mac
+
 ### SETTING THE STARSHIP PROMPT ###
 eval "$(starship init zsh)"
