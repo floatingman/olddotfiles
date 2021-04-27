@@ -1,9 +1,4 @@
 ###########
-# Aliases #
-###########
-[ -f ~/.config/shell/aliasrc ] && . $HOME/.config/shell/aliasrc
-
-###########
 # History #
 ###########
 HISTSIZE=100000
@@ -20,6 +15,7 @@ setopt hist_verify
 setopt inc_append_history
 # share command history data
 setopt share_history
+
 
 ##################
 # AUTOCOMPLETION #
@@ -112,6 +108,12 @@ fi
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc"
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc"
+
+##################
+# HELP           #
+##################
+autoload -Uz run-help
+autoload -Uz run-help-git run-help-ip run-help-openssl run-help-p4 run-help-sudo run-help-svk run-help-svn
 
 # Use lf to switch directories and bind it to ctrl-o
 lfcd () {
@@ -249,8 +251,13 @@ if _have pdm; then
     export PYTHONPATH='/home/dnewman/.local/pipx/venvs/pdm/lib/python3.9/site-packages/pdm/pep582':$PYTHONPATH
 fi
 
+# Docker
+if [[ -f "$HOME/.dockerfunc" ]]; then
+    source "${HOME}/.dockerfunc"
+fi
+
 # load private things if there
-[ -f "$HOME/.zsh_private" ] && source $HOME/.zsh_private
+[ -f "$HOME/.zsh_private" ] && source "$HOME/.zsh_private"
 
 # load mac things if there
 [ -f "$HOME/.zsh_mac" ] && source $HOME/.zsh_mac
