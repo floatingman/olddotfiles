@@ -242,7 +242,6 @@ cask "syncthing"
 cask "synergy"
 cask "vagrant"
 cask "vlc"
-cask "vscodium"
 cask "witch"
 cask "xquartz"
 mas "Amphetamine", id: 937984704
