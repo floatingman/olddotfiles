@@ -1,1 +1,16 @@
+export HOMEBREW_AUTO_UPDATE_SECS=86400
+export HOMEBREW_NO_ANALYTICS=true
+export HOMEBREW_INSTALL_BADGE="(ʘ‿ʘ)"
+export HOMEBREW_BUNDLE_FILE_PATH=~/.homebrew/Brewfile
+export BASH_SILENCE_DEPRECATION_WARNING=1
+export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
+
+# Setup Android
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools/adb:$ANDROID_HOME/build-tools:$JAVA_HOME/bin
+# This one is used for the `start.android.emulator` script
+export emulator="$HOME/Library/Android/sdk/emulator"
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
 export PATH="/usr/local/sbin:$PATH"
