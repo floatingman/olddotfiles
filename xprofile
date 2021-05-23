@@ -46,7 +46,8 @@ udiskie &
 blueman-applet &
 
 # Start compost manager
-xcompmgr &
+#xcompmgr &
+picom &
 
 # Don't sleep when playing videos
 ~/bin/lightson+ -d 2 &

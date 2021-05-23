@@ -42,12 +42,10 @@ if $_ismac; then
 else
    alias em="/usr/bin/emacs -nw"
 fi
+alias e=$EDITOR
+alias se="sudo $EDITOR"
 
-alias emacs="emacsclient -c -a 'emacs'"
-alias doomsync="~/.emacs.d/bin/doom sync"
-alias doomdoctor="~/.emacs.d/bin/doom doctor"
-alias doomupgrade="~/.emacs.d/bin/doom upgrade"
-alias doompurge="~/.emacs.d/bin/doom purge"
+#alias emacs="emacsclient -c -a 'emacs'"
 
 # pacman and yay
 if _have pacman; then
@@ -168,6 +166,7 @@ alias gwR='git reset --hard'
 alias gwd='git diff --no-ext-diff'
 alias gwr='git reset --soft'
 alias gws='git status --short'
+alias gitignoreall="git status --porcelain | grep '^??' | cut -c4- >> .gitignore"
 
 if _have tig; then
    alias t='tig status'
