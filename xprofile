@@ -61,11 +61,17 @@ bitwarden-desktop &
 # Start syncthing for syncing your things
 syncthing --no-browser &
 
+# Start Dropbox
+dropbox &
+
 # Start mpd
 mpd &
 
 # Start xfce4-power-manager
 xfce4-power-manager &
+
+# Start synergy
+synergy &
 
 # Start emacs
 /usr/bin/emacs --daemon
