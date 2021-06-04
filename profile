@@ -210,6 +210,17 @@ export LC_ALL='en_US.UTF-8'
 # Set the default environment directory for virtualenvwrapper.
 export WORKON_HOME="$HOME/.virtualenvs"
 
+#########
+# pyenv #
+#########
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init --path)"
+fi
+
+
 ### ARCHIVE EXTRACTION
 # usage: ex <file>
 ex()
