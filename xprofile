@@ -72,6 +72,3 @@ xfce4-power-manager &
 
 # Start synergy
 synergy &
-
-# Start emacs
-/usr/bin/emacs --daemon
