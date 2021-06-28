@@ -9,7 +9,7 @@ local settings = {
 'mp3', 'wav', 'ogv', 'flac', 'm4a', 'wma', 'mov' },
   --absolute path to media directory where unseen-playlistmaker should look for files. Do not use aliases like $HOME.
   --notice trailing slashes, escape backslashes on windows like c:\\dir\\
-  unseen_directory = "/mnt/superbig/Downloads/docker/nzb/complete/unknown/",
+  unseen_directory = "/home/dnewman/Videos/maddie",
   --full path and name of file that contains seen files
   seenlist_file = "/home/dnewman/.config/mpv/seenlist",
 }

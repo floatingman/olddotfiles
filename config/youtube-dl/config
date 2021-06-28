@@ -1,4 +1,4 @@
 --restrict-filenames
 --console-title
---netrc
 --ignore-errors
+--cookies $HOME/Dropbox/backup/youtube-dl/cookies.txt
