@@ -215,6 +215,7 @@ if _have youtube-dl; then
     alias yta-vorbis="youtube-dl --extract-audio --audio-format vorbis "
     alias yta-wav="youtube-dl --extract-audio --audio-format wav "
     alias ytv-best="youtube-dl -f bestvideo+bestaudio "
+    alias ytwl='youtube-dl --no-mtime --write-sub --sub-lang en-US --mark-watched --embed-subs -o "/mnt/SuperBig/Media/Video/YouTube/%(uploader)s-%(title)s.%(ext)s" "https://www.youtube.com/playlist?list=WL"'
 fi
 
 # MPV
