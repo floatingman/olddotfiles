@@ -130,11 +130,10 @@ bindsym $mod+Shift+z		gaps outer current minus 5
 
 bindsym $mod+Shift+n		floating toggle; sticky toggle; exec --no-startup-id hover right
 
-bindsym $mod+Shift+p [instance="keepassxc"] scratchpad show, move position center
-for_window [instance="keepassxc"] floating enable, resize set 800 800, move scratchpad, border pixel 5
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
+
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
@@ -209,11 +208,23 @@ for_window [class="Screenkey"]              floating enable
 for_window [class="Lxappearance"]           floating enable
 for_window [class="Floating Xterm"]         floating enable
 for_window [title="Terminator Preferences"] floating enable
+# Float pinit windows
+for_window [title="^pinit$"] floating enable
+
+# Float pinentry windows
+for_window [title="^pinentry$"] floating enable
+
+# Float asoundconf-gtk windows
+for_window [title="^Default Sound Card$"] floating enable
+
+# Float pavucontrol windows
+for_window [title="^Volume Control$"] floating enable
 
 # #---Application WS assignment---# #
 assign [class="chatty-Chatty"] $ws7
 assign [class="(?i)discord"] $ws7
 assign [class="(?i)mpv"] $ws1
+for_window [class="(?i)mpv"] focus
 
 # #---Function Buttons---# #
 bindsym $mod+F2		restart

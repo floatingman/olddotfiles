@@ -2,94 +2,87 @@
 # Basic #
 #########
 # Reload sxhkd
-super + shift + r
+super + alt + r
       pkill -USR1 -x sxhkd && dunstify -r 500 "SXHKD" "Config Reloaded"
 
 super + Return
       $TERMINAL
-
-super + d
-      dmenu_run
 
 super + r
       $TERMINAL -e lf
 
 super + m
 	$TERMINAL -e ncmpcpp
+
 super + n
 	$TERMINAL -e newsboat
+
 super + i
 	$TERMINAL -e htop
+
 super + y
 	$TERMINAL -e calcurse
+
 super + shift + a
 	$TERMINAL -e pulsemixer
-super + shift + c
-	camtoggle
-super + shift + e
-	tutorialvids
+
 super + w
 	$BROWSER
+
 super + shift + w
 	$TERMINAL -e sudo -A nmtui
 
 # Et cetera...
 super + grave
 	dmenuunicode
+
 super + Scroll_Lock
 	killall screenkey || screenkey
+
 super + Insert
 	showclip
+
 super + shift + x
 	prompt "Shutdown computer?" "sudo -A shutdown -h now"
+
 super + shift + BackSpace
 	prompt "Reboot computer?" "sudo -A shutdown -r now"
+
 super + x
 	mpc pause; pauseallmpv; i3lock -e -f -c 1d2021; xset dpms force off
+
 XF86Launch1
 	xset dpms force off
-
-# Recording
-# Take screenshot
-Print
-	maim pic-full-$(date '+%y%m%d-%H%M-%S').png
-# Pick screenshot type
-shift + Print
-	maimpick
-# Record audio or video
-super + Print
-	dmenurecord
-# kill active recording
-super + Delete
-	dmenurecord kill
 
 # Pause audio
 super + p
 	lmc {toggle}
+
 # Changes to next/previous tracks
 super + {comma,period}
 	lmc {prev,next}
+
 # Restart track
 super + shift + less
 	lmc replay
+
 # Increase volume
 super + {equal,plus}
 	lmc up {5,15}
+
 # Decrease volume
 super {_,shift +} + minus
 	lmc down {5,15}
+
 # Seek foward in song
 super + {_,shift +} bracketright
 	lmc forward {10,120}
+
 # Seek backward in song
 super + {_,shift +} bracketleft
 	lmc back {10,120}
 
 # Function keys
-# Show readme
-super + F1
-	groff -mom $HOME/.local/share/larbs/readme.mom -Tpdf | zathura -
-# F2 is restart in i3 right now.
 # Change display
 XF86Display
 	displayselect
@@ -126,6 +119,10 @@ alt + Tab
 # # Launch password manager
 # super + p
 #     menu=$(echo -e "$HOME/.password-store\n$ALTPASSDIR" | rofi -dmenu); rofi-pass --root "${menu}"
+
+# Bookmark via pinboard
+super + d
+    alacritty --title pinit -e ~/bin/pinit
 
 # #########
 # # Media #
@@ -169,22 +166,19 @@ super + p
 # Mute individual pulse streams
 super + shift + m
       pamute
+
 # ################
 # # Applications #
 # ################
 
 # # Launch web browser
-# # super + w
-# #     firefox -P default
+# super + w
+#     firefox -P default
 
-# # # Launch web browser with work profile
-# # super + shift + w
-# #     firefox -P work
+# # Launch web browser with work profile
+# super + shift + w
+#     firefox -P work
 
-
-# # Bookmark via pinboard
-# super + d
-#     termite --title pinit -e ~/bin/pinit
 
 # # Launch rofi surfraw
 # super + shift + f
@@ -197,10 +191,6 @@ super + shift + m
 # # Launch qalculator
 # super + c
 # 	qalculate-gtk
-
-# # Launch rofi zeal
-# super + z
-#     rofi-zeal
 
 # ########
 # # Misc #
@@ -225,13 +215,13 @@ XF86Tools
 # XF86MonBrightness{Up,Down}
 #     light -{A,U} 10
 
-# # Take a screenshot
-# Print
-# 	flameshot full -p ~/Photos/screenshots
-# super + Print
-# 	flameshot gui
-# super + shift + s
-#     teiler
+# Take a screenshot
+Print
+ 	flameshot full -p ~/Photos/screenshots
+super + Print
+ 	flameshot gui
+super + shift + s
+     teiler
 
 # # Generate a QR code from the clipboard
 # super + q
