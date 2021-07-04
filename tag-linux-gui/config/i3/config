@@ -220,6 +220,12 @@ for_window [title="^Default Sound Card$"] floating enable
 # Float pavucontrol windows
 for_window [title="^Volume Control$"] floating enable
 
+# float qcode windows
+for_window [title="^qcode$"] floating enable
+
+# float qalculate windows
+for_window [title="^qalculate-gtk$"] floating enable
+
 # #---Application WS assignment---# #
 assign [class="chatty-Chatty"] $ws7
 assign [class="(?i)discord"] $ws7
