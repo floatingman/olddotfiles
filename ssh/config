@@ -9,13 +9,6 @@ Host shockwave
   IdentitiesOnly yes
   Hostname thenewmans.no-ip.org
   Port 2222
-  LocalForward 3389 192.168.0.3:3389
-  LocalForward 8080 192.168.0.2:8080
-  LocalForward 8989 192.168.0.2:8989
-  LocalForward 8686 192.168.0.2:8686
-  LocalForward 7878 192.168.0.2:7878
-  LocalForward 5299 192.168.0.2:5299
-  LocalForward 8888 192.168.0.2:80
   User dnewman
 
 Host thatsmyproblem.com

@@ -109,7 +109,7 @@ super + F12
 	$TERMINAL -e sudo -A nmtui
 
 # Launch application launcher
-alt + space
+super + space
     rofi -show run
 
 # Launch window switcher
@@ -141,19 +141,19 @@ XF86Audio{Raise,Lower}Volume
     pulseaudio-ctl {up,down} 10
 
 # # Change volume
-# super + {k,j}
-#     pulseaudio-ctl {up,down} 2
+super + {k,j}
+    pulseaudio-ctl {up,down} 2
 
-# super + shift + {k,j}
-# 	pulseaudio-ctl {up,down} 10
+super + shift + {k,j}
+      pulseaudio-ctl {up,down} 10
 
 # # Toggle mpd
 # super + 0
 #     mpc -q toggle
 
 # # Navigate mpd playlist
-# super + {comma, period}
-#     mpc -q {prev, next}
+#super + {comma, period}
+#    mpc -q {prev, next}
 
 # # Display current mpd track
 # super + slash
@@ -189,8 +189,8 @@ super + shift + m
 # 	surfraw duckduckgo -j $(xclip -o -selection clipboard)
 
 # # Launch qalculator
-# super + c
-# 	qalculate-gtk
+super + c
+ 	qalculate-gtk
 
 # ########
 # # Misc #
@@ -211,9 +211,9 @@ XF86Tools
 # XF86Launch1
 #     toggle-touchpad.sh
 
-# # Change screen brightness
-# XF86MonBrightness{Up,Down}
-#     light -{A,U} 10
+# Change screen brightness
+XF86MonBrightness{Up,Down}
+     light -{A,U} 5
 
 # Take a screenshot
 Print
@@ -224,18 +224,18 @@ super + shift + s
      teiler
 
 # # Generate a QR code from the clipboard
-# super + q
-# 	qcode
+super + q
+    qcode
 
-# # Suspend (F12)
-# super + XF86Explorer
-# 	systemctl suspend
+# Suspend (F12)
+super + XF86Favorites
+	systemctl suspend
 
 # #########
 # # Mouse #
 # #########
-# button9
-# 	xte 'key Page_Up'
+button9
+ 	xte 'key Page_Up'
 
-# button8
-# 	xte 'key Page_Down'
+button8
+ 	xte 'key Page_Down'

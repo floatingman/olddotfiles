@@ -11,7 +11,7 @@ xmodmap ~/.Xmodmap
 sxhkd &
 
 # Change lockscreen wallpaper automatically
-nohub bash ~/bin/lockscreenart.sh 2> nohub.err < /dev/null &
+nohup bash ~/bin/lockscreenart.sh 2> nohup.err < /dev/null &
 
 # Launch the screen locker
 xautolock -time 09 -locker "betterlockscreen -l" -detectsleep -secure -corners 0-00 -cornerdelay 3 -cornerredelay 20 &
@@ -71,4 +71,4 @@ mpd &
 # xfce4-power-manager &
 
 # Start synergy
-synergy &
+#synergy &
