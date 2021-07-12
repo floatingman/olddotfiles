@@ -5,9 +5,9 @@ Xft.dpi:        $DPI
 Xft.rgba:       rgb
 Xft.antialias:  1
 Xft.hinting:    1
-Xft.lcdfilter: lcdfilter
-Xft.hintstyle:  hintfull
-Xft.autohint:   1
+Xft.lcdfilter: lcddefault
+Xft.hintstyle:  hintslight
+Xft.autohint:   0
 
 ! Every shell is a login shell by default (for inclusion of all necessary environment variables)
 XTerm*loginshell: true
@@ -22,27 +22,6 @@ XTerm*highlightColorMode: true
 XTerm*jumpScroll: true
 XTerm*multiScroll: true
 XTerm*scrollBar: false
-
-! -- Fonts -- !
-!URxvt.font: xft:Consolas:style=Regular:pixelsize=FONT_SIZE:antialias=true:hinting=full,\
-            !xft:Noto Color Emoji,\
-            !xft:Symbola:pixelsize=FONT_SIZE:antialias=true:hinting=full
-!URxvt.boldFont: xft:Consolas:style=Bold:pixelsize=FONT_SIZE:antialias=true:hinting=full,\
-                !xft:Noto Color Emoji,\
-                !xft:Symbola:pixelsize=FONT_SIZE:antialias=true:hinting=full
-!URxvt.italicFont: xft:Consolas:style=Italic:pixelsize=FONT_SIZE:antialias=true:hinting=full,\
-                !xft:Noto Color Emoji,\
-                !xft:Symbola:pixelsize=FONT_SIZE:antialias=true:hinting=full
-!URxvt.boldItalicFont: xft:Consolas:style=Bold Italic:pixelsize=FONT_SIZE:antialias=true:hinting=full,\
-                !xft:Noto Color Emoji,\
-                !xft:Symbola:pixelsize=FONT_SIZE:antialias=true:hinting=full
-!URxvt.font: xft:Noto Sans:size=FONT_SIZE
-URxvt.font: xft:Fira Code:style=Retina:pixelsize=FONT_SIZE:antialias=true:hinting=true
-
-!Font Spacing
-!URxvt.linespace: 1
-!URxvt.linespace: 1
-URxvt.letterSpace: 0
 
 #include ".Xresources.d/urxvt.xresources"
 #include ".Xresources.d/themes/gruvbox-dark.xresources"
