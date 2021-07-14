@@ -3,67 +3,67 @@
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty it self.
-env:
-  # TERM env customization.
-  #
-  # If this property is not set, alacritty will set it to xterm-256color.
-  #
-  # Note that some xterm terminfo databases don't declare support for italics.
-  # You can verify this by checking for the presence of `smso` and `sitm` in
-  # `infocmp xterm-256color`.
-  TERM: xterm-256color
+# env:
+# TERM env customization.
+#
+# If this property is not set, alacritty will set it to xterm-256color.
+#
+# Note that some xterm terminfo databases don't declare support for italics.
+# You can verify this by checking for the presence of `smso` and `sitm` in
+# `infocmp xterm-256color`.
+# TERM: xterm-256color
 
-window:
-  # Window dimensions (changes require restart)
-  #
-  # Specified in number of columns/lines, not pixels. If both are zero this
-  # setting is ignored.
-  #dimensions:
-    #columns: 100
-    #lines: 75
-    #columns: 0
-    #lines: 0
+# window:
+# Window dimensions (changes require restart)
+#
+# Specified in number of columns/lines, not pixels. If both are zero this
+# setting is ignored.
+#dimensions:
+#columns: 100
+#lines: 75
+#columns: 0
+#lines: 0
 
-  # Window padding (changes require restart)
-  #
-  # Blank space added around the window in pixels. This padding is not scaled by
-  # DPI and the specified value is always added at both opposing sides.
-  padding:
-    x: 6
-    y: 6
+# Window padding (changes require restart)
+#
+# Blank space added around the window in pixels. This padding is not scaled by
+# DPI and the specified value is always added at both opposing sides.
+# padding:
+# x: 6
+# y: 6
 
-  # Spread additional padding evenly around the terminal content.
-  #dynamic_padding: false
+# Spread additional padding evenly around the terminal content.
+#dynamic_padding: false
 
-  # Window decorations
-  #
-  # Available values:
-  # - full: borders and title bar
-  # - none: neither borders nor title bar
-  # - transparent: title bar, transparent background and title bar buttons
-  # - buttonless: title bar, transparent background, but no title bar buttons
-  #decorations: full
+# Window decorations
+#
+# Available values:
+# - full: borders and title bar
+# - none: neither borders nor title bar
+# - transparent: title bar, transparent background and title bar buttons
+# - buttonless: title bar, transparent background, but no title bar buttons
+#decorations: full
 
-  # Startup Mode (changes require restart)
-  #
-  # Values for `startup_mode`:
-  #   - Windowed
-  #   - Maximized
-  #   - Fullscreen
-  #
-  # Values for `startup_mode` (macOS only):
-  #   - SimpleFullscreen
-  #startup_mode: Maximized
+# Startup Mode (changes require restart)
+#
+# Values for `startup_mode`:
+#   - Windowed
+#   - Maximized
+#   - Fullscreen
+#
+# Values for `startup_mode` (macOS only):
+#   - SimpleFullscreen
+#startup_mode: Maximized
 
-  # Window title
-  title: Alacritty
+# Window title
+# title: Alacritty
 
-  # Window class (Linux/BSD only):
-  class:
-    # Application instance name
-    instance: Alacritty
-    # General application class
-    general: Alacritty
+# Window class (Linux/BSD only):
+# class:
+# Application instance name
+# instance: Alacritty
+# General application class
+# general: Alacritty
 
 scrolling:
   # maximum number of lines in the scrollback buffer. Specifying '0' will
@@ -74,7 +74,6 @@ scrolling:
   # scrollback is enabled (history > 0).
   #multiplier: 3
 
-
 # Display tabs using this many cells (changes require restart)
 #
 # Some applications, like Emacs, rely on knowing about the width of a tab.
@@ -83,92 +82,89 @@ scrolling:
 
 # Font configuration (changes require restart)
 font:
-  # normal:
-  #   family: Iosevka
+  normal:
+    family: Iosevka
   #   style: Regular
-  # bold:
-  #   family: Iosevka
+  bold:
+    family: Iosevka
   #   style: Bold
-  # italic:
-  #   family: Iosevka
+  italic:
+    family: Iosevka
   #   style: Italic
   # bold_italic:
   #   family: Iosevka
   #   style: Bold Italic
-  family: SauceCodePro Nerd Font
+  #family: SauceCodePro Nerd Font
 
   # The `style` can be specified to pick a specific face.
-  style: Regular
+  #style: Regular
 
   # Bold font face
-  bold:
-    # Font family
-    #
-    # If the bold family is not specified, it will fall back to the
-    # value specified for the normal font.
-    # family: SauceCodePro Nerd Font
-    # family: CodeNewRoman Nerd Font
-    # family: RobotoMono Nerd Font
-    # family: Hack
-    # family: JetBrains Mono
-    # family: UbuntuMono Nerd Font
-    # family: Monofur Nerd Font
-    # family: TerminessTTF Nerd Font
-    family: SauceCodePro Nerd Font
+  #bold:
+  # Font family
+  #
+  # If the bold family is not specified, it will fall back to the
+  # value specified for the normal font.
+  # family: SauceCodePro Nerd Font
+  # family: CodeNewRoman Nerd Font
+  # family: RobotoMono Nerd Font
+  # family: Hack
+  # family: JetBrains Mono
+  # family: UbuntuMono Nerd Font
+  # family: Monofur Nerd Font
+  # family: TerminessTTF Nerd Font
+  # family: SauceCodePro Nerd Font
 
-    # The `style` can be specified to pick a specific face.
-    style: Bold
+  # The `style` can be specified to pick a specific face.
+  # style: Bold
 
   # Italic font face
-  italic:
-    # Font family
-    #
-    # If the italic family is not specified, it will fall back to the
-    # value specified for the normal font.
-    # family: SauceCodePro Nerd Font Mono
-    # family: CodeNewRoman Nerd Font
-    # family: RobotoMono Nerd Font
-    # family: Hack
-    # family: JetBrains Mono
-    # family: UbuntuMono Nerd Font
-    # family: Monofuritalic Nerd Font Mono
-    # family: TerminessTTF Nerd Font
-    family: SauceCodePro Nerd Font
+  # italic:
+  # Font family
+  #
+  # If the italic family is not specified, it will fall back to the
+  # value specified for the normal font.
+  # family: SauceCodePro Nerd Font Mono
+  # family: CodeNewRoman Nerd Font
+  # family: RobotoMono Nerd Font
+  # family: Hack
+  # family: JetBrains Mono
+  # family: UbuntuMono Nerd Font
+  # family: Monofuritalic Nerd Font Mono
+  # family: TerminessTTF Nerd Font
+  # family: SauceCodePro Nerd Font
 
-    # The `style` can be specified to pick a specific face.
-    style: Italic
+  # The `style` can be specified to pick a specific face.
+  # style: Italic
 
   # Bold italic font face
-  bold_italic:
-    # Font family
-    #
-    # If the bold italic family is not specified, it will fall back to the
-    # value specified for the normal font.
-    # family: SauceCodePro Nerd Font Mono
-    # family: CodeNewRoman Nerd Font
-    # family: RobotoMono Nerd Font
-    # family: Hack
-    # family: JetBrains Mono
-    # family: UbuntuMono Nerd Font
-    # family: Monofuritalic Nerd Font Mono
-    # family: TerminessTTF Nerd Font
-    family: SauceCodePro Nerd Font
+  # bold_italic:
+  # Font family
+  #
+  # If the bold italic family is not specified, it will fall back to the
+  # value specified for the normal font.
+  # family: SauceCodePro Nerd Font Mono
+  # family: CodeNewRoman Nerd Font
+  # family: RobotoMono Nerd Font
+  # family: Hack
+  # family: JetBrains Mono
+  # family: UbuntuMono Nerd Font
+  # family: Monofuritalic Nerd Font Mono
+  # family: TerminessTTF Nerd Font
+  # family: SauceCodePro Nerd Font
 
-    # The `style` can be specified to pick a specific face.
-    style: Bold Italic
-
+  # The `style` can be specified to pick a specific face.
+  # style: Bold Italic
 
   # Point size of the font
-  size: 11.0
-
-
+  size: 14.0
 
   # Offset is the extra space around each character. offset.y can be
   # thought of as modifying the linespacing, and offset.x as modifying the
   # letter spacing.
-  offset:
-    x: 0
-    y: 1
+  #offset:
+  #  x: 0
+  #  y: 1
 
   # Glyph offset determines the locations of the glyphs within their cells
   # with the default being at the bottom. Increase the x offset to move
@@ -179,58 +175,60 @@ font:
   #  y: 0
 
 # When true, bold text is drawn using the bright variant of colors.
-draw_bold_text_with_bright_colors: true
+# draw_bold_text_with_bright_colors: true
 
 # Use custom cursor colors. If true, display the cursor in the
 # cursor.foreground and cursor.background colors, otherwise invert the
 # colors of the cursor.
-custom_cursor_colors: true
+# custom_cursor_colors: true
 
 # color_start
 # gruvbox_dark.yaml
 # Colors (Gruvbox dark)
 colors:
-  # COLORSCHEME: tomorrow_night_bright.yaml
+  # COLORSCHEME: gruvbox_dark.yaml
   # Default colors
   primary:
     # hard contrast: background = '0x1d2021'
-    background: '0x000000'
-    foreground: '0xeaeaea'
+    background: "0x282828"
+    # soft contrast: background = '0x32302f'
+    foreground: "0xebdbb2"
 
   # Normal colors
   normal:
-    black: '0x000000'
-    red: '0xd54e53'
-    green: '0xb9ca4a'
-    yellow: '0xe6c547'
-    blue: '0x7aa6da'
-    magenta: '0xc397d8'
-    cyan: '0x70c0ba'
-    white: '0x424242'
+    black: "0x282828"
+    red: "0xcc241d"
+    green: "0x98971a"
+    yellow: "0xd79921"
+    blue: "0x458588"
+    magenta: "0xb16286"
+    cyan: "0x689d6a"
+    white: "0xa89984"
 
   # Bright colors
   bright:
-    black: '0x666666'
-    red: '0xff3334'
-    green: '0x9ec400'
-    yellow: '0xe7c547'
-    blue: '0x7aa6da'
-    magenta: '0xb77ee0'
-    cyan: '0x54ced6'
-    white: '0x2a2a2a'
+    black: "0x928374"
+    red: "0xfb4934"
+    green: "0xb8bb26"
+    yellow: "0xfabd2f"
+    blue: "0x83a598"
+    magenta: "0xd3869b"
+    cyan: "0x8ec07c"
+    white: "0xebdbb2"
   cursor:
-    cursor: '0x87afd7'
+    text: "0xaaaaaa"
+    cursor: "0xffffff"
 
   # Normal colors
   dim:
-    black: '0x232323'
-    red: '0x74423f'
-    green: '0x5e6547'
-    yellow: '0x8b7653'
-    blue: '0x556b79'
-    magenta: '0x6e4962'
-    cyan: '0x5c8482'
-    white: '0x828282'
+    black: "0x232323"
+    red: "0x74423f"
+    green: "0x5e6547"
+    yellow: "0x8b7653"
+    blue: "0x556b79"
+    magenta: "0x6e4962"
+    cyan: "0x5c8482"
+    white: "0x828282"
 background_opacity: 0.90
 
 # Key bindings
@@ -327,77 +325,77 @@ background_opacity: 0.90
 #   - AppKeypad
 #
 key_bindings:
-  - {key: V, mods: Control|Shift, action: Paste}
-  - {key: C, mods: Control|Shift, action: Copy}
-  - {key: L, mods: Control, action: ClearLogNotice}
-  - {key: L, mods: Control, chars: "\f"}
-#  - { key: Q,        mods: Command,       action: Quit                         }
-#  - { key: N,        mods: Command,       action: SpawnNewInstance             }
-#  - { key: Return,   mods: Command,       action: ToggleFullscreen             }
+  - { key: V, mods: Control|Shift, action: Paste }
+  - { key: C, mods: Control|Shift, action: Copy }
+  - { key: L, mods: Control, action: ClearLogNotice }
+  - { key: L, mods: Control, chars: "\f" }
+  #  - { key: Q,        mods: Command,       action: Quit                         }
+  #  - { key: N,        mods: Command,       action: SpawnNewInstance             }
+  #  - { key: Return,   mods: Command,       action: ToggleFullscreen             }
+  #
+  - { key: Home, mods: Shift, action: ScrollToTop, mode: ~Alt }
+  #  - { key: Home,                          chars: "\x1b[H",   mode: ~AppCursor  }
+  - { key: End, mods: Shift, action: ScrollToBottom, mode: ~Alt }
+  #  - { key: End,                           chars: "\x1b[F",   mode: ~AppCursor  }
+  - { key: Key0, mods: Control, action: ResetFontSize }
+  - { key: Equals, mods: Control, action: IncreaseFontSize }
+  - { key: Plus, mods: Control, action: IncreaseFontSize }
+  - { key: Minus, mods: Control, action: DecreaseFontSize }
+  - { key: Minus, mods: Control, action: DecreaseFontSize }
+  - { key: PageUp, mods: Shift, action: ScrollPageUp, mode: ~Alt }
+  #  - { key: PageUp,   mods: Control,       chars: "\x1b[5;5~"                   }
+  #  - { key: PageUp,                        chars: "\x1b[5~"                     }
+  - { key: PageDown, mods: Shift, action: ScrollPageDown, mode: ~Alt }
+  #  - { key: PageDown, mods: Control,       chars: "\x1b[6;5~"                   }
+  #  - { key: PageDown,                      chars: "\x1b[6~"                     }
+  #  - { key: Left,     mods: Shift,         chars: "\x1b[1;2D"                   }
+  #  - { key: Left,     mods: Control,       chars: "\x1b[1;5D"                   }
+  #  - { key: Left,     mods: Alt,           chars: "\x1b[1;3D"                   }
+  #  - { key: Left,                          chars: "\x1b[D",   mode: ~AppCursor  }
+  #  - { key: Left,                          chars: "\x1bOD",   mode: AppCursor   }
+  #  - { key: Right,    mods: Shift,         chars: "\x1b[1;2C"                   }
+  #  - { key: Right,    mods: Control,       chars: "\x1b[1;5C"                   }
+  #  - { key: Right,    mods: Alt,           chars: "\x1b[1;3C"                   }
+  #  - { key: Right,                         chars: "\x1b[C",   mode: ~AppCursor  }
+  #  - { key: Right,                         chars: "\x1bOC",   mode: AppCursor   }
+  #  - { key: Up,       mods: Shift,         chars: "\x1b[1;2A"                   }
+  #  - { key: Up,       mods: Control,       chars: "\x1b[1;5A"                   }
+  #  - { key: Up,       mods: Alt,           chars: "\x1b[1;3A"                   }
+  #  - { key: Up,                            chars: "\x1b[A",   mode: ~AppCursor  }
+  #  - { key: Up,                            chars: "\x1bOA",   mode: AppCursor   }
+  #  - { key: Down,     mods: Shift,         chars: "\x1b[1;2B"                   }
+  #  - { key: Down,     mods: Control,       chars: "\x1b[1;5B"                   }
+  #  - { key: Down,     mods: Alt,           chars: "\x1b[1;3B"                   }
+  #  - { key: Down,                          chars: "\x1b[B",   mode: ~AppCursor  }
+  #  - { key: Down,                          chars: "\x1bOB",   mode: AppCursor   }
+  #  - { key: Tab,      mods: Shift,         chars: "\x1b[Z"                      }
+  #  - { key: F1,                            chars: "\x1bOP"                      }
+  #  - { key: F2,                            chars: "\x1bOQ"                      }
+  #  - { key: F3,                            chars: "\x1bOR"                      }
+  #  - { key: F4,                            chars: "\x1bOS"                      }
+  #  - { key: F5,                            chars: "\x1b[15~"                    }
+  #  - { key: F6,                            chars: "\x1b[17~"                    }
+  #  - { key: F7,                            chars: "\x1b[18~"                    }
+  #  - { key: F8,                            chars: "\x1b[19~"                    }
+  #  - { key: F9,                            chars: "\x1b[20~"                    }
+  #  - { key: F10,                           chars: "\x1b[21~"                    }
+  #  - { key: F11,                           chars: "\x1b[23~"                    }
+  #  - { key: F12,                           chars: "\x1b[24~"                    }
+  #  - { key: Back,                          chars: "\x7f"                        }
+  #  - { key: Back,     mods: Alt,           chars: "\x1b\x7f"                    }
+  - { key: Insert, mods: Shift, action: PasteSelection }
+  #  - { key: Delete,                        chars: "\x1b[3~"                     }
+  - { key: Paste, action: Paste }
+  - { key: Copy, action: Copy }
 #
-  - {key: Home, mods: Shift, action: ScrollToTop, mode: ~Alt}
-#  - { key: Home,                          chars: "\x1b[H",   mode: ~AppCursor  }
-  - {key: End, mods: Shift, action: ScrollToBottom, mode: ~Alt}
-#  - { key: End,                           chars: "\x1b[F",   mode: ~AppCursor  }
-  - {key: Key0, mods: Control, action: ResetFontSize}
-  - {key: Equals, mods: Control, action: IncreaseFontSize}
-  - {key: Plus, mods: Control, action: IncreaseFontSize}
-  - {key: Minus, mods: Control, action: DecreaseFontSize}
-  - {key: Minus, mods: Control, action: DecreaseFontSize}
-  - {key: PageUp, mods: Shift, action: ScrollPageUp, mode: ~Alt}
-#  - { key: PageUp,   mods: Control,       chars: "\x1b[5;5~"                   }
-#  - { key: PageUp,                        chars: "\x1b[5~"                     }
-  - {key: PageDown, mods: Shift, action: ScrollPageDown, mode: ~Alt}
-#  - { key: PageDown, mods: Control,       chars: "\x1b[6;5~"                   }
-#  - { key: PageDown,                      chars: "\x1b[6~"                     }
-#  - { key: Left,     mods: Shift,         chars: "\x1b[1;2D"                   }
-#  - { key: Left,     mods: Control,       chars: "\x1b[1;5D"                   }
-#  - { key: Left,     mods: Alt,           chars: "\x1b[1;3D"                   }
-#  - { key: Left,                          chars: "\x1b[D",   mode: ~AppCursor  }
-#  - { key: Left,                          chars: "\x1bOD",   mode: AppCursor   }
-#  - { key: Right,    mods: Shift,         chars: "\x1b[1;2C"                   }
-#  - { key: Right,    mods: Control,       chars: "\x1b[1;5C"                   }
-#  - { key: Right,    mods: Alt,           chars: "\x1b[1;3C"                   }
-#  - { key: Right,                         chars: "\x1b[C",   mode: ~AppCursor  }
-#  - { key: Right,                         chars: "\x1bOC",   mode: AppCursor   }
-#  - { key: Up,       mods: Shift,         chars: "\x1b[1;2A"                   }
-#  - { key: Up,       mods: Control,       chars: "\x1b[1;5A"                   }
-#  - { key: Up,       mods: Alt,           chars: "\x1b[1;3A"                   }
-#  - { key: Up,                            chars: "\x1b[A",   mode: ~AppCursor  }
-#  - { key: Up,                            chars: "\x1bOA",   mode: AppCursor   }
-#  - { key: Down,     mods: Shift,         chars: "\x1b[1;2B"                   }
-#  - { key: Down,     mods: Control,       chars: "\x1b[1;5B"                   }
-#  - { key: Down,     mods: Alt,           chars: "\x1b[1;3B"                   }
-#  - { key: Down,                          chars: "\x1b[B",   mode: ~AppCursor  }
-#  - { key: Down,                          chars: "\x1bOB",   mode: AppCursor   }
-#  - { key: Tab,      mods: Shift,         chars: "\x1b[Z"                      }
-#  - { key: F1,                            chars: "\x1bOP"                      }
-#  - { key: F2,                            chars: "\x1bOQ"                      }
-#  - { key: F3,                            chars: "\x1bOR"                      }
-#  - { key: F4,                            chars: "\x1bOS"                      }
-#  - { key: F5,                            chars: "\x1b[15~"                    }
-#  - { key: F6,                            chars: "\x1b[17~"                    }
-#  - { key: F7,                            chars: "\x1b[18~"                    }
-#  - { key: F8,                            chars: "\x1b[19~"                    }
-#  - { key: F9,                            chars: "\x1b[20~"                    }
-#  - { key: F10,                           chars: "\x1b[21~"                    }
-#  - { key: F11,                           chars: "\x1b[23~"                    }
-#  - { key: F12,                           chars: "\x1b[24~"                    }
-#  - { key: Back,                          chars: "\x7f"                        }
-#  - { key: Back,     mods: Alt,           chars: "\x1b\x7f"                    }
-  - {key: Insert, mods: Shift, action: PasteSelection}
-#  - { key: Delete,                        chars: "\x1b[3~"                     }
-  - {key: Paste, action: Paste}
-  - {key: Copy, action: Copy}
-#
-    # shortcuts for tmux. the leader key is control-b (0x02)
-  # - {key: W, mods: Command, chars: "\x01&"}                                       # close tab (kill)
-  # - {key: T, mods: Command, chars: "\x01c"}                                       # new tab
-  # - {key: RBracket, mods: Command|Shift, chars: "\x01n"}                          # select next tab
-  # - {key: LBracket, mods: Command|Shift, chars: "\x01p"}                          # select previous tab
-  # - {key: RBracket, mods: Command, chars: "\x01o"}                                # select next pane
-  # - {key: LBracket, mods: Command, chars: "\x01;"}                                # select last (previously used) pane
-  # - {key: F, mods: Command, chars: "\x01/"}                                       # search (upwards) (see tmux.conf)
+# shortcuts for tmux. the leader key is control-b (0x02)
+# - {key: W, mods: Command, chars: "\x01&"}                                       # close tab (kill)
+# - {key: T, mods: Command, chars: "\x01c"}                                       # new tab
+# - {key: RBracket, mods: Command|Shift, chars: "\x01n"}                          # select next tab
+# - {key: LBracket, mods: Command|Shift, chars: "\x01p"}                          # select previous tab
+# - {key: RBracket, mods: Command, chars: "\x01o"}                                # select next pane
+# - {key: LBracket, mods: Command, chars: "\x01;"}                                # select last (previously used) pane
+# - {key: F, mods: Command, chars: "\x01/"}                                       # search (upwards) (see tmux.conf)
 
 mouse:
   # Click settings
@@ -405,33 +403,33 @@ mouse:
   # The `double_click` and `triple_click` settings control the time
   # alacritty should wait for accepting multiple clicks as one double
   # or triple click.
-  double_click: {threshold: 300}
-  triple_click: {threshold: 300}
+  double_click: { threshold: 300 }
+  triple_click: { threshold: 300 }
 
   # If this is `true`, the cursor is temporarily hidden when typing.
   hide_when_typing: true
 
   # URL launcher
   # url:
-    # This program is executed when clicking on a text which is recognized as a URL.
-    # The URL is always added to the command as the last parameter.
-    #
-    # When set to `None`, URL launching will be disabled completely.
-    #
-    # Default:
-    #   - (macOS) open
-    #   - (Linux) xdg-open
-    #   - (Windows) explorer
-    # launcher:
-    #   program: xdg-open
-    #   args: []
+  # This program is executed when clicking on a text which is recognized as a URL.
+  # The URL is always added to the command as the last parameter.
+  #
+  # When set to `None`, URL launching will be disabled completely.
+  #
+  # Default:
+  #   - (macOS) open
+  #   - (Linux) xdg-open
+  #   - (Windows) explorer
+  # launcher:
+  #   program: xdg-open
+  #   args: []
 
-    # These are the modifiers that need to be held down for opening URLs when clicking
-    # on them. The available modifiers are documented in the key binding section.
-    # modifiers: Control|Shift
+  # These are the modifiers that need to be held down for opening URLs when clicking
+  # on them. The available modifiers are documented in the key binding section.
+  # modifiers: Control|Shift
 
 selection:
-  semantic_escape_chars: ",│`|:\"' ()[]{}<>"
+  semantic_escape_chars: ',│`|:"'' ()[]{}<>'
 
   # When set to `true`, selected text will be copied to the primary clipboard.
   save_to_clipboard: true
@@ -452,7 +450,7 @@ selection:
 # All available `mods` and `action` values are documented in the key binding
 # section.
 mouse_bindings:
-  - {mouse: Middle, action: PasteSelection}
+  - { mouse: Middle, action: PasteSelection }
 
 cursor:
   # Cursor style
@@ -504,5 +502,4 @@ debug:
 
   # Record all characters and escape sequences as test data.
   ref_test: false
-
 # vim: nospell

@@ -74,13 +74,8 @@ bar {
     }
 }
 
-# bar {
-# 	font pango:mono 10
-# 	status_command i3blocks
-# 	position top
-# 	mode dock
-# 	modifier None
-# }
+
+
 
 # #---Basic Bindings---# #
 
@@ -99,7 +94,7 @@ bindsym $mod+Shift+Delete	exec --no-startup-id lmc truemute ; exec --no-startup-
 # Kill focused window
 bindsym $mod+Shift+q kill
 
-bindsym $mod+t			split toggle
+#bindsym $mod+t			split toggle
 bindsym $mod+Shift+t		gaps inner current set 15; gaps outer current set 15
 
 bindsym $mod+Shift+y		exec --no-startup-id i3resize left
@@ -149,16 +144,6 @@ bindsym $mod+Ctrl+l     move workspace to output right
 bindsym $mod+z			gaps outer current plus 5
 bindsym $mod+Shift+z		gaps outer current minus 5
 
-# bindsym $mod+c			exec --no-startup-id cabl
-
-# bindsym $mod+v			exec --no-startup-id $term -e $EDITOR -c "VimwikiIndex"
-
-#bindsym $mod+b			bar mode toggle
-#bindsym $mod+Shift+b		floating toggle; sticky toggle; exec --no-startup-id hover left
-
-#bindsym $mod+Shift+n		floating toggle; sticky toggle; exec --no-startup-id hover right
-
-
 # reload the configuration file
 bindsym $mod+Shift+c reload
 
@@ -170,7 +155,22 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 
 # #---Workspace Bindings---# #
+# Automatic workspace switching back-and-forth.
 workspace_auto_back_and_forth yes
+
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+minus scratchpad show
+
+# Window focus should not follow mouse
+focus_follows_mouse no
+
+# Cycle through workspaces with mouse.
+bindsym --whole-window button10 workspace next
+bindsym --whole-window button11 workspace prev
+
 bindsym $mod+b                  workspace back_and_forth
 bindsym $mod+Shift+b            move container to workspace back_and_forth; workspace back_and_forth
 bindsym $mod+Home		workspace $ws1
@@ -181,16 +181,11 @@ bindsym $mod+Prior		workspace prev
 bindsym $mod+Shift+Prior	move container to workspace prev
 bindsym $mod+Next		workspace next
 bindsym $mod+Shift+Next	move container to workspace next
-bindsym $mod+Tab		workspace back_and_forth
 bindsym $mod+XF86Back		workspace prev
 bindsym $mod+Shift+XF86Back	move container to workspace prev
 bindsym $mod+XF86Forward	workspace next
 bindsym $mod+Shift+XF86Forward	move container to workspace next
 bindsym $mod+semicolon		workspace next
-bindsym $mod+apostrophe	split horizontal ;; exec $term
-bindsym $mod+slash		split vertical ;; exec $term
-bindsym $mod+Shift+slash	kill
-bindsym $mod+backslash		workspace back_and_forth
 
 set $ws1 "1"
 set $ws2 "2"
@@ -238,7 +233,11 @@ for_window [class="Arandr"]                 floating enable
 for_window [class="Screenkey"]              floating enable
 for_window [class="Lxappearance"]           floating enable
 for_window [class="Floating Xterm"]         floating enable
-for_window [title="Terminator Preferences"] floating enable
+
+# Show taskwarrior tasks.
+for_window [title="^taskwin$"] floating enable
+bindsym $mod+t exec alacritty --title taskwin -e ~/bin/display_tasks.sh
+
 # Float pinit windows
 for_window [title="^pinit$"] floating enable
 
@@ -275,23 +274,6 @@ bindsym $mod+Shift+Left		move left
 bindsym $mod+Shift+Down		move down
 bindsym $mod+Shift+Up		move up
 bindsym $mod+Shift+Right 	move right
-
-# # Set shut down, restart and locking features
-# bindsym $mod+0 mode "$mode_system"
-# set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
-# mode "$mode_system" {
-#     bindsym l exec --no-startup-id i3exit lock, mode "default"
-#     bindsym s exec --no-startup-id i3exit suspend, mode "default"
-#     bindsym u exec --no-startup-id i3exit switch_user, mode "default"
-#     bindsym e exec --no-startup-id i3exit logout, mode "default"
-#     bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-#     bindsym r exec --no-startup-id i3exit reboot, mode "default"
-#     bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
-
-#     # exit system mode: "Enter" or "Escape"
-#     bindsym Return mode "default"
-#     bindsym Escape mode "default"
-# }
 
 ############################
 ### Settings for i3-gaps ###

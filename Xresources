@@ -24,7 +24,8 @@ XTerm*multiScroll: true
 XTerm*scrollBar: false
 
 #include ".Xresources.d/urxvt.xresources"
-#include ".Xresources.d/themes/gruvbox-dark.xresources"
+!#include ".Xresources.d/themes/gruvbox-dark.xresources"
+#include ".Xresources.d/themes/nord.xresources"
 !#include ".Xresources.d/themes/gruvbox-light.xresources"
 !#include ".Xresources.d/themes/grubox-urxvt256.xresources"
 !#include ".Xresources.d/themes/isotope.dark.xresource"
