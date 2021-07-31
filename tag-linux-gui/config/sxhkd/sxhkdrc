@@ -116,6 +116,10 @@ super + space
 alt + Tab
     rofi -show window
 
+# Launch clipboard viewer
+super + BackSpace
+    rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+
 # # Launch password manager
 # super + p
 #     menu=$(echo -e "$HOME/.password-store\n$ALTPASSDIR" | rofi -dmenu); rofi-pass --root "${menu}"
