@@ -237,5 +237,10 @@ alias config="/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME"
 # termbin
 alias tb="nc termbin.com 9999"
 
+# cheat
+cheat() {
+    curl --location --silent "cheat.sh/$1?style=default" | ${PAGER:-less};
+}
+
 # Vdirsyncer
 # alias vdirsyncer="~/vdirsyncer_env/bin/vdirsyncer"
