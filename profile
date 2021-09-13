@@ -99,8 +99,16 @@ fi
 ######
 # Go #
 ######
-export GOBIN="$HOME/go/bin"
-export PATH="$GOBIN:$HOME/.cargo/bin:$PATH"
+#export GOBIN="$HOME/go/bin"
+#export PATH="$GOBIN:$HOME/.cargo/bin:$PATH"
+if [ -d "/usr/local/go" ] ; then
+    export PATH=$PATH:/usr/local/go/bin
+    export GOPATH=$HOME/go
+    export GOBIN=$GOPATH/bin
+    PATH="GOBIN:$PATH"
+    export GOPROXY=https://goproxy.io,direct
+fi
+
 
 #######
 # DPI #
