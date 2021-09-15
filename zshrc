@@ -21,6 +21,15 @@ setopt share_history
 # AUTOCOMPLETION #
 ##################
 # enable completion
+########
+# asdf #
+########
+if [ -d $HOME/.asdf ]; then
+    . $HOME/.asdf/asdf.sh
+    # append completions to fpath
+    fpath=(${ASDF_DIR}/completions $fpath)
+fi
+
 autoload -Uz compinit
 compinit
 
@@ -213,13 +222,6 @@ function switchgo() {
 # ===================
 [ -r "$HOME/.zsh_plugins.sh" ] && source $HOME/.zsh_plugins.sh
 
-# ===================
-#    THIRD PARTY
-# ===================
-# brew install jump
-# https://github.com/gsamokovarov/jump
-#eval "$(jump shell)"
-
 #########
 # pyenv #
 #########
@@ -229,6 +231,8 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv virtualenv-init -)"
   eval "$(register-python-argcomplete pipx)"
 fi
+
+export WORKON_HOME="$HOME/.virtualenvs"
 
 if [[ -r "$HOME/.rbenv" ]]; then
     export PATH="$HOME/.rbenv/bin:$PATH"

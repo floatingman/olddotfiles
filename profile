@@ -99,15 +99,13 @@ fi
 ######
 # Go #
 ######
-#export GOBIN="$HOME/go/bin"
-#export PATH="$GOBIN:$HOME/.cargo/bin:$PATH"
-if [ -d "/usr/local/go" ] ; then
-    export PATH=$PATH:/usr/local/go/bin
-    export GOPATH=$HOME/go
-    export GOBIN=$GOPATH/bin
-    PATH="GOBIN:$PATH"
-    export GOPROXY=https://goproxy.io,direct
-fi
+ if [ -d "/usr/local/go" ] ; then
+     export PATH=$PATH:/usr/local/go/bin
+     export GOPATH=$HOME/go
+     export GOBIN=$GOPATH/bin
+     PATH="GOBIN:$PATH"
+     export GOPROXY=https://goproxy.io,direct
+ fi
 
 
 #######
@@ -221,24 +219,6 @@ ex=🎯:\
 #
 export LANG='en_US.UTF-8'
 export LC_ALL='en_US.UTF-8'
-
-#
-# Python
-#
-
-# Set the default environment directory for virtualenvwrapper.
-export WORKON_HOME="$HOME/.virtualenvs"
-
-#########
-# pyenv #
-#########
-
-if command -v pyenv 1>/dev/null 2>&1; then
-  export PYENV_ROOT="$HOME/.pyenv"
-  export PATH="$PYENV_ROOT/bin:$PATH"
-  eval "$(pyenv init --path)"
-fi
-
 
 ### ARCHIVE EXTRACTION
 # usage: ex <file>
