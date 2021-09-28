@@ -15,7 +15,7 @@ setopt hist_verify
 setopt inc_append_history
 # share command history data
 setopt share_history
-
+export HISTORY_FILTER_EXCLUDE=("_KEY" "Bearer" ".mkv" ".avi" ".mp4")
 
 ##################
 # AUTOCOMPLETION #

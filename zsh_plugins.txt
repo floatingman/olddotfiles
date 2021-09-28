@@ -1,3 +1,4 @@
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-syntax-highlighting
 urbainvaes/fzf-marks
+MichaelAquilina/zsh-history-filter

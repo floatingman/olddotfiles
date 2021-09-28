@@ -10,3 +10,6 @@
 [submodule "emacs.d"]
 	path = emacs.d
 	url = git@github.com:floatingman/systemcrafteremacs
+[submodule "tag-linux-gui/config/mpv/scripts/mpv-reload"]
+	path = tag-linux-gui/config/mpv/scripts/mpv-reload
+	url = https://github.com/4e6/mpv-reload
