@@ -49,7 +49,7 @@ super + shift + BackSpace
 	prompt "Reboot computer?" "sudo -A shutdown -r now"
 
 super + l
-	mpc pause; pauseallmpv; betterlockscreen -l blur -u ~/Syncs/wallpapers/apod; xset dpms force off
+	mpc pause; pauseallmpv; /usr/local/bin/lock; xset dpms force off
 
 XF86Launch1
 	xset dpms force off
@@ -164,7 +164,7 @@ super + shift + {k,j}
 # 	notify-send -u low "$(mpc -f "%title%" current)" "by $(mpc -f "%artist%" current)\non $(mpc -f "%album%" current) (#$(mpc -f "%track%" current))\n$(mpc -f "%originaldate%" current)"
 
 # Play the video URL in the clipboard
-super + p
+super + shift + p
     play
 
 # Mute individual pulse streams
@@ -205,8 +205,8 @@ super + c
 #     betterlockscreen -l
 
 # # Lock the screen
-# XF86ScreenSaver
-#     betterlockscreen -l
+XF86ScreenSaver
+    /usr/local/bin/lock
 
 # # Toggle trackpad
 XF86Tools
