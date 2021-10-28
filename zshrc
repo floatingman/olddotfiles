@@ -265,6 +265,9 @@ if [[ -f "$HOME/.dockerfunc" ]]; then
     source "${HOME}/.dockerfunc"
 fi
 
+# Load keychain
+eval $(keychain --eval --quiet --agents ssh,gpg id_rsa)
+
 # load private things if there
 [ -f "$HOME/.zsh_private" ] && source "$HOME/.zsh_private"
 
