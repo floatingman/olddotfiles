@@ -114,13 +114,14 @@ export WORKON_HOME="$HOME/.virtualenvs"
 export PROJECT_HOME="$HOME/projects"
 
 # Load virtualenvwrapper (lazy).
-source /usr/bin/virtualenvwrapper_lazy.sh
+#source /usr/bin/virtualenvwrapper_lazy.sh
 
 #########
 # pyenv #
 #########
-
-if command -v pyenv 1>/dev/null 2>&1; then
+if $_ismac; then
+    eval "$(pyenv init --path)"
+elif [[ -r "$HOME/.pyenv" ]]; then
   export PYENV_ROOT="$HOME/.pyenv"
   export PATH="$PYENV_ROOT/bin:$PATH"
   eval "$(pyenv init --path)"

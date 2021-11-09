@@ -171,7 +171,7 @@ export SDKMAN_DIR="${HOME}/.sdkman"
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 #Pyenv
-if command -v pyenv 1>/dev/null 2>&1; then
+if [[ -r "$HOME/.pyenv" ]]; then
     eval "$(pyenv init -)"
 fi
 
