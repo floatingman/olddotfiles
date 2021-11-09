@@ -107,6 +107,39 @@ fi
      export GOPROXY=https://goproxy.io,direct
  fi
 
+# Set the default environment directory for virtualenvwrapper.
+export WORKON_HOME="$HOME/.virtualenvs"
+
+# Set the default project directory for virtualenvwrapper.
+export PROJECT_HOME="$HOME/projects"
+
+# Load virtualenvwrapper (lazy).
+source /usr/bin/virtualenvwrapper_lazy.sh
+
+#########
+# pyenv #
+#########
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init --path)"
+fi
+
+# Rbenv
+if [[ -r "$HOME/.rbenv" ]]; then
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    eval "$(rbenv init -)"
+    export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+fi
+
+#NVM
+if [[ -d "$HOME/.nvm" ]] ; then
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
+
 
 #######
 # DPI #
@@ -275,11 +308,3 @@ function findCurrentOSType()
             } ;;
     esac
 }
-
-### SOURCING BROOT ###
-#source $HOME/.config/broot/launcher/bash/br
-
-### BASH INSULTER ###
-if [ -f /etc/bash.command-not-found ]; then
-    . /etc/bash.command-not-found
-fi

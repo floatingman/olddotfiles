@@ -165,10 +165,16 @@ rga-fzf() {
 # Find a file and cd into it's directory
 bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
 
-### BASH INSULTER ###
-if [ -f /etc/bash.command-not-found ]; then
-    . /etc/bash.command-not-found
+#SDKMAN
+export SDKMAN_DIR="${HOME}/.sdkman"
+[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+#Pyenv
+if command -v pyenv 1>/dev/null 2>&1; then
+    eval "$(pyenv init -)"
 fi
+
 
 # ===================
 #    MISC SETTINGS
@@ -221,39 +227,6 @@ function switchgo() {
 #    PLUGINS
 # ===================
 [ -r "$HOME/.zsh_plugins.sh" ] && source $HOME/.zsh_plugins.sh
-
-#########
-# pyenv #
-#########
-
-if command -v pyenv 1>/dev/null 2>&1; then
-  export PYENV_ROOT="$HOME/.pyenv"
-  export PATH="$PYENV_ROOT/bin:$PATH"
-  eval "$(pyenv init --path)"
-  eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
-  eval "$(register-python-argcomplete pipx)"
-fi
-
-export WORKON_HOME="$HOME/.virtualenvs"
-
-if [[ -r "$HOME/.rbenv" ]]; then
-    export PATH="$HOME/.rbenv/bin:$PATH"
-    eval "$(rbenv init -)"
-    export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
-fi
-
-#NVM
-if [[ -d "$HOME/.nvm" ]] ; then
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-fi
-
-#SDKMAN
-export SDKMAN_DIR="${HOME}/.sdkman"
-[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 # Python PDM
 if _have pdm; then
