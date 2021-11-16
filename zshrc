@@ -17,19 +17,12 @@ setopt inc_append_history
 setopt share_history
 export HISTORY_FILTER_EXCLUDE=("_KEY" "Bearer" ".mkv" ".avi" ".mp4")
 
-#######################
-# Base16 Shell Colors #
-#######################
-# BASE16_SHELL="$HOME/.config/base16-shell/"
-# [ -n "$PS1" ] && \
-#     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-#         eval "$("$BASE16_SHELL/profile_helper.sh")"
 
 ###############
 # Colorscheme #
 ###############
-LIGHT_COLOR='base16-gruvbox-light-soft.yml'
-DARK_COLOR='base16-gruvbox-dark-soft.yml'
+LIGHT_COLOR='base16-tomorrow.yml'
+DARK_COLOR='base16-tomorrow-night.yml'
 
 alias day="alacritty-colorscheme -V apply $LIGHT_COLOR"
 alias night="alacritty-colorscheme -V apply $DARK_COLOR"
