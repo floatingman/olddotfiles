@@ -142,10 +142,15 @@
     smudge = git-media-smudge %f
 [user]
 	name = Daniel Newman
-	email = dwnewman78@gmail.com
+	email = daniel.newman@teamexos.com
 [github]
 	user = floatingman
 [pull]
 	rebase = false
 [init]
 	defaultBranch = main
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
