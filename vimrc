@@ -96,7 +96,7 @@ set autoread " automatically reload when files change because YOLO!
 if $TMUX == ''
   set clipboard+=unnamed " share the macOS pasteboard instead of a Vim register
 endif
-set guifont=Source\ Code\ Pro:h22
+set guifont=Iosevka:h22
 autocmd! GUIEnter * set vb t_vb= " disable audible bell in macvim
 set visualbell t_vb= " disable audible bell in terminal
 
