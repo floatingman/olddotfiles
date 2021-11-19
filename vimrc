@@ -36,6 +36,9 @@ Plug 'slim-template/vim-slim'
 Plug 'tpope/vim-unimpaired'
 Plug 'posva/vim-vue'
 
+"" Colorscheme
+Plug 'chriskempson/base16-vim'
+
 call plug#end()
 
 "" General Configuration
@@ -44,6 +47,12 @@ filetype plugin indent on
 
 " No Swapping
 set noswapfile
+
+" Set color space
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256          " Remove this line if not necessary
+  source ~/.vimrc_background
+endif
 
 " Fix some security issues
 if !isdirectory($HOME."/.vim")
