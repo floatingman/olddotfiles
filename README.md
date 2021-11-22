@@ -9,7 +9,7 @@ dotfiles
 
 _Bonus_ for mac
 
-1. Run `rcup -v -t macos`
+1. Run `rcup -v -t mac`
 2. And then run the various mac setup scripts in my [bin](https://github.com/floatingman/bin) repo
 
 Afterwards an alias is created to update your dotfiles with the command `ud`
