@@ -6,7 +6,8 @@ dotfiles
 4. Run `ln -s ~/.dotfiles/rcrc ~/.rcrc`
 5. Run `rcup -v`
 6. Run `~/.dotfiles/install.sh`
-
+7. Start emacs and load Emacs.org in the .emacs.d folder and tangle the file
+   with `C-c C-v t` to create the emacs config
 _Bonus_ for mac
 
 1. Run `rcup -v -t mac`
