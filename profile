@@ -113,7 +113,7 @@ fi
      export PATH=$PATH:/usr/local/go/bin
      export GOPATH=$HOME/go
      export GOBIN=$GOPATH/bin
-     PATH="GOBIN:$PATH"
+     PATH="$GOBIN:$PATH"
      export GOPROXY=https://goproxy.io,direct
  fi
 
