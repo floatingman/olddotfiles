@@ -65,7 +65,7 @@ export EDITOR="emacs -Q -nw --eval='(menu-bar-mode -1)'"      # $EDITOR use Emac
 export VISUAL="emacsclient -c -a emacs"   # $VISUAL use Emacs in GUI mode
 
 export FZF_DEFAULT_COMMAND='rg --files --ignore --hidden --follow --glob "!.git/*"'
-
+# export FZF_DEFAULT_COMMAND='ag -u -g ""'
 ### CHANGE TITLE OF TERMINALS
 case ${TERM} in
   xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|konsole*)
