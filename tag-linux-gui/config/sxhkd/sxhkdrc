@@ -235,6 +235,13 @@ super + q
 super + XF86Favorites
 	systemctl suspend
 
+# Dunst
+ctrl + grave
+	dunstctl history
+
+ctrl + shift + period
+	dunstctl context
+
 # #########
 # # Mouse #
 # #########

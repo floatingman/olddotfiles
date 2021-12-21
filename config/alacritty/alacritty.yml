@@ -185,37 +185,38 @@ font:
 # gruvbox_dark.yaml
 # Colors (Gruvbox dark)
 colors:
-  # COLORSCHEME: dracula.yaml
+  # COLORSCHEME: base16-tomorrow-night.yml
   # Default colors
   primary:
     # hard contrast: background = '0x1d2021'
-    background: '0x282a36'
-    foreground: '0xf8f8f2'
+    background: '0x1d1f21'
+    foreground: '0xc5c8c6'
 
-  # Normal colors
+  # Colors the cursor will use if `custom_cursor_colors` is true
   normal:
-    black: '0x000000'
-    red: '0xff5555'
-    green: '0x50fa7b'
-    yellow: '0xf1fa8c'
-    blue: '0xbd93f9'
-    magenta: '0xff79c6'
-    cyan: '0x8be9fd'
-    white: '0xbbbbbb'
+    black: '0x1d1f21'
+    red: '0xcc6666'
+    green: '0xb5bd68'
+    yellow: '0xf0c674'
+    blue: '0x81a2be'
+    magenta: '0xb294bb'
+    cyan: '0x8abeb7'
+    white: '0xc5c8c6'
 
   # Bright colors
   bright:
-    black: '0x555555'
-    red: '0xff5555'
-    green: '0x50fa7b'
-    yellow: '0xf1fa8c'
-    blue: '0xcaa9fa'
-    magenta: '0xff79c6'
-    cyan: '0x8be9fd'
+    black: '0x969896'
+    red: '0xde935f'
+    green: '0x282a2e'
+    yellow: '0x373b41'
+    blue: '0xb4b7b4'
+    magenta: '0xe0e0e0'
+    cyan: '0xa3685a'
     white: '0xffffff'
+
   cursor:
-    text: '0xffffff'
-    cursor: '0x4d4d4c'
+    text: '0x1d1f21'
+    cursor: '0xc5c8c6'
 
   # Normal colors
   dim:

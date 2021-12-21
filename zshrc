@@ -235,10 +235,6 @@ function switchgo() {
   echo "Switched to ${go_bin_path}"
 }
 
-# ===================
-#    PLUGINS
-# ===================
-[ -r "$HOME/.zsh_plugins.sh" ] && source $HOME/.zsh_plugins.sh
 
 # Python PDM
 if _have pdm; then
@@ -251,7 +247,9 @@ if [[ -f "$HOME/.dockerfunc" ]]; then
 fi
 
 # Load keychain
-eval $(keychain --eval --quiet --agents ssh,gpg id_rsa)
+zstyle :omz:plugins:keychain agents gpg,ssh
+zstyle :omz:plugins:keychain options --quiet
+#eval $(keychain --eval --quiet --agents ssh,gpg id_rsa)
 
 # load private things if there
 [ -f "$HOME/.zsh_private" ] && source "$HOME/.zsh_private"
@@ -259,5 +257,10 @@ eval $(keychain --eval --quiet --agents ssh,gpg id_rsa)
 # load mac things if there
 [ -f "$HOME/.zsh_mac" ] && source $HOME/.zsh_mac
 
+# ===================
+#    PLUGINS
+# ===================
+[ -r "$HOME/.zsh_plugins.sh" ] && source $HOME/.zsh_plugins.sh
+
 ### SETTING THE STARSHIP PROMPT ###
-eval "$(starship init zsh)"
+#eval "$(starship init zsh)"

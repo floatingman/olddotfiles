@@ -43,6 +43,7 @@ else
 fi
 alias e=$EDITOR
 alias se="sudo $EDITOR"
+alias vim="nvim"
 
 #alias emacs="emacsclient -c -a 'emacs'"
 
@@ -71,20 +72,11 @@ fi
 
 if _have exa; then
     # Changing "ls" to "exa"
-    alias ls='exa -l --color=always --group-directories-first' # my preferred listing
-    alias la='exa -a --color=always --group-directories-first'  # all files and dirs
-    alias ll='exa -l --color=always --group-directories-first'  # long format
     alias lla='exa -la --color=always --group-directories-first' # list all files long format
-    alias lr='exa -R'          # Lists human readable sizes, recursively.
-    alias lt='exa -al --color=always --group-directories-first --sort=modified --reverse' # sort by time
     alias lz='exa -al --reverse --sort=size --color=always --group-directories-first' # sort by size
     alias l.='exa -a | egrep "^\."'
 else
-    alias ls='ls -l --color=always --group-directories-first' # my preferred listing
-    alias la='ls -a --color=always --group-directories-first'  # all files and dirs
-    alias ll='ls -l --color=always --group-directories-first'  # long format
     alias lla='ls -la --color=always --group-directories-first'  # long format
-    alias lt='ls -al --color=always --group-directories-first' # Sort by time
     alias l.='ls -a | egrep "^\."'
 fi
 
@@ -92,6 +84,8 @@ fi
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
+
+alias ag='sag'
 
 # confirm before overwriting something
 alias cp="cp -i"
