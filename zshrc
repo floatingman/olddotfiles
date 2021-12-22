@@ -249,7 +249,7 @@ fi
 # Load keychain
 zstyle :omz:plugins:keychain agents gpg,ssh
 zstyle :omz:plugins:keychain options --quiet
-#eval $(keychain --eval --quiet --agents ssh,gpg id_rsa)
+eval $(keychain --eval --quiet --agents ssh,gpg id_rsa)
 
 # load private things if there
 [ -f "$HOME/.zsh_private" ] && source "$HOME/.zsh_private"
