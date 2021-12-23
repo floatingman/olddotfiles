@@ -257,6 +257,8 @@ eval $(keychain --eval --quiet --agents ssh,gpg id_rsa)
 # load mac things if there
 [ -f "$HOME/.zsh_mac" ] && source $HOME/.zsh_mac
 
+ZSH_THEME=dogenpunk
+
 # ===================
 #    PLUGINS
 # ===================

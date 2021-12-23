@@ -8,7 +8,7 @@
 sxhkd &
 
 # Launch the screen locker
-xautolock -time 09 -locker "/usr/local/bin/lock" -detectsleep -corners 0-0+ -cornerdelay 3 -cornerredelay 20 &
+#xautolock -time 09 -locker "/usr/local/bin/lock" -detectsleep -corners 0-0+ -cornerdelay 3 -cornerredelay 20 &
 
 # Restore the desktop background
 if [ -f ~/.fehbg ]; then

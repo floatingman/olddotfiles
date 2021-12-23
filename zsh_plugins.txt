@@ -32,4 +32,4 @@ sampson-chen/sack
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-syntax-highlighting
 MichaelAquilina/zsh-history-filter
-dracula/zsh
+#dracula/zsh
