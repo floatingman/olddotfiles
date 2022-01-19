@@ -21,8 +21,8 @@ export HISTORY_FILTER_EXCLUDE=("_KEY" "Bearer" ".mkv" ".avi" ".mp4")
 ###############
 # Colorscheme #
 ###############
-LIGHT_COLOR='base16-tomorrow.yml'
-DARK_COLOR='base16-tomorrow-night.yml'
+LIGHT_COLOR='solarized_light.yaml'
+DARK_COLOR='solarized_dark.yaml'
 
 alias day="alacritty-colorscheme -V apply $LIGHT_COLOR"
 alias night="alacritty-colorscheme -V apply $DARK_COLOR"
