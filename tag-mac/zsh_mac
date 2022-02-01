@@ -3,7 +3,6 @@ export HOMEBREW_NO_ANALYTICS=true
 export HOMEBREW_INSTALL_BADGE="(ʘ‿ʘ)"
 export HOMEBREW_BUNDLE_FILE_PATH=~/.homebrew/Brewfile
 export BASH_SILENCE_DEPRECATION_WARNING=1
-
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 export PATH="/usr/local/sbin:$PATH"

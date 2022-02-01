@@ -37,6 +37,11 @@ _source() {
     . "$file"
 }
 
+# We need to load homebrew pretty early
+if $_ismac; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 ########
 # Path #
 ########
