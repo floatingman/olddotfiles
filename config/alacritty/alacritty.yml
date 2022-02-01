@@ -181,16 +181,13 @@ font:
 # colors of the cursor.
 # custom_cursor_colors: true
 
-# color_start
-# gruvbox_dark.yaml
-# Colors (Gruvbox dark)
 colors:
-  # COLORSCHEME: solarized_light.yaml
+  # COLORSCHEME: solarized_dark.yaml
   # Default colors
   primary:
     # hard contrast: background = '0x1d2021'
-    background: '0xfdf6e3'
-    foreground: '0x586e75'
+    background: '0x002b36'
+    foreground: '0x839496'
 
   # Normal colors
   normal:
@@ -234,7 +231,7 @@ colors:
     - {index: 19, color: '0xd5c4a1'}
     - {index: 20, color: '0x665c54'}
     - {index: 21, color: '0x3c3836'}
-background_opacity: 1
+window.opacity: 1
 
 # Key bindings
 #
