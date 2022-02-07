@@ -50,6 +50,7 @@ brew "glib"
 brew "libx11"
 brew "cairo"
 brew "carthage"
+brew "python@3.10"
 brew "llvm"
 brew "ccls"
 brew "cmake"
@@ -78,6 +79,8 @@ brew "gobject-introspection"
 brew "harfbuzz"
 brew "little-cms2"
 brew "leptonica"
+brew "lz4"
+brew "libarchive"
 brew "libass"
 brew "libsndfile"
 brew "libvpx"
@@ -90,7 +93,6 @@ brew "xvid"
 brew "zimg"
 brew "ffmpeg"
 brew "figlet"
-brew "lz4"
 brew "folly"
 brew "fortune"
 brew "freetds"
@@ -142,7 +144,6 @@ brew "k6"
 brew "keychain"
 brew "lazydocker"
 brew "lazygit"
-brew "libarchive"
 brew "libcaca"
 brew "libgccjit"
 brew "libiconv"
@@ -167,6 +168,7 @@ brew "mkcert"
 brew "mujs"
 brew "uchardet"
 brew "vapoursynth"
+brew "yt-dlp"
 brew "mpv", link: false
 brew "msgpack"
 brew "mysql", restart_service: true
@@ -214,6 +216,7 @@ brew "toilet"
 brew "trash"
 brew "unzip"
 brew "vifm"
+brew "virtualenv"
 brew "virtualenvwrapper"
 brew "watchman"
 brew "wget"
@@ -221,7 +224,6 @@ brew "youtube-dl"
 brew "zlib"
 brew "aws/tap/aws-sam-cli"
 brew "d12frosted/emacs-plus/emacs-plus@29", args: ["with-native-comp"]
-brew "facebook/fb/idb-companion"
 brew "heroku/brew/heroku"
 brew "koekeishiya/formulae/skhd"
 brew "koekeishiya/formulae/yabai"
@@ -286,10 +288,12 @@ mas "Bitwarden", id: 1352778147
 mas "Clocker", id: 1056643111
 mas "Evernote", id: 406056744
 mas "GarageBand", id: 682658836
+mas "HiddenMe Pro", id: 1007499919
 mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
 mas "Meeter", id: 1510445899
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
+mas "Shush", id: 496437906
 mas "Xcode", id: 497799835
