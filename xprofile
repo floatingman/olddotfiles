@@ -50,7 +50,7 @@ picom &
 caffeine &
 
 # Password manager
-bitwarden &
+bitwarden-desktop &
 
 # Start wallpaper changer
 ~/bin/wallpaper.sh &
