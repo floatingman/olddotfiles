@@ -62,6 +62,7 @@ brew "libidn2"
 brew "zstd"
 brew "dav1d"
 brew "diff-so-fancy"
+brew "doctl"
 brew "pcre2"
 brew "editorconfig"
 brew "exa"
@@ -200,6 +201,7 @@ brew "rbenv"
 brew "rcm"
 brew "redis", restart_service: true
 brew "ripgrep"
+brew "rke"
 brew "shellcheck"
 brew "sl"
 brew "starship"
@@ -243,6 +245,7 @@ cask "font-fantasque-sans-mono"
 cask "font-fira-code"
 cask "font-fira-code-nerd-font"
 cask "font-fira-mono"
+cask "font-hack-nerd-font"
 cask "font-iosevka"
 cask "font-iosevka-aile"
 cask "font-iosevka-nerd-font"
@@ -259,9 +262,11 @@ cask "insomnia"
 cask "iterm2-nightly"
 cask "karabiner-elements"
 cask "keybase"
+cask "keycastr"
 cask "kitty"
 cask "meld"
 cask "mpv"
+cask "numi"
 cask "qlcolorcode"
 cask "qlimagesize"
 cask "qlmarkdown"
@@ -286,6 +291,7 @@ cask "xquartz"
 mas "Amphetamine", id: 937984704
 mas "Bitwarden", id: 1352778147
 mas "Clocker", id: 1056643111
+mas "DevCleaner", id: 1388020431
 mas "Evernote", id: 406056744
 mas "GarageBand", id: 682658836
 mas "HiddenMe Pro", id: 1007499919
@@ -293,6 +299,7 @@ mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
 mas "Meeter", id: 1510445899
 mas "Microsoft Remote Desktop", id: 1295203466
+mas "NordVPN", id: 905953485
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Shush", id: 496437906
