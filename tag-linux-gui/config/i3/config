@@ -13,7 +13,7 @@
 #gaps outer 15
 set $term --no-startup-id $TERMINAL
 #(Mod1=<Alt>, Mod4=<Super>)
-set $mod Mod1
+set $mod Mod4
 
 # Configure border style <normal|lpixel|pixel xx|none|pixel>
 new_window pixel 1
