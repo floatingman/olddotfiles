@@ -69,9 +69,17 @@ export TERM="xterm-256color"    # For getting proper colors
 export EDITOR="nvim"      # $EDITOR use Emacs in terminal
 export VISUAL="emacsclient -c -a emacs"   # $VISUAL use Emacs in GUI mode
 
-export FZF_DEFAULT_COMMAND='rg --files --ignore --hidden --follow --glob "!.git/*"'
-# export FZF_DEFAULT_COMMAND='ag -u -g ""'
-### CHANGE TITLE OF TERMINALS
+#######
+# FZF #
+#######
+export FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git'"
+export FZF_DEFAULT_OPTS="--height 60% --border sharp"
+# export FZF_DEFAULT_COMMAND='rg --files --ignore --hidden --follow --glob "!.git/*"'
+#export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
+
+#############################
+# CHANGE TITLE OF TERMINALS #
+#############################
 case ${TERM} in
   xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|konsole*)
     PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
@@ -177,7 +185,6 @@ export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
 
 
 # Other program settings
-export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
 export AWT_TOOLKIT="MToolkit wmname LG3D"	#May have to install wmname
 export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
