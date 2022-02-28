@@ -1,9 +1,9 @@
+#!/bin/sh
+
+
 ###########
 # History #
 ###########
-HISTSIZE=100000
-SAVEHIST=100000
-HISTFILE=~/.cache/zsh/history
 export HISTORY_IGNORE="(ls|l|ll|lt|[bf]g|exit|reset|clear|cd|cd ..|cd ../|pwd|date|* --help|rm)"
 setopt append_history
 setopt extended_history

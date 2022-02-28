@@ -64,7 +64,7 @@ fi
 ####################
 export TERMINAL='alacritty'
 export BROWSER="firefox"
-export FILE="lf"
+export FILE="ranger"
 export TERM="xterm-256color"    # For getting proper colors
 export EDITOR="nvim"      # $EDITOR use Emacs in terminal
 export VISUAL="emacsclient -c -a emacs"   # $VISUAL use Emacs in GUI mode
