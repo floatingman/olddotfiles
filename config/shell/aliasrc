@@ -94,14 +94,12 @@ if _have exa; then
     alias ll='exa -lahF'
     alias lls='exa -lahFtr'
     alias la='exa -A'
-    alias l='exa -CF'
 else
     alias ls='ls --color=auto'
     alias lsl='ls -l'
     alias ll='ls -lahF'
     alias lls='ls -lahFtr'
     alias la='ls -A'
-    alias l='ls -CF'
     alias lla='ls -la --color=always --group-directories-first'  # long format
     alias l.='ls -a | egrep "^\."'
 fi
