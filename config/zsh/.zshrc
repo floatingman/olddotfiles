@@ -40,26 +40,34 @@ source "$ZDOTDIR/zsh-functions"
 ##################
 
 # asdf
-# if [ -d $HOME/.asdf ]; then
-#     . $HOME/.asdf/asdf.sh
-#     # append completions to fpath
-#     fpath=(${ASDF_DIR}/completions $fpath)
-# fi
+if [ -d $HOME/.asdf ]; then
+    . $HOME/.asdf/asdf.sh
+    # append completions to fpath
+    fpath=(${ASDF_DIR}/completions $fpath)
+fi
 
 zsh_add_file "zsh-completion"
+
+autoload -Uz $ZDOTDIR/completion/kubectl-completion/zsh-kubectl-completion
+
 
 ##########
 # Prompt #
 ##########
 zsh_add_file "zsh-prompt"
 
-# ===================
-#    KEY BINDINGS
-# ===================
+################
+# Key-Bindings #
+################
 # Use emacs-like key bindings by default:
 #bindkey -e
 
-zsh_add_file "zsh-vim-mode"
+zsh_add_file "zsh-vim-mode":w
+
+bindkey -s '^o' 'ranger^M'
+bindkey -s '^s' 'ncdu^M'
+# Find a file and cd into it's directory
+bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
 
 ###########
 # Plugins #
@@ -76,7 +84,6 @@ zsh_add_plugin "MichaelAquilina/zsh-history-filter"
 autoload -Uz run-help
 autoload -Uz run-help-git run-help-ip run-help-openssl run-help-p4 run-help-sudo run-help-svk run-help-svn
 
-bindkey -s '^o' 'lfcd\n'
 
 #######
 # FZF #
@@ -89,8 +96,6 @@ if [ -r /usr/share/fzf/completion.zsh ]; then
     source /usr/share/fzf/completion.zsh
 fi
 
-# Find a file and cd into it's directory
-bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
 
 # ===================
 #    MISC SETTINGS
