@@ -2,6 +2,8 @@
 # Utilities #
 #############
 
+source "$HOME/.functions"
+
 # is $1 installed?
 _have() { which "$1" &>/dev/null; }
 
@@ -157,7 +159,7 @@ if [[ -r "$HOME/.rbenv" ]]; then
     export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 fi
 
-#NVM
+# NVM
 if [[ -d "$HOME/.nvm" ]] ; then
     export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -183,151 +185,11 @@ export LESS_TERMCAP_us="$(printf '%b' '[1;32m')"
 export LESS_TERMCAP_ue="$(printf '%b' '[0m')"
 export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
 
-
 # Other program settings
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
 export AWT_TOOLKIT="MToolkit wmname LG3D"	#May have to install wmname
 export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
 
-# This is the list for lf icons:
-export LF_ICONS="di=📁:\
-fi=📃:\
-tw=🤝:\
-ow=📂:\
-ln=⛓:\
-or=❌:\
-ex=🎯:\
-*.txt=✍:\
-*.mom=✍:\
-*.me=✍:\
-*.ms=✍:\
-*.png=🖼:\
-*.webp=🖼:\
-*.ico=🖼:\
-*.jpg=📸:\
-*.jpe=📸:\
-*.jpeg=📸:\
-*.gif=🖼:\
-*.svg=🗺:\
-*.tif=🖼:\
-*.tiff=🖼:\
-*.xcf=🖌:\
-*.html=🌎:\
-*.xml=📰:\
-*.gpg=🔒:\
-*.css=🎨:\
-*.pdf=📚:\
-*.djvu=📚:\
-*.epub=📚:\
-*.csv=📓:\
-*.xlsx=📓:\
-*.tex=📜:\
-*.md=📘:\
-*.r=📊:\
-*.R=📊:\
-*.rmd=📊:\
-*.Rmd=📊:\
-*.m=📊:\
-*.mp3=🎵:\
-*.opus=🎵:\
-*.ogg=🎵:\
-*.m4a=🎵:\
-*.flac=🎼:\
-*.wav=🎼:\
-*.mkv=🎥:\
-*.mp4=🎥:\
-*.webm=🎥:\
-*.mpeg=🎥:\
-*.avi=🎥:\
-*.mov=🎥:\
-*.mpg=🎥:\
-*.wmv=🎥:\
-*.m4b=🎥:\
-*.flv=🎥:\
-*.zip=📦:\
-*.rar=📦:\
-*.7z=📦:\
-*.tar.gz=📦:\
-*.z64=🎮:\
-*.v64=🎮:\
-*.n64=🎮:\
-*.gba=🎮:\
-*.nes=🎮:\
-*.gdi=🎮:\
-*.1=ℹ:\
-*.nfo=ℹ:\
-*.info=ℹ:\
-*.log=📙:\
-*.iso=📀:\
-*.img=📀:\
-*.bib=🎓:\
-*.ged=👪:\
-*.part=💔:\
-*.torrent=🔽:\
-*.jar=♨:\
-*.java=♨:\
-"
-
-[ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ] && shortcuts >/dev/null 2>&1 &
-
-#
 # Language
-#
 export LANG='en_US.UTF-8'
 export LC_ALL='en_US.UTF-8'
-
-### ARCHIVE EXTRACTION
-# usage: ex <file>
-ex()
-{
-  if [ -f $1 ] ; then
-    case $1 in
-      *.tar.bz2)   tar xjf $1   ;;
-      *.tar.gz)    tar xzf $1   ;;
-      *.bz2)       bunzip2 $1   ;;
-      *.rar)       unrar x $1   ;;
-      *.gz)        gunzip $1    ;;
-      *.tar)       tar xf $1    ;;
-      *.tbz2)      tar xjf $1   ;;
-      *.tgz)       tar xzf $1   ;;
-      *.zip)       unzip $1     ;;
-      *.Z)         uncompress $1;;
-      *.7z)        7z x $1      ;;
-      *.deb)       ar x $1      ;;
-      *.tar.xz)    tar xf $1    ;;
-      *.tar.zst)   unzstd $1    ;;
-      *)           echo "'$1' cannot be extracted via ex()" ;;
-    esac
-  else
-    echo "'$1' is not a valid file"
-  fi
-}
-
-function findCurrentOSType()
-{
-    echo "Finding the current os type"
-    echo
-    osType=$(uname)
-    case "$osType" in
-            "Darwin")
-            {
-                echo "Running on Mac OSX."
-                CURRENT_OS="OSX"
-            } ;;
-            "Linux")
-            {
-                # If available, use LSB to identify distribution
-                if [ -f /etc/lsb-release -o -d /etc/lsb-release.d ]; then
-                    DISTRO=$(gawk -F= '/^NAME/{print $2}' /etc/os-release)
-                else
-                    DISTRO=$(ls -d /etc/[A-Za-z]*[_-][rv]e[lr]* | grep -v "lsb" | cut -d'/' -f3 | cut -d'-' -f1 | cut -d'_' -f1)
-                fi
-                CURRENT_OS=$(echo $DISTRO | tr 'a-z' 'A-Z')
-            } ;;
-            *)
-            {
-                echo "Unsupported OS, exiting"
-                exit
-            } ;;
-    esac
-}

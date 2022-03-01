@@ -50,11 +50,14 @@ alias vim="nvim"
 # pacman and yay
 if _have pacman; then
     alias p="sudo pacman"
+    alias pacman="sudo pacman"
     alias pacx="sudo pacman --remove"
     alias pacX="sudo pacman --remove --nosave --recursive"
     alias pacsyu='sudo pacman -Syyu'                 # update only standard pkgs
     alias unlock="sudo rm /var/lib/pacman/db.lck"    # remove pacman lock
     alias cleanup='sudo pacman -Rns $(pacman -Qtdq)' # remove orphaned packages
+    # For when keys break
+    alias archlinx-fix-keys="sudo pacman-key --init && sudo pacman-key --populate archlinux && sudo pacman-key --refresh-keys"
 fi
 
 if _have yay; then
@@ -170,19 +173,20 @@ fi
 # cd into git root dir
 alias cdr='cd $(git rev-parse --show-toplevel)'
 
+# systemd
+alias mach_list_systemctl="systemctl list-unit-files --state=enabled"
+alias SS="sudo systemctl"
+
 ########
 # Misc #
 ########
 alias calcurse="calcurse -D ~/.config/calcurse"
-alias SS="sudo systemctl"
 alias http-serve='python -m http.server'
 alias bc='bc -lq'
 alias utc='env TZ="UTC" date'
 alias weath="less -S ${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport"
 alias ref="shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/zshnameddirrc"
-
 alias path='echo $PATH | tr ":" "\n" | nl' # human readable path
-
 iowaiting() {
     watch -n 1 "(ps aux | awk '\$8 ~ /D/  { print \$0 }')"
 }
@@ -230,3 +234,17 @@ alias tb="nc termbin.com 9999"
 cheat() {
     curl --location --silent "cheat.sh/$1?style=default" | ${PAGER:-less};
 }
+
+###############
+# Colorscheme #
+###############
+# Set alacritty terminal colors
+LIGHT_COLOR='solarized_light.yaml'
+DARK_COLOR='solarized_dark.yaml'
+
+alias day="alacritty-colorscheme -V apply $LIGHT_COLOR"
+alias night="alacritty-colorscheme -V apply $DARK_COLOR"
+alias toggle="alacritty-colorscheme -V toggle $LIGHT_COLOR $DARK_COLOR"
+
+# Interactively enable sdkman to manage java versions
+alias mach_java_mode="export SDKMAN_DIR="$HOME/.sdkman" && [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh""

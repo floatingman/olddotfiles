@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/env sh
 
 # demolish any --user installed cabal packages.
 cabalwipe() {
@@ -639,19 +639,19 @@ kat () {
       echo "$line"
     done < "$file"
   done
-} && export -f kat
+} 
 
 # Same as kat but skips blank and lines with optional whitespace that
 # begin with a comment character (#).
 
-katlines () {
-  for file in $*; do
-    while IFS= read -r line; do
-      [[ $line =~ ^\ *(#|$) ]] && continue
-      echo "$line"
-    done < "$file"
-  done
-} && export -f katlines
+# katlines () {
+#   for file in $*; do
+#     while IFS= read -r line; do
+#       [[ $line =~ ^\ *(#|$) ]] && continue
+#       echo "$line"
+#     done < "$file"
+#   done
+# } 
 
 # True if anything that can be run from the command line exists, binaries,
 # scripts, aliases, and functions.
@@ -659,7 +659,7 @@ katlines () {
 havecmd () {
   type "$1" &>/dev/null
   return $?
-} && export -f havecmd
+} 
 
 # Moves an existing thing to the same path and name but with
 # ".preserved.<tstamp>" at the end and echoes the new location. Usually
@@ -672,7 +672,7 @@ preserve () {
   declare new="$target.preserved.$(tstamp)"
   mv "$target" "$new"
   echo "$new"
-} && export -f preserve
+} 
 
 # Lists all the preserved files by matching the .preserved<tstamp> suffix.
 # If passed an argument limits to only those preserved files matching that
@@ -688,19 +688,19 @@ lspreserved () {
   for i in "${files[@]}"; do
     echo "$i"
   done
-} && export -f lspreserved
+} 
 
 lastpreserved () {
   mapfile -t  a < <(lspreserved "$1")
   declare n=${#a[@]}
   echo "${a[n-1]}"
-} && export -f lastpreserved
+} 
 
 rmpreserved () {
   while IFS= read -r line; do
     rm -rf "$line"
   done < <(lspreserved)
-} && export -f rmpreserved
+} 
 
 # Undos the last preserve performed on the given target.
 
@@ -708,63 +708,63 @@ unpreserve () {
   declare last=$(lastpreserved "$*")
   [[ -z "$last" ]] && return 1
   mv "$last" "${last%.preserved*}"
-} && export -f unpreserve
+} 
 
 trash () {
   [[ -z "$TRASH" ]] && return 1
   mkdir -p "$TRASH"
   mv "$*" "$TRASH"
-} && export -f trash
+} 
 
-confirm () {
-  declare yn
-  read -p " [y/N] " yn
-  [[ ${yn,,} =~ y(es)? ]] && return 0
-  return 1
-} && export -f confirm
+# confirm () {
+#   declare yn
+#   read -p " [y/N] " yn
+#   [[ ${yn,,} =~ y(es)? ]] && return 0
+#   return 1
+# } 
 
 tell () {
   declare buf=$(argsorin "$*")
   mark $md_plain "$buf"
-} && export -f tell
+} 
 
 telln () {
   tell "$*"; echo
-} && export -f telln
+} 
 
 remind () {
   declare buf=$(argsorin "$*")
   tell "*REMEMBER:* $buf"
-} && export -f remind
+} 
 
 remindln () {
   remind "$*"; echo
-} && export -f remindln
+} 
 
 danger () {
   declare buf=$(argsorin "$*")
   tell "${blinkon}***DANGER:***${blinkoff} $buf"
-} && export -f danger
+} 
 
 dangerln () {
   danger "$*"; echo
-} && export -f dangerln
+} 
 
 warn () {
   declare buf=$(argsorin "$*")
   tell "${yellow}WARNING:${reset} $buf"
-} && export -f warn
+} 
 
 warnln () {
   warn "$*"; echo
-} && export -f warnln
+} 
 
 usageln () {
   declare cmd="$1"; shift
   declare buf="$*"
   tell "**usage:** *$cmd* $buf"
   echo
-} && export -f usageln
+} 
 
 
 ############################## Markdown-ish ##############################
@@ -952,14 +952,14 @@ mark () {
     echo -n "${buf:$i:1}"
   done
   echo -n $reset
-} && export -f mark
+} 
 
 ############################### Date / Time ##############################
 
 tstamp () {
   echo -n $1
   date '+%Y%m%d%H%M%S'
-} && export -f tstamp
+} 
 
 tstampfile () {
   declare path="$1"
@@ -967,19 +967,19 @@ tstampfile () {
   declare suf=${path##*.}
   echo -n $pre.$(tstamp)
   [[  "$pre" != "$suf" ]] && echo .$suf
-} && export -f tstampfile
+} 
 
 now () {
   echo "$1" $(date "+%A, %B %e, %Y, %l:%M:%S%p")
-} && export -f now
+} 
 
 now-s () {
   echo "$1" $(date "+%A, %B %e, %Y, %l:%M %p")
-} && export -f now-s
+} 
 
 epoch () {
   date +%s
-} && export -f now
+} 
 
 watchnow () {
   declare -i delay="${1:-10}"
@@ -991,23 +991,23 @@ watchnow () {
     now-s > ~/.now
     sleep $delay
   done
-} && export -f watchnow
+} 
 
 weekday () {
   echo $(lower $(date +"%A"))
-} && export -f weekday
+} 
 
 month () {
   echo $(lower $(date +"%B"))
-} && export -f month
+} 
 
 year () {
   echo $(lower $(date +"%Y"))
-} && export -f year
+} 
 
 week () {
   date +%W
-} && export -f week
+} 
 
 # Calls the compact ncal variation with Mondays first and including the
 # week count during the year. I prefer keeping track of blogs and such by
@@ -1022,4 +1022,96 @@ cal () {
     return $?
   fi
   $exe -M -w $*
-} && export -f cal
+} 
+
+init_sdkman() {
+    export SDKMAN_DIR="${HOME}/.sdkman"
+    [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+    test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+}
+
+# Use lf to switch directories and bind it to ctrl-o
+lfcd () {
+    tmp="$(mktemp)"
+    lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp" >/dev/null
+        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+    fi
+}
+
+
+rga-fzf() {
+    RG_PREFIX="rga --files-with-matches"
+    local file
+    file="$(
+        FZF_DEFAULT_COMMAND="$RG_PREFIX $@" \
+            fzf --sort --preview="[[ ! -z {} ]] && rga --pretty --context 5 {q} {}" \
+                --bind=tab:down,btab:up \
+                --phony -q "$1" \
+                --bind "change:reload:$RG_PREFIX {q}" \
+                --preview-window="70%:wrap"
+    )" &&
+    echo "opening $file" &&
+    xdg-open "$file"
+}
+
+switchgo() {
+  version=$1
+  if [ -z $version ]; then
+    echo "Usage: switchgo [version]"
+    return
+  fi
+
+  if ! command -v "go$version" > /dev/null 2>&1; then
+    echo "version does not exist, downloading with commands: "
+    echo "  go get golang.org/dl/go${version}"
+    echo "  go${version} download"
+    echo ""
+
+    go get "golang.org/dl/go${version}"
+    go${version} download
+  fi
+
+  go_bin_path=$(command -v "go$version")
+  ln -sf "$go_bin_path" "$GOBIN/go"
+  echo "Switched to ${go_bin_path}"
+}
+
+# only exit if we're not on the last pane
+exit() {
+  if [[ -z $TMUX ]]; then
+    builtin exit
+    return
+  fi
+
+  panes=$(tmux list-panes | wc -l)
+  wins=$(tmux list-windows | wc -l)
+  count=$(($panes + $wins - 1))
+  if [ $count -eq 1 ]; then
+    tmux detach
+  else
+    builtin exit
+  fi
+}
+
+pom() {
+    local -r HOURS=${1:?}
+    local -r MINUTES=${2:-0}
+    local -r POMODORO_DURATION=${3:-25}
+
+    echo "(($HOURS * 60) + $MINUTES) / $POMODORO_DURATION" | bc
+}
+
+ports() {
+    sudo netstat -tulpn | grep LISTEN | fzf;
+}
+
+duckduckgo() {
+    lynx -vikeys -accept_all_cookies "https://lite.duckduckgo.com/lite/?q=$@"
+}
+
+wikipedia() {
+    lynx -vikeys -accept_all_cookies "https://en.wikipedia.org/wiki?search=$@"
+}
