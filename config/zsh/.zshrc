@@ -112,6 +112,12 @@ if [[ -f "$HOME/.dockerfunc" ]]; then
     source "${HOME}/.dockerfunc"
 fi
 
+# Pyenv
+if [[ -r "$HOME/.pyenv" ]]; then
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
+
 # Load keychain
 eval $(keychain --eval --quiet --agents ssh,gpg id_rsa)
 
