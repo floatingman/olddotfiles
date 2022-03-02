@@ -27,10 +27,10 @@ super + shift + a
 	$TERMINAL -e pulsemixer
 
 super + w
-	$BROWSER
+	$BROWSER -p default
 
 super + shift + w
-	$TERMINAL -e sudo -A nmtui
+	$BROWSER -p Work
 
 # Et cetera...
 super + grave
@@ -169,7 +169,7 @@ super + shift + p
 
 # Mute individual pulse streams
 super + shift + m
-      pamute
+	pamute
 
 # ################
 # # Applications #

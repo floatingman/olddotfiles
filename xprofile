@@ -61,4 +61,4 @@ syncthing --no-browser &
 # Start Dropbox
 dropbox &
 
-i3
+exec i3
