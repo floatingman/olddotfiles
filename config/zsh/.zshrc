@@ -119,7 +119,7 @@ if [[ -r "$HOME/.pyenv" ]]; then
 fi
 
 # Load keychain
-eval $(keychain --eval --quiet --agents ssh,gpg id_rsa)
+eval $(keychain --eval --quiet --agents ssh,gpg id_ed25519_dlp)
 
 # load private things if there
 [ -f "$HOME/.zsh_private" ] && source "$HOME/.zsh_private"

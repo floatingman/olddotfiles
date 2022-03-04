@@ -323,3 +323,177 @@ alias tmuxl='tmux list-sessions'
 # +-------+
 
 alias mux='tmuxp load'
+
+###################
+# Rancher Aliases #
+###################
+function ssh_aws() {
+	ssh -o "StrictHostKeyChecking no" -i "${AWS_SSH_PATH}/<your_ssh_key>" -t "ubuntu@${1}" "sudo -s" "${@:2}"
+}
+
+function ssh_aws_with_key() {
+	ssh -o "StrictHostKeyChecking no" -i "${2}" -t "ubuntu@${1}" "sudo -s" "${@:3}"
+}
+
+function scp_aws() {
+	scp -i "${AWS_SSH_PATH}/<your_ssh_key>" -r "ubuntu@${1}:${2}" "${3}"
+}
+
+function aws_describe_instances() {
+	aws ec2 describe-instances "${@:1}"
+}
+
+# describe aws instances matching Name tag, can pass additional Name/Value filter combos
+function aws_describe_instances_by_name_and_filters() {
+	aws_describe_instances --filters Name=tag:Name,Values="${1}" "${@:3}" --region "${2}"
+}
+
+# gets the public ips for Rancher nodes with matching "Name" tag and region
+function aws_get_node_ips_by_instance_name() {
+	aws_describe_instances_by_name_and_filters "${1}" "${2}" "${@:3}" | grep PublicIp: | awk '{print $2}' | uniq
+}
+
+function k8s_get_private_node_ips() {
+	kubectl get nodes -o custom-columns=NAME:.metadata.name,IP:"{.status.addresses[?(@.type=='InternalIP')].address}" --selector='!monitoring' | awk 'NR > 1 {print $2}'
+}
+
+### k3s only
+function rcli_reset_password_on_remote() {
+	ssh_aws "${1}" "source /etc/profile; export KUBECONFIG=/etc/rancher/k3s/k3s.yaml; kubectl --kubeconfig \$KUBECONFIG -n cattle-system exec \$(kubectl --kubeconfig \$KUBECONFIG -n cattle-system get pods -l app=rancher | grep '1/1' | head -1 | awk '{ print \$1 }') -- reset-password | tail -n 1"
+}
+
+function rcli_forward_prometheus() {
+	if [ -z "${1}" ]
+	then
+		kubectl port-forward -n cattle-monitoring-system service/rancher-monitoring-prometheus 8443:9090 "${@:1}"
+	else
+		kubectl port-forward -n cattle-monitoring-system service/rancher-monitoring-prometheus "${1}":9090 "${@:2}"
+	fi
+
+}
+
+function rcli_forward_grafana() {
+	if [ -z "${1}" ]
+	then
+		kubectl port-forward -n cattle-monitoring-system deployment/rancher-monitoring-grafana 8444:3000 "${@:1}"
+	else
+		kubectl port-forward -n cattle-monitoring-system deployment/rancher-monitoring-grafana "${1}":3000 "${@:2}"
+	fi
+}
+
+function tfapply_rancher_in_region() {
+	local knownsizes;
+	local knownregions;
+	knownsizes="small medium large xlarge xxlarge"
+	knownregions="us-west-1 us-west-2 us-east-1 us-east-2"
+
+	if contains "${knownsizes}" "${1}" ; then
+
+		if contains "${knownregions}" "${2}" ; then
+			declare -A SIZE_INSTANCE_MAP
+			SIZE_INSTANCE_MAP=( [small]=large [medium]=xlarge [large]=2xlarge [xlarge]=4xlarge [xxlarge]=8xlarge)
+			if [ -z "${3}" ]
+			then
+				tf workspace select "${1}-${2}" && tf apply -var-file="${2}.tfvars" -auto-approve -var="rancher_instance_type=m5.${SIZE_INSTANCE_MAP[$1]}"
+			else
+				tf workspace new "${3}" || tf workspace select "${3}"
+				tf apply -var-file="${3}" -var="aws_region=${2}" -auto-approve -var="rancher_instance_type=m5.${SIZE_INSTANCE_MAP[$1]}" "${@:4}"
+			fi
+		else
+			echo "Requested region not found in known regions."
+		fi
+	else
+		echo "Requested size not found in known sizes."
+	fi
+}
+
+function tfdestroy_rancher_in_region() {
+	local knownsizes;
+	local knownregions;
+	knownsizes="small medium large xlarge xxlarge"
+	knownregions="us-west-1 us-west-2 us-east-1 us-east-2"
+
+	if contains "${knownsizes}" "${1}" ; then
+
+		if contains "${knownregions}" "${2}" ; then
+			declare -A SIZE_INSTANCE_MAP
+			SIZE_INSTANCE_MAP=( [small]="large" [medium]="xlarge" [large]="2xlarge" [xlarge]="4xlarge" [xxlarge]="8xlarge")
+			if [ -z "${3}" ]
+			then
+				tf workspace select "${1}-${2}" && tf destroy -var-file="${2}.tfvars" -auto-approve -var="rancher_instance_type=m5.${SIZE_INSTANCE_MAP[$1]}"
+			else
+				tf workspace select "${3}" && tf destroy -var-file="${3}" -var="aws_region=${2}" -auto-approve -var="rancher_instance_type=m5.${SIZE_INSTANCE_MAP[$1]}" "${@:4}" && tf workspace select "default" && tf workspace delete "${3}"
+			fi
+		else
+			echo "Requested region not found in known regions."
+		fi
+	else
+		echo "Requested size not found in known sizes."
+	fi
+}
+
+function rapi_get_heap_logs() {
+    for pod in $(kubectl -n cattle-system get pods --no-headers -l app=rancher | cut -d ' ' -f1); do
+        echo getting profile for "${pod}"
+        kubectl -n cattle-system exec "${pod}" -- curl -s http://localhost:6060/debug/pprof/heap -o profile.log
+        kubectl -n cattle-system cp "${pod}:profile.log" "${pod}-heap.log"
+        echo saved profile "${pod}-heap.log"
+    done
+}
+
+function rapi_set_token_and_url() {
+    export TF_VAR_rancher_token_key="${1}"
+    export ADMIN_TOKEN="${1}"
+    export TF_VAR_rancher_api_url="https://${2}.qa.rancher.space"
+    export CATTLE_TEST_URL="https://${2}.qa.rancher.space"
+}
+
+function _rapi_get_leader_pod() {
+    kubectl -n kube-system get configmap cattle-controllers -o jsonpath='{.metadata.annotations.control-plane\.alpha\.kubernetes\.io/leader}' "${@:1}" | jq '.holderIdentity' | tr -d '"'
+}
+
+function rapi_get_leader_node() {
+    local leader_pod=$(_rapi_get_leader_pod "${@:1}")
+    kubectl -n cattle-system get pod ${leader_pod} -o=custom-columns=NAME:.metadata.name,STATUS:.status.phase,NODE:.spec.nodeName "${@:1}"
+
+}
+
+function rapi_get_monitor_node() {
+    kubectl get nodes -l monitoring=yes -o jsonpath='{.items[*].status.addresses[?(@.type=="InternalIP")].address}'
+}
+
+function rapi_get_logs() {
+    kubectl -n cattle-system logs -l app=rancher -c rancher --timestamps --tail=3600 > rancher_logs.txt
+}
+
+function rapi_info_logging() {
+    kubectl -n cattle-system get pods -l app=rancher --no-headers -o custom-columns=name:.metadata.name | while read rancherpod; do kubectl -n cattle-system exec $rancherpod -c rancher -- loglevel --set info; done
+}
+
+function rapi_debug_logging() {
+    kubectl -n cattle-system get pods -l app=rancher --no-headers -o custom-columns=name:.metadata.name | while read rancherpod; do kubectl -n cattle-system exec $rancherpod -c rancher -- loglevel --set debug; done
+}
+
+function rapi_trace_logging() {
+    kubectl -n cattle-system get pods -l app=rancher --no-headers -o custom-columns=name:.metadata.name | while read rancherpod; do kubectl -n cattle-system exec $rancherpod -c rancher -- loglevel --set trace; done
+}
+
+function rapi_rancher_logs() {
+    kubectl -n cattle-system logs -l app=rancher -c rancher --follow
+}
+
+### kubectl get clusters.management.cattle.io  # find the cluster you want to delete
+function rapi_force_delete_downstream() {
+    # example: export CLUSTERID="c-xxxxxxxxx"
+    export CLUSTERID="${1}"
+    kubectl patch clusters.management.cattle.io $CLUSTERID -p '{"metadata":{"finalizers":[]}}' --type=merge
+    kubectl delete clusters.management.cattle.io $CLUSTERID
+}
+
+### kubectl proxy in separate shell first
+function rapi_force_delete_namespace() {
+    NAMESPACE="${1}" \
+    kubectl get ns $NAMESPACE -o json | \
+    jq '.spec.finalizers=[]' | \
+    curl -X PUT http://localhost:8001/api/v1/namespaces/$NAMESPACE/finalize -H "Content-Type: application/json" --data @-
+}
