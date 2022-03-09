@@ -8,6 +8,8 @@ dotfiles
 6. Run `~/.dotfiles/install.sh`
 7. Start emacs and load Emacs.org in the .emacs.d folder and tangle the file
    with `C-c C-v t` to create the emacs config
+8. Install fzf with `git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install`
+
 _Bonus_ for mac
 
 1. Run `rcup -v -t mac`
