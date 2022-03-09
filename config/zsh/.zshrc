@@ -88,18 +88,6 @@ autoload -Uz run-help
 autoload -Uz run-help-git run-help-ip run-help-openssl run-help-p4 run-help-sudo run-help-svk run-help-svn
 
 
-#######
-# FZF #
-#######
-
-if [ -r /usr/share/fzf/key-bindings.zsh ]; then
-    source /usr/share/fzf/key-bindings.zsh
-fi
-if [ -r /usr/share/fzf/completion.zsh ]; then
-    source /usr/share/fzf/completion.zsh
-fi
-
-
 # ===================
 #    MISC SETTINGS
 # ===================
@@ -126,3 +114,5 @@ eval $(keychain --eval --quiet --agents ssh,gpg id_ed25519_dlp)
 
 # load mac things if there
 [ -f "$HOME/.zsh_mac" ] && source "$HOME/.zsh_mac"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
