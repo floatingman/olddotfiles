@@ -42,7 +42,6 @@ else
    alias em="/usr/bin/emacs -nw"
 fi
 alias e=$EDITOR
-alias se="sudo $EDITOR"
 alias vim="nvim"
 
 #alias emacs="emacsclient -c -a 'emacs'"
@@ -323,6 +322,8 @@ alias tmuxl='tmux list-sessions'
 # +-------+
 
 alias mux='tmuxp load'
+
+alias tf='terraform'
 
 ###################
 # Rancher Aliases #

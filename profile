@@ -16,6 +16,8 @@ _isubuntu=false
 [[ "$(uname -v)" =~ Ubuntu ]] && _isubuntu=true
 _isarch=false
 [[ -f /etc/arch-release ]] && _isarch=true
+_iswsl=false
+[[ "$(uname -v)" =~ Microsoft ]] && _iswsl=true
 # Detect if gui is running
 _isxrunning=false
 [[ -n "$DISPLAY" ]] && _isxrunning=true
@@ -119,6 +121,14 @@ if $_ismac; then
   export PATH=$PATH:$ANDROID_HOME/tools
   export PATH=$PATH:$ANDROID_HOME/tools/bin
   export PATH=$PATH:$ANDROID_HOME/platform-tools
+fi
+
+###########
+# Vagrant #
+###########
+if $_iswsl; then
+  export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
+  export PATH="${PATH}:/mnt/c/Program Files/Oracle/VirtualBox"
 fi
 
 ######
