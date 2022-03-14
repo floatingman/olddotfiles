@@ -4,9 +4,6 @@
 [submodule "config/mpv/scripts/mpvSockets"]
 	path = config/mpv/scripts/mpvSockets
 	url = https://github.com/wis/mpvSockets.git
-[submodule "config/nvim"]
-	path = config/nvim
-	url = git@github.com:floatingman/neovim
 [submodule "emacs.d"]
 	path = emacs.d
 	url = git@github.com:floatingman/systemcrafteremacs
